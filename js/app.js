@@ -1,10 +1,10 @@
 // ===== Data Sources =====
 const DATA_SOURCES = {
-  papers: 'https://raw.githubusercontent.com/JivonKiang/orcid-profile-fanjiang/main/data/papers.json',
-  network: 'https://raw.githubusercontent.com/JivonKiang/orcid-profile-fanjiang/main/data/network.json',
-  timeline: 'https://raw.githubusercontent.com/JivonKiang/orcid-profile-fanjiang/main/data/timeline.json',
-  databases: 'https://raw.githubusercontent.com/JivonKiang/orcid-profile-fanjiang/main/data/databases.json',
-  hotspot: 'https://raw.githubusercontent.com/JivonKiang/medical-bibliometrics-hotspot/main/data.json'
+  papers: 'data/papers.json',
+  network: 'data/network.json',
+  timeline: 'data/timeline.json',
+  databases: 'data/databases.json',
+  hotspot: 'data/hotspot.json'
 };
 
 const CACHE_KEY = 'research_nav_cache';

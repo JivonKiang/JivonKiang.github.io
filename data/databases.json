@@ -1,0 +1,110 @@
+[
+  {
+    "name": "NHANES",
+    "full_name": "National Health and Nutrition Examination Survey",
+    "url": "https://www.cdc.gov/nchs/nhanes/",
+    "category": "深海蓝海",
+    "score": 78,
+    "description": "美国国家健康与营养调查，涵盖问卷+体检+实验室数据，适合营养流行病学与慢性病研究",
+    "why": "您的GBD疾病负担经验可直接迁移至NHANES微观数据；NHANES发文量稳定增长但远未饱和",
+    "if_range": "JAMA Network Open (IF 13.8) → AJCN (IF 7.1)",
+    "tier": "Deep Blue",
+    "desc": "美国国家健康与营养调查，涵盖问卷+体检+实验室数据，适合营养流行病学与慢性病研究"
+  },
+  {
+    "name": "UK Biobank",
+    "full_name": "UK Biobank",
+    "url": "https://www.ukbiobank.ac.uk/",
+    "category": "深海蓝海",
+    "score": 82,
+    "description": "50万英国参与者，含基因组+影像+生活方式+生化指标，前瞻性队列",
+    "why": "您有多组学生信基础和GBD宏观视角，UKB微观个体数据可做因果推断(MR)和风险预测模型",
+    "if_range": "Lancet (IF 98.4) → BMJ (IF 105.7) → Nature Communications (IF 16.6)",
+    "tier": "Deep Blue",
+    "desc": "50万英国参与者，含基因组+影像+生活方式+生化指标，前瞻性队列"
+  },
+  {
+    "name": "CHARLS",
+    "full_name": "China Health and Retirement Longitudinal Study",
+    "url": "https://charls.charlsdata.com/",
+    "category": "浅海蓝海",
+    "score": 72,
+    "description": "中国健康与养老追踪调查，45+岁中老年人群，覆盖健康、经济、社会多维度",
+    "why": "中国本土数据+老龄化主题与您MSK疾病负担和老年骨科研究方向高度契合",
+    "if_range": "Lancet Public Health (IF 50.0) → Age and Ageing (IF 12.1)",
+    "tier": "Shallow Blue",
+    "desc": "中国健康与养老追踪调查，45+岁中老年人群，覆盖健康、经济、社会多维度"
+  },
+  {
+    "name": "MIMIC-IV",
+    "full_name": "Medical Information Mart for Intensive Care",
+    "url": "https://physionet.org/content/mimiciv/",
+    "category": "近岸蓝海",
+    "score": 65,
+    "description": "麻省理工ICU重症监护数据库，含床旁监护波形+实验室+用药+病程记录",
+    "why": "与您的脓毒症纳米金研究、以及TB重症监护需求可形成临床转化链条",
+    "if_range": "Critical Care (IF 15.1) → Intensive Care Medicine (IF 38.9)",
+    "tier": "Nearshore Blue",
+    "desc": "麻省理工ICU重症监护数据库，含床旁监护波形+实验室+用药+病程记录"
+  },
+  {
+    "name": "SEER",
+    "full_name": "Surveillance, Epidemiology, and End Results Program",
+    "url": "https://seer.cancer.gov/",
+    "category": "近岸蓝海",
+    "score": 62,
+    "description": "美国癌症登记数据库，覆盖48%美国人口，含发病率+生存+治疗数据",
+    "why": "您有乳腺癌GBD经验 + 肾癌多组学研究 + 肾移植后恶性肿瘤文献计量基础",
+    "if_range": "JCO (IF 45.3) → Cancer (IF 6.9)",
+    "tier": "Nearshore Blue",
+    "desc": "美国癌症登记数据库，覆盖48%美国人口，含发病率+生存+治疗数据"
+  },
+  {
+    "name": "TCGA",
+    "full_name": "The Cancer Genome Atlas",
+    "url": "https://www.cancer.gov/tcga",
+    "category": "红海",
+    "score": 48,
+    "description": "33种癌症类型多组学数据（基因组+转录组+表观组+蛋白组）",
+    "why": "您已有肾癌多组学经验，但TCGA发文量极大且增速快，需找准细分切口",
+    "if_range": "Nature (IF 50.5) → Cancer Research (IF 11.2)",
+    "tier": "Red Sea",
+    "desc": "33种癌症类型多组学数据（基因组+转录组+表观组+蛋白组）"
+  },
+  {
+    "name": "GEO",
+    "full_name": "Gene Expression Omnibus",
+    "url": "https://www.ncbi.nlm.nih.gov/geo/",
+    "category": "红海",
+    "score": 45,
+    "description": "全球最大公共基因表达数据库，含微阵列+RNA-seq+ChIP-seq等",
+    "why": "您有TB诊断基因表达分析经验，GEO可作为训练集但需外部验证队列",
+    "if_range": "Briefings in Bioinformatics (IF 9.5) → BMC Genomics (IF 4.4)",
+    "tier": "Red Sea",
+    "desc": "全球最大公共基因表达数据库，含微阵列+RNA-seq+ChIP-seq等"
+  },
+  {
+    "name": "FinnGen",
+    "full_name": "FinnGen Research Project",
+    "url": "https://www.finngen.fi/",
+    "category": "深海蓝海",
+    "score": 76,
+    "description": "50万芬兰人群基因型+健康登记数据，专注基因-疾病关联研究",
+    "why": "结合您的疫苗设计经验可做药物靶点MR分析；芬兰人群遗传背景独特，竞争者少",
+    "if_range": "Nature Genetics (IF 30.8) → European Journal of Epidemiology (IF 13.6)",
+    "tier": "Deep Blue",
+    "desc": "50万芬兰人群基因型+健康登记数据，专注基因-疾病关联研究"
+  },
+  {
+    "name": "CPRD",
+    "full_name": "Clinical Practice Research Datalink",
+    "url": "https://cprd.com/",
+    "category": "浅海蓝海",
+    "score": 70,
+    "description": "英国基层医疗电子健康记录，含6000万患者，覆盖处方+诊断+检验",
+    "why": "消化系统疾病GBD经验可对接真实世界药物疗效与安全性研究",
+    "if_range": "BMJ (IF 105.7) → Gut (IF 24.5)",
+    "tier": "Shallow Blue",
+    "desc": "英国基层医疗电子健康记录，含6000万患者，覆盖处方+诊断+检验"
+  }
+]
