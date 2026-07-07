@@ -13,7 +13,7 @@
     "status": 1,
     "audition_name": "张老师",
     "audition_card": "https://video.keyan.asia/curyian/20251022/VTvXlS4f.png",
-    "crawled_at": "2026-07-07T03:44:46.347332"
+    "crawled_at": "2026-07-07T07:36:10.582550"
   },
   {
     "id": 6522,
@@ -29,7 +29,23 @@
     "status": 1,
     "audition_name": "蔡老师",
     "audition_card": "https://video.keyan.asia/curyian/20250114/xod5KFzj.png",
-    "crawled_at": "2026-07-07T03:44:45.161288"
+    "crawled_at": "2026-07-07T07:36:10.580979"
+  },
+  {
+    "id": 9023,
+    "out_trade_no": "20250206175827fC",
+    "title": "国外核心一对一辅导 - SCI辅导意向金",
+    "service_title": "国外核心",
+    "goods_title": "国外核心一对一辅导",
+    "goods_combo_tile": "SCI辅导意向金",
+    "package": "国外核心 - 国外核心一对一辅导 - SCI辅导意向金",
+    "category_name": "管理学",
+    "subject_name": "会计",
+    "major_name": "会计,会计",
+    "status": 1,
+    "audition_name": "刘老师",
+    "audition_card": "https://video.keyan.asia/curyian/20240305/1709604910CilKyiBb.png",
+    "crawled_at": "2026-07-07T07:36:09.478856"
   },
   {
     "id": 9620,
@@ -45,7 +61,7 @@
     "status": 1,
     "audition_name": "蔡老师",
     "audition_card": "https://video.keyan.asia/curyian/20250114/xod5KFzj.png",
-    "crawled_at": "2026-07-07T03:44:45.160465"
+    "crawled_at": "2026-07-07T07:36:09.477731"
   },
   {
     "id": 11062,
@@ -61,7 +77,7 @@
     "status": 1,
     "audition_name": "陈老师",
     "audition_card": "https://cdn.lishushu51.com/curyian/user/card/16976017085ioGlINX.png",
-    "crawled_at": "2026-07-07T03:44:45.159610"
+    "crawled_at": "2026-07-07T07:36:09.476647"
   },
   {
     "id": 11795,
@@ -77,7 +93,7 @@
     "status": 1,
     "audition_name": "陈老师",
     "audition_card": "https://cdn.lishushu51.com/curyian/user/card/16976017085ioGlINX.png",
-    "crawled_at": "2026-07-07T03:44:45.158547"
+    "crawled_at": "2026-07-07T07:36:09.475498"
   },
   {
     "id": 12633,
@@ -93,7 +109,7 @@
     "status": 1,
     "audition_name": "陆老师",
     "audition_card": "https://video.keyan.asia/curyian/20250627/mz3sXCou.jpg",
-    "crawled_at": "2026-07-07T03:44:45.157633"
+    "crawled_at": "2026-07-07T07:36:09.474519"
   },
   {
     "id": 13036,
@@ -109,23 +125,23 @@
     "status": 1,
     "audition_name": "蔡老师",
     "audition_card": "https://video.keyan.asia/curyian/20250114/xod5KFzj.png",
-    "crawled_at": "2026-07-07T03:44:45.156758"
+    "crawled_at": "2026-07-07T07:36:09.473410"
   },
   {
-    "id": 14002,
-    "out_trade_no": "20251117182024Vs",
-    "title": "国内核心一对一辅导 - 北核辅导定制意向金",
-    "service_title": "国内核心",
-    "goods_title": "国内核心一对一辅导",
-    "goods_combo_tile": "北核辅导定制意向金",
-    "package": "国内核心 - 国内核心一对一辅导 - 北核辅导定制意向金",
-    "category_name": "工学",
-    "subject_name": "自动化",
-    "major_name": "自动控制",
+    "id": 14188,
+    "out_trade_no": "202512021033477a",
+    "title": "国外核心一对一辅导 - SSCI辅导意向金",
+    "service_title": "国外核心",
+    "goods_title": "国外核心一对一辅导",
+    "goods_combo_tile": "SSCI辅导意向金",
+    "package": "国外核心 - 国外核心一对一辅导 - SSCI辅导意向金",
+    "category_name": "文学",
+    "subject_name": "翻译",
+    "major_name": "翻译",
     "status": 1,
-    "audition_name": "朱老师",
-    "audition_card": "https://cdn.lishushu51.com/curyian/user/card/1701672426LVDF5EO8.jpg",
-    "crawled_at": "2026-07-07T03:44:45.155761"
+    "audition_name": "曾老师",
+    "audition_card": "https://cdn.lishushu51.com/curyian/user/card/1692243496SLvTJzMp.png",
+    "crawled_at": "2026-07-07T07:36:09.472318"
   },
   {
     "id": 14845,
@@ -141,7 +157,7 @@
     "status": 1,
     "audition_name": "李老师",
     "audition_card": "https://video.keyan.asia/curyian/20251105/UXlZhJuM.jpg",
-    "crawled_at": "2026-07-07T03:44:45.154900"
+    "crawled_at": "2026-07-07T07:36:09.471309"
   },
   {
     "id": 15149,
@@ -157,7 +173,7 @@
     "status": 1,
     "audition_name": "徐老师",
     "audition_card": "https://video.keyan.asia/curyian/20250326/si4OVpYN.jpg",
-    "crawled_at": "2026-07-07T03:44:45.154065"
+    "crawled_at": "2026-07-07T07:36:09.470061"
   },
   {
     "id": 15740,
@@ -173,7 +189,7 @@
     "status": 1,
     "audition_name": "徐老师",
     "audition_card": "https://video.keyan.asia/curyian/20250326/si4OVpYN.jpg",
-    "crawled_at": "2026-07-07T03:44:45.152749"
+    "crawled_at": "2026-07-07T07:36:09.468447"
   },
   {
     "id": 15819,
@@ -189,7 +205,7 @@
     "status": 1,
     "audition_name": "徐老师",
     "audition_card": "https://video.keyan.asia/curyian/20250326/si4OVpYN.jpg",
-    "crawled_at": "2026-07-07T03:44:45.151792"
+    "crawled_at": "2026-07-07T07:36:09.467261"
   },
   {
     "id": 15829,
@@ -205,7 +221,7 @@
     "status": 1,
     "audition_name": "张老师",
     "audition_card": "https://video.keyan.asia/curyian/20251022/VTvXlS4f.png",
-    "crawled_at": "2026-07-07T03:44:45.150922"
+    "crawled_at": "2026-07-07T07:36:09.466061"
   },
   {
     "id": 15977,
@@ -221,7 +237,7 @@
     "status": 1,
     "audition_name": "张老师",
     "audition_card": "https://video.keyan.asia/curyian/20251022/VTvXlS4f.png",
-    "crawled_at": "2026-07-07T03:44:45.149941"
+    "crawled_at": "2026-07-07T07:36:09.464909"
   },
   {
     "id": 15987,
@@ -237,7 +253,7 @@
     "status": 1,
     "audition_name": "蔡老师",
     "audition_card": "https://video.keyan.asia/curyian/20250114/xod5KFzj.png",
-    "crawled_at": "2026-07-07T03:44:45.149099"
+    "crawled_at": "2026-07-07T07:36:09.463677"
   },
   {
     "id": 15989,
@@ -253,7 +269,7 @@
     "status": 1,
     "audition_name": "张老师",
     "audition_card": "https://video.keyan.asia/curyian/20251022/VTvXlS4f.png",
-    "crawled_at": "2026-07-07T03:44:45.147924"
+    "crawled_at": "2026-07-07T07:36:09.462110"
   },
   {
     "id": 16056,
@@ -269,7 +285,7 @@
     "status": 1,
     "audition_name": "徐老师",
     "audition_card": "https://video.keyan.asia/curyian/20250326/si4OVpYN.jpg",
-    "crawled_at": "2026-07-07T03:44:45.146678"
+    "crawled_at": "2026-07-07T07:36:09.460815"
   },
   {
     "id": 16075,
@@ -285,7 +301,7 @@
     "status": 1,
     "audition_name": "张老师",
     "audition_card": "https://video.keyan.asia/curyian/20251022/VTvXlS4f.png",
-    "crawled_at": "2026-07-07T03:44:43.762282"
+    "crawled_at": "2026-07-07T07:36:08.319743"
   },
   {
     "id": 16076,
@@ -301,7 +317,7 @@
     "status": 1,
     "audition_name": "徐老师",
     "audition_card": "https://video.keyan.asia/curyian/20250326/si4OVpYN.jpg",
-    "crawled_at": "2026-07-07T03:44:43.761499"
+    "crawled_at": "2026-07-07T07:36:08.318564"
   },
   {
     "id": 16080,
@@ -317,7 +333,7 @@
     "status": 1,
     "audition_name": "徐老师",
     "audition_card": "https://video.keyan.asia/curyian/20250326/si4OVpYN.jpg",
-    "crawled_at": "2026-07-07T03:44:43.760728"
+    "crawled_at": "2026-07-07T07:36:08.317364"
   },
   {
     "id": 16083,
@@ -333,7 +349,7 @@
     "status": 1,
     "audition_name": "蔡老师",
     "audition_card": "https://video.keyan.asia/curyian/20250114/xod5KFzj.png",
-    "crawled_at": "2026-07-07T03:44:43.759942"
+    "crawled_at": "2026-07-07T07:36:08.316283"
   },
   {
     "id": 16097,
@@ -349,7 +365,7 @@
     "status": 1,
     "audition_name": "蔡老师",
     "audition_card": "https://video.keyan.asia/curyian/20250114/xod5KFzj.png",
-    "crawled_at": "2026-07-07T03:44:43.758860"
+    "crawled_at": "2026-07-07T07:36:08.314852"
   },
   {
     "id": 16104,
@@ -365,7 +381,7 @@
     "status": 1,
     "audition_name": "张老师",
     "audition_card": "https://video.keyan.asia/curyian/20251022/VTvXlS4f.png",
-    "crawled_at": "2026-07-07T03:44:43.758100"
+    "crawled_at": "2026-07-07T07:36:08.313773"
   },
   {
     "id": 16106,
@@ -381,23 +397,7 @@
     "status": 1,
     "audition_name": "蔡老师",
     "audition_card": "https://video.keyan.asia/curyian/20250114/xod5KFzj.png",
-    "crawled_at": "2026-07-07T03:44:43.757334"
-  },
-  {
-    "id": 16108,
-    "out_trade_no": "20260705222519ef",
-    "title": "国外核心一对一辅导 - SCI辅导意向金",
-    "service_title": "国外核心",
-    "goods_title": "国外核心一对一辅导",
-    "goods_combo_tile": "SCI辅导意向金",
-    "package": "国外核心 - 国外核心一对一辅导 - SCI辅导意向金",
-    "category_name": "工学",
-    "subject_name": "电子信息",
-    "major_name": "兵器,目标检测与跟踪,光机电",
-    "status": 1,
-    "audition_name": "陈老师",
-    "audition_card": "https://cdn.lishushu51.com/curyian/user/card/16976017085ioGlINX.png",
-    "crawled_at": "2026-07-07T03:44:43.756496"
+    "crawled_at": "2026-07-07T07:36:08.312668"
   },
   {
     "id": 16110,
@@ -413,7 +413,7 @@
     "status": 1,
     "audition_name": "陈老师",
     "audition_card": "https://cdn.lishushu51.com/curyian/user/card/16976017085ioGlINX.png",
-    "crawled_at": "2026-07-07T03:44:43.755621"
+    "crawled_at": "2026-07-07T07:36:08.311372"
   },
   {
     "id": 16111,
@@ -429,7 +429,7 @@
     "status": 1,
     "audition_name": "朱老师",
     "audition_card": "https://cdn.lishushu51.com/curyian/user/card/1701672426LVDF5EO8.jpg",
-    "crawled_at": "2026-07-07T03:44:43.754828"
+    "crawled_at": "2026-07-07T07:36:08.310173"
   },
   {
     "id": 16112,
@@ -445,7 +445,7 @@
     "status": 1,
     "audition_name": "张老师",
     "audition_card": "https://video.keyan.asia/curyian/20251022/VTvXlS4f.png",
-    "crawled_at": "2026-07-07T03:44:43.753872"
+    "crawled_at": "2026-07-07T07:36:08.309039"
   },
   {
     "id": 16113,
@@ -461,7 +461,7 @@
     "status": 1,
     "audition_name": "朱老师",
     "audition_card": "https://cdn.lishushu51.com/curyian/user/card/1701672426LVDF5EO8.jpg",
-    "crawled_at": "2026-07-07T03:44:43.752743"
+    "crawled_at": "2026-07-07T07:36:08.308046"
   },
   {
     "id": 16115,
@@ -477,7 +477,7 @@
     "status": 1,
     "audition_name": "徐老师",
     "audition_card": "https://video.keyan.asia/curyian/20250326/si4OVpYN.jpg",
-    "crawled_at": "2026-07-07T03:44:43.751855"
+    "crawled_at": "2026-07-07T07:36:08.306914"
   },
   {
     "id": 16116,
@@ -493,7 +493,7 @@
     "status": 1,
     "audition_name": "朱老师",
     "audition_card": "https://cdn.lishushu51.com/curyian/user/card/1701672426LVDF5EO8.jpg",
-    "crawled_at": "2026-07-07T03:44:43.750983"
+    "crawled_at": "2026-07-07T07:36:08.305142"
   },
   {
     "id": 16117,
@@ -507,24 +507,40 @@
     "subject_name": "资源与环境",
     "major_name": "安全工程",
     "status": 1,
-    "audition_name": "赵老师",
-    "audition_card": "https://video.keyan.asia/curyian/20240702/u8U4I7Lg.png",
-    "crawled_at": "2026-07-07T03:44:43.750057"
-  },
-  {
-    "id": 16118,
-    "out_trade_no": "20260706222625WV",
-    "title": "国外核心一对一辅导 - SSCI辅导意向金",
-    "service_title": "国外核心",
-    "goods_title": "国外核心一对一辅导",
-    "goods_combo_tile": "SSCI辅导意向金",
-    "package": "国外核心 - 国外核心一对一辅导 - SSCI辅导意向金",
-    "category_name": "管理学",
-    "subject_name": "农业经济管理",
-    "major_name": "农林经济管理",
-    "status": 1,
     "audition_name": "张老师",
     "audition_card": "https://video.keyan.asia/curyian/20251022/VTvXlS4f.png",
-    "crawled_at": "2026-07-07T03:44:43.748599"
+    "crawled_at": "2026-07-07T07:36:08.302715"
+  },
+  {
+    "id": 16119,
+    "out_trade_no": "20260707131110Fk",
+    "title": "国外核心一对一辅导 - SCI辅导意向金",
+    "service_title": "国外核心",
+    "goods_title": "国外核心一对一辅导",
+    "goods_combo_tile": "SCI辅导意向金",
+    "package": "国外核心 - 国外核心一对一辅导 - SCI辅导意向金",
+    "category_name": "工学",
+    "subject_name": "农业工程",
+    "major_name": "农业工程,农业水土工程",
+    "status": 1,
+    "audition_name": "徐老师",
+    "audition_card": "https://video.keyan.asia/curyian/20250326/si4OVpYN.jpg",
+    "crawled_at": "2026-07-07T07:36:08.300964"
+  },
+  {
+    "id": 16121,
+    "out_trade_no": "20260707153218F9",
+    "title": "其他 - 省级课题辅导",
+    "service_title": "课题基金",
+    "goods_title": "其他",
+    "goods_combo_tile": "省级课题辅导",
+    "package": "课题基金 - 其他 - 省级课题辅导",
+    "category_name": "教育学",
+    "subject_name": "教育学",
+    "major_name": "教育学",
+    "status": 1,
+    "audition_name": "赵老师",
+    "audition_card": "https://video.keyan.asia/curyian/20240702/u8U4I7Lg.png",
+    "crawled_at": "2026-07-07T07:36:08.299146"
   }
 ]
