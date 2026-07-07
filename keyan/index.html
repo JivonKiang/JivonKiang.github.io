@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>氪研接单大厅 · 数据看板</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+/* Google Fonts 在国内加载慢，改用系统字体 */
 
 :root {
   --bg: #0f1117;
@@ -34,7 +34,7 @@
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
 html { scroll-behavior:smooth; }
 body {
-  font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.6;
@@ -54,7 +54,7 @@ body {
   display:flex; align-items:center; justify-content:space-between;
 }
 .header h1 {
-  font-family:'Noto Serif SC',serif;
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
   font-size:22px; font-weight:700; letter-spacing:0.5px;
   background:linear-gradient(135deg, var(--accent) 0%, #f5c070 100%);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
@@ -100,7 +100,7 @@ body {
 .stat-card:nth-child(5)::before { background:var(--red); }
 .stat-card .num {
   font-size:26px; font-weight:700; line-height:1.2;
-  font-family:'Noto Serif SC',serif;
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif;
 }
 .stat-card:nth-child(1) .num { color:var(--accent); }
 .stat-card:nth-child(2) .num { color:var(--green); }
