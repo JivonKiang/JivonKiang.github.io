@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>氪研接单大厅 · 数据看板</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #0f1117;
+  --bg-elevated: #181b24;
+  --bg-card: #1e2230;
+  --bg-card-hover: #252a3a;
+  --border: #2a3040;
+  --text: #e8e9ec;
+  --text-muted: #8b92a8;
+  --text-dim: #5a6070;
+  --accent: #f0a030;
+  --accent-soft: rgba(240,160,48,0.12);
+  --accent-glow: rgba(240,160,48,0.25);
+  --green: #4ade80;
+  --green-soft: rgba(74,222,128,0.12);
+  --blue: #60a5fa;
+  --blue-soft: rgba(96,165,250,0.12);
+  --purple: #c084fc;
+  --purple-soft: rgba(192,132,252,0.12);
+  --red: #f87171;
+  --red-soft: rgba(248,113,113,0.12);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  min-height:100vh;
+  padding-bottom:40px;
+}
+
+/* Header */
+.header {
+  position:sticky; top:0; z-index:100;
+  background:linear-gradient(180deg, rgba(15,17,23,0.95) 0%, rgba(15,17,23,0.85) 60%, transparent 100%);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  padding:16px 20px 8px;
+}
+.header-top {
+  display:flex; align-items:center; justify-content:space-between;
+}
+.header h1 {
+  font-family:'Noto Serif SC',serif;
+  font-size:22px; font-weight:700; letter-spacing:0.5px;
+  background:linear-gradient(135deg, var(--accent) 0%, #f5c070 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+.header .subtitle {
+  font-size:12px; color:var(--text-dim); margin-top:2px;
+}
+.header .badge {
+  background:var(--accent-soft); color:var(--accent);
+  font-size:11px; font-weight:600; padding:4px 10px;
+  border-radius:20px; border:1px solid rgba(240,160,48,0.2);
+}
+
+/* Section */
+.section { padding:0 16px; margin-top:20px; }
+.section-title {
+  font-size:14px; font-weight:600; color:var(--text-muted);
+  text-transform:uppercase; letter-spacing:1px;
+  margin-bottom:12px; display:flex; align-items:center; gap:8px;
+}
+.section-title::before {
+  content:''; display:block; width:4px; height:16px;
+  background:var(--accent); border-radius:2px;
+}
+
+/* Stat cards */
+.stat-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+}
+.stat-card {
+  background:var(--bg-card); border:1px solid var(--border);
+  border-radius:var(--radius-sm); padding:14px 10px;
+  text-align:center; transition:all 0.3s ease;
+  position:relative; overflow:hidden;
+}
+.stat-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+}
+.stat-card:nth-child(1)::before { background:var(--accent); }
+.stat-card:nth-child(2)::before { background:var(--green); }
+.stat-card:nth-child(3)::before { background:var(--blue); }
+.stat-card:nth-child(4)::before { background:var(--purple); }
+.stat-card:nth-child(5)::before { background:var(--red); }
+.stat-card .num {
+  font-size:26px; font-weight:700; line-height:1.2;
+  font-family:'Noto Serif SC',serif;
+}
+.stat-card:nth-child(1) .num { color:var(--accent); }
+.stat-card:nth-child(2) .num { color:var(--green); }
+.stat-card:nth-child(3) .num { color:var(--blue); }
+.stat-card:nth-child(4) .num { color:var(--purple); }
+.stat-card:nth-child(5) .num { color:var(--red); }
+.stat-card .label {
+  font-size:11px; color:var(--text-dim); margin-top:4px;
+}
+
+/* Bar chart */
+.bar-chart { display:flex; flex-direction:column; gap:10px; }
+.bar-row {
+  display:flex; align-items:center; gap:10px;
+}
+.bar-label {
+  width:56px; font-size:12px; color:var(--text-muted);
+  text-align:right; flex-shrink:0;
+}
+.bar-track {
+  flex:1; height:28px; background:var(--bg-elevated);
+  border-radius:6px; overflow:hidden; position:relative;
+}
+.bar-fill {
+  height:100%; border-radius:6px; position:relative;
+  transition:width 1s cubic-bezier(0.22,1,0.36,1);
+  display:flex; align-items:center; justify-content:flex-end;
+  padding-right:8px;
+}
+.bar-fill span {
+  font-size:11px; font-weight:600; color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,0.4);
+}
+.bar-fill.cat-1 { background:linear-gradient(90deg,#f59e0b,#f0a030); }
+.bar-fill.cat-2 { background:linear-gradient(90deg,#10b981,#4ade80); }
+.bar-fill.cat-3 { background:linear-gradient(90deg,#3b82f6,#60a5fa); }
+.bar-fill.cat-4 { background:linear-gradient(90deg,#8b5cf6,#c084fc); }
+.bar-fill.cat-5 { background:linear-gradient(90deg,#ec4899,#f472b6); }
+.bar-fill.cat-6 { background:linear-gradient(90deg,#ef4444,#f87171); }
+
+/* Filter */
+.filter-bar {
+  display:flex; gap:8px; overflow-x:auto;
+  padding-bottom:4px; scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+.filter-bar::-webkit-scrollbar { display:none; }
+.filter-chip {
+  flex-shrink:0; padding:8px 16px; border-radius:20px;
+  background:var(--bg-elevated); border:1px solid var(--border);
+  color:var(--text-muted); font-size:13px; font-weight:500;
+  cursor:pointer; transition:all 0.2s ease; white-space:nowrap;
+}
+.filter-chip.active {
+  background:var(--accent-soft); color:var(--accent);
+  border-color:rgba(240,160,48,0.3);
+}
+
+/* Search */
+.search-box {
+  position:relative; margin-top:12px;
+}
+.search-box input {
+  width:100%; padding:12px 16px 12px 42px;
+  background:var(--bg-elevated); border:1px solid var(--border);
+  border-radius:var(--radius-sm); color:var(--text);
+  font-size:14px; outline:none; transition:border-color 0.2s;
+}
+.search-box input:focus { border-color:var(--accent); }
+.search-box input::placeholder { color:var(--text-dim); }
+.search-box svg {
+  position:absolute; left:14px; top:50%; transform:translateY(-50%);
+  width:18px; height:18px; color:var(--text-dim);
+}
+
+/* Match indicator */
+.match-bar {
+  margin-top:12px; padding:12px 14px;
+  background:var(--green-soft); border:1px solid rgba(74,222,128,0.2);
+  border-radius:var(--radius-sm); display:none;
+}
+.match-bar.show { display:block; animation:fadeIn 0.3s ease; }
+.match-bar .match-title {
+  font-size:13px; font-weight:600; color:var(--green);
+  display:flex; align-items:center; gap:6px;
+}
+.match-bar .match-desc {
+  font-size:12px; color:var(--text-muted); margin-top:4px;
+}
+
+/* Project cards */
+.project-list { display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+.project-card {
+  background:var(--bg-card); border:1px solid var(--border);
+  border-radius:var(--radius); padding:16px;
+  transition:all 0.3s ease; position:relative; overflow:hidden;
+}
+.project-card::after {
+  content:''; position:absolute; top:0; left:0; width:4px; height:100%;
+}
+.project-card.type-gw::after { background:var(--purple); }
+.project-card.type-gn::after { background:var(--blue); }
+.project-card.type-by::after { background:var(--green); }
+.project-card.type-pk::after { background:var(--accent); }
+.project-card.type-hy::after { background:var(--red); }
+.project-card.hidden { display:none; }
+.project-card.matched {
+  border-color:rgba(74,222,128,0.3);
+  box-shadow:0 0 0 1px rgba(74,222,128,0.1), 0 4px 20px rgba(74,222,128,0.08);
+}
+.project-card.matched::before {
+  content:'匹配'; position:absolute; top:10px; right:10px;
+  background:var(--green-soft); color:var(--green);
+  font-size:10px; font-weight:600; padding:2px 8px;
+  border-radius:4px; border:1px solid rgba(74,222,128,0.2);
+}
+
+.card-header {
+  display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+}
+.card-type {
+  display:inline-flex; align-items:center; gap:4px;
+  font-size:11px; font-weight:600; padding:3px 10px;
+  border-radius:6px; margin-bottom:8px;
+}
+.card-type.gw { background:var(--purple-soft); color:var(--purple); }
+.card-type.gn { background:var(--blue-soft); color:var(--blue); }
+.card-type.by { background:var(--green-soft); color:var(--green); }
+.card-type.pk { background:var(--accent-soft); color:var(--accent); }
+.card-type.hy { background:var(--red-soft); color:var(--red); }
+
+.card-title {
+  font-size:15px; font-weight:600; line-height:1.45;
+  color:var(--text); word-break:break-word;
+}
+.card-sub {
+  font-size:12px; color:var(--text-dim); margin-top:4px;
+}
+
+.card-tags {
+  display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;
+}
+.card-tag {
+  font-size:11px; padding:3px 10px; border-radius:6px;
+  background:var(--bg-elevated); color:var(--text-muted);
+  border:1px solid var(--border);
+}
+.card-tag.highlight {
+  background:rgba(240,160,48,0.15); color:var(--accent);
+  border-color:rgba(240,160,48,0.25);
+}
+.card-tag.match-tag {
+  background:var(--green-soft); color:var(--green);
+  border-color:rgba(74,222,128,0.2);
+}
+
+.card-footer {
+  display:flex; align-items:center; justify-content:space-between;
+  margin-top:12px; padding-top:12px; border-top:1px solid var(--border);
+}
+.card-teacher {
+  display:flex; align-items:center; gap:8px;
+}
+.card-teacher img {
+  width:28px; height:28px; border-radius:50%;
+  object-fit:cover; border:2px solid var(--border);
+}
+.card-teacher span {
+  font-size:12px; color:var(--text-muted);
+}
+.card-id {
+  font-size:11px; color:var(--text-dim); font-family:monospace;
+}
+
+/* Empty state */
+.empty-state {
+  text-align:center; padding:40px 20px; color:var(--text-dim);
+}
+.empty-state svg { width:48px; height:48px; margin-bottom:12px; opacity:0.5; }
+.empty-state p { font-size:14px; }
+
+/* Footer */
+.footer {
+  text-align:center; padding:30px 20px 20px;
+  color:var(--text-dim); font-size:11px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.project-card { animation:fadeIn 0.4s ease backwards; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>氪研接单大厅</h1>
+      <div class="subtitle">数据看板 · 实时更新</div>
+    </div>
+    <div class="badge">34 个项目</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">实时统计</div>
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="num">54</div>
+      <div class="label">全部项目</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">45</div>
+      <div class="label">待接</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">7</div>
+      <div class="label">试音</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">2</div>
+      <div class="label">正式</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">0</div>
+      <div class="label">已过期</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">学科分布</div>
+  <div class="bar-chart" id="catChart"></div>
+</div>
+
+<div class="section">
+  <div class="section-title">筛选与匹配</div>
+  <div class="filter-bar" id="filterBar">
+    <div class="filter-chip active" data-filter="all">全部</div>
+    <div class="filter-chip" data-filter="工学">工学</div>
+    <div class="filter-chip" data-filter="理学">理学</div>
+    <div class="filter-chip" data-filter="管理学">管理学</div>
+    <div class="filter-chip" data-filter="艺术学">艺术学</div>
+    <div class="filter-chip" data-filter="商科">商科</div>
+    <div class="filter-chip" data-filter="经济学">经济学</div>
+    <div class="filter-chip" data-filter="medical" style="background:var(--green-soft);color:var(--green);border-color:rgba(74,222,128,0.3);">医学类</div>
+  </div>
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <input type="text" id="searchInput" placeholder="输入你的专业方向，如：人工智能、机械工程...">
+  </div>
+  <div class="match-bar" id="matchBar">
+    <div class="match-title">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      专业匹配结果
+    </div>
+    <div class="match-desc" id="matchDesc">找到 0 个匹配项目</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">项目列表</div>
+  <div class="project-list" id="projectList"></div>
+  <div class="empty-state" id="emptyState" style="display:none;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+    <p>没有找到匹配的项目</p>
+  </div>
+</div>
+
+<div class="footer">
+  数据来源：keyan.asia · 最后更新：2026-07-06 15:33<br>
+  fmmujf@163.com · 自动化爬虫定时抓取
+</div>
+
+<script>
+// 医学类关键词高亮（和 notify.py 保持一致）
+const MEDICAL_KW = ['医学','临床','护理','口腔','药学','中药','中医','公共卫生','预防医学','基础医学','麻醉','影像医学','检验医学','病理','解剖','生理','免疫','微生物','肿瘤','癌症','神经医学','心血管','内分泌','骨科','妇产科','儿科','眼科','耳鼻喉','皮肤科','核医学','生物医学','康复医学','急诊医学','全科医学','法医学','流行病','药理','毒理'];
+
+let projects = [];
+
+async function loadData() {
+  try {
+    const resp = await fetch('./projects.json');
+    projects = await resp.json();
+  } catch(e) {
+    console.warn('无法加载 projects.json，使用嵌入数据');
+  }
+  updateStats();
+  renderChart();
+  renderProjects(currentFilter, document.getElementById('searchInput').value);
+}
+
+function updateStats() {
+  const total = projects.length;
+  const wait = projects.filter(p=>p.status===1).length;
+  const audition = projects.filter(p=>p.status===2).length;
+  const formal = projects.filter(p=>p.status===3).length;
+  document.querySelector('.badge').textContent = total + ' 个项目';
+  const nums = document.querySelectorAll('.stat-card .num');
+  if(nums[0]) nums[0].textContent = total;
+  if(nums[1]) nums[1].textContent = wait;
+  if(nums[2]) nums[2].textContent = audition;
+  if(nums[3]) nums[3].textContent = formal;
+  // 更新 footer 时间
+  const lastCrawl = projects.length ? projects[0].crawled_at?.substring(0,16) : '';
+  const ft = document.querySelector('.footer');
+  if(ft) ft.innerHTML = `数据来源：keyan.asia · 最后更新：${lastCrawl}<br>fmmijf@163.com · GitHub Actions 自动抓取`;
+}
+
+const typeMap = {
+  '国外核心': {cls:'gw',label:'国外核心'},
+  '国内核心': {cls:'gn',label:'国内核心'},
+  '毕业论文': {cls:'by',label:'毕业论文'},
+  '普刊': {cls:'pk',label:'普刊'},
+  '会议': {cls:'hy',label:'会议'}
+};
+
+const catColors = ['cat-1','cat-2','cat-3','cat-4','cat-5','cat-6'];
+
+// Render category chart
+function renderChart() {
+  const counts = {};
+  projects.forEach(p => { counts[p.category_name] = (counts[p.category_name]||0)+1; });
+  const sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  const max = sorted[0][1];
+  const chart = document.getElementById('catChart');
+  chart.innerHTML = sorted.map(([cat,n],i) => `
+    <div class="bar-row">
+      <div class="bar-label">${cat}</div>
+      <div class="bar-track">
+        <div class="bar-fill ${catColors[i%catColors.length]}" style="width:0%" data-width="${(n/max*100).toFixed(1)}%">
+          <span>${n}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  setTimeout(() => {
+    document.querySelectorAll('.bar-fill').forEach(el => {
+      el.style.width = el.dataset.width;
+    });
+  }, 100);
+}
+
+// Render project cards
+function renderProjects(filter='all', search='') {
+  const list = document.getElementById('projectList');
+  const empty = document.getElementById('emptyState');
+  const matchBar = document.getElementById('matchBar');
+  const matchDesc = document.getElementById('matchDesc');
+
+  const terms = search.toLowerCase().split(/[,，\s]+/).filter(Boolean);
+  let matchCount = 0;
+
+  const filtered = projects.filter(p => {
+    let catMatch = filter === 'all' || p.category_name === filter;
+    // 医学类特殊筛选
+    if (filter === 'medical') {
+      const text = (p.title + ' ' + p.subject_name + ' ' + p.major_name + ' ' + p.category_name).toLowerCase();
+      catMatch = MEDICAL_KW.some(kw => text.includes(kw));
+    }
+    let searchMatch = true;
+    let isMatched = false;
+    if (terms.length) {
+      const text = (p.title + ' ' + p.subject_name + ' ' + p.major_name + ' ' + p.category_name).toLowerCase();
+      searchMatch = terms.some(t => text.includes(t));
+      isMatched = searchMatch;
+    }
+    if (isMatched) matchCount++;
+    return catMatch && searchMatch;
+  });
+
+  if (terms.length) {
+    matchBar.classList.add('show');
+    matchDesc.textContent = `找到 ${matchCount} 个匹配项目（共 ${filtered.length} 个）`;
+  } else {
+    matchBar.classList.remove('show');
+  }
+
+  if (!filtered.length) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  list.innerHTML = filtered.map((p,idx) => {
+    const t = typeMap[p.service_title] || {cls:'gw',label:p.service_title};
+    const majors = p.major_name.split(',').filter(Boolean);
+    const isMatched = terms.length && terms.some(term =>
+      (p.major_name + ' ' + p.subject_name + ' ' + p.category_name).toLowerCase().includes(term)
+    );
+    return `
+    <div class="project-card type-${t.cls} ${isMatched?'matched':''}" style="animation-delay:${idx*0.03}s">
+      <div class="card-type ${t.cls}">${t.label}</div>
+      <div class="card-title">${p.title}</div>
+      <div class="card-sub">${p.category_name} · ${p.subject_name}</div>
+      <div class="card-tags">
+        ${majors.map(m => `<span class="card-tag ${terms.some(t=>m.toLowerCase().includes(t))?'match-tag':(terms.some(t=>p.subject_name.toLowerCase().includes(t))?'highlight':'')}">${m}</span>`).join('')}
+      </div>
+      <div class="card-footer">
+        <div class="card-teacher">
+          <img src="${p.audition_card}" alt="" onerror="this.style.display='none'">
+          <span>${p.audition_name}</span>
+        </div>
+        <div class="card-id">#${p.id}</div>
+      </div>
+    </div>
+    `;
+  }).join('');
+}
+
+// Filter chips
+let currentFilter = 'all';
+document.getElementById('filterBar').addEventListener('click', e => {
+  if (!e.target.classList.contains('filter-chip')) return;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  e.target.classList.add('active');
+  currentFilter = e.target.dataset.filter;
+  renderProjects(currentFilter, document.getElementById('searchInput').value);
+});
+
+// Search input
+let searchTimer;
+document.getElementById('searchInput').addEventListener('input', e => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    renderProjects(currentFilter, e.target.value);
+  }, 200);
+});
+
+// Init
+loadData();
+</script>
+</body>
+</html>
