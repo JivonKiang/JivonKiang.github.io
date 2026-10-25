@@ -99,41 +99,11 @@ footer{
   display:flex;justify-content:space-between;align-items:center;
   font-size:10.5px;color:var(--ink-faint);letter-spacing:.08em;
 }
-/* 论文记录弹层（页面本体不滚动，弹层内部可滚） */
-.modal{
-  position:fixed;inset:0;z-index:50;display:none;
-  align-items:center;justify-content:center;padding:20px;
-  background:rgba(10,9,8,.72);backdrop-filter:blur(3px);
-}
-.modal.open{display:flex}
-.sheet{
-  width:min(760px,94vw);max-height:84vh;max-height:84dvh;
-  display:flex;flex-direction:column;overflow:hidden;
-  background:var(--panel);border:1px solid rgba(212,85,47,.3);border-radius:14px;
-  box-shadow:0 24px 80px rgba(0,0,0,.5);
-}
-.sheet-head{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:18px 22px 14px;border-bottom:1px solid var(--line);flex:none;
-}
-.sheet-head h3{font-size:17px;font-weight:400;letter-spacing:.03em}
-.sheet-head .sub{font-size:11px;color:var(--ink-faint);font-family:"JetBrains Mono",Consolas,monospace;margin-top:3px}
-.close{
-  background:none;border:1px solid var(--line);border-radius:99px;
-  color:var(--ink-dim);font-size:11.5px;padding:6px 14px;cursor:pointer;
-  font-family:"JetBrains Mono",Consolas,monospace;
-}
-.close:hover{border-color:rgba(212,85,47,.5);color:var(--ink)}
-.list{overflow-y:auto;padding:6px 22px 18px;-webkit-overflow-scrolling:touch}
-.yr{font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;color:var(--accent);letter-spacing:.18em;margin:16px 0 8px}
-.item{border-left:1px solid rgba(212,85,47,.25);padding:2px 0 2px 14px;margin-bottom:10px}
-.item .t{font-size:13px;line-height:1.45}
-.item .m{font-size:11px;color:var(--ink-faint);margin-top:2px;font-family:"JetBrains Mono",Consolas,monospace}
-.item .m a{color:var(--ink-dim);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
-.item .m a:hover{color:var(--accent)}
 @media (max-width:880px){
-  .frame{padding:12px 16px 10px}
-  main{grid-template-columns:1fr 1fr;gap:10px;padding:11px 0}
+  html,body{height:auto}
+  body{min-height:100dvh;overflow-x:hidden;overflow-y:auto}
+  .frame{height:auto;padding:12px 16px 10px}
+  main{grid-template-columns:1fr 1fr;grid-auto-rows:auto;gap:10px;padding:11px 0}
   .t-finance{grid-column:span 2}
   .t-loop{grid-column:span 1}
   .tile{padding:14px 15px 12px;border-radius:11px}
@@ -172,7 +142,7 @@ footer{
       </div>
     </a>
 
-    <button class="tile t-papers" id="papersBtn" type="button">
+    <a class="tile t-papers" href="navigator.html#/publications">
       <div class="seal">投</div>
       <div class="tag">Publications · Records</div>
       <h2>投稿记录</h2>
@@ -184,7 +154,7 @@ footer{
         </div>
         <span class="go">查看记录</span>
       </div>
-    </button>
+    </a>
 
     <div class="tile t-vault">
       <div class="seal">识</div>
@@ -241,20 +211,7 @@ footer{
 
 </div>
 
-<!-- 投稿记录弹层 -->
-<div class="modal" id="papersModal" role="dialog" aria-modal="true">
-  <div class="sheet">
-    <div class="sheet-head">
-      <div>
-        <h3>投稿记录</h3>
-        <div class="sub" id="papersSub">22 papers · 2023–2026</div>
-      </div>
-      <button class="close" id="modalClose" type="button">关闭 ESC</button>
-    </div>
-    <div class="list" id="papersList"></div>
-  </div>
-</div>
-
+<!-- 投稿记录：跳转旧版导航页 navigator.html#/publications -->
 <script>
 function tick(){
   var n=new Date();
@@ -264,55 +221,6 @@ function tick(){
     p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds());
 }
 tick();setInterval(tick,1000);
-
-/* 论文数据（源：data/papers.json） */
-var PAPERS=[
-{y:2026,j:"Int J Surg",t:"Global, regional, and national burden of nonmalignant digestive diseases, 1990–2023 (GBD 2023)",d:"10.1097/js9.0000000000004481"},
-{y:2026,j:"Lancet Oncol",t:"Global burden of breast cancer among females, 1990–2023, with forecasts to 2050 (GBD 2023)",d:"10.1016/S1470-2045(25)00730-2"},
-{y:2026,j:"Front Immunol",t:"Multi-omics analysis of kidney renal cell carcinoma in silico with preliminary in vivo validation",d:"10.3389/fimmu.2026.1732965"},
-{y:2026,j:"FEBS J",t:"Ectopic Wnt6 expression induces twin-spot markings in the epidermis of the silkworm Bombyx mori",d:"10.1111/febs.70491"},
-{y:2025,j:"Int J Surg",t:"Global burden of tuberculosis, 1990–2050: comparative analysis based on GBD 2021 and WHO surveillance",d:"10.1097/js9.0000000000003412"},
-{y:2025,j:"J Orthop Surg Res",t:"Global burden of musculoskeletal disorders 2024–2050, and a bibliometric survey of geriatric orthopedics",d:"10.1186/s13018-025-05580-y"},
-{y:2025,j:"Front Microbiol",t:"Genome-wide expression in human whole blood for diagnosis of latent tuberculosis infection",d:"10.3389/fmicb.2025.1584360"},
-{y:2025,j:"ACS Appl Mater Interfaces",t:"Gold nanoparticles carrying mannose-binding lectin and cytokine antibodies improve sepsis survival",d:"10.1021/acsami.4c21055"},
-{y:2025,j:"J Physiol Anthropol",t:"Physiological parameters and thermal comfort in protective clothing during long-range aeromedical evacuation",d:"10.1186/s40101-025-00411-9"},
-{y:2024,j:"Mol Biomed",t:"Construction of multi-epitope diagnostic biomarker HP16118P for M. tuberculosis latent infection",d:"10.1186/s43556-024-00177-z"},
-{y:2024,j:"Ann Transplant",t:"Current trends and future directions of malignancy after kidney transplantation: 1970–2022 bibliometric analysis",d:"10.12659/aot.942074"},
-{y:2024,j:"Can Respir J",t:"Knowledge mapping of Aspergillus-related research in respiratory medicine, 1975–2022",d:"10.1155/carj/6199860"},
-{y:2024,j:"Heliyon",t:"Knowledge mapping of disease-modifying therapy in multiple sclerosis: a bibliometric analysis",d:"10.1016/j.heliyon.2024.e31744"},
-{y:2024,j:"IDCases",t:"Development and evaluation of a promising biomarker for diagnosis of latent and active tuberculosis infection",d:"10.1097/ID9.0000000000000104"},
-{y:2023,j:"J Pers Med",t:"A summary on tuberculosis vaccine development — where to go?",d:"10.3390/jpm13030408"},
-{y:2023,j:"Front Immunol",t:"Bioinformatics analysis and consistency verification of a novel tuberculosis vaccine candidate HP13138PB",d:"10.3389/fimmu.2023.1102578"},
-{y:2023,j:"Front Immunol",t:"A comprehensive approach to developing a multi-epitope vaccine against M. tuberculosis",d:"10.3389/fimmu.2023.1280299"},
-{y:2023,j:"Med Adv",t:"Design and development of a multi-epitope vaccine for the prevention of latent tuberculosis infection",d:"10.1002/MED4.40"},
-{y:2023,j:"Vaccines",t:"PP19128R, a multiepitope vaccine to prevent latent tuberculosis infection: in silico and in vitro assays",d:"10.3390/vaccines11040856"},
-{y:2023,j:"Respir Med",t:"The future landscape of immunology in COPD: a bibliometric analysis",d:"10.1016/j.rmed.2023.107462"},
-{y:2023,j:"Front Immunol",t:"Knowledge mapping of global trends for myasthenia gravis development: a bibliometric analysis",d:"10.3389/fimmu.2023.1132201"},
-{y:2023,j:"Int Immunopharmacol",t:"Developing a multiepitope vaccine against SARS-CoV-2 and monkeypox co-infection: reverse vaccinology",d:"10.1016/j.intimp.2023.109728"}
-];
-
-(function(){
-  var list=document.getElementById('papersList');
-  var years=[...new Set(PAPERS.map(function(p){return p.y}))].sort(function(a,b){return b-a});
-  var html='';
-  years.forEach(function(y){
-    var row=PAPERS.filter(function(p){return p.y===y});
-    html+='<div class="yr">'+y+' · '+row.length+' papers</div>';
-    row.forEach(function(p){
-      html+='<div class="item"><div class="t">'+p.t+'</div><div class="m">'+p.j+' · <a href="https://doi.org/'+p.d+'" target="_blank" rel="noopener">doi:'+p.d+'</a></div></div>';
-    });
-  });
-  list.innerHTML=html;
-  document.getElementById('papersSub').textContent=PAPERS.length+' papers · '+years[years.length-1]+'–'+years[0];
-
-  var modal=document.getElementById('papersModal');
-  var open=function(){modal.classList.add('open')};
-  var close=function(){modal.classList.remove('open')};
-  document.getElementById('papersBtn').addEventListener('click',open);
-  document.getElementById('modalClose').addEventListener('click',close);
-  modal.addEventListener('click',function(e){if(e.target===modal)close()});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
-})();
 </script>
 </body>
 </html>

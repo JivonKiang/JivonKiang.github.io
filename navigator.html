@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fan Jiang · Research Navigator</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="logo">
+        <i class="fas fa-compass"></i>
+        <span>Fan Jiang · Research Navigator</span>
+      </div>
+      <div class="top-actions">
+        <button id="theme-toggle" title="切换主题"><i class="fas fa-moon"></i></button>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <div class="nav-section">
+        <a href="#/dashboard" class="nav-item active" data-page="dashboard">
+          <i class="fas fa-chart-pie"></i><span>总览</span>
+        </a>
+        <a href="#/publications" class="nav-item" data-page="publications">
+          <i class="fas fa-file-alt"></i><span>成果</span>
+        </a>
+        <a href="#/hotspot" class="nav-item" data-page="hotspot">
+          <i class="fas fa-fire"></i><span>热点</span>
+        </a>
+        <a href="#/ideas" class="nav-item" data-page="ideas">
+          <i class="fas fa-lightbulb"></i><span>交叉分析</span>
+        </a>
+        <a href="#/toolkit" class="nav-item" data-page="toolkit">
+          <i class="fas fa-toolbox"></i><span>工具箱</span>
+        </a>
+        <a href="#/databases" class="nav-item" data-page="databases">
+          <i class="fas fa-database"></i><span>数据库</span>
+        </a>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-section data-sources">
+        <div class="nav-label">数据源</div>
+        <div class="source-status" id="source-orcid"><i class="fas fa-circle-notch fa-spin"></i> ORCID</div>
+        <div class="source-status" id="source-hotspot"><i class="fas fa-circle-notch fa-spin"></i> Hotspot</div>
+        <div class="source-status" id="source-tb"><i class="fas fa-circle-notch fa-spin"></i> TB-Causal</div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+      <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
+        <p>正在加载科研数据...</p>
+      </div>
+      <div class="page-content" id="page-content"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>数据更新: <span id="last-updated">--</span></span>
+      <span>·</span>
+      <a href="https://github.com/JivonKiang" target="_blank">GitHub</a>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/publications.js"></script>
+  <script src="js/hotspot.js"></script>
+  <script src="js/ideas.js"></script>
+  <script src="js/toolkit.js"></script>
+  <script src="js/databases.js"></script>
+</body>
+</html>
