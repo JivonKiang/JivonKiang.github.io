@@ -91,6 +91,7 @@ svg{display:block;flex:none}
 /* ---------- tiles ---------- */
 .tiles{display:grid;gap:14px}
 .tiles-3{grid-template-columns:repeat(3,1fr)}
+.tiles-2{grid-template-columns:repeat(2,1fr)}
 .tile{
   display:flex;align-items:flex-start;gap:14px;
   background:var(--surface);border:1px solid var(--line);border-radius:13px;
@@ -161,6 +162,7 @@ footer{margin-top:64px;border-top:1px solid var(--line)}
 @media (max-width:900px){
   .tiles-3{grid-template-columns:1fr 1fr}
   .tiles-3 .tile:first-child{grid-column:1/-1}
+  .tiles-2{grid-template-columns:1fr}
 }
 @media (max-width:640px){
   .shell{padding-left:20px;padding-right:20px}
@@ -209,7 +211,7 @@ footer{margin-top:64px;border-top:1px solid var(--line)}
       <h2>工作台</h2>
       <span>日常最常用的四处</span>
     </div>
-    <div class="tiles tiles-3">
+    <div class="tiles tiles-2">
       <a class="tile rise" style="--d:.02s" href="https://board.jivonlab.com/" target="_blank" rel="noopener">
         <span class="ic">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
