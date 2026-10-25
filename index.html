@@ -2,255 +2,259 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jivon Lab · 科研统一工作台</title>
-<meta name="description" content="Jivon Lab — 科研、财务、投稿、知识库与两机协作的统一工作台">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Jivon Lab · 科研工作台</title>
+<meta name="description" content="Jivon Lab — 财务、投稿记录、知识库、科研闭环与两机协作的统一工作台">
 <style>
 :root{
-  --bg:#141210;
-  --panel:#1b1815;
-  --panel-2:#201c18;
+  --bg:#141210;--panel:#1b1815;--panel-2:#201c18;
   --line:rgba(236,231,221,.09);
-  --ink:#ece7dd;
-  --ink-dim:#a89f90;
-  --ink-faint:#6f685c;
-  --accent:#d4552f;
-  --accent-soft:rgba(212,85,47,.14);
+  --ink:#ece7dd;--ink-dim:#a89f90;--ink-faint:#6f685c;
+  --accent:#d4552f;--accent-soft:rgba(212,85,47,.14);
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
 body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:Georgia,"Noto Serif SC","Songti SC",serif;
-  line-height:1.6;
-  min-height:100vh;
+  height:100vh;height:100dvh;overflow:hidden;
+  background:var(--bg);color:var(--ink);
+  font-family:Georgia,"Noto Serif SC","Songti SC",serif;line-height:1.5;
   position:relative;
-  overflow-x:hidden;
 }
-/* grain 纹理 + 顶部光晕 */
 body::before{
   content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 body::after{
-  content:"";position:absolute;top:-180px;left:50%;transform:translateX(-50%);
-  width:900px;height:420px;pointer-events:none;z-index:0;
-  background:radial-gradient(ellipse at center,rgba(212,85,47,.16),transparent 65%);
+  content:"";position:absolute;top:-160px;left:50%;transform:translateX(-50%);
+  width:820px;height:360px;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at center,rgba(212,85,47,.15),transparent 65%);
 }
-.wrap{max-width:1120px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .mono{font-family:"JetBrains Mono","SF Mono",Consolas,monospace}
-
-/* topbar */
-.topbar{
+.frame{
+  height:100%;max-width:1180px;margin:0 auto;
+  padding:16px 24px 12px;display:flex;flex-direction:column;
+  position:relative;z-index:2;
+}
+header{
   display:flex;justify-content:space-between;align-items:center;
-  padding:22px 0;border-bottom:1px solid var(--line);
+  padding-bottom:13px;border-bottom:1px solid var(--line);flex:none;
 }
-.topbar .brand{font-size:14px;letter-spacing:.12em;color:var(--ink-dim)}
-.topbar .brand b{color:var(--ink);font-weight:400}
-.topbar .clock{font-size:12px;color:var(--ink-faint);letter-spacing:.08em}
-
-/* hero */
-.hero{padding:96px 0 72px}
-.hero .kicker{
-  font-size:12px;letter-spacing:.32em;color:var(--accent);
-  font-family:"JetBrains Mono",Consolas,monospace;
-  text-transform:uppercase;margin-bottom:26px;
+.brand{font-size:13px;letter-spacing:.12em;color:var(--ink-dim)}
+.brand b{color:var(--ink);font-weight:400}
+.clock{font-size:11.5px;color:var(--ink-faint);letter-spacing:.08em}
+main{
+  flex:1;min-height:0;
+  display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;
+  gap:13px;padding:14px 0;
 }
-.hero h1{
-  font-size:clamp(34px,5.4vw,58px);font-weight:400;line-height:1.28;
-  letter-spacing:.02em;max-width:760px;
-}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero .rule{
-  margin-top:44px;height:1px;
-  background:linear-gradient(90deg,var(--accent),rgba(212,85,47,0));
-}
-
-/* 12 列网格 */
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;padding:8px 0 88px}
-.span7{grid-column:span 7}.span5{grid-column:span 5}
-.span4{grid-column:span 4}.span8{grid-column:span 8}.span12{grid-column:span 12}
-
-/* 卡片 */
-.card{
-  display:block;position:relative;overflow:hidden;
+.tile{
+  position:relative;display:flex;flex-direction:column;min-height:0;
+  overflow:hidden;text-align:left;
   background:linear-gradient(160deg,var(--panel),var(--panel-2));
-  border:1px solid var(--line);border-radius:14px;
-  padding:30px 30px 26px;text-decoration:none;color:inherit;
-  transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s;
+  border:1px solid var(--line);border-radius:13px;
+  padding:20px 22px 16px;text-decoration:none;color:inherit;
+  font-family:inherit;font-size:inherit;
+  transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s;
 }
-a.card:hover{transform:translateY(-4px);border-color:rgba(212,85,47,.45)}
+a.tile:hover,button.tile:hover{transform:translateY(-3px);border-color:rgba(212,85,47,.45);cursor:pointer}
+.t-loop{grid-column:span 2}
 .seal{
-  position:absolute;top:24px;right:24px;width:44px;height:44px;
+  position:absolute;top:16px;right:16px;width:38px;height:38px;
   display:flex;align-items:center;justify-content:center;
   border:1px solid rgba(212,85,47,.5);border-radius:8px;
-  color:var(--accent);font-size:20px;
-  background:var(--accent-soft);
-  font-family:"Noto Serif SC",serif;
+  color:var(--accent);font-size:17px;background:var(--accent-soft);
+  font-family:"Noto Serif SC",serif;flex:none;
 }
-.card .tag{
+.tag{
   font-family:"JetBrains Mono",Consolas,monospace;
-  font-size:11px;letter-spacing:.22em;color:var(--ink-faint);
-  text-transform:uppercase;margin-bottom:14px;
+  font-size:10px;letter-spacing:.2em;color:var(--ink-faint);
+  text-transform:uppercase;margin-bottom:9px;
 }
-.card h3{font-size:23px;font-weight:400;letter-spacing:.03em;margin-bottom:10px}
-.card p{font-size:14px;color:var(--ink-dim);max-width:34em}
-.stats{display:flex;gap:26px;margin-top:24px;flex-wrap:wrap}
-.stats .s{display:flex;flex-direction:column;gap:3px}
-.stats .v{font-family:"JetBrains Mono",Consolas,monospace;font-size:15px;color:var(--ink)}
-.stats .k{font-size:11px;color:var(--ink-faint);letter-spacing:.1em}
+.tile h2{font-size:20px;font-weight:400;letter-spacing:.03em;margin-bottom:6px}
+.tile .desc{font-size:12.5px;color:var(--ink-dim)}
+.tmeta{margin-top:auto;padding-top:12px}
+.statrow{display:flex;gap:18px;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column;gap:2px}
+.stat .v{font-family:"JetBrains Mono",Consolas,monospace;font-size:13.5px;color:var(--ink)}
+.stat .k{font-size:10px;color:var(--ink-faint);letter-spacing:.08em}
 .go{
-  display:inline-block;margin-top:22px;font-size:12px;color:var(--accent);
-  font-family:"JetBrains Mono",Consolas,monospace;letter-spacing:.1em;
+  display:inline-block;font-size:11px;color:var(--accent);
+  font-family:"JetBrains Mono",Consolas,monospace;letter-spacing:.08em;
+  margin-top:10px;
 }
-a.card:hover .go::after{content:" →"}
-
-/* 科研闭环 pipeline */
-.pipe{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:26px}
-.step{border-top:1px solid var(--line);padding-top:12px}
-.step .n{font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;color:var(--accent);letter-spacing:.15em}
-.step .t{font-size:14px;margin-top:6px}
-.step .e{font-size:11px;color:var(--ink-faint);font-family:"JetBrains Mono",Consolas,monospace;margin-top:2px}
-
-/* 两机协作 arch */
-.arch{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
-.node{background:rgba(236,231,221,.03);border:1px solid var(--line);border-radius:10px;padding:18px}
-.node .role{font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;color:var(--accent);letter-spacing:.18em;margin-bottom:8px}
-.node .name{font-size:16px;margin-bottom:6px}
-.node .duty{font-size:12.5px;color:var(--ink-dim)}
-.sec-links{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
-.sec-link{
-  font-family:"JetBrains Mono",Consolas,monospace;font-size:11.5px;
-  color:var(--ink-dim);border:1px solid var(--line);border-radius:99px;
-  padding:6px 14px;letter-spacing:.06em;
-}
-.sec-link.wechat{color:#7fae8f;border-color:rgba(127,174,143,.35)}
-
-/* footer */
+a.tile:hover .go::after,button.tile:hover .go::after{content:" →"}
+.pipe{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:12px}
+.step{border-top:1px solid var(--line);padding-top:7px}
+.step .n{font-family:"JetBrains Mono",Consolas,monospace;font-size:9.5px;color:var(--accent);letter-spacing:.12em}
+.step .t{font-size:12px;margin-top:3px}
+.arch{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
+.node{background:rgba(236,231,221,.03);border:1px solid var(--line);border-radius:9px;padding:10px 12px}
+.node .role{font-family:"JetBrains Mono",Consolas,monospace;font-size:9.5px;color:var(--accent);letter-spacing:.14em;margin-bottom:3px}
+.node .name{font-size:13.5px;margin-bottom:2px}
+.node .duty{font-size:10.5px;color:var(--ink-dim)}
+.foot-note{font-size:10.5px;color:var(--ink-faint);margin-top:10px}
+.foot-note .wechat{color:#7fae8f}
 footer{
-  border-top:1px solid var(--line);padding:26px 0 34px;
+  flex:none;border-top:1px solid var(--line);padding-top:10px;
   display:flex;justify-content:space-between;align-items:center;
-  font-size:12px;color:var(--ink-faint);letter-spacing:.08em;
+  font-size:10.5px;color:var(--ink-faint);letter-spacing:.08em;
 }
-
-/* staggered reveal */
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-.reveal{opacity:0;animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
-.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
-.d4{animation-delay:.35s}.d5{animation-delay:.45s}.d6{animation-delay:.55s}
-
-/* 响应式 */
-@media (max-width:900px){
-  .span7,.span5,.span8{grid-column:span 12}
-  .span4{grid-column:span 6}
-  .pipe{grid-template-columns:repeat(3,1fr)}
-  .hero{padding:68px 0 52px}
+/* 论文记录弹层（页面本体不滚动，弹层内部可滚） */
+.modal{
+  position:fixed;inset:0;z-index:50;display:none;
+  align-items:center;justify-content:center;padding:20px;
+  background:rgba(10,9,8,.72);backdrop-filter:blur(3px);
 }
-@media (max-width:560px){
-  .span4{grid-column:span 12}
-  .pipe{grid-template-columns:repeat(2,1fr)}
+.modal.open{display:flex}
+.sheet{
+  width:min(760px,94vw);max-height:84vh;max-height:84dvh;
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--panel);border:1px solid rgba(212,85,47,.3);border-radius:14px;
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+}
+.sheet-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 22px 14px;border-bottom:1px solid var(--line);flex:none;
+}
+.sheet-head h3{font-size:17px;font-weight:400;letter-spacing:.03em}
+.sheet-head .sub{font-size:11px;color:var(--ink-faint);font-family:"JetBrains Mono",Consolas,monospace;margin-top:3px}
+.close{
+  background:none;border:1px solid var(--line);border-radius:99px;
+  color:var(--ink-dim);font-size:11.5px;padding:6px 14px;cursor:pointer;
+  font-family:"JetBrains Mono",Consolas,monospace;
+}
+.close:hover{border-color:rgba(212,85,47,.5);color:var(--ink)}
+.list{overflow-y:auto;padding:6px 22px 18px;-webkit-overflow-scrolling:touch}
+.yr{font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;color:var(--accent);letter-spacing:.18em;margin:16px 0 8px}
+.item{border-left:1px solid rgba(212,85,47,.25);padding:2px 0 2px 14px;margin-bottom:10px}
+.item .t{font-size:13px;line-height:1.45}
+.item .m{font-size:11px;color:var(--ink-faint);margin-top:2px;font-family:"JetBrains Mono",Consolas,monospace}
+.item .m a{color:var(--ink-dim);text-decoration:none;border-bottom:1px dotted var(--ink-faint)}
+.item .m a:hover{color:var(--accent)}
+@media (max-width:880px){
+  .frame{padding:12px 16px 10px}
+  main{grid-template-columns:1fr 1fr;gap:10px;padding:11px 0}
+  .t-finance{grid-column:span 2}
+  .t-loop{grid-column:span 1}
+  .tile{padding:14px 15px 12px;border-radius:11px}
+  .tile h2{font-size:16.5px}
+  .tile .desc{font-size:11.5px}
+  .seal{top:12px;right:12px;width:32px;height:32px;font-size:14px}
+  .pipe{grid-template-columns:repeat(3,1fr);gap:7px}
+  .step .t{font-size:11px}
   .arch{grid-template-columns:1fr}
-  .stats{gap:18px}
+  .statrow{gap:12px}
+  .go{margin-top:8px}
 }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="frame">
 
-  <header class="topbar reveal d1">
+  <header>
     <div class="brand mono"><b>jivonlab.com</b></div>
     <div class="clock mono" id="clock">—</div>
   </header>
 
-  <section class="hero reveal d2">
-    <div class="kicker">Jivon Lab · Unified Workbench</div>
-    <h1>科研的每一段，都在这张桌子上<em>。</em></h1>
-    <div class="rule"></div>
-  </section>
+  <main>
 
-  <main class="grid">
-
-    <a class="card span7 reveal d3" href="https://monitor.jivonlab.com">
+    <a class="tile t-finance" href="https://monitor.jivonlab.com">
       <div class="seal">财</div>
       <div class="tag">Finance · Coding Plan Monitor</div>
-      <h3>财务面板</h3>
-      <p>各模型账号额度、成本与余额的集中监测，每半小时自动采集一次。</p>
-      <div class="stats">
-        <div class="s"><span class="v">5 源</span><span class="k">监测渠道</span></div>
-        <div class="s"><span class="v">30 min</span><span class="k">采集周期</span></div>
-        <div class="s"><span class="v mono">monitor.jivonlab.com</span><span class="k">面板地址</span></div>
+      <h2>财务面板</h2>
+      <div class="desc">各模型账号额度、成本与余额集中监测。</div>
+      <div class="tmeta">
+        <div class="statrow">
+          <div class="stat"><span class="v">5 源</span><span class="k">监测渠道</span></div>
+          <div class="stat"><span class="v">30 min</span><span class="k">采集周期</span></div>
+        </div>
+        <span class="go">打开面板</span>
       </div>
-      <span class="go">打开面板</span>
     </a>
 
-    <a class="card span5 reveal d4" href="https://www.nature.com/natcomputsci/">
+    <button class="tile t-papers" id="papersBtn" type="button">
       <div class="seal">投</div>
-      <div class="tag">Submission · NCS Track</div>
-      <h3>投稿线</h3>
-      <p>目标刊 Nature Computational Science，Article 直投，双盲流程推进中。</p>
-      <div class="stats">
-        <div class="s"><span class="v">NCS</span><span class="k">目标期刊</span></div>
-        <div class="s"><span class="v">Article</span><span class="k">稿件类型</span></div>
+      <div class="tag">Publications · Records</div>
+      <h2>投稿记录</h2>
+      <div class="desc">已发表论文与在投进展。</div>
+      <div class="tmeta">
+        <div class="statrow">
+          <div class="stat"><span class="v" id="nPapers">22</span><span class="k">论文</span></div>
+          <div class="stat"><span class="v">2023–26</span><span class="k">年份跨度</span></div>
+        </div>
+        <span class="go">查看记录</span>
       </div>
-      <span class="go">期刊主页</span>
-    </a>
+    </button>
 
-    <div class="card span12 reveal d5">
-      <div class="seal">环</div>
-      <div class="tag">Research Loop · 思考 → 行动 → 复盘</div>
-      <h3>科研闭环</h3>
-      <div class="pipe">
-        <div class="step"><div class="n">01</div><div class="t">实验</div><div class="e">Experiment</div></div>
-        <div class="step"><div class="n">02</div><div class="t">数据制图</div><div class="e">Figures</div></div>
-        <div class="step"><div class="n">03</div><div class="t">结果</div><div class="e">Results</div></div>
-        <div class="step"><div class="n">04</div><div class="t">稿件</div><div class="e">Manuscript</div></div>
-        <div class="step"><div class="n">05</div><div class="t">投稿</div><div class="e">EM · Submit</div></div>
-        <div class="step"><div class="n">06</div><div class="t">结项蒸馏</div><div class="e">Distill</div></div>
-      </div>
-    </div>
-
-    <div class="card span4 reveal d6">
+    <div class="tile t-vault">
       <div class="seal">识</div>
       <div class="tag">Knowledge · Obsidian Vault</div>
-      <h3>知识库</h3>
-      <p>学习卡与结论沉淀，本地检索优先。</p>
-      <div class="stats">
-        <div class="s"><span class="v">Vault</span><span class="k">Obsidian</span></div>
+      <h2>知识库</h2>
+      <div class="desc">学习卡与结论沉淀，本地检索优先。</div>
+      <div class="tmeta">
+        <div class="statrow">
+          <div class="stat"><span class="v">500+</span><span class="k">卡片</span></div>
+          <div class="stat"><span class="v">Vault</span><span class="k">本机资产 · 不对外</span></div>
+        </div>
       </div>
-      <span class="go">本机资产 · 不对外</span>
     </div>
 
-    <div class="card span8 reveal d6">
+    <div class="tile t-loop">
+      <div class="seal">环</div>
+      <div class="tag">Research Loop</div>
+      <h2>科研闭环</h2>
+      <div class="pipe">
+        <div class="step"><div class="n">01</div><div class="t">实验</div></div>
+        <div class="step"><div class="n">02</div><div class="t">数据制图</div></div>
+        <div class="step"><div class="n">03</div><div class="t">结果</div></div>
+        <div class="step"><div class="n">04</div><div class="t">稿件</div></div>
+        <div class="step"><div class="n">05</div><div class="t">投稿</div></div>
+        <div class="step"><div class="n">06</div><div class="t">结项蒸馏</div></div>
+      </div>
+    </div>
+
+    <div class="tile t-infra">
       <div class="seal">协</div>
-      <div class="tag">Infrastructure · Two Machines</div>
-      <h3>两机协作</h3>
+      <div class="tag">Infrastructure</div>
+      <h2>两机协作</h2>
       <div class="arch">
         <div class="node">
           <div class="role">HQ · 生产本部</div>
           <div class="name">西安 · xian</div>
-          <div class="duty">数据 · 代码 · 算力 · 知识库 vault · 稿件唯一修订权</div>
+          <div class="duty">数据 · 代码 · 稿件修订权</div>
         </div>
         <div class="node">
-          <div class="role">Terminal · 终验终端</div>
+          <div class="role">Terminal · 终验</div>
           <div class="name">雷神 · razer</div>
-          <div class="duty">投稿材料校验 · 人工核对 · 投稿操作</div>
+          <div class="duty">校验 · 核对 · 投稿操作</div>
         </div>
       </div>
-      <div class="sec-links">
-        <span class="sec-link wechat">秘书 → 微信交付（仅此通道）</span>
-        <span class="sec-link">阿里云中继 · 远程桌面</span>
-        <span class="sec-link">Tailscale 组网</span>
-      </div>
+      <div class="foot-note"><span class="wechat">秘书 → 微信交付（仅此通道）</span></div>
     </div>
 
   </main>
 
-  <footer class="reveal d6">
+  <footer>
     <span>jivonlab.com · Cloudflare + GitHub Pages</span>
     <span>Est. 2026</span>
   </footer>
 
 </div>
+
+<!-- 投稿记录弹层 -->
+<div class="modal" id="papersModal" role="dialog" aria-modal="true">
+  <div class="sheet">
+    <div class="sheet-head">
+      <div>
+        <h3>投稿记录</h3>
+        <div class="sub" id="papersSub">22 papers · 2023–2026</div>
+      </div>
+      <button class="close" id="modalClose" type="button">关闭 ESC</button>
+    </div>
+    <div class="list" id="papersList"></div>
+  </div>
+</div>
+
 <script>
 function tick(){
   var n=new Date();
@@ -260,6 +264,55 @@ function tick(){
     p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds());
 }
 tick();setInterval(tick,1000);
+
+/* 论文数据（源：data/papers.json） */
+var PAPERS=[
+{y:2026,j:"Int J Surg",t:"Global, regional, and national burden of nonmalignant digestive diseases, 1990–2023 (GBD 2023)",d:"10.1097/js9.0000000000004481"},
+{y:2026,j:"Lancet Oncol",t:"Global burden of breast cancer among females, 1990–2023, with forecasts to 2050 (GBD 2023)",d:"10.1016/S1470-2045(25)00730-2"},
+{y:2026,j:"Front Immunol",t:"Multi-omics analysis of kidney renal cell carcinoma in silico with preliminary in vivo validation",d:"10.3389/fimmu.2026.1732965"},
+{y:2026,j:"FEBS J",t:"Ectopic Wnt6 expression induces twin-spot markings in the epidermis of the silkworm Bombyx mori",d:"10.1111/febs.70491"},
+{y:2025,j:"Int J Surg",t:"Global burden of tuberculosis, 1990–2050: comparative analysis based on GBD 2021 and WHO surveillance",d:"10.1097/js9.0000000000003412"},
+{y:2025,j:"J Orthop Surg Res",t:"Global burden of musculoskeletal disorders 2024–2050, and a bibliometric survey of geriatric orthopedics",d:"10.1186/s13018-025-05580-y"},
+{y:2025,j:"Front Microbiol",t:"Genome-wide expression in human whole blood for diagnosis of latent tuberculosis infection",d:"10.3389/fmicb.2025.1584360"},
+{y:2025,j:"ACS Appl Mater Interfaces",t:"Gold nanoparticles carrying mannose-binding lectin and cytokine antibodies improve sepsis survival",d:"10.1021/acsami.4c21055"},
+{y:2025,j:"J Physiol Anthropol",t:"Physiological parameters and thermal comfort in protective clothing during long-range aeromedical evacuation",d:"10.1186/s40101-025-00411-9"},
+{y:2024,j:"Mol Biomed",t:"Construction of multi-epitope diagnostic biomarker HP16118P for M. tuberculosis latent infection",d:"10.1186/s43556-024-00177-z"},
+{y:2024,j:"Ann Transplant",t:"Current trends and future directions of malignancy after kidney transplantation: 1970–2022 bibliometric analysis",d:"10.12659/aot.942074"},
+{y:2024,j:"Can Respir J",t:"Knowledge mapping of Aspergillus-related research in respiratory medicine, 1975–2022",d:"10.1155/carj/6199860"},
+{y:2024,j:"Heliyon",t:"Knowledge mapping of disease-modifying therapy in multiple sclerosis: a bibliometric analysis",d:"10.1016/j.heliyon.2024.e31744"},
+{y:2024,j:"IDCases",t:"Development and evaluation of a promising biomarker for diagnosis of latent and active tuberculosis infection",d:"10.1097/ID9.0000000000000104"},
+{y:2023,j:"J Pers Med",t:"A summary on tuberculosis vaccine development — where to go?",d:"10.3390/jpm13030408"},
+{y:2023,j:"Front Immunol",t:"Bioinformatics analysis and consistency verification of a novel tuberculosis vaccine candidate HP13138PB",d:"10.3389/fimmu.2023.1102578"},
+{y:2023,j:"Front Immunol",t:"A comprehensive approach to developing a multi-epitope vaccine against M. tuberculosis",d:"10.3389/fimmu.2023.1280299"},
+{y:2023,j:"Med Adv",t:"Design and development of a multi-epitope vaccine for the prevention of latent tuberculosis infection",d:"10.1002/MED4.40"},
+{y:2023,j:"Vaccines",t:"PP19128R, a multiepitope vaccine to prevent latent tuberculosis infection: in silico and in vitro assays",d:"10.3390/vaccines11040856"},
+{y:2023,j:"Respir Med",t:"The future landscape of immunology in COPD: a bibliometric analysis",d:"10.1016/j.rmed.2023.107462"},
+{y:2023,j:"Front Immunol",t:"Knowledge mapping of global trends for myasthenia gravis development: a bibliometric analysis",d:"10.3389/fimmu.2023.1132201"},
+{y:2023,j:"Int Immunopharmacol",t:"Developing a multiepitope vaccine against SARS-CoV-2 and monkeypox co-infection: reverse vaccinology",d:"10.1016/j.intimp.2023.109728"}
+];
+
+(function(){
+  var list=document.getElementById('papersList');
+  var years=[...new Set(PAPERS.map(function(p){return p.y}))].sort(function(a,b){return b-a});
+  var html='';
+  years.forEach(function(y){
+    var row=PAPERS.filter(function(p){return p.y===y});
+    html+='<div class="yr">'+y+' · '+row.length+' papers</div>';
+    row.forEach(function(p){
+      html+='<div class="item"><div class="t">'+p.t+'</div><div class="m">'+p.j+' · <a href="https://doi.org/'+p.d+'" target="_blank" rel="noopener">doi:'+p.d+'</a></div></div>';
+    });
+  });
+  list.innerHTML=html;
+  document.getElementById('papersSub').textContent=PAPERS.length+' papers · '+years[years.length-1]+'–'+years[0];
+
+  var modal=document.getElementById('papersModal');
+  var open=function(){modal.classList.add('open')};
+  var close=function(){modal.classList.remove('open')};
+  document.getElementById('papersBtn').addEventListener('click',open);
+  document.getElementById('modalClose').addEventListener('click',close);
+  modal.addEventListener('click',function(e){if(e.target===modal)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+})();
 </script>
 </body>
 </html>
