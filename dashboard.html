@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fan Jiang · Research Navigator</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    .panel-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 18px}
+    .panel-strip a{display:flex;flex-direction:column;gap:6px;padding:14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;color:var(--text-primary);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+    .panel-strip a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+    .panel-strip .ps-ico{font-size:18px;color:var(--accent)}
+    .panel-strip .ps-t{font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+    .panel-strip .ps-d{font-size:12px;color:var(--text-muted);line-height:1.35}
+    .panel-strip .ps-badge{font-size:10px;font-weight:600;color:var(--orange);border:1px solid var(--orange);border-radius:999px;padding:1px 6px;white-space:nowrap}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="logo">
+        <i class="fas fa-compass"></i>
+        <span>Fan Jiang · Research Navigator</span>
+      </div>
+      <div class="top-actions">
+        <button id="theme-toggle" title="切换主题"><i class="fas fa-moon"></i></button>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></button>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <div class="nav-section">
+        <a href="#/dashboard" class="nav-item active" data-page="dashboard">
+          <i class="fas fa-chart-pie"></i><span>总览</span>
+        </a>
+        <a href="#/publications" class="nav-item" data-page="publications">
+          <i class="fas fa-file-alt"></i><span>成果</span>
+        </a>
+        <a href="#/hotspot" class="nav-item" data-page="hotspot">
+          <i class="fas fa-fire"></i><span>热点</span>
+        </a>
+        <a href="#/ideas" class="nav-item" data-page="ideas">
+          <i class="fas fa-lightbulb"></i><span>交叉分析</span>
+        </a>
+        <a href="#/toolkit" class="nav-item" data-page="toolkit">
+          <i class="fas fa-toolbox"></i><span>工具箱</span>
+        </a>
+        <a href="#/databases" class="nav-item" data-page="databases">
+          <i class="fas fa-database"></i><span>数据库</span>
+        </a>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-section data-sources">
+        <div class="nav-label">数据源</div>
+        <div class="source-status" id="source-orcid"><i class="fas fa-circle-notch fa-spin"></i> ORCID</div>
+        <div class="source-status" id="source-hotspot"><i class="fas fa-circle-notch fa-spin"></i> Hotspot</div>
+        <div class="source-status" id="source-tb"><i class="fas fa-circle-notch fa-spin"></i> TB-Causal</div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+      <div class="panel-strip">
+        <a href="https://board.jivonlab.com/" target="_blank" rel="noopener">
+          <span class="ps-ico"><i class="fas fa-file-export"></i></span>
+          <span class="ps-t">投稿进展<span class="ps-badge">需验证码</span></span>
+          <span class="ps-d">各项目投稿期刊与状态</span>
+        </a>
+        <a href="https://monitor.jivonlab.com" target="_blank" rel="noopener">
+          <span class="ps-ico"><i class="fas fa-chart-line"></i></span>
+          <span class="ps-t">财务面板</span>
+          <span class="ps-d">Token 与额度消耗总览</span>
+        </a>
+        <a href="keyan/">
+          <span class="ps-ico"><i class="fas fa-flask"></i></span>
+          <span class="ps-t">科研接单</span>
+          <span class="ps-d">项目清单与数据看板</span>
+        </a>
+        <a href="#/publications">
+          <span class="ps-ico"><i class="fas fa-file-alt"></i></span>
+          <span class="ps-t">成果</span>
+          <span class="ps-d">论文与学术产出</span>
+        </a>
+        <a href="#/toolkit">
+          <span class="ps-ico"><i class="fas fa-toolbox"></i></span>
+          <span class="ps-t">工具箱</span>
+          <span class="ps-d">分析与绘图工具集</span>
+        </a>
+        <a href="#/databases">
+          <span class="ps-ico"><i class="fas fa-database"></i></span>
+          <span class="ps-t">数据库</span>
+          <span class="ps-d">常用公开数据源</span>
+        </a>
+      </div>
+      <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
+        <p>正在加载科研数据...</p>
+      </div>
+      <div class="page-content" id="page-content"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>数据更新: <span id="last-updated">--</span></span>
+      <span>·</span>
+      <a href="https://github.com/JivonKiang" target="_blank">GitHub</a>
+    </footer>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/publications.js"></script>
+  <script src="js/hotspot.js"></script>
+  <script src="js/ideas.js"></script>
+  <script src="js/toolkit.js"></script>
+  <script src="js/databases.js"></script>
+</body>
+</html>
