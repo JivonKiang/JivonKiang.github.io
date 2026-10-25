@@ -8,6 +8,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    .panel-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 18px}
+    .panel-strip a{display:flex;flex-direction:column;gap:6px;padding:14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;color:var(--text-primary);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+    .panel-strip a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+    .panel-strip .ps-ico{font-size:18px;color:var(--accent)}
+    .panel-strip .ps-t{font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+    .panel-strip .ps-d{font-size:12px;color:var(--text-muted);line-height:1.35}
+    .panel-strip .ps-badge{font-size:10px;font-weight:600;color:var(--orange);border:1px solid var(--orange);border-radius:999px;padding:1px 6px;white-space:nowrap}
+  </style>
 </head>
 <body>
   <div class="app">
@@ -58,6 +67,38 @@
 
     <!-- Main Content -->
     <main class="main-content" id="main-content">
+      <div class="panel-strip">
+        <a href="https://board.jivonlab.com/" target="_blank" rel="noopener">
+          <span class="ps-ico"><i class="fas fa-file-export"></i></span>
+          <span class="ps-t">投稿进展<span class="ps-badge">需验证码</span></span>
+          <span class="ps-d">各项目投稿期刊与状态</span>
+        </a>
+        <a href="https://monitor.jivonlab.com" target="_blank" rel="noopener">
+          <span class="ps-ico"><i class="fas fa-chart-line"></i></span>
+          <span class="ps-t">财务面板</span>
+          <span class="ps-d">Token 与额度消耗总览</span>
+        </a>
+        <a href="keyan/">
+          <span class="ps-ico"><i class="fas fa-flask"></i></span>
+          <span class="ps-t">科研接单</span>
+          <span class="ps-d">项目清单与数据看板</span>
+        </a>
+        <a href="#/publications">
+          <span class="ps-ico"><i class="fas fa-file-alt"></i></span>
+          <span class="ps-t">成果</span>
+          <span class="ps-d">论文与学术产出</span>
+        </a>
+        <a href="#/toolkit">
+          <span class="ps-ico"><i class="fas fa-toolbox"></i></span>
+          <span class="ps-t">工具箱</span>
+          <span class="ps-d">分析与绘图工具集</span>
+        </a>
+        <a href="#/databases">
+          <span class="ps-ico"><i class="fas fa-database"></i></span>
+          <span class="ps-t">数据库</span>
+          <span class="ps-d">常用公开数据源</span>
+        </a>
+      </div>
       <div class="loading-overlay" id="loading-overlay">
         <div class="spinner"></div>
         <p>正在加载科研数据...</p>
