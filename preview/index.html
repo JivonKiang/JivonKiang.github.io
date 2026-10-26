@@ -7,7 +7,7 @@
 <meta name="description" content="Fan Jiang 的科研导航页：投稿面板、经费面板、氪研看板，以及论文、研究热点、工具箱与数据源。">
 <meta name="theme-color" content="#F7F5EF">
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Crect width='128' height='128' rx='28' fill='%23FAF7F0'/%3E%3Cpath d='M30 52 32 20 56 38Z' fill='%231A1C20'/%3E%3Cpath d='M98 52 96 20 72 38Z' fill='%231A1C20'/%3E%3Cellipse cx='64' cy='66' rx='40' ry='37' fill='%231A1C20'/%3E%3Ccircle cx='46' cy='68' r='15' fill='none' stroke='%23EDEAE2' stroke-width='2.4'/%3E%3Ccircle cx='82' cy='68' r='15' fill='none' stroke='%23EDEAE2' stroke-width='2.4'/%3E%3Cpath d='M59 62q5-5 10 0' fill='none' stroke='%23EDEAE2' stroke-width='2.4'/%3E%3Ccircle cx='46' cy='69' r='10' fill='%235FA8D8'/%3E%3Ccircle cx='82' cy='69' r='10' fill='%235FA8D8'/%3E%3Cellipse cx='46' cy='70' rx='3' ry='5.5' fill='%230D2236'/%3E%3Cellipse cx='82' cy='70' rx='3' ry='5.5' fill='%230D2236'/%3E%3Ccircle cx='42' cy='64' r='2.4' fill='%23fff'/%3E%3Ccircle cx='78' cy='64' r='2.4' fill='%23fff'/%3E%3Cpath d='M60 88 68 88 64 93Z' fill='%23D69093'/%3E%3C/svg%3E">
+<link rel="icon" href="/assets/avatar.jpg">
 <style>
 :root{
   --paper:#F7F5EF; --ink:#191B1E; --ink-2:#454A51; --muted:#84898F;
@@ -32,7 +32,7 @@ svg{display:block;flex:none}
 /* ---------- top bar ---------- */
 .bar{border-bottom:1px solid var(--line)}
 .bar-in{display:flex;align-items:center;height:46px;gap:9px}
-.glyph{width:26px;height:26px;border-radius:8px;overflow:hidden;border:1px solid var(--line-2)}
+.glyph{width:26px;height:26px;flex:none;border-radius:8px;object-fit:cover;border:1px solid var(--line-2)}
 .bar-id{font-size:12.5px;font-weight:600;letter-spacing:.01em}
 .bar-nav{display:flex;align-items:center;gap:14px;margin-left:auto}
 .bar-nav a{font-size:12px;color:var(--muted)}
@@ -151,75 +151,9 @@ svg{display:block;flex:none}
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<radialGradient id="iris" cx="50%" cy="35%" r="75%">
-  <stop offset="0%" stop-color="#CFE9FA"/><stop offset="38%" stop-color="#7FB9E6"/>
-  <stop offset="78%" stop-color="#3A7BB8"/><stop offset="100%" stop-color="#1E4E7E"/>
-</radialGradient>
-<symbol id="ava" viewBox="0 0 200 200">
-  <rect width="200" height="200" fill="#FAF7F0"/>
-  <g stroke="#9CCFE0" stroke-width="1.8" fill="none" opacity=".6" stroke-linecap="round">
-    <rect x="14" y="16" width="26" height="34" rx="5"/>
-    <circle cx="21" cy="24" r="3" fill="#9CCFE0" stroke="none"/>
-    <path d="M27 23H35M20 32H34M20 38H30"/>
-    <circle cx="166" cy="34" r="13"/><circle cx="166" cy="34" r="7"/>
-    <circle cx="166" cy="34" r="2.5" fill="#9CCFE0" stroke="none"/>
-    <path d="M151 34H181M166 19V49"/>
-    <ellipse cx="180" cy="106" rx="14" ry="4.5" transform="rotate(-15 180 106)"/>
-    <rect x="12" y="152" width="30" height="26" rx="4"/>
-    <circle cx="22" cy="164" r="6"/><circle cx="22" cy="164" r="2.5" fill="#9CCFE0" stroke="none"/>
-    <path d="M32 158H38M32 164H38M32 170H36"/>
-    <path d="M22 140L38 128L54 134"/>
-  </g>
-  <circle cx="22" cy="140" r="2.2" fill="#9CCFE0" opacity=".6"/>
-  <circle cx="38" cy="128" r="2.2" fill="#9CCFE0" opacity=".6"/>
-  <circle cx="54" cy="134" r="2.2" fill="#9CCFE0" opacity=".6"/>
-  <circle cx="180" cy="106" r="8" fill="#CFE9F5" opacity=".75"/>
-  <path d="M148 196C176 192 190 168 178 152C172 144 162 145 159 151" stroke="#17191C" stroke-width="12" fill="none" stroke-linecap="round"/>
-  <path d="M44 200C44 168 68 152 100 152C132 152 156 168 156 200Z" fill="#33425C"/>
-  <path d="M80 158C88 150 112 150 120 158L114 192Q100 200 86 192Z" fill="#F5F3EC"/>
-  <path d="M80 158L75 200M120 158L125 200" stroke="#25334A" stroke-width="2" fill="none"/>
-  <rect x="54" y="178" width="17" height="13" rx="3" stroke="#25334A" stroke-width="1.8" fill="none"/>
-  <rect x="129" y="178" width="17" height="13" rx="3" stroke="#25334A" stroke-width="1.8" fill="none"/>
-  <path d="M54 70L60 22L98 50Z" fill="#1A1C20" stroke="#1A1C20" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M146 70L140 22L102 50Z" fill="#1A1C20" stroke="#1A1C20" stroke-width="6" stroke-linejoin="round"/>
-  <path d="M64 52L66 32L84 44Z" fill="#4A505A"/>
-  <path d="M136 52L134 32L116 44Z" fill="#4A505A"/>
-  <ellipse cx="100" cy="100" rx="58" ry="52" fill="#1A1C20"/>
-  <path d="M42 102L30 97L41 112Z" fill="#1A1C20"/>
-  <path d="M158 102L170 97L159 112Z" fill="#1A1C20"/>
-  <path d="M90 52L96 38L101 49L106 37L111 51Z" fill="#1A1C20"/>
-  <ellipse cx="78" cy="64" rx="24" ry="12" fill="#272B31" opacity=".55"/>
-  <g stroke="#C6CBD1" stroke-width="1.4" opacity=".75" stroke-linecap="round">
-    <path d="M40 98L14 92M39 108L12 106M42 118L16 121"/>
-    <path d="M160 98L186 92M161 108L188 106M158 118L184 121"/>
-  </g>
-  <g fill="none" stroke="#EDEAE2" stroke-width="2.6">
-    <path d="M49 101L40 95M151 101L160 95"/>
-    <circle cx="74" cy="104" r="25"/>
-    <circle cx="126" cy="104" r="25"/>
-    <path d="M97 97Q100 92 103 97"/>
-  </g>
-  <circle cx="74" cy="104" r="25" fill="#BFE0F2" opacity=".12"/>
-  <circle cx="126" cy="104" r="25" fill="#BFE0F2" opacity=".12"/>
-  <circle cx="74" cy="106" r="17" fill="url(#iris)"/>
-  <circle cx="126" cy="106" r="17" fill="url(#iris)"/>
-  <ellipse cx="74" cy="107" rx="4.5" ry="8.5" fill="#0D2236"/>
-  <ellipse cx="126" cy="107" rx="4.5" ry="8.5" fill="#0D2236"/>
-  <circle cx="68" cy="99" r="3.6" fill="#FFFFFF"/>
-  <circle cx="120" cy="99" r="3.6" fill="#FFFFFF"/>
-  <circle cx="80" cy="113" r="1.8" fill="#FFFFFF" opacity=".6"/>
-  <circle cx="132" cy="113" r="1.8" fill="#FFFFFF" opacity=".6"/>
-  <path d="M60 96A17 17 0 0 1 72 85" stroke="#FFFFFF" stroke-width="2" opacity=".45" fill="none" stroke-linecap="round"/>
-  <path d="M112 96A17 17 0 0 1 124 85" stroke="#FFFFFF" stroke-width="2" opacity=".45" fill="none" stroke-linecap="round"/>
-  <path d="M96 132L104 132L100 138Z" fill="#D69093" stroke="#C67F82" stroke-width="1" stroke-linejoin="round"/>
-  <path d="M93 143Q96.5 146.5 100 143.5Q103.5 146.5 107 143" stroke="#8E939B" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-</symbol>
-</defs></svg>
-
 <header class="bar">
   <div class="shell bar-in">
-    <svg class="glyph" viewBox="0 0 200 200" role="img" aria-label="头像"><use href="#ava"/></svg>
+    <img class="glyph" src="/assets/avatar.jpg" alt="Fan Jiang 头像" width="26" height="26">
     <span class="bar-id">Fan Jiang</span>
     <nav class="bar-nav">
       <a href="https://github.com/JivonKiang" target="_blank" rel="noopener">GitHub</a>
@@ -235,7 +169,7 @@ svg{display:block;flex:none}
   <section class="hero">
     <div class="hero-top">
       <div class="ava-wrap">
-        <svg class="avatar" viewBox="0 0 200 200" role="img" aria-label="黑猫学者头像"><use href="#ava"/></svg>
+        <img class="avatar" src="/assets/avatar.jpg" alt="黑猫学者头像" width="84" height="84">
         <i class="ck tl"></i><i class="ck tr"></i><i class="ck bl"></i><i class="ck br"></i>
       </div>
       <div class="hero-id">
