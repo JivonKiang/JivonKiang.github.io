@@ -1,342 +1,657 @@
-<!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>实验室规章制度 · Fan Jiang</title>
-<meta name="description" content="实验室规则体系的公开脱敏视图：四层结构、字符预算、章节索引与提案落地对照。">
-<meta name="theme-color" content="#FAFAF7">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2315171A'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='25' fill='%23FAFAF7' text-anchor='middle'%3EFJ%3C/text%3E%3C/svg%3E">
-<style>
-:root{
-  --paper:#FAFAF7;--surface:#FFF;--surface-2:#F4F3EE;
-  --ink:#15171A;--ink-2:#41464D;--muted:#7A808A;
-  --line:#E8E6E0;--line-2:#D6D3CA;
-  --accent:#0F5B52;--accent-bg:#ECF4F2;
-  --ok:#0F5B52;--warn:#9A6A12;--bad:#A33A2B;
-  --serif:"Iowan Old Style","Palatino Linotype","Songti SC","Noto Serif SC",Georgia,serif;
-  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-  --shell:1120px;
-}
-html[data-theme="dark"]{
-  --paper:#0D0F11;--surface:#15181B;--surface-2:#1B1F23;
-  --ink:#E9EAEB;--ink-2:#B7BCC2;--muted:#878D95;
-  --line:#25292D;--line-2:#33383D;
-  --accent:#68C3B5;--accent-bg:rgba(104,195,181,.10);
-  --ok:#68C3B5;--warn:#D3A24A;--bad:#D97A67;
-}
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>实验室规章制度 · 核对台</title><style>
+:root{--paper:#F7F5EF;--surface:#FFFFFF;--ink:#191B1E;--soft:#454A51;--muted:#84898F;
+--line:#E4DFD3;--accent:#0E5A50;--accent-bg:#E4EEEA;--warn:#B45309;--bad:#B91C1C;
+--serif:"Iowan Old Style","Palatino Linotype","Songti SC","Noto Serif SC",Georgia,serif;
+--sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.65}
 a{color:inherit;text-decoration:none}
-::selection{background:var(--accent);color:#fff}
-.shell{max-width:var(--shell);margin:0 auto;padding-left:28px;padding-right:28px}
-.top{position:sticky;top:0;z-index:20;border-bottom:1px solid transparent;
-  background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:blur(12px)}
-.top.in{border-bottom-color:var(--line)}
-.tin{display:flex;align-items:center;height:62px;gap:14px}
-.glyph{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
-  background:var(--ink);color:var(--paper);font-family:var(--serif);font-size:12px}
-.tt{display:flex;flex-direction:column;line-height:1.25}
-.tt b{font-size:13.5px;font-weight:600}
-.tt em{font-style:normal;font-size:11px;color:var(--muted);letter-spacing:.05em}
-.nav{margin-left:auto;display:flex;gap:18px;align-items:center;font-size:13.5px;color:var(--ink-2)}
-.nav a:hover{color:var(--ink)}
-.icon-btn{width:32px;height:32px;border-radius:9px;border:1px solid var(--line);
-  background:transparent;color:var(--ink-2);display:grid;place-items:center;cursor:pointer}
-.icon-btn:hover{border-color:var(--line-2);color:var(--ink);background:var(--surface)}
-.intro{padding-top:84px;padding-bottom:44px}
-.kicker{display:flex;align-items:center;gap:11px;font-size:11px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--muted);margin-bottom:24px}
-.kicker::before{content:"";width:24px;height:1px;background:var(--line-2)}
-h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.3rem,5vw,3.5rem);
-  line-height:1.06;letter-spacing:-.02em;margin-bottom:16px}
-.lede{max-width:680px;font-size:clamp(.96rem,1.4vw,1.04rem);color:var(--ink-2)}
-.meta{margin-top:14px;font-size:12.5px;color:var(--muted)}
-.block{padding-top:40px}
-.bh{display:flex;align-items:baseline;gap:14px;padding-bottom:13px;border-bottom:1px solid var(--line);margin-bottom:20px}
-.bh h2{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.bh span{margin-left:auto;font-size:12px;color:var(--muted)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
-.stat{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:18px}
-.stat .k{font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
-.stat .v{font-family:var(--serif);font-size:1.9rem;line-height:1.15;margin-top:5px}
-.stat .s{font-size:12px;color:var(--muted)}
-.stat .v.warn{color:var(--warn)} .stat .v.bad{color:var(--bad)} .stat .v.ok{color:var(--ok)}
-.rows{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:var(--surface)}
-.row{display:grid;grid-template-columns:1.5fr .9fr 1.1fr .7fr .9fr;
-  gap:12px;align-items:center;padding:11px 16px;border-top:1px solid var(--line);font-size:12.5px}
-.row:first-child{border-top:0}
-.row:hover{background:var(--surface-2)}
-.nm{display:flex;flex-direction:column;line-height:1.3}
-.nm em{font-style:normal;font-size:10.5px;color:var(--muted)}
-.ct,.dg,.tm{font-variant-numeric:tabular-nums;color:var(--ink-2)}
-.dg,.tm{font-size:11.5px;color:var(--muted)}
-.bar{height:5px;border-radius:999px;background:var(--surface-2);overflow:hidden}
-.bar i{display:block;height:100%;background:var(--ok)}
-.row.warn .bar i{background:var(--warn)} .row.bad .bar i{background:var(--bad)}
-.row.warn .ct{color:var(--warn)} .row.bad .ct{color:var(--bad)}
-.tw{overflow-x:auto;border:1px solid var(--line);border-radius:13px;background:var(--surface)}
-table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:720px}
-th,td{text-align:left;padding:10px 14px;border-top:1px solid var(--line);vertical-align:top}
-thead th{border-top:0;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--muted);font-weight:600;background:var(--surface-2)}
-tbody tr:hover{background:var(--surface-2)}
-.sub{font-size:10.5px;color:var(--muted)}
-.v{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;white-space:nowrap}
-.v.ok{color:var(--ok);background:var(--accent-bg)}
-.v.warn{color:var(--warn);background:rgba(154,106,18,.10)}
-.v.bad,.v.miss{color:var(--bad);background:rgba(163,58,43,.09)}
-.v.na,.v.todo{color:var(--muted);background:var(--surface-2)}
-.note{margin-top:26px;padding:18px 20px;border:1px solid var(--line);border-radius:13px;
-  background:var(--surface);display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-size:12.5px;color:var(--ink-2)}
-.note b{color:var(--ink)}
-.note a{margin-left:auto;color:var(--accent);border:1px solid var(--line-2);border-radius:999px;
-  padding:5px 14px;font-size:12.5px;transition:background .18s ease}
-.note a:hover{background:var(--accent-bg);border-color:var(--accent)}
-footer{margin-top:56px;border-top:1px solid var(--line)}
-.foot{display:flex;flex-wrap:wrap;gap:8px 16px;padding:22px 0 34px;font-size:12px;color:var(--muted)}
-.foot .links{margin-left:auto;display:flex;gap:16px}
-.foot a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
-.rise{opacity:0;transform:translateY(9px);animation:rise .6s cubic-bezier(.22,.61,.36,1) forwards;animation-delay:var(--d,0s)}
-@keyframes rise{to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.rise{animation:none;opacity:1;transform:none}}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-@media (max-width:900px){
-  .stats{grid-template-columns:1fr 1fr}
-  .row{grid-template-columns:1.4fr 1fr;row-gap:6px}
-  .bar,.dg,.tm{display:none}
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;
+padding:14px 28px;background:rgba(247,245,239,.94);border-bottom:1px solid var(--line);
+backdrop-filter:blur(10px)}
+.ti{display:flex;flex-direction:column}
+.ti b{font-family:var(--serif);font-weight:600;font-size:17px;letter-spacing:.01em}
+.ti span{font-size:11.5px;color:var(--muted)}
+.acts{margin-left:auto;display:flex;gap:8px}
+.acts a{font-size:12.5px;padding:7px 14px;border:1px solid var(--line);border-radius:8px;
+background:var(--surface);color:var(--soft);transition:border-color .15s}
+.acts a:hover{border-color:var(--accent);color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding:24px 28px 80px}
+.sum{display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:14px 18px;
+background:var(--accent-bg);border:1px solid #CDE0DB;border-radius:12px;font-size:13px}
+.sum b{font-family:var(--serif);font-size:18px}
+.search{margin-left:auto;display:flex;gap:8px;align-items:center}
+.search input{width:260px;padding:8px 12px;font-size:13px;border:1px solid var(--line);
+border-radius:8px;background:var(--surface);color:var(--ink);outline:none}
+.search input:focus{border-color:var(--accent)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px;margin:18px 0 26px}
+.card{display:flex;flex-direction:column;gap:2px;padding:12px 14px;background:var(--surface);
+border:1px solid var(--line);border-radius:10px;transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--accent);transform:translateY(-1px)}
+.card .k{font-size:10px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.card .n{font-size:13.5px;font-weight:600}
+.card .m{font-size:11.5px;color:var(--soft)}
+.card .h{font-size:10.5px;color:var(--muted);font-family:ui-monospace,Consolas,monospace}
+.card .bar{height:4px;border-radius:2px;background:var(--line);margin-top:6px;overflow:hidden}
+.card .bar i{display:block;height:100%;background:var(--accent)}
+.card.warn .bar i{background:var(--warn)}
+.card.bad .bar i{background:var(--bad)}
+.card.warn .m{color:var(--warn)}
+.card.bad .m{color:var(--bad)}
+.layout{display:grid;grid-template-columns:232px minmax(0,1fr);gap:28px;align-items:start}
+aside{position:sticky;top:74px;font-size:12.5px;border-left:1px solid var(--line);padding-left:14px}
+aside .al{font-size:10px;letter-spacing:.12em;color:var(--muted);margin:14px 0 6px;text-transform:uppercase}
+aside a{display:flex;justify-content:space-between;gap:8px;padding:5px 0;color:var(--soft)}
+aside a:hover{color:var(--accent)}
+aside a em{font-style:normal;color:var(--muted);font-size:10.5px}
+article{margin-bottom:44px;scroll-margin-top:86px}
+article h2{font-family:var(--serif);font-size:22px;font-weight:600;margin-bottom:4px}
+article h2 small{font-family:var(--sans);font-size:11px;font-weight:400;color:var(--muted);margin-left:8px}
+.am{font-size:11.5px;color:var(--muted);margin-bottom:12px;
+padding-bottom:8px;border-bottom:1px solid var(--line);font-family:ui-monospace,Consolas,monospace}
+.md{font-size:13.5px}
+.md h3{font-size:16px;margin:20px 0 6px;font-weight:600}
+.md h4{font-size:14px;margin:14px 0 4px;font-weight:600;color:var(--soft)}
+.md h5,.md h6{font-size:13px;margin:10px 0 4px;font-weight:600;color:var(--soft)}
+.md p{margin:5px 0}
+.md ul,.md ol{margin:5px 0 5px 20px}
+.md li{margin:2px 0}
+.md blockquote{border-left:3px solid var(--accent);background:var(--accent-bg);
+padding:6px 12px;margin:8px 0;border-radius:0 6px 6px 0;color:var(--soft);font-size:13px}
+.md hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.md code{font-family:ui-monospace,Consolas,monospace;font-size:12px;background:#F1EFE8;
+padding:1px 5px;border-radius:4px}
+.md pre{background:#F1EFE8;border:1px solid var(--line);border-radius:8px;padding:12px;
+overflow:auto;margin:8px 0}
+.md pre code{background:none;padding:0;font-size:11.5px;line-height:1.5}
+.tw{overflow:auto;margin:8px 0;border:1px solid var(--line);border-radius:8px}
+.md table{border-collapse:collapse;width:100%;font-size:12px}
+.md th,.md td{border-bottom:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+.md th{background:#F1EFE8;font-weight:600;white-space:nowrap}
+.md tr:last-child td{border-bottom:0}
+.aud td:first-child{font-family:ui-monospace,Consolas,monospace;font-size:11px;white-space:nowrap}
+.v{display:inline-block;padding:1px 7px;border-radius:20px;font-size:10.5px;border:1px solid}
+.v.ok{color:#0F5132;background:#E7F5EC;border-color:#BFE3CC}
+.v.miss{color:#B91C1C;background:#FDECEC;border-color:#F3C7C7}
+.v.na{color:#6B7280;background:#F3F4F6;border-color:#E1E3E8}
+.v.todo{color:#8A5A00;background:#FFF6E5;border-color:#F0D9A8}
+@media (max-width:820px){
+.layout{grid-template-columns:1fr}
+aside{position:static;border-left:0;border-bottom:1px solid var(--line);padding:0 0 14px}
+.search{margin-left:0;width:100%}
+.search input{width:100%}
+.top{padding:12px 18px}
+.wrap{padding:18px 18px 60px}
 }
-@media (max-width:640px){
-  .shell{padding-left:20px;padding-right:20px}
-  .intro{padding-top:56px;padding-bottom:34px}
-  .nav a:not(.keep){display:none}
-  .stats{grid-template-columns:1fr}
-  .note a{margin-left:0}
-}
-</style>
-</head>
-<body>
-<header class="top" id="bar"><div class="shell tin">
-  <a class="tt" href="./" style="flex-direction:row;align-items:center;gap:11px">
-    <span class="glyph">FJ</span>
-    <span class="tt"><b>Fan Jiang</b><em>Research Navigator</em></span>
-  </a>
-  <nav class="nav">
-    <a class="keep" href="./">导航</a>
-    <a href="#timeline">变更时间线</a>
-    <a href="#audit">提案对照</a>
-    <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换深浅色" title="切换深浅色">
-      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-    </button>
-  </nav>
-</div></header>
-
-<main class="shell">
-  <section class="intro">
-    <p class="kicker rise">Laboratory governance</p>
-    <h1 class="rise" style="--d:.05s">实验室规章制度</h1>
-    <p class="lede rise" style="--d:.1s">四层结构：全局规则、工作区常驻、手册与数据层。此页为公开脱敏视图，展示预算占用、章节索引、变更时间线与提案落地对照；规则全文含内部路径，在核对台内查看。</p>
-    <p class="meta rise" style="--d:.14s">数据取自已落盘规则文件 · 生成 2026-10-27 00:03</p>
-  </section>
-
-  <section class="block">
-    <div class="bh rise"><h2>预算占用</h2><span>超 90% 黄灯、超 100% 红灯，按制度压缩</span></div>
-    <div class="stats">
-      <div class="stat rise"><span class="k">规则文件</span><span class="v">12</span><span class="s">L0 常驻 ＋ L1 手册</span></div>
-      <div class="stat rise" style="--d:.04s"><span class="k">已用字符</span><span class="v">38,520</span><span class="s">预算 65,500</span></div>
-      <div class="stat rise" style="--d:.08s"><span class="k">预算占用</span><span class="v ok">58.8%</span><span class="s">全体系合计 · 预算余量非使用率</span></div>
-      <div class="stat rise" style="--d:.12s"><span class="k">提案对照</span><span class="v ok">17/42</span><span class="s">已落 · 存疑 2 · 不适用 19</span></div>
-    </div>
-    <div class="rows rise">      <div class="row warn"><span class="nm">user_rules.md<em>L0 全局</em></span><span class="ct">3,480 / 3,500</span><span class="bar"><i style="width:99%"></i></span><span class="dg">55CC463F2A316B69</span><span class="tm">2026-10-26 23:59</span></div>
-      <div class="row ok"><span class="nm">AGENTS.md<em>L0 工作区</em></span><span class="ct">1,578 / 2,000</span><span class="bar"><i style="width:79%"></i></span><span class="dg">C1B6C94D1E9BB4F7</span><span class="tm">2026-10-26 20:26</span></div>
-      <div class="row warn"><span class="nm">0-制度维护法.md<em>L1 手册</em></span><span class="ct">5,548 / 6,000</span><span class="bar"><i style="width:92%"></i></span><span class="dg">4C5B522EEE16B2DF</span><span class="tm">2026-10-26 16:09</span></div>
-      <div class="row ok"><span class="nm">1-协作与两机.md<em>L1 手册</em></span><span class="ct">3,724 / 6,000</span><span class="bar"><i style="width:62%"></i></span><span class="dg">89A6F3D9059CC0BB</span><span class="tm">2026-10-26 23:03</span></div>
-      <div class="row ok"><span class="nm">2-知识库与科研闭环.md<em>L1 手册</em></span><span class="ct">3,328 / 6,000</span><span class="bar"><i style="width:55%"></i></span><span class="dg">EF5BF18F971FE244</span><span class="tm">2026-10-26 16:01</span></div>
-      <div class="row warn"><span class="nm">3-投稿与论文.md<em>L1 手册</em></span><span class="ct">5,988 / 6,000</span><span class="bar"><i style="width:100%"></i></span><span class="dg">A92111DF9F8C6AFB</span><span class="tm">2026-10-26 23:58</span></div>
-      <div class="row ok"><span class="nm">4-经费与成本.md<em>L1 手册</em></span><span class="ct">1,063 / 6,000</span><span class="bar"><i style="width:18%"></i></span><span class="dg">4F029C34376E769A</span><span class="tm">2026-10-27 00:02</span></div>
-      <div class="row ok"><span class="nm">5-浏览器与桌面自动化.md<em>L1 手册</em></span><span class="ct">1,425 / 6,000</span><span class="bar"><i style="width:24%"></i></span><span class="dg">732C79372CDFAF28</span><span class="tm">2026-10-26 14:48</span></div>
-      <div class="row ok"><span class="nm">6-安全与凭据.md<em>L1 手册</em></span><span class="ct">1,415 / 6,000</span><span class="bar"><i style="width:24%"></i></span><span class="dg">AC26B06E094080D8</span><span class="tm">2026-10-26 16:02</span></div>
-      <div class="row ok"><span class="nm">7-输出与工程约定.md<em>L1 手册</em></span><span class="ct">4,459 / 6,000</span><span class="bar"><i style="width:74%"></i></span><span class="dg">7A34CF2398560683</span><span class="tm">2026-10-26 23:37</span></div>
-      <div class="row warn"><span class="nm">8-域名与面板.md<em>L1 手册</em></span><span class="ct">5,527 / 6,000</span><span class="bar"><i style="width:92%"></i></span><span class="dg">F69D53D674703D63</span><span class="tm">2026-10-26 23:03</span></div>
-      <div class="row ok"><span class="nm">9-绘图与图版.md<em>L1 手册（口径外）</em></span><span class="ct">985 / 6,000</span><span class="bar"><i style="width:16%"></i></span><span class="dg">C1B85F39E25DE1D3</span><span class="tm">2026-10-26 00:50</span></div>
-    </div>
-  </section>
-
-  <section class="block">
-    <div class="bh rise"><h2>章节索引</h2><span>74 节 · 生成 2026-10-26 23:58 · AI 按此定位只读单节</span></div>
-    <div class="tw rise"><table>
-      <thead><tr><th>文件</th><th>节</th><th>行</th><th>触发词</th></tr></thead>
-      <tbody>        <tr><td>0-制度维护法.md</td><td>章</td><td>1</td><td>改规则 / 提案 / RP / VETO / 预算 / 回滚</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§1</td><td>7</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§2</td><td>14</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§3</td><td>25</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§4</td><td>40</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§5</td><td>52</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§6</td><td>64</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§7</td><td>81</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§10</td><td>100</td><td>提案 / 提案箱 / RP / 禁令 / VETO / 发现规则问题</td></tr>
-        <tr><td>L0-全局 user_rules</td><td>章</td><td>1</td><td>主任 / 红线 / 分级 / 秘书 / 绘图</td></tr>
-        <tr><td>L0-全局 user_rules</td><td>§1</td><td>5</td><td>〃</td></tr>
-        <tr><td>L0-全局 user_rules</td><td>§2</td><td>8</td><td>〃</td></tr>
-        <tr><td>L0-全局 user_rules</td><td>§3</td><td>17</td><td>〃</td></tr>
-        <tr><td>L0-全局 user_rules</td><td>§4</td><td>24</td><td>〃</td></tr>
-        <tr><td>L0-全局 user_rules</td><td>§5</td><td>36</td><td>〃</td></tr>
-        <tr><td>L0-全局 user_rules</td><td>§6</td><td>42</td><td>〃</td></tr>
-        <tr><td>L0-全局 user_rules</td><td>§7</td><td>45</td><td>〃</td></tr>
-        <tr><td>L0-全局 user_rules</td><td>§8</td><td>48</td><td>〃</td></tr>
-        <tr><td>L0-工作区 AGENTS</td><td>章</td><td>1</td><td>常驻 / 铁律 / 路由 / 检索纪律 / 手册</td></tr>
-        <tr><td>L0-工作区 AGENTS</td><td>§1</td><td>6</td><td>〃</td></tr>
-        <tr><td>L0-工作区 AGENTS</td><td>§2</td><td>14</td><td>〃</td></tr>
-        <tr><td>L0-工作区 AGENTS</td><td>§3</td><td>17</td><td>〃</td></tr>
-        <tr><td>L0-工作区 AGENTS</td><td>§4</td><td>32</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§8</td><td>90</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§9</td><td>95</td><td>〃</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§11</td><td>114</td><td>严令禁止 / 这个错误不该犯 / 下次不准 / 这是红线 / 不许再</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§12</td><td>128</td><td>不该犯 / 又错了 / 我说过 / 捕获 / 改进制度 / 别再</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§13</td><td>136</td><td>检索 / 索引 / 找不到 / 手册太长 / 查哪一节</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§14</td><td>144</td><td>预算/黄灯/压缩/超线/回压/分级/下沉/递进</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§15</td><td>152</td><td>收尾/钩子/状态卡/留痕/制度提案字段/进展流水</td></tr>
-        <tr><td>0-制度维护法.md</td><td>§16</td><td>161</td><td>知识树/热度/分层/主干/加权</td></tr>
-        <tr><td>3-投稿与论文.md</td><td>章</td><td>1</td><td>投稿 / 论文 / 开稿 / 校对 PDF / 审稿意见 / 邮件</td></tr>
-        <tr><td>3-投稿与论文.md</td><td>§1</td><td>5</td><td>〃</td></tr>
-        <tr><td>3-投稿与论文.md</td><td>§2</td><td>17</td><td>开稿 / 动笔 / 写正文 / 写稿 / 写手稿 / draft。任一论文写作环节开始前，五步依次完成并留痕；缺一步禁止</td></tr>
-        <tr><td>3-投稿与论文.md</td><td>§3</td><td>31</td><td>投稿 / 论文 / 开稿 / 校对 PDF / 审稿意见 / 邮件</td></tr>
-        <tr><td>3-投稿与论文.md</td><td>§4</td><td>38</td><td>〃</td></tr>
-        <tr><td>3-投稿与论文.md</td><td>§5</td><td>46</td><td>投稿系统/校对 PDF/替换图/同意投稿/Submit。</td></tr>
-        <tr><td>3-投稿与论文.md</td><td>§6</td><td>60</td><td>投稿 / 论文 / 开稿 / 校对 PDF / 审稿意见 / 邮件</td></tr>
-        <tr><td>3-投稿与论文.md</td><td>§7</td><td>69</td><td>〃</td></tr>
-        <tr><td>6-安全与凭据.md</td><td>章</td><td>1</td><td>凭据 / 密码 / secret / Tailscale / API key</td></tr>
-        <tr><td>6-安全与凭据.md</td><td>§1</td><td>5</td><td>〃</td></tr>
-        <tr><td>7-输出与工程约定.md</td><td>章</td><td>1</td><td>删除 / 覆盖 / 重命名 / 发送 / 提交 / 重启 / 发布 / 上线</td></tr>
-        <tr><td>7-输出与工程约定.md</td><td>§1</td><td>5</td><td>〃</td></tr>
-        <tr><td>7-输出与工程约定.md</td><td>§2</td><td>14</td><td>〃</td></tr>
-        <tr><td>7-输出与工程约定.md</td><td>§4</td><td>35</td><td>微信 / 秘书 / 秘书 / gateway / ret=-2 / watchdog。细则已按分级递进下沉 L</td></tr>
-        <tr><td>9-绘图与图版.md</td><td>章</td><td>1</td><td>绘图 / 图版 / 主图 / 配色 / figure</td></tr>
-        <tr><td>9-绘图与图版.md</td><td>§1</td><td>5</td><td>绘图 / 主图 / 图版 / figure / 面板 / nature-figure</td></tr>
-        <tr><td>1-协作与两机.md</td><td>章</td><td>1</td><td>两机 / 雷神 / 同步 / 交接包 / 门铃 / 定时任务 / 待办提醒 / 秘书推送</td></tr>
-        <tr><td>1-协作与两机.md</td><td>§1</td><td>5</td><td>〃</td></tr>
-        <tr><td>1-协作与两机.md</td><td>§2</td><td>17</td><td>〃</td></tr>
-        <tr><td>1-协作与两机.md</td><td>§3</td><td>25</td><td>〃</td></tr>
-        <tr><td>2-知识库与科研闭环.md</td><td>章</td><td>1</td><td>知识库 / 学习卡 / 执行经验 / 文献 / 沉淀 / 实验 / 数据</td></tr>
-        <tr><td>2-知识库与科研闭环.md</td><td>§1</td><td>5</td><td>〃</td></tr>
-        <tr><td>2-知识库与科研闭环.md</td><td>§2</td><td>13</td><td>〃</td></tr>
-        <tr><td>2-知识库与科研闭环.md</td><td>§3</td><td>19</td><td>〃</td></tr>
-        <tr><td>2-知识库与科研闭环.md</td><td>§4</td><td>25</td><td>〃</td></tr>
-        <tr><td>2-知识库与科研闭环.md</td><td>§5</td><td>33</td><td>〃</td></tr>
-        <tr><td>2-知识库与科研闭环.md</td><td>§6</td><td>38</td><td>〃</td></tr>
-        <tr><td>4-经费与成本.md</td><td>章</td><td>1</td><td>经费 / 额度 / 账单 / 套餐 / 充值 / 订阅</td></tr>
-        <tr><td>4-经费与成本.md</td><td>§1</td><td>5</td><td>〃</td></tr>
-        <tr><td>5-浏览器与桌面自动化.md</td><td>章</td><td>1</td><td>浏览器 / 登录 / 截图 / 扫码 / 桌面</td></tr>
-        <tr><td>5-浏览器与桌面自动化.md</td><td>§1</td><td>5</td><td>〃</td></tr>
-        <tr><td>5-浏览器与桌面自动化.md</td><td>§2</td><td>12</td><td>〃</td></tr>
-        <tr><td>6-安全与凭据.md</td><td>§2</td><td>18</td><td>〃</td></tr>
-        <tr><td>6-安全与凭据.md</td><td>§3</td><td>24</td><td>〃</td></tr>
-        <tr><td>7-输出与工程约定.md</td><td>§3</td><td>24</td><td>控制电脑 / EndNote / 另存为 / 对话框 / 点按钮。</td></tr>
-        <tr><td>8-域名与面板.md</td><td>章</td><td>1</td><td>jivonlab / 投稿面板 / 隧道 / TOTP / 域名</td></tr>
-        <tr><td>8-域名与面板.md</td><td>§1</td><td>5</td><td>〃</td></tr>
-        <tr><td>8-域名与面板.md</td><td>§2</td><td>16</td><td>〃</td></tr>
-        <tr><td>8-域名与面板.md</td><td>§3</td><td>42</td><td>〃</td></tr>
-        <tr><td>8-域名与面板.md</td><td>§4</td><td>54</td><td>〃</td></tr>
-        <tr><td>8-域名与面板.md</td><td>§5</td><td>60</td><td>〃</td></tr>
-        <tr><td>8-域名与面板.md</td><td>§6</td><td>67</td><td>〃</td></tr>
-        <tr><td>8-域名与面板.md</td><td>§7</td><td>77</td><td>〃</td></tr></tbody>
-    </table></div>
-  </section>
-
-  <section class="block" id="timeline">
-    <div class="bh rise"><h2>变更时间线</h2><span>最近 12 条 · 每次实质改动均记账</span></div>
-    <div class="tw rise"><table>
-      <thead><tr><th>日期</th><th>文件</th><th>字符数</th><th>动作</th></tr></thead>
-      <tbody>        <tr><td>2026-10-26</td><td>rules\3-投稿与论文.md</td><td>5,998 → 5,990（≤6,000）</td><td>RP-20261026-SYS-26 落地（主任令 TB enhance 修回素材）：EM 节后新增「投后半程」节（意见接收/逐点回复/返修重投/接收后拒稿后，TB-NHANES iScience 修回实证），细则下沉 L2 卡 约定-投稿…</td></tr>
-        <tr><td>2026-10-26</td><td>rules\3-投稿与论文.md</td><td>7,644 → 5,998（红灯清零）</td><td>RP-20261026-SYS-29 落地（首个 SYS-31 分级下沉实战）：EM 操作现场 7 条整体下沉 L2 卡 坑-EM操作现场与提交后复核-NCS4501-20261026-a3f1b2c7.md，原位留硬红线（声明终检/提交即…</td></tr>
-        <tr><td>2026-10-26</td><td>rules\0-制度维护法.md</td><td>5,548 → 5,548（92.5%，净 0）</td><td>RP-20261026-SYS-31 落地（主任令「分级派发/分级递进」）：§14 红灯回压 bullet 扩写「压≠删记忆：细则下沉 L2 留一行指针＋触发词（同 §16 降层），硬条款不动；分级递进 L0→L1→L2」，触发词加「分级/…</td></tr>
-        <tr><td>2026-10-26</td><td>rules\0-制度维护法.md</td><td>5,562 → 5,548（92.5%）</td><td>RP-20261026-SYS-30 落地（主任令）：§14 新增红灯回压硬条款「写入致手册破 6,000 的，当轮等价压缩回 ≤6,000 才算完；存档后当场压，禁移交他席」，触发词加「回压」；§14 自身等价压缩找补（存档路径并 §9、…</td></tr>
-        <tr><td>2026-10-26</td><td>rules\0-制度维护法.md</td><td>5,391 → 5,562（92.7%）</td><td>RP-20261026-SYS-28 落地（主任令「状态卡 §八流水／落点没有就完善制度」）：§15 重写「收尾钩子与状态卡」（唯一落点 00_brain\课题状态卡\&lt;课题名&gt;.md、节固定一~八、§八=进展流水每工作单元一行、收尾三字段…</td></tr>
-        <tr><td>2026-10-26</td><td>AGENTS.md + jivonlab-site\server.py</td><td>AGENTS 1,491（不变）/ server.py …</td><td>公开页 audit 三处误报清零：①AGENTS 检索纪律「风险动作」等长回改「风险触发」（SYS-14 原案措辞，SYS-18 压缩时无意偏移致回查 miss）；②server.py _proposal_audit() targets 过…</td></tr>
-        <tr><td>2026-10-26</td><td>jivonlab-site\server.py + rules\3-投稿与论文.md + rules\0-制度维护法.md</td><td>server.py 30,000→59,500＋RULE…</td><td>三项遗留一并修复（主任令「三项遗留的，请你也帮我修好」）：①SYS-19 落地——RULES_FILES 补 9-绘图与图版.md、TOTAL 改 59,500，import server 实测 files=12/budget=59500，…</td></tr>
-        <tr><td>2026-10-26</td><td>rules\3-投稿与论文.md + rules\7-输出与工程约定.md</td><td>6,118→5,945（99.1%）/ 8,071→4,…</td><td>RP-SYS-20 落地（主任拍板「压缩双红灯」）：3-投稿仅句级精简（NCS 标题去「必须遵守」、Nature Skill 重复句合并、校对 PDF 定义去重、代理分工去重），硬条款（VETO-02 全流程代办、BLT-13 多轮再送审、…</td></tr>
-        <tr><td>2026-10-26</td><td>~\.trae-cn\rules\user_rules.md + …</td><td>1,867→2,198 / 1,364→1,491</td><td>主任 12:57 落盘（另席执行，本轮并入公开页）：user_rules 增红线③④投稿确认页截图、红线④例外、§三优先序裁决（user_rules＞AGENTS＞L1）、TRAE 故障路由（trae_crash_check.ps1）；AG…</td></tr>
-        <tr><td>2026-10-26</td><td>bin\gen_site_rules.py + navsite\rules.html</td><td>32,998 字节</td><td>四列 _INDEX 适配（load_index/irows/lede/统计卡/表头 5 处）；rules.html 重生成（11 文件 38,186/59,500 64.2%，audit ok 10/miss 3/gap 2），已 push</td></tr>
-        <tr><td>2026-10-26</td><td>rules\0-制度维护法.md</td><td>5,740（不变）</td><td>§3 预算表回填实测并更正口径（user_rules 2,198/63%、AGENTS 1,491/75%、单本最大 8,071（7-输出）+ 3-投稿 6,118 → 红灯 2 本、手册合计 34,497/64%，0-8 九本；9-绘图 …</td></tr>
-        <tr><td>2026-10-26</td><td>AGENTS.md</td><td>1,798 → 1,364（68%）</td><td>RP-SYS-18 落地：检索表 10 行触发词去重（留 3-5 高区分度词）、检索纪律 2 压 1；铁律 6 条与动作路由行不动；改前备份 AGENTS-preSYS18-20261026.md</td></tr></tbody>
-    </table></div>
-  </section>
-
-  <section class="block" id="audit">
-    <div class="bh rise"><h2>提案对照</h2><span>声明 vs 实测 · 只读核对</span></div>
-    <p class="lede rise" style="font-size:12.5px;margin-bottom:16px">解析提案箱未结项与禁令项，按验收关键词回查目标手册当前内容：已落 <b>17</b> · 存疑 <b>2</b> · 不适用 <b>19</b> · 待收口 <b>1</b>（共 42 条）。</p>
-    <div class="tw rise"><table>
-      <thead><tr><th>ID</th><th>层级 · 声明</th><th>目标文件</th><th>实测</th><th>行</th><th>判定依据</th><th>待办</th></tr></thead>
-      <tbody>        <tr><td>RP-20261025-BRCAJY-01</td><td>L0 → 改判 L1<br><span class="sub">patched</span></td><td>3-投稿与论文.md</td><td><span class="v todo">未核验</span></td><td>—</td><td>验收命令无可提取关键词，需人工查看</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261025-BRCAJY-02</td><td>L3 记忆（不属规则层）<br><span class="sub">triaged</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261025-BRCAJY-03</td><td>L1<br><span class="sub">patched</span></td><td>8-域名与面板.md</td><td><span class="v ok">已落</span></td><td>25</td><td>符合预期：唯一权威源</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261025-BRCAJY-04</td><td>L0 → user_rules §三 + L1 §10<br><span class="sub">patched</span></td><td>user_rules.md、0-制度维护法.md</td><td><span class="v ok">已落</span></td><td>21</td><td>符合预期：提案箱／提案箱</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261025-SYS-05</td><td>L0 全局<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261025-SYS-06</td><td>L1 7-输出/门铃脚本<br><span class="sub">verified</span></td><td>2-知识库与科研闭环.md、AGENTS.md、user_rules.md</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-CLAW-01</td><td>秘书 workspace（…，落点须主任批准）<br><span class="sub">verified</span></td><td>AGENTS.md</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-07</td><td>L0 铁律 6 × 0-制度维护法 §10 口径冲突<br><span class="sub">verified</span></td><td>user_rules.md</td><td><span class="v ok">已落</span></td><td>21</td><td>符合预期：对应手册／提案箱</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-08</td><td>L0 §三「改规则」触发词<br><span class="sub">verified</span></td><td>user_rules.md</td><td><span class="v ok">已落</span></td><td>21</td><td>符合预期：建议／捕获／不该犯</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-09</td><td>L1 §16<br><span class="sub">verified</span></td><td>user_rules.md、0-制度维护法.md</td><td><span class="v ok">已落</span></td><td>21</td><td>符合预期：知识树／热度／分层／知识树</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-10</td><td>L1 手册 2 + L0 铁律 6/检索表 + 00_brain<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-11</td><td>L1 §3 预算表 + 公开页<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-BRCAJY-12</td><td>L1 3-投稿与论文.md<br><span class="sub">verified</span></td><td>3-投稿与论文.md</td><td><span class="v ok">已落</span></td><td>29</td><td>符合预期：Author information</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-BLT-13</td><td>L1 3-投稿与论文.md §校对送审与批准后提交<br><span class="sub">verified</span></td><td>3-投稿与论文.md</td><td><span class="v ok">已落</span></td><td>52</td><td>符合预期：不算重复劳动</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-14</td><td>L0 AGENTS.md §检索纪律 + §分级检索表<br><span class="sub">verified</span></td><td>AGENTS.md</td><td><span class="v ok">已落</span></td><td>33</td><td>符合预期：风险触发／动作优先</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-15</td><td>L1<br><span class="sub">verified</span></td><td>0-制度维护法.md</td><td><span class="v todo">未核验</span></td><td>—</td><td>验收命令无可提取关键词，需人工查看</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-16</td><td>L1 3-投稿与论文 → 8-域名与面板<br><span class="sub">verified</span></td><td>8-域名与面板.md</td><td><span class="v ok">已落</span></td><td>30</td><td>符合预期：不回写</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-17</td><td>L0<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-18</td><td>L0<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-19</td><td>jivonlab-site\server.py（RULES_FILES / RULES_TOTAL_BUDGET）<br><span class="sub">verified</span></td><td>9-绘图与图版.md</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-20</td><td>L1 3-投稿与论文.md（6,118/102%）、7-输出与工程约定.md（8,071/135%）<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-21</td><td>L1 3-投稿与论文.md §提交证据<br><span class="sub">patched</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-22</td><td>L1 3-投稿与论文.md §校对送审与批准后提交 + L0 红线3④<br><span class="sub">verified</span></td><td>3-投稿与论文.md、user_rules.md</td><td><span class="v ok">已落</span></td><td>58</td><td>符合预期：投后确认截图／第 9 条</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-23</td><td>L0 红线2+AGENTS 铁律3 /<br><span class="sub">verified</span></td><td>user_rules.md、AGENTS.md</td><td><span class="v ok">已落</span></td><td>10</td><td>符合预期：ai-agent-secrets／credentials.md</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-24</td><td>L0<br><span class="sub">verified</span></td><td>user_rules.md、AGENTS.md</td><td><span class="v ok">已落</span></td><td>—</td><td>符合预期：身份与绘图速查／坑区</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-25</td><td>L0 AGENTS + 索引生成器<br><span class="sub">verified</span></td><td>AGENTS.md</td><td><span class="v ok">已落</span></td><td>28</td><td>符合预期：9-绘图</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-28</td><td>L1 0-制度维护法.md §15<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-29</td><td>L1 3-投稿与论文.md + 7-输出与工程约定.md<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-30</td><td>L1 0-制度维护法.md §14<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-26</td><td>L1 3-投稿＋L2 卡<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-27</td><td>L0 AGENTS + L1 手册头部<br><span class="sub">verified</span></td><td>AGENTS.md</td><td><span class="v ok">已落</span></td><td>22</td><td>符合预期：邮件／订阅／回滚</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-31</td><td>L1 0-制度维护法.md §14<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-32</td><td>L0 红线 4 白名单＋L1 1-协作与两机.md 常驻计划任务表＋工作区 AGENTS 检索表<br><span class="sub">verified</span></td><td>user_rules.md</td><td><span class="v ok">已落</span></td><td>12</td><td>符合预期：秘书待办提醒</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-33</td><td>L1 7-输出与工程约定.md<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-34</td><td>L0 user_rules.md §七<br><span class="sub">verified</span></td><td>7-输出与工程约定.md、3-投稿与论文.md、user_rules.md</td><td><span class="v todo">未核验</span></td><td>—</td><td>验收命令无可提取关键词，需人工查看</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-35</td><td>L0 工具 close_check.py<br><span class="sub">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-36</td><td>L0 工具 rule_auto.py<br><span class="sub">verified</span></td><td>3-投稿与论文.md</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-15</td><td>L1 7-输出与工程约定.md 收尾链<br><span class="sub">open</span></td><td>7-输出与工程约定.md</td><td><span class="v miss">未命中</span></td><td>—</td><td>验收关键词 1 个均未达预期</td><td><span class="v na">—</span></td></tr>
-        <tr><td>RP-20261026-SYS-37</td><td>L0 user_rules.md ＋ L1 3-投稿与论文.md 双红灯<br><span class="sub">verified</span></td><td>20261026-d2e7f4a9.md、37-20261026.md</td><td><span class="v miss">目标缺失</span></td><td>—</td><td>未在规则清单：20261026-d2e7f4a9.md、37-20261026.md</td><td><span class="v miss">证据缺失</span></td></tr>
-        <tr><td>RP-20261026-KB-01</td><td>秘书 workspace AGENTS.md 铁律 3（禁改令，落点须主任批准）＋ 00_System\bin\inbox_check.py ＋…<br><span class="sub">verified</span></td><td>user_rules.md</td><td><span class="v ok">已落</span></td><td>12</td><td>符合预期：知识库 pending 滞留告警</td><td><span class="v na">—</span></td></tr>
-        <tr><td>VETO-20261026-01</td><td>制度维护法缺&quot;主动捕获&quot;节：旧版只有主任明确说&quot;严令禁止&quot;才建档，主任说&quot;这里不行／应该更好&quot;时无人归纳，缺口由主任自己发现<br><span class="sub">verified</span></td><td>0-制度维护法.md</td><td><span class="v todo">未核验</span></td><td>—</td><td>验收命令无可提取关键词，需人工查看</td><td><span class="v na">—</span></td></tr>
-        <tr><td>VETO-20261026-02</td><td>3-投稿与论文.md:12「系统上传/提交动作需用户在场或授权」、:24「不代点最终 Submit」同 L0 红线3 及主任指令冲突；且缺「系统…<br><span class="sub">patched</span></td><td>3-投稿与论文.md</td><td><span class="v ok">已落</span></td><td>14</td><td>符合预期：全流程代办／新版必替换／批准后提交</td><td><span class="v na">—</span></td></tr></tbody>
-    </table></div>
-    <div class="note rise">
-      <span><b>查看全文：</b>规则原文、逐条字符与哈希、提案箱台账在核对台（需验证码）。</span>
-      <a href="https://board.jivonlab.com/rules" target="_blank" rel="noopener">打开核对台 →</a>
-    </div>
-  </section>
-</main>
-
-<footer><div class="shell foot">
-  <span>© 2026 Fan Jiang</span><span>·</span><span>Laboratory governance</span>
-  <span class="links"><a href="./">导航</a><a href="https://board.jivonlab.com/rules" target="_blank" rel="noopener">核对台</a></span>
-</div></footer>
-
-<script>
-(function(){
-  var root=document.documentElement;
-  var saved=null; try{saved=localStorage.getItem('nav-theme')}catch(e){}
-  if(saved) root.setAttribute('data-theme',saved);
-  else if(window.matchMedia('(prefers-color-scheme: dark)').matches) root.setAttribute('data-theme','dark');
-  document.getElementById('theme-toggle').addEventListener('click',function(){
-    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
-    root.setAttribute('data-theme',next);
-    try{localStorage.setItem('nav-theme',next)}catch(e){}
+</style></head><body><header class="top"><div class="ti"><b>实验室规章制度 · 核对台</b><span>实时读取本机规则文件 · 每次刷新重新计算，无缓存跨请求</span></div><div class="acts"><a href="/">返回面板</a><a href="/rules">刷新</a></div></header><main class="wrap"><div class="sum"><b class="">39,187 / 65,500</b><span>字符合计（59.8%）</span><span>· 12 份规则文件</span><span>· 生成于 2026-10-27 01:12</span><span class="search"><input id="q" placeholder="搜关键词，如 VETO、TOTP、投稿"></span></div><div class="cards"><a class="card warn" href="#doc-1"><span class="k">L0 全局</span><span class="n">user_rules.md</span><span class="m">3,200 / 3,500 字符（91%）</span><span class="h">287F3C24707FE230 · 2026-10-27 01:12</span><span class="bar"><i style="width:91%"></i></span></a><a class="card " href="#doc-2"><span class="k">L0 工作区</span><span class="n">AGENTS.md</span><span class="m">1,696 / 2,000 字符（85%）</span><span class="h">95F5B21B4142064F · 2026-10-27 00:54</span><span class="bar"><i style="width:85%"></i></span></a><a class="card warn" href="#doc-3"><span class="k">L1 手册</span><span class="n">0-制度维护法.md</span><span class="m">5,806 / 6,000 字符（97%）</span><span class="h">B788997B04FEA4B8 · 2026-10-27 00:52</span><span class="bar"><i style="width:97%"></i></span></a><a class="card " href="#doc-4"><span class="k">L1 手册</span><span class="n">1-协作与两机.md</span><span class="m">3,861 / 6,000 字符（64%）</span><span class="h">F6A29980019D5ED1 · 2026-10-27 00:30</span><span class="bar"><i style="width:64%"></i></span></a><a class="card " href="#doc-5"><span class="k">L1 手册</span><span class="n">2-知识库与科研闭环.md</span><span class="m">3,328 / 6,000 字符（55%）</span><span class="h">EF5BF18F971FE244 · 2026-10-26 16:01</span><span class="bar"><i style="width:55%"></i></span></a><a class="card warn" href="#doc-6"><span class="k">L1 手册</span><span class="n">3-投稿与论文.md</span><span class="m">5,988 / 6,000 字符（100%）</span><span class="h">A92111DF9F8C6AFB · 2026-10-26 23:58</span><span class="bar"><i style="width:100%"></i></span></a><a class="card " href="#doc-7"><span class="k">L1 手册</span><span class="n">4-经费与成本.md</span><span class="m">1,063 / 6,000 字符（18%）</span><span class="h">4F029C34376E769A · 2026-10-27 00:02</span><span class="bar"><i style="width:18%"></i></span></a><a class="card " href="#doc-8"><span class="k">L1 手册</span><span class="n">5-浏览器与桌面自动化.md</span><span class="m">1,425 / 6,000 字符（24%）</span><span class="h">732C79372CDFAF28 · 2026-10-26 14:48</span><span class="bar"><i style="width:24%"></i></span></a><a class="card " href="#doc-9"><span class="k">L1 手册</span><span class="n">6-安全与凭据.md</span><span class="m">1,415 / 6,000 字符（24%）</span><span class="h">AC26B06E094080D8 · 2026-10-26 16:02</span><span class="bar"><i style="width:24%"></i></span></a><a class="card " href="#doc-10"><span class="k">L1 手册</span><span class="n">7-输出与工程约定.md</span><span class="m">4,893 / 6,000 字符（82%）</span><span class="h">CDFCD4989B084612 · 2026-10-27 01:07</span><span class="bar"><i style="width:82%"></i></span></a><a class="card warn" href="#doc-11"><span class="k">L1 手册</span><span class="n">8-域名与面板.md</span><span class="m">5,527 / 6,000 字符（92%）</span><span class="h">F69D53D674703D63 · 2026-10-26 23:03</span><span class="bar"><i style="width:92%"></i></span></a><a class="card " href="#doc-12"><span class="k">L1 手册（口径外）</span><span class="n">9-绘图与图版.md</span><span class="m">985 / 6,000 字符（16%）</span><span class="h">C1B85F39E25DE1D3 · 2026-10-26 00:50</span><span class="bar"><i style="width:16%"></i></span></a></div><div class="layout"><aside><div class="al">规则文件</div><a href="#doc-1"><span>user_rules.md</span><em>3,200</em></a><a href="#doc-2"><span>AGENTS.md</span><em>1,696</em></a><a href="#doc-3"><span>0-制度维护法.md</span><em>5,806</em></a><a href="#doc-4"><span>1-协作与两机.md</span><em>3,861</em></a><a href="#doc-5"><span>2-知识库与科研闭环.md</span><em>3,328</em></a><a href="#doc-6"><span>3-投稿与论文.md</span><em>5,988</em></a><a href="#doc-7"><span>4-经费与成本.md</span><em>1,063</em></a><a href="#doc-8"><span>5-浏览器与桌面自动化.md</span><em>1,425</em></a><a href="#doc-9"><span>6-安全与凭据.md</span><em>1,415</em></a><a href="#doc-10"><span>7-输出与工程约定.md</span><em>4,893</em></a><a href="#doc-11"><span>8-域名与面板.md</span><em>5,527</em></a><a href="#doc-12"><span>9-绘图与图版.md</span><em>985</em></a><a href="#audit"><span>提案对照</span><em>44</em></a><a href="#proposal"><span>制度提案箱</span><em>35,272</em></a></aside><div><article id="doc-1"><h2>user_rules.md<small>L0 全局</small></h2><p class="am">C:\Users\admin\.trae-cn\rules\user_rules.md · 3,200 字符 · 287F3C24707FE230 · 预算 3,500（91%）</p><div class="md"><h3>主任与全所规则（L0 总机｜2026-10-26 修订版）</h3>
+<blockquote>每轮自动加载，全域一律生效。只放身份、红线、路由、分级；细则在 <code>00_System\rules\</code>（命中才读，单轮 ≤2 本，路由见 <code>_INDEX.md</code>）。</blockquote>
+<h4>一、身份（写错即事故）</h4>
+<p>署名 <code>Fan Jiang, MBBS</code>；GitHub <code>JivonKiang</code> ≠ 论文署名；全程中文回复。涉署名/投稿/单位/邮箱/ORCID → 先读 <code>3-投稿与论文.md</code> §4；绘图见 §八。</p>
+<h4>二、红线（再犯即重大事故）</h4>
+<ol>
+<li>禁 <code>tailscale down</code> 及任何断远端通道操作；只许 up／debug。</li>
+<li>凭据以 <code>C:\Users\admin\.trae-cn\memory\credentials.md</code> 明文唯一源（可直接读取，不写进工作区、不外发）；查密码顺序见 <code>6-安全与凭据.md</code>，三处全无才重置，禁止再向主任索要。</li>
+<li><strong>投稿是强门槛，所有项目无一例外</strong>：①秘书先推校对 PDF（附期刊＋标题）到主任微信；②主任须在<strong>微信里明确说出</strong>「审核过了／通过／同意投」原话，秘书核对原话与标题对应无误方可 Submit——口头/邮件/转述一律无效，无微信批准＝未批准，违规算重大事故；③提交成功后秘书立即把确认页截图经微信发主任（不发截图＝没投完；判据见手册 3 §校对送审）。</li>
+<li>不擅自给主任发微信；白名单仅五类：额度告警、投稿送审与确认截图（红线 3③）、watchdog、秘书待办提醒、KB pending 滞留（条件/频率/命令见 <code>7-输出与工程约定.md</code> §3 与手册 1、2）；新增白名单须 RP＋主任批（SYS-32/KB-01 先例）。</li>
+<li>一稿多头是既定研究策略（已拍板）：允许并须执行，不得劝阻置喙；执行口径见 <code>3-投稿与论文.md</code> §5。</li>
+<li>见「文件被删」告警：先 Test-Path 三查三不动，禁用旧内容覆盖重写。</li>
+<li><strong>投稿留痕普适（2026-10-26 主任定，无一例外）</strong>：投稿事件（提交/状态变化/口述转达）当轮三通道落账（<code>log.cmd</code>/<code>inbox\*.json</code>），判据 <code>OK &lt;项目&gt; | &lt;期刊&gt; | &lt;状态&gt; | &lt;YYYYMMDD&gt;</code>；先凭证后面板；新项目先铺三件套（细则见母本）；母本 <code>d:\1. Author information\.trae\rules\submission-log.md</code>。</li>
+<li><strong>禁交控制权（2026-10-27 主任定）</strong>：主任是手机端，浏览器/桌面接管、请求授权、人机验证类工具一律禁用，一切登录/验证/截图/核验由执行层自主完成自判；确需人工输入（验证码/确认码/二维码）<strong>用文字向主任索要</strong>，绝不交控制权；把步骤设计成主任手动操作＝执行失败，按漏报同级。</li>
+<li><strong>投稿账号邮箱=通讯作者本人邮箱（2026-10-26 JoGH 立规）</strong>：注册/填账号一律用通讯作者本人邮箱（credentials.md 项目行核对），禁主任个人邮箱代填；注册后当场核验邮件去向，收错即刻改绑；一刊多账号挂通讯作者邮箱账号名下。</li>
+</ol>
+<h4>三、分级中枢（唯一入口）</h4>
+<p>L0 本文件 → L1 手册 <code>00_System\rules\N-*.md</code>（触发词见各手册头）→ L2 案例 <code>00_brain\</code> 台账/学习卡 → L3 状态 <code>00_brain\项目索引.md</code> 与状态卡。工具在 <code>00_System\</code>；D 盘项目只写瞬态。</p>
+<p><strong>优先序（冲突裁决，2026-10-26 主任定）</strong>：本文件（全局 L0）＞ 工作区 <code>AGENTS.md</code>（执行层说明文档，只做判断路由与细则索引）＞ L1 手册细则；任何层与本文件冲突，以本文件为准，执行层不得自设与本文件抵触的规则。</p>
+<p><strong>TRAE 故障路由（2026-10-26）</strong>：崩溃／renderer crashed／设备离线 → 先跑 <code>trae_crash_check.ps1</code> 三查再按 <code>7-输出与工程约定.md</code> §3 处置；勿盲目重启。</p>
+<p><strong>改规则</strong>：触发词 <code>改规则/制度/压缩/预算/提案/提案箱/建议/捕获/不该犯/禁令/VETO/知识树/热度/分层</code> → 只读 <code>0-制度维护法.md</code>；执行层禁直改手册，先记提案箱 RP。</p>
+<p><strong>落盘去向</strong>：可复用知识当轮落学习卡／执行经验库／提案箱 RP；手册只走 RP。</p>
+<h4>四、自动分级（判据＝这句话管多久）</h4>
+<p><strong>经验必入制（2026-10-26 主任定）：可复用经验/知识/纪律当轮必须落制度，设三道门槛全过才入——①管得久（跨任务或预计 ≥1 周，一次性细节不入）；②不做会错（判断依据，纯参考不入）；③别处查不到（台账/代码/已有卡不重复收录）。</strong>归位：L0 只写一句话干条；手册写参数化细则；坑与方法写学习卡；脚本本体放 <code>00_System\bin\</code>、执行结果放台账，制度只留指针。<strong>登记一行指针 ≠ 把内容灌进制度正文，防制度层被灌水。</strong></p>
+<div class='tw'><table><thead><tr><th>主任表述</th><th>落点</th></tr></thead><tbody><tr><td>以后／每次／所有／必须／禁止</td><td>制度级：执行层只在 <code>00_brain\制度提案箱.md</code> 追加 RP，回执「已升级→待落 L1」</td></tr><tr><td>严令禁止／这是红线</td><td>VETO（P0）当轮落 L1，流程见 <code>0-制度维护法.md</code> §11</td></tr><tr><td>这次／本任务／临时</td><td>只改 L3 任务状态</td></tr><tr><td>抱怨／陈述／新踩的坑</td><td>L2 台账一行＋学习卡（必填 evidence_level）</td></tr><tr><td>与红线或 L0 冲突</td><td>不自动改，先报冲突</td></tr><tr><td>要求删记忆</td><td>永不真删，标「作废」</td></tr><tr><td>同类错误第二次</td><td>强制升 L1</td></tr></tbody></table></div>
+<h4>五、留痕分级（2026-10-25 主任拍板）</h4>
+<ul>
+<li><strong>项目任务</strong>（改码/实验/投稿动作）：开工读项目索引本行，收尾写状态卡流水；阶段变化才改主表。</li>
+<li><strong>问答/咨询/单次查询</strong>：免主表、免状态卡；学习卡按「第二次用到才入库」。</li>
+<li>投稿事件落账、花钱报批、凭据纪律<strong>不受本条豁免</strong>。</li>
+<li><strong>口头令落账制（2026-10-26，治 CBM 越权）</strong>：覆盖台账级动作（投稿/改投/提交/撤稿/花钱/凭据/删除覆盖类），问答零手续。口头令即授权，<strong>落账是动手前置</strong>：先写台账（谁/何时/原话要点/动作）再动手，「已落账」夹开工汇报首行；答不出台账行号＝无授权立即停手。改投/提交撤稿/花钱/动他人邮箱凭据四类高危另须开工首条回显授权原话，发出即继续；不可逆 Submit 仍走目检批准闸。</li>
+</ul>
+<h4>六、节流与兜底</h4>
+<p>正文≤600字/2段；单轮读取≤120行且显式有界，禁负数/巨型终止行/批量全文。命令只报结论；复杂命令落临时 .py/.ps1 用 <code>-File</code> 执行；<strong>PowerShell 脚本一律 ASCII-only</strong>（PS 5.1 GBK 陷阱）；连续完成，仅拍板/花钱或不可逆/缺输入凭据/人工操作时停。</p>
+<h4>七、秘书</h4>
+<p>「秘书／ClawBot／CloudBOT／微信提醒」＝本机 OpenClaw，别名全等，不得反问；命令/落账/运维见 <code>7-输出与工程约定.md</code> §OpenClaw 与 <code>3-投稿与论文.md</code> §状态落账。nightly：21:00 投稿日报（Schedule <code>8f375c0e</code>，<code>mailmaster_scan.py</code> 只读扫 7 账号；<strong>邮箱全账号一律只读含本人，禁标已读/删/移动</strong>，细则见手册 1）。</p>
+<h4>八、绘图</h4>
+<p>主图必经 nature-figure 验收四件套＋目检；硬规则全文见 <code>9-绘图与图版.md</code>。</p></div></article><article id="doc-2"><h2>AGENTS.md<small>L0 工作区</small></h2><p class="am">E:\ai agent\AGENTS.md · 1,696 字符 · 95F5B21B4142064F · 预算 2,000（85%）</p><div class="md"><h3>AGENTS.md — 每轮常驻干条（L0，≤2000 字）</h3>
+<p>每轮自动注入，只放判断与路由，细则在 <code>00_System\rules\</code>（见 <code>_INDEX.md</code>）：命中才读、不命中不读、读过不重读。</p>
+<p><strong>地位声明（2026-10-26 主任定）</strong>：本文件为执行层说明文档，服从全局 user_rules（<code>C:\Users\admin\.trae-cn\rules\user_rules.md</code>，L0 总机）；任何冲突以 user_rules 为准。</p>
+<h4>铁律（违反即错）</h4>
+<ol>
+<li>全程中文。产出落 <code>e:\ai agent\outputs\</code>；交付用 <code>computer://</code> 链接；图/PDF 迭代必换版本号文件名。</li>
+<li>输出节流：正文 ≤600 字／2 段；单轮读 ≤120 行；命令只报结论。<strong>多步骤一口气做完，禁止停下等「继续」</strong>；只有需拍板／授权、花钱、不可逆、缺输入或凭据、需人工操作（登录／扫码／微信批准）才停。</li>
+<li>凭据以 <code>C:\Users\admin\.trae-cn\memory\credentials.md</code> 明文唯一源，可直接读取（secret.py 仅留 token 读取）；不写进工作区、不外发；花钱类动作先报主任批准。</li>
+<li>投稿交接包只在用户明确验收发话后推送；实名抬头 Title 填 <code>MBBS</code>，姓名 <code>Fan Jiang, MBBS</code>。</li>
+<li>手机端禁止移交浏览器控制权；改用「截图 + 文字指令」闭环。</li>
+<li>可复用知识当轮落盘（学习卡／执行经验库／提案箱 RP），收尾自检；改完跑 <code>note_to_razer.py</code>（自带 <code>close_check.py</code> 钩子）。</li>
+</ol>
+<h4>工作模式路由</h4>
+<p>需求模糊→问一句或进 Spec；≥3 步/多文件→先出 Plan；长期→建 Goal；需网页验证→浏览器；小改→直接做。</p>
+<p>开工回显三件套（目标/产出物/验收标准，缺则先问清；投稿/花钱/删改等高危项须主任明示确认再动手）。模式不自配：报模式建议卡（Chat=纯问答｜Builder=小改直做｜Plan=多文件先行｜Agent=长任务+Goal）由主任裁决。</p>
+<h4>分级检索表（命中即读；路径隐含 <code>00_System\rules\</code>）</h4>
+<div class='tw'><table><thead><tr><th>触发词（任一命中）</th><th>手册</th></tr></thead><tbody><tr><td>两机 / 雷神 / 同步 / 交接包 / 门铃 / 定时任务 / 待办提醒 / 秘书推送</td><td><code>1-协作与两机</code></td></tr><tr><td>知识库 / 学习卡 / 执行经验 / 文献 / 沉淀 / 实验 / 数据</td><td><code>2-知识库与科研闭环</code></td></tr><tr><td>投稿 / 论文 / 开稿 / 校对 PDF / 审稿意见 / 邮件</td><td><code>3-投稿与论文</code></td></tr><tr><td>经费 / 额度 / 账单 / 套餐 / 充值 / 订阅</td><td><code>4-经费与成本</code></td></tr><tr><td>浏览器 / 登录 / 截图 / 扫码 / 桌面</td><td><code>5-浏览器与桌面自动化</code></td></tr><tr><td>凭据 / 密码 / secret / Tailscale / API key</td><td><code>6-安全与凭据</code></td></tr><tr><td>交付 / GitHub / OpenClaw / 看门狗 / 微信 / 工程约定</td><td><code>7-输出与工程约定</code></td></tr><tr><td>jivonlab / 投稿面板 / 隧道 / TOTP / 域名</td><td><code>8-域名与面板</code></td></tr><tr><td>绘图 / 图版 / 主图 / 配色 / figure</td><td><code>9-绘图与图版</code></td></tr><tr><td>改规则 / 提案 / RP / VETO / 预算 / 回滚</td><td><code>0-制度维护法</code></td></tr><tr><td><strong>删除 / 覆盖 / 重命名 / 发送 / 提交 / 重启 / 发布 / 上线 / 改配置</strong></td><td><strong><code>7-输出与工程约定</code>（动作优先）</strong></td></tr></tbody></table></div>
+<h4>检索纪律</h4>
+<ol>
+<li>先查 <code>_INDEX.md</code> 定节行号，只读命中节 ≤120 行、单轮 ≤2 本；风险触发（删／覆盖／重命名／发送／提交／重启／发布／改配置，或不可逆／对外／涉凭据）动手前强制查 <code>7-输出与工程约定</code>＋主题手册，拿不准一律算有风险。</li>
+</ol></div></article><article id="doc-3"><h2>0-制度维护法.md<small>L1 手册</small></h2><p class="am">E:\ai agent\00_System\rules\0-制度维护法.md · 5,806 字符 · B788997B04FEA4B8 · 预算 6,000（97%）</p><div class="md"><h3>0 · 制度维护法（规则层的结构、改动与压缩）</h3>
+<p>触发词：规则 / 制度 / AGENTS / user rules / 压缩 / 太长 / 沉淀 / 手册 / 路由 / 知识膨胀 / 改规则</p>
+<p>本文件管“规则怎么长、怎么缩”。要动 L0 或任何 <code>N-*.md</code> 手册，先读这一本。</p>
+<h4>1. 设计前提（为什么长这样）</h4>
+<ul>
+<li>知识增长不可消灭，只能<strong>搬家</strong>，判据：<strong>代价＝每轮固定成本×命中频率</strong>——每轮必需的（铁律/路由）留 L0 极简；偶尔用的（步骤/命令/示例）沉手册命中才读；事实数据放数据层检索取。</li>
+<li>目标：<strong>L0 恒定极小，知识总量长在手册与数据层</strong>；检索是<strong>概率系统</strong>，不为零踩坑撑爆 L0，缩短「踩坑→当轮落规则」回路（VETO/学习卡即此设计）。</li>
+</ul>
+<h4>2. 四层结构与职责（不得越层）</h4>
+<div class='tw'><table><thead><tr><th>层</th><th>载体</th><th>谁读它</th><th>只准放</th></tr></thead><tbody><tr><td>L0-全局</td><td><code>C:\Users\admin\.trae-cn\rules\user_rules.md</code></td><td>所有对话、所有项目</td><td>跨项目的总机：身份、底线、交付口径、语言、禁止事项</td></tr><tr><td>L0-工作区</td><td><code>e:\ai agent\AGENTS.md</code></td><td>本工作区所有对话</td><td>每轮常驻干条：铁律、路由表、检索纪律（≤2,000）</td></tr><tr><td>手册</td><td><code>e:\ai agent\00_System\rules\N-*.md</code></td><td>命中触发词才读</td><td>可执行细则：步骤、命令、路径、字段、排错、示例</td></tr><tr><td>数据</td><td><code>e:\ai agent\00_brain\</code>、各项目目录</td><td>按需检索</td><td>事实、状态、清单、历史、结论</td></tr></tbody></table></div>
+<p>越层即错：L0 出现“怎么点/怎么写”→下沉；手册出现“铁律/总原则”→删或指回 L0。</p>
+<h4>3. 预算硬线（超线即触发压缩）</h4>
+<div class='tw'><table><thead><tr><th>对象</th><th>上限</th><th>现状（2026-10-27）</th><th>状态</th></tr></thead><tbody><tr><td><code>user_rules.md</code></td><td>3,500 字符</td><td>3,780（108%）</td><td>红灯</td></tr><tr><td><code>AGENTS.md</code></td><td>2,000 字符</td><td>1,694（85%）</td><td>绿灯</td></tr><tr><td>单本手册</td><td>6,000 字符</td><td>最大 5,988（3-投稿）</td><td>绿灯</td></tr><tr><td>手册合计</td><td>54,000 字符</td><td>36,432（12 文件含 _INDEX/9-绘图）</td><td>绿灯</td></tr><tr><td>L0 单次改动增量</td><td>160 字符</td><td>—</td><td>硬限，防温水膨胀</td></tr><tr><td>单轮读取</td><td>120 行 / ≤2 本手册</td><td>—</td><td>硬限</td></tr></tbody></table></div>
+<ul>
+<li>计量用<strong>字符数</strong>（<code>len(open(p,encoding=&#x27;utf-8&#x27;).read())</code>，中文按 1 字）。</li>
+<li>90% 黄灯：下一次改动“进一出一”，不许净增。</li>
+<li>100% 红灯：<strong>先压缩再新增</strong>；未压完前新条款只能进手册。</li>
+</ul>
+<h4>4. 归属判定（每次新增前必须回答）</h4>
+<p>按顺序问，命中即停：</p>
+<ol>
+<li>违反它就算错，且<strong>每轮</strong>都要生效？→ L0 铁律（实在必要）</li>
+<li>它决定“这轮该去读哪本手册”？→ L0 路由表，一行，触发词用 <code>/</code> 分隔</li>
+<li>只有做某类任务才用得上？→ 对应手册的对应章节</li>
+<li>是状态/事实/历史/清单？→ 数据层，<strong>不写进任何 md 正文</strong></li>
+<li>只是这次的经验之谈？→ 先不写，等第二次用到再写（一次性知识不入库）</li>
+</ol>
+<p>反面：能进手册的不进 L0；能加一节的不新开手册。<strong>新开门槛：≥3 触发词且与现有手册都不同族。</strong></p>
+<h4>5. 压缩流程（四步，按顺序做）</h4>
+<ol>
+<li><strong>量化</strong>：读各文件字符数标红灯；只动红灯，不顺手改别的。</li>
+<li><strong>判归属</strong>：逐条判“留 L0/沉手册/进数据/删”（§4）。</li>
+<li><strong>下沉不删</strong>：细则整段搬手册；L0 只留一句可判定结论＋触发词。</li>
+<li><strong>归档留痕</strong>：删前整份存 <code>_archive\&lt;原名&gt;-full-YYYYMMDD.md</code>。</li>
+</ol>
+<p>压缩三个保留项（永不删）：铁律 6 条；分级检索表<strong>行</strong>（不删行，只删行内冗余触发词）；手册“唯一正确做法”（如隧道必须用 <code>run_tunnel.py</code> 启动）。</p>
+<h4>6. 改动流程（改前 / 改中 / 改后）</h4>
+<p><strong>改前</strong></p>
+<ul>
+<li>说清是“新增知识”还是“规则调整”，只做一件；落 L0 先说“加什么、删什么”，净增 0 才动。</li>
+<li>同一任务可连续改多个文件；超大文件拆多次 Write。</li>
+</ul>
+<p><strong>改中</strong></p>
+<ul>
+<li>手册加章节用固定骨架：<code>## N. 主题</code> → 触发词 → 做法（命令/路径）→ 坑与验收。</li>
+<li>L0 用最小 diff：只改命中行，不重排版、不润色其它行。</li>
+<li>删内容先 <code>_archive</code> 再删。</li>
+</ul>
+<p><strong>改后（自检四问，缺一不算完成）</strong></p>
+<ol>
+<li>字符数是否仍在预算内？黄灯是否已“进一出一”？</li>
+<li>新内容是否只在<strong>一层</strong>出现（不许两处重复）？</li>
+<li>路由表能否让人凭一句话找到这本手册？</li>
+<li>是否已 <code>note_to_razer.py</code> 留痕？</li>
+</ol>
+<h4>7. 触发时机</h4>
+<div class='tw'><table><thead><tr><th>时机</th><th>动作</th></tr></thead><tbody><tr><td>L0 达 90%</td><td>冻结扩写，改一次必删一次</td></tr><tr><td>超线（L0 / 单本 &gt;6,000）</td><td>就地执行第 5 节</td></tr><tr><td>连续 3 轮同类问题</td><td>缺制度→写手册，不许往 L0 加一句</td></tr><tr><td>每月体检/变慢跑偏</td><td>统计字符→找超线→压缩或合并</td></tr></tbody></table></div>
+<h4>8. 反模式（出现即回退）</h4>
+<ul>
+<li>同一句话既在 L0 又在手册（重复即分叉）。</li>
+<li>压缩只搬不改意，要改意另开一轮。</li>
+</ul>
+<h4>9. 版本与归档</h4>
+<ul>
+<li>存档：全量 <code>_archive\&lt;原名&gt;-full-YYYYMMDD.md</code>，记 <code>_archive\CHANGELOG.md</code>（日期/文件/前后字符数/动作）；本文件自身受 §3 约束。</li>
+<li><strong>同轮落</strong>：正文进手册后，新坑的口语/转写词须同轮进该手册触发词行与 AGENTS 检索表，否则等于没落。</li>
+</ul>
+<h4>10. 提案箱（执行层改规则的唯一入口）</h4>
+<p>触发词：提案 / 提案箱 / RP / 禁令 / VETO / 发现规则问题</p>
+<p>台账：<code>00_brain\制度提案箱.md</code>（跨项目唯一）。一行一提案，7 列：RP-ID｜提出方｜层级｜缺口证据（文件:行）｜最小补丁｜状态｜验收命令。</p>
+<ul>
+<li><strong>唯一写者</strong>：L0 与 <code>N-*.md</code> 只有制度层对话可改；他层只读，缺口/冲突/过期当场追加 RP（<code>rp_new.py --rp</code>），禁直改条文。</li>
+<li><strong>状态机</strong>：<code>open → triaged → patched → verified → closed</code>，每态写日期与处理人；提不出“最小补丁”直接驳回。</li>
+<li><strong>归属先行</strong>：RP 建议加 L0 的，先按 §4 判归属；能进手册的一律改判并写理由。</li>
+<li><strong>verified 闸门</strong>：必须贴验收命令真实输出，否则不得置 verified/closed。</li>
+<li><strong>并发保护</strong>：改前记目标文件 SHA256，改后核对；不一致即停报冲突，不覆盖。</li>
+<li><strong>每轮扫 open</strong>：制度层开工先扫 open 项；执行层收尾三字段见 §15。</li>
+<li>同类错误第 2 次→强制建档；第 3 次→升级铁律候选，但仍须先压缩腾位。</li>
+</ul>
+<h4>11. 禁令通道（VETO，P0｜主任在项目现场说“这就是错”）</h4>
+<p><strong>为什么</strong>：现场禁令不落纸就随对话蒸发。执行层<strong>只写不判</strong>（言出即禁）。</p>
+<p>触发词：严令禁止 / 这个错误不该犯 / 下次不准 / 这是红线 / 不许再</p>
+<ul>
+<li><strong>当场记，不等第二次</strong>：跑 <code>rp_new.py --veto</code> 写提案箱「VETO 区」一行（7 列，见台账表头）。</li>
+<li><strong>执行层只写</strong>：禁直改 L0/L1；回执 <code>已升级：&lt;摘要&gt; → VETO-x</code>。</li>
+<li><strong>P0 与即时生效</strong>：每轮开工先扫 VETO 再扫 RP；<strong>当轮即落 L1</strong>，跨对话收到的下一轮开工前落；逾期写 <code>主任决策队列.md</code>。</li>
+<li><strong>秘书即报</strong>：建档当轮跑 <code>rp_new.py --veto &quot;&lt;原话&gt;&quot; --scene &quot;&lt;文件:行&gt;&quot;</code> 自动推微信；落 L1 后报“已生效：&lt;文件 §节&gt;”；通道失败写 <code>主任决策队列.md</code>，不得静默。</li>
+<li><strong>涉红线须主任批</strong>：动 <code>user_rules.md</code> §二 或冲突的，只起草，主任发话才生效；期间保持 <code>triaged</code>。</li>
+<li><strong>一类一落</strong>：同类 VETO 合并一条，每行在提案箱 §六 留对应关系，禁静默合并。</li>
+<li><strong>闭环回原处</strong>：落 L1 后置 <code>patched → verified</code>，并在来源状态卡 §八 写 <code>VETO-x 已落 L1：&lt;位置&gt;</code>。</li>
+</ul>
+<h4>12. 智能捕获（主任一说错，制度就变）</h4>
+<p>触发词：不该犯 / 又错了 / 我说过 / 捕获 / 改进制度 / 别再</p>
+<ul>
+<li><strong>同入口</strong>：任一对话命中否定/纠错语即按 §11 建 VETO；不必说“制度”二字。</li>
+<li><strong>三点自检</strong>（收尾做）：① 主任否定/纠正过什么 ② 是否重复旧错 ③ 手册未覆盖？任一为是→当轮落 L1 或开 RP。</li>
+<li><strong>主动归纳</strong>：从具体事故反推最小条款写入归属手册（同轮落见 §9）。</li>
+</ul>
+<h4>13. 章节级索引（AI 检索加速）</h4>
+<p>触发词：检索 / 索引 / 找不到 / 手册太长 / 查哪一节</p>
+<ul>
+<li><code>_INDEX.md</code> 由 <code>rules_index.py</code> 生成：文件｜节｜行｜触发词，覆盖 L0＋全部手册；主干置顶（§16）。</li>
+<li><strong>检索顺序</strong>：L0 触发词 → 索引定位「文件+节+行」→ 只读该行起一段；纪律细则见 AGENTS。</li>
+<li>改手册后跑 <code>rules_index.py</code>（<code>--check</code> 过期返回 1）；<code>note_to_razer.py</code> 收尾自动重建。索引不占预算。</li>
+</ul>
+<h4>14. 分级行动指南（定时巡逻，不等主任发现）</h4>
+<p>触发词：预算/黄灯/压缩/超线/回压/分级/下沉/递进/行动指南/巡逻</p>
+<p><strong>定时巡逻</strong>：TRAE Schedule「规则预算巡逻」每日 22:30 跑 <code>rule_budget.ps1</code>；按下表分档自动处置，无需主任先发现问题：</p>
+<div class='tw'><table><thead><tr><th>分档（占用）</th><th>自动动作</th><th>验证</th><th>上报</th></tr></thead><tbody><tr><td>红（≥100%）</td><td>当轮回压：存档§9 → 细则沉 L2 学习卡＋一行指针＋触发词 → 压回线内 → 记台账</td><td>输出前后字符数＋SHA</td><td>微信回报「回压完成＋前后数字」；失败写主任决策队列</td></tr><tr><td>黄（≥90%）</td><td>进一出一：该文件下次改动净增 0；7 天无改动则 CHANGELOG 提醒一行</td><td>Diff 净增=0</td><td>静默</td></tr><tr><td>绿（&lt;90%）</td><td>不动作</td><td>—</td><td>静默</td></tr></tbody></table></div>
+<ul>
+<li>巡逻兜底：<code>rule_auto.py</code> 仅黄灯用（删重复→改写→报，单次≤2行）；红灯回压硬闸——铁律/标题/表格/代码/序号/反引号行永不删，硬条款不动只删解释/重复，压≠删记忆（分级递进 L0→L1→L2，同 §16），存档后当场压禁移交他席。</li>
+<li>同文件连续 2 天红灯 → 升级 RP＋提示主任结构性方案（合并/拆分手册）。</li>
+</ul>
+<h4>15. 收尾钩子与状态卡（不留痕＝没干完）</h4>
+<p>触发词：收尾/钩子/状态卡/留痕/制度提案字段/进展流水</p>
+<ul>
+<li>状态卡唯一落点 <code>00_brain\课题状态卡\&lt;课题名&gt;.md</code>（close_check.py CARDS 同源）；节固定一~八：现状/定位/关键文件/下一步/卡点/已定结论/接手须知/进展流水；新课题开卡照抄旧卡，缺 §八=没收尾。</li>
+<li>§八=进展流水：每完成一工作单元追加一行 <code>YYYY-MM-DD HH:mm 一句话进展</code>，编号/状态/证据路径随行；收尾三字段：<code>经验沉淀：EP-xxx｜无</code>、<code>命中 EP-xxx</code>、<code>制度提案：RP-xxx｜无</code>（EP 见 2-知识库）。</li>
+<li><code>note_to_razer.py</code> 自动调 <code>close_check.py</code>：当天改过的状态卡缺 <code>制度提案：</code> 字段自动追加占位（格式见脚本）。</li>
+<li>只补空字段不改正文；铁律6强制跑 <code>note_to_razer.py</code>，不可绕过。</li>
+</ul>
+<h4>16. 知识树与热度（分层，不是删档）</h4>
+<p>触发词：知识树/热度/分层/主干/加权</p>
+<ul>
+<li><strong>三层</strong>：主干=L0＋热度前15%（索引置顶、预算优先）；枝=中段40%（命中才读）；叶=其余（只下沉不删）。</li>
+<li><strong>热度</strong>=2×CHANGELOG 变更＋触发词 user_rules 命中（不计 AGENTS 防自命中）；排名判层 trunk=max(6,n×15%)、branch=max(trunk+1,n×55%)。</li>
+<li><strong>入口</strong>：rules_index.py 出层、note_to_razer.py 重建、rp_new.py 建档；黄灯 §14；压缩从叶起，主干只经 RP。</li>
+<li><strong>季度降层</strong>：每季叶层垫底节搬 L2 学习卡留一行指针＋触发词；薄本合并待 9-绘图热度（RP-4）。</li>
+</ul>
+<h4>17. 独立审计与参谋（纪委 v3，RP-SYS-38）</h4>
+<ul>
+<li>三合一：审计＋效率＋参谋；只查不改但必报；参谋不越权，走提案箱 RP。</li>
+<li>四频：心跳＝门铃顺带；日查＝<code>audit_daily.py</code> 零 token（A 合规＋C 效率线；SHA 基线，漂移无据→告警，当日 note_to_razer 留痕自动豁免自维）；周审＝周日 20:30；月报＝每月 1 日。</li>
+<li>分级：一级（越权/回退）当场微信＋VETO 区；二级（漏账/无据漂移/漏追问）；三级（outbox/状态卡）；效率级不计分，连 2 期未改善升改进 RP。</li>
+<li>F 开工自检（三件套＋模式建议卡）已入 L0，此处不重复；细则见脚本 docstring。</li>
+</ul></div></article><article id="doc-4"><h2>1-协作与两机.md<small>L1 手册</small></h2><p class="am">E:\ai agent\00_System\rules\1-协作与两机.md · 3,861 字符 · F6A29980019D5ED1 · 预算 6,000（64%）</p><div class="md"><h3>1-协作与两机</h3>
+<blockquote>L1 手册，按需读取。来源：AGENTS.md（2026-10-25 拆分，全文见 _archive）。</blockquote>
+<h4>任务路由（两机分工）</h4>
+<ul>
+<li><strong>v2.0 指针（2026-10-23 生效）</strong>：本节以下旧职责条款过渡期<strong>冻结保留</strong>（不删除，解冻须用户发话），当前以章程 v2.0 为准（<code>e:\ai agent\outputs\两机协作章程-西安雷神-20261023-v2.md</code>）——科研全流程收归西安本机执行（01 实验→02 数据制图→03 结果→04 稿件→05 投稿 EM AI 代点制→06 结项蒸馏）；雷神收缩为「资产清点+按需迁移」终端，旧职责（校验/核对/微调/投稿操作）冻结保留。</li>
+<li>设备命名：<strong>西安</strong> = 西安主机（SSH 别名 xian，权威源·生产本部）；<strong>雷神</strong> = 雷神笔记本（SSH 别名 razer，终验投稿终端）。直接用用户日常叫法，与 SSH 别名对齐（v1.0 曾用名&quot;长安/雷池&quot;已废弃）。</li>
+<li>西安承担：数据存储与运行、跑代码、算力、知识库 vault、AI 手机端调教、科研课题五阶段生产环节、稿件的「数据/结论/统计/引用级」修订（唯一修订权限）。</li>
+<li>雷神只承担：投稿材料校验、人工核对、轻微稿件微调（错别字/格式——本地改并记 CHANGES_LOG.md）、投稿操作；雷神磁盘只放投稿文件夹相关内容，不落数据、不落分析代码。</li>
+<li>同步触发（正向）：投稿交接包只在用户于西安端<strong>明确验收发话</strong>后打包推送（如&quot;可以了，打包送雷神&quot;&quot;这版满意，去投稿&quot;）；TRAE 不得自行判定&quot;够好&quot;就推送，用户没发话就不打包。不建每日定时同步任务。</li>
+<li>雷神发现重大问题（数据/结论/统计/引用级）：不改稿，产出 ISSUE_RETURN.md 回递单（位置/现象/影响/建议修法），问题触发经 bundle 反向通道即时回传西安（不等验收节点）；雷神 TRAE 必须主动提醒用户到西安 TRAE 说【读取 ISSUE_RETURN.md，按单修订】（说明文件已随同步通道提前传至西安）。</li>
+<li>审稿意见回流：期刊审稿意见无论误落雷神还是已发到雷神，雷神 TRAE 须提醒并<strong>直接代办回传</strong>西安对应课题 submissions\&lt;投稿目录&gt;\decisions\（课题定位靠 HANDOFF.md，定位不了问用户），附 REVISION_ROUTE.md 修改路线说明；修订与 response letter 全部在西安完成，出新交接包后仍按验收流程送雷神。首选路径：用户收到意见直接存 D:\{课题}\submissions\YYYYMMDD_期刊名\decisions\。</li>
+<li>西安 TRAE：投稿修订任务开工前先查回递单目录与 decisions\ 审稿意见；审稿意见先出修订计划（意见→改动对象→负责端）给用户确认再动手；修完出新交接包（版本+1，含 SHA256SUMS.txt + HANDOFF.md 四必填：包清单/版本/已知问题/核对要点），等用户验收发话后再送雷神。</li>
+<li>记忆大脑双向共享（章程 §5 通道二，2026-10-23 起 v2 自动化）：学习卡 vault（E:/Knowledge/Obsidian-WeChatInbox）= 两机共享大脑，<strong>核心与权威源在西安</strong>；各机 MEMORY.md = 本机瞬态不推送。同步由 vault 内置脚本 <code>_SYNC/vault_sync.py auto</code> 自动完成（增量 bundle+scp，西安策略 ours / 雷神 theirs，同卡冲突西安权威裁决）：<strong>触发 = 会话启动跑一次 + 写卡/改卡 commit 后跑一次</strong>（西安免参自动判角色，雷神加 <code>--role razer</code>）；对端离线自动记 pending、下次会话自动重试，无需人工催。用户口令「推记忆/拉记忆」仍有效（等价于手动跑 auto）。<code>_SYNC/</code> 与 <code>.system/</code> 为运行时目录不入 git（.gitignore 已排除），脚本版本由 auto 每次自动部署到对端。<strong>红线：投稿交接包不在自动化范围</strong>，仍需用户验收发话才推送。</li>
+<li>数据迁移与联机（章程 v1.7 §6）：雷神数据<strong>不整库搬西安</strong>，某课题西安开工需要时才按需搬该课题目录（等同网/网线时执行，搬前备份、搬后双端校验）；跨网实测 &lt;0.3MB/s → GB 级数据禁硬传，&lt;100MB 走 bundle/scp；雷神为笔记本可能离线，同步一律由雷神主动推/拉，西安不依赖雷神在线（雷神电源策略 2026-10-22 实改并验证：接电/电池均不按时间睡眠、合盖不动作、电池&lt;50% 自动睡眠）；阿里云节点保留作中继（支撑远程桌面），待办=安全组放行 UDP 41641；123 云盘免费版备份范围：纳入雷神 E 盘课题数据+投稿记录/投稿材料，排除 wechat backup 与个人文件。</li>
+<li>协议全文：e:\ai agent\outputs\两机协作章程-西安雷神-20261022.md</li>
+</ul>
+<h4>两机自动交互门铃（细则 v2.0.3，每会话生效）</h4>
+<ul>
+<li>会话开场必跑：python &quot;e:\ai agent\00_System\bin\inbox_check.py&quot;；有新件先汇报（含快递单 action），能自动办的当场办，涉及人工四类拍板（投稿提交/接收信号/解冻迁移/立项）只汇报等发话；输出末尾的「待处理」件（已取件未办结）一并列入汇报。</li>
+<li>处理完更新回执 receipts\&lt;件id&gt;.md 的「处理状态」为办结状态，门铃下次运行自动推回雷神 inbox_from_xian\receipts\。</li>
+<li>定时取件由 Windows 计划任务 XiAn-InboxDoorbell 承担（纯脚本零 token，每 5 分钟：run_doorbell.cmd → inbox_check.py，日志 00_System\log\inbox_doorbell.log）；TRAE 会话内禁止再建任何定时取件任务——Schedule 类定时任务每次触发都是完整 LLM 会话烧 token，取件这种机械活一律走后台脚本。</li>
+<li>在线即时、离线积攒（细则 §6）：雷神在线（门铃 ssh 通）时取件/回执/台账当场推；雷神离线时照常干活、不白试——每做完一件雷神该知道的事（办结回执、配置/环境改动、学习卡下发、细则升级、投件等）跑一次 <code>python &quot;e:\ai agent\00_System\bin\note_to_razer.py&quot; &quot;&lt;一句话摘要&gt;&quot;</code>，台账 <code>00_System\log\changes_for_razer.log</code> 攒着，雷神一上线门铃一次性推成 <code>E:\inbox_from_xian\changes\from_xian_&lt;批次&gt;.log</code>（推成功才清空、原内容归档 .sent.log 留痕）。投稿交接包不走此通道（仍需用户验收发话）。</li>
+<li>细则全文：e:\ai agent\outputs\两机自动交互实施细则-20261023-v2.md</li>
+<li>规则层镜像（2026-10-25 起，通道五）：雷神作西安冷备机，门铃每次可达自动把 <code>AGENTS.md</code>、<code>00_System\rules\</code>、<code>C:\Users\admin\.trae-cn\rules\user_rules.md</code>、<code>00_brain\制度提案箱.md</code> 覆盖推到雷神同名路径（inbox_check.py 的 push_rules，只下行不回写），保证雷神恢复后行为与西安同版、提案台账不丢；雷神侧规则改动一律无效，以西安为准。</li>
+</ul>
+<h4>常驻计划任务（每日运行，勿重复建；2026-10-25 自 L0 下沉）</h4>
+<p>晨报 <code>XiAn-DailyBrief</code> 08:00；停滞哨兵 <code>XiAn-StaleSentinel</code> 08:00；待办提醒 <code>XiAn-TodoAlert</code> 08:10（源 manuscript_index.md §四带截止日条目，白名单见 L0 红线 4，RP-SYS-32）；门铃 <code>XiAn-InboxDoorbell</code>；<code>XiAn-OpenClaw-Watchdog</code>；<code>XiAn-Tailscale-Watchdog</code>；额度告警 <code>PlanAlertPush</code>；监控服务 <code>PlanMonitorServe</code>。晚间投稿日报 <code>秘书晚间投稿日报</code>（TRAE Schedule <code>8f375c0e</code>，21:00，LLM 会话性质：先跑 <code>00_System\bin\mailmaster_scan.py</code> 只读扫描邮箱大师全部 7 账号当日新邮件＋投稿状态微信日报，发送失败写 outbox-pending 待补发；<strong>全账号一律只读含 fmmujf 本人——禁标已读/禁删/禁移动，2026-10-26 主任定</strong>）；ETF 与 Codex 恢复任务已注销（2026-10-25）。纪委日查 <code>XiAn-AuditDaily</code> 08:05（<code>audit_daily.py</code> 零 token 脚本，A 合规＋C 效率线，一级异常自动微信，RP-SYS-38）；纪委周审/月报为 TRAE Schedule（周日 20:30／每月 1 日，LLM 会话性质）。</p></div></article><article id="doc-5"><h2>2-知识库与科研闭环.md<small>L1 手册</small></h2><p class="am">E:\ai agent\00_System\rules\2-知识库与科研闭环.md · 3,328 字符 · EF5BF18F971FE244 · 预算 6,000（55%）</p><div class="md"><h3>2-知识库与科研闭环</h3>
+<blockquote>L1 手册，按需读取。来源：AGENTS.md（2026-10-25 拆分，全文见 _archive）。</blockquote>
+<h4>科研闭环（思考→记忆→行动→反思→评估→反馈）</h4>
+<p>适用于研究/文献/数据分析类任务；工程小改动与问答不强制。任务确认后走满闭环，不跳步：</p>
+<ol>
+<li>思考：动手分析或查证前先登记可证伪假设——优先写入交付文档第一节「## 假设登记」，轻任务无落盘文档则在对话开头固定声明；必须含「预期结果」与「什么结果算否证」。探索性分析（EDA）明确标注「探索」，其产出是候选假设而非结论，不得事后补登记冒充验证（防 HARKing）。</li>
+<li>记忆：kb.py / kb_semantic.py 检索既有结论与矛盾点，注明来源与证据等级。</li>
+<li>行动：按 Plan 与输出纪律执行，长内容落盘。</li>
+<li>反思：收尾对照假设登记逐条判定「支持 / 否证 / 意外」，意外发现单独记录为候选假设。</li>
+<li>评估：结论标注证据等级——高（多源一致+方法可靠）/ 中（单源或有局限）/ 低（初判待验证）。</li>
+<li>反馈：新证据与既有学习卡矛盾 → 修订旧卡：正文追加「## 修订 YYYY-MM-DD」写明矛盾证据与结论变更，保留原文与 source_url（留痕不删改），改后跑 <code>kb.py index --cards</code>；环境/拓扑教训 → MEMORY.md。研究线无人工激活开关：方向由闭环信号（kb_curate 聚类、证据厚度、矛盾集中度、假设成熟度）自然牵引，资源投入与立项由用户拍板。</li>
+</ol>
+<h4>本地知识库优先</h4>
+<ul>
+<li>研究、写作、文献、数据分析类任务开始时，先检索本地知识库既有结论：</li>
+</ul>
+<p><code>python &quot;e:\ai agent\00_System\bin\kb.py&quot; search &quot;关键词&quot; --limit 10</code></p>
+<ul>
+<li>命中 → 引用结论并注明来源路径与证据等级；未命中 → 再走常规流程</li>
+<li>数据资产/缓存/机器拓扑类问题 → 直接读 <code>.workbuddy/memory/MEMORY.md</code> 对应节（此类内容不入学习卡）</li>
+<li>我说「学习 &lt;url&gt;」→ 用 <code>python &quot;e:\ai agent\00_System\bin\capture_url.py&quot; --url &lt;url&gt;</code> 抓取入库（root 自动读 paths.json），审阅后 promote 成学习卡</li>
+</ul>
+<h4>知识自动沉淀（不靠人工记忆）</h4>
+<ul>
+<li>会话中出现可复用知识（新工具/数据库/方法/领域结论）→ 当场写成学习卡入库，不等问题问起、不等会话结束：capture 溯源或直接手写卡，promote 进 Learning Cards，改后重跑 <code>kb.py index --cards</code>，search 验证命中</li>
+<li>新卡 frontmatter 必填 <code>evidence_level</code>：<code>primary</code>（一手来源直读：原始论文/官方数据库/官方文档）/ <code>relay</code>（二手转述：公众号/新闻/博客，引用前需回溯原文）；含结论主张的卡正文须写明至少一条「局限性/反方证据」（精读卡由「可信度评估」节承担）</li>
+<li>工程教训、踩坑、环境约定、机器拓扑 → 先分流（两机记忆共享规则）：<strong>另一台机器也需要知道的</strong>（跨机环境约定、协作规则、通用方法教训）→ 写成学习卡入 vault（自动双向同步、kb.py 可检索）；<strong>仅本机有意义的瞬态状态</strong>（本机拓扑细节、待推清单、临时状态）→ 追加到 <code>.workbuddy/memory/MEMORY.md</code> 对应章节</li>
+<li>完成一项含调研的工作后，自查：这轮学到的知识是否已入库？没有 → 立即沉淀</li>
+<li>我说「继续」「好的」等短确认，或直接贴 URL → 按既有授权执行入库/同步流程，不重复追问</li>
+</ul>
+<h4>会话内热更新（强制，2026-10-23 起，当前会话即刻生效）</h4>
+<p>本文件每轮自动重载（always applied workspace rules），因此<strong>改本文件 = 对正在运行的对话热更新，也对以后所有对话永久生效</strong>。凡出现下列内容，必须当场落盘，不得只留在对话里、不得等会话结束：</p>
+<ol>
+<li>关键事实 / 结论 / 决策 / 用户偏好 → 写进对应产出文档或学习卡，并在本文件补规则条目（此即&quot;现在就要热更新&quot;的实现方式）</li>
+<li>登录态 / 凭据 / Token → 存 <code>C:\Users\admin\.trae-cn\memory\credentials.md</code>（明文唯一源，可直接读取），并把&quot;用途 + 有效期 + 文件名&quot;登记到本节下方的凭据清单</li>
+<li>环境坑 / 验证过的做法（&quot;建设性内容&quot;）→ 学习卡（<code>evidence_level: primary</code>），改后跑 <code>kb.py index --cards</code>，再 <code>kb.py search</code> 验证命中</li>
+<li>仅本机瞬态状态（拓扑细节、待推清单、临时状态）→ <code>.workbuddy/memory/MEMORY.md</code> 对应章节</li>
+<li>每批落盘完成 → <code>python &quot;e:\ai agent\00_System\bin\note_to_razer.py&quot; &quot;&lt;一句话摘要&gt;&quot;</code> 留痕（雷神离线自动积攒、上线一次性推送）</li>
+<li><strong>收尾自检（每轮必做）</strong>：本轮新知识是否已落盘？未落盘 → 先落盘再回复。用户中途下达的新约定同样走这条，不靠用户下次再提醒。</li>
+</ol>
+<h4>执行经验库（跨项目复用，2026-10-26 主任设）</h4>
+<p>载体：<code>00_brain\执行经验库.md</code>，按域分节（投稿/画图/手稿/数据/其他），一行一条 EP：触发场景｜固化做法（可照抄步骤）｜坑｜来源与日期。</p>
+<ul>
+<li>读：开工做投稿、画图、手稿、数据类任务前，先读经验库对应域，命中即照做；做法过时当场改条目。</li>
+<li>写：完成可复用动作（投稿提交/校对、主图定稿、手稿段定稿、管线跑通等）→ 收尾前提炼 1 条 EP 入库；状态卡收尾流水写「经验沉淀：EP-xxx｜无」。</li>
+<li>分流：文献知识→学习卡；错误案例→规则案例库；规则缺口→提案箱；操作套路→本库。四者不混。</li>
+</ul>
+<h4>经验蒸馏三档门控（防自动蒸馏烧钱，2026-10-26 主任批）</h4>
+<p>经验→skill 的封装是花钱动作（读上下文+写文件，单次数千至数万 token），且 skill 描述常驻每轮注入（装 1 个 skill＝每轮固定成本+1）。故不建全自动蒸馏流水线，按三档走：</p>
+<ul>
+<li>一档·捕获（零成本，默认必做）：经验当轮一行入库——文献知识→学习卡；操作套路→执行经验库 EP；错误→案例库/VETO；瞬态状态→MEMORY.md。只存不复述、不展开。</li>
+<li>二档·筛选（一行成本，随收尾自检做）：收尾时给本轮新经验打标「可复用 / 一次性」，写进状态卡或 EP 末尾。标「一次性」的到顶，后续不再投入任何 token。</li>
+<li>三档·蒸馏（花 token，需门槛）：同一经验<strong>近 90 天命中 ≥2 次</strong>（统计法见下）才封装——升格为 skill（用 nuwa，属花钱动作先报主任）或写入手册对应节。高频→skill（吃常驻注入换每次直达）；低频→留手册按需读（零固定成本）。</li>
+<li>命中登记（反查式，仿引文索引）：命中＝检索到＋照做有效，缺一不算。照做后收尾在状态卡流水记「命中 EP-xxx 照做」（学习卡记卡名）；<strong>不回头改经验库计数</strong>，蒸馏评审时 grep 近 90 天状态卡反查统计。每笔命中须有状态卡出处（日期＋任务），无出处不认；只有开工检索真实命中才记，禁止翻库刷数。</li>
+<li>90 天窗（防老经验霸榜）：统计只算近 90 天命中，老经验凭历史次数不再霸榜；经验内容过时按 §5「当场改条目」。</li>
+<li>直通车道：结构性高频事项（投稿、画图等每周必做）不等命中，主任点名或执行层收尾主动报「这条已用第二次」，直接进三档评审。</li>
+<li>换手规则：新增常驻（skill/插件/L0 条款）须先关停同量级旧常驻，只换不增；主任问「要不要蒸馏成 skill」时，先报预估 token 成本与预计复用频率再动手。</li>
+</ul></div></article><article id="doc-6"><h2>3-投稿与论文.md<small>L1 手册</small></h2><p class="am">E:\ai agent\00_System\rules\3-投稿与论文.md · 5,988 字符 · A92111DF9F8C6AFB · 预算 6,000（100%）</p><div class="md"><h3>3-投稿与论文</h3>
+<blockquote>L1 手册；拆分前全文见 _archive。</blockquote>
+<h4>论文写作硬规则（NCS 投稿线，2026-10-23 主任拍板）</h4>
+<ul>
+<li>目标刊 <strong>Nature Computational Science（NCS）</strong>，内容类型 <strong>Article</strong>，<strong>直接投 NCS</strong>（不做 presubmission enquiry）。</li>
+<li><strong>Table 1（预注册判定总表）进正文</strong>，占用第 6 个 display item 额度；后续再加图须移入 Extended Data。</li>
+<li><strong>走双盲（double-anonymized）</strong>：正文、文件属性、致谢、基金、仓库链接均须去作者身份痕迹；Data/Code availability 用仓库 DOI 而非个人主页。</li>
+<li>正文<strong>英文初稿由 TRAE 起草</strong>（≤3,500 词，摘要 ≤150 词），用户定稿；中文只作沟通语言，不进稿件。</li>
+<li>写作过程<strong>调用 Nature Skill</strong>（双技能细则见下条）。</li>
+<li><strong>参考文献 = PubMed 官方 RIS + EndNote 21 代插（硬，2026-10-26 主任令定稿）</strong>：来源只认 PubMed 官方 RIS，TRAE 禁拼装/纯文本输出/伪造 RIS 或 BibTeX 冒充导出；正文只留 <code>{cite:短标识}</code> 占位；插引用户不动手（TRAE 控 EndNote 代插），用户只终核；附占位→PMID 对照表仅供核对；交付＝引文已插 .docx＋RIS＋EndNote 库；触发词：插引/插入引用。</li>
+<li>上条 how-to（RIS API/归档路径/CWYW 步骤）→ L2 学习卡 <code>E:\Knowledge\Obsidian-WeChatInbox\Learning Cards\约定-参考文献PubMed-RIS与EndNote代插-NCS-20261026-b8d2e4f1.md</code>。</li>
+<li><strong>EndNote GUI 代插实操坑</strong>（另存为框判据/确认框须真点击/WM_SETTEXT 改路径不可信、保存后必 Test-Path/PS5.1 解包陷阱）→ <code>7-输出与工程约定.md §Win32 UI 自动化</code>。</li>
+<li><strong>「校对 PDF」＝系统自动生成的 PDF proof</strong>（唯一定义与完成信号见「实名抬头」条；本地 soffice 转件只叫「本地预检 PDF」严禁冒用）；全流程代办见「校对送审」条。</li>
+<li><strong>Nature Skill 与 humanizer 双技能并行（缺一不可）</strong>：写作环节（全节含图注）——nature-writing 管结构/论证/期刊适配（Results 先行）；human-writer-en / scientific-humanization 管去 AI 味自检（句长/套话/AI 味）。每节交付前必跑并记录。</li>
+</ul>
+<h4>开稿 gate（2026-10-26 主任令，动笔即触发，缺一步不开稿）</h4>
+<p>触发词：开稿 / 动笔 / 写正文 / 写稿 / 写手稿 / draft。任一论文写作环节开始前，五步依次完成并留痕；缺一步禁止产出正文文本：</p>
+<ol>
+<li><strong>读本手册全文</strong>，确认目标刊、格式限额（词数/摘要/display items）、双盲与引用方式并转录进本次任务清单。</li>
+<li><strong>kb.py 检索学习卡 ≥2 个关键词</strong>（课题名 + 「投稿/写作」等），命中卡片的硬规格逐条并入任务清单。</li>
+<li><strong>汇编参考文献素材</strong>：定位本项目引文来源（原文引文表/文献清单/PMID），先列出 <code>{cite:短标识}</code> 候选清单再动笔；正文只留占位，RIS 按上条执行。</li>
+<li><strong>调用 nature skill 起草</strong>（nature-writing，必要时 nature-polishing / nature-statistics），不得凭记忆成文。</li>
+<li><strong>humanizer 复核</strong>：每节完成后跑 <code>human-writer-en</code> / <code>scientific-humanization</code>，复核结果写入交付记录。</li>
+</ol>
+<p>违反 gate 产出一律作废重写；漏步记台账。</p>
+<ul>
+<li><strong>投稿开工（BRCAJY-12，硬）</strong>：第一步 Glob <code>d:\1. Author information\*.xlsx</code> 读课题同名 xlsx（作者信息＋投稿台账 sheet）；邮箱/单位/署名以该 Excel 为<strong>唯一权威源</strong>，与系统不一致报主任裁定，<strong>禁编造</strong>。</li>
+</ul>
+<h4>实名抬头与成果交付（2026-10-25 主任拍板，全对话生效）</h4>
+<ul>
+<li>投稿/注册实名抬头一律用 <strong>MBBS</strong>：Title 填 <code>MBBS</code>，Salutation/姓名栏填 <code>Fan Jiang, MBBS</code>；禁 Dr.、Mr.（学位 MBBS，无 PhD）。</li>
+<li><strong>校对 PDF 唯一定义（2026-10-25 用户严厉纠错，严禁再犯）</strong>：= Author Area → <strong>Submissions Ready for You to Proof</strong> 队列 → <strong>[Proof or Edit Submission]</strong> 流程呈现的<strong>系统转换件</strong>；<code>/submission/pdf?msid=</code> 手稿合并包 PDF <strong>不算校对件，严禁当校对件交付</strong>。完成信号：校对 files 页出现「view the converted pdf」链接即得（URL 级操作链 → L2 卡 …c5e9a1d3.md）；「being converted」消失等其余信号不可靠。</li>
+<li>成果交付走<strong>秘书微信</strong>：校对 PDF/定稿/关键成果落盘后由秘书（OpenClaw）发主任微信；系统无校对 PDF 时打印投稿预览页走同通道。<strong>范围含投稿包制备阶段的本地送审 PDF（尚未进系统也算成果交付）</strong>；聊天里只给 computer:// 链接＝未交付，主任手机端经微信可读才算送达（2026-10-26 GM 包漏发事故增补）。发送命令全参数（--media/deliveryStatus 判定/timeout≥180s/防重）→ L2 卡 <code>约定-成果交付秘书微信发送参数与通道验活-20261026-d2e7f4a9.md</code>（触发词：成果交付/发微信）。</li>
+<li>细节见学习卡 <code>约定-成果交付走秘书微信与实名抬头MBBS-20261025.md</code>。</li>
+<li><strong>身份速查</strong>（自 user_rules 下沉，单位 2026-10-26 更正）：ORCID <code>0000-0002-9257-206X</code>｜邮箱 <code>fmmujf@163.com</code>｜单位 <code>East Ward, Department of Cardiology, Air Force Medical Center, PLA, Beijing</code>。</li>
+</ul>
+<h4>研究身份与一稿多头执行口径（2026-10-25 主任加硬）</h4>
+<ul>
+<li><strong>主任身份</strong>：期刊同时投稿可识别性 / 同时投稿监测系统准确性方向的<strong>方法学研究</strong>。一稿多头是研究设计本身非失误；代理不得劝阻或再以「重复投稿」提醒。</li>
+<li><strong>声明口径（主任令 2026-10-26 修订）</strong>：声明逐条按语义作答，禁一刀切；「是否他刊在审 / Under consideration elsewhere」一律勾 <strong>否 / No</strong>（不写刊名、不附撤稿承诺），其余声明（伦理/数据/AI/贡献等）按真实语义如实勾选。此为最终决定，代理不得以诚信合规为由反驳变通，不得把「勾否」扩大到其他项。</li>
+<li><strong>代理分工</strong>：客观字段（题名、作者、单位、ORCID、基金、字数、图数、数据可用性）由代理填全，声明句按本款口径<strong>代写代勾</strong>；最终 Submit 由代理点，但<strong>必须先过「校对送审与批准后提交」条的微信批准闸门</strong>，且送审校对件中须<strong>截出&quot;是否他刊在审&quot;勾选页让主任亲自核对</strong>。</li>
+<li>并行投稿的刊名/日期/系统 ID 写入 <code>00_brain\投稿授权台账.md</code>（供回测与撤稿时点管理）。</li>
+<li><strong>默认三投与岔开出版商（2026-10-26 主任口头规则）</strong>：每项目默认并行投 <strong>3 家</strong>、岔开出版商（同集团只计 1 家，如 NCS/NHB/NMI 同属 Springer Nature）；清单含同集团刊时只列「对照组」备选，<strong>须主任点名才启用</strong>。</li>
+<li><strong>近期文献佐证（2026-10-26 主任令）</strong>：投稿包与选刊清单必附<strong>近 1–2 年同方向文献佐证</strong>（成包必检项，与封面信同级）；不足先补检索再投，缺佐证＝包不完整不得送审。</li>
+</ul>
+<h4>校对送审与批准后提交（2026-10-26 主任令，全流程代办）</h4>
+<p>触发词：投稿系统/校对 PDF/替换图/同意投稿/Submit。</p>
+<ol>
+<li><strong>全流程代办</strong>：登录/上传/替换/下载校对 PDF/批准校样/最终 Submit 全由代理执行；用户只在微信批准出现。</li>
+<li><strong>新版必替换</strong>：系统内文件（图/表/正文/补充材料）本地有更新版必须先替换并触发重转，严禁明知有新版仍用旧件（Bulletin 旧版事故）。</li>
+<li><strong>每次重转必送审，多轮循环（2026-10-26 主任令）</strong>：系统每次重生成校对 PDF（首次/替换后/按反馈修改后均算），代理下载目检（新文件已入、无黄条/串版）后经秘书微信推主任，附<strong>期刊名＋稿号＋稿件标题＋系统名</strong>（缺稿号无法唯一对应）（L0 红线4 送审例外适用）。<strong>主任反馈→修改→重生成的校对 PDF 必须再送审</strong>；每轮再送审为强制动作，<strong>不算重复劳动</strong>，不得以「刚发过」跳过，循环至主任原话级批准（第 4 条）。</li>
+<li><strong>批准后提交</strong>：主任微信明确说「审核过了／通过／同意投稿」且经第 6 条对应性核验无误（L0 红线3 原话标准），代理按第 7 条复检后才点 Submit；微信以外渠道一律无效。提交后按第 8 条四证闭环与第 9 条截图回报。</li>
+<li><strong>送审防重与留痕（2026-10-26 主任令）</strong>：每次微信送审成功立即将 Message ID 记台账；后续动作前回看确认上一条已发出，已发出的校对件<strong>严禁重发</strong>，只补状态说明。<strong>唯一例外：主任亲令重发</strong>（「再发一遍」级原话），记 Message ID＋台账注明「主任亲令重发」，防重条款不得反向拦截主任指令。</li>
+<li><strong>批准对应性核验（2026-10-26 主任令）</strong>：主任批准原话须唯一对应具体稿件（含稿号，或与校对件版本可互证的标题）；多稿并行时无标识批准一律回问，不得自行匹配。</li>
+<li><strong>批准后执行前复检（2026-10-26 主任令）</strong>：点 Submit 前重新登录复检文件清单与 Approve 状态仍全绿、校对件版本未变；有变化则旧批准作废，重走第 3 条。</li>
+<li><strong>提交完成四证闭环，缺一不得报成功（2026-10-26 主任令，SYS-21）</strong>：①系统确认页/确认信存档 <code>投稿包\Receipts\</code>；②回查作者区<strong>正确队列</strong>（队列计数与稿件同时命中）；③稿件详情核对<strong>稿号、完整标题、非 Draft 状态、Received 时间</strong>；④隔时二次回查或收到服务端确认邮件。①–④未齐只标 <code>Submitted-pending-verification</code>，严禁报提交完成。落账照旧（log.py＋台账补行），四证齐再微信回报主任。</li>
+<li><strong>投后确认截图，无截图＝没投完（2026-10-26 主任令）</strong>：Submit 成功当场抓确认页截图经微信发主任，附期刊名＋状态＋提交时间；邮件非可靠渠道。送达判据=网关日志 <code>sendFileMessageWeixin: success</code>，网关停摆禁静默、明告并约补发；截图存 <code>投稿包\Receipts\</code>。</li>
+</ol>
+<h4>投后半程（SYS-26，2026-10-26）</h4>
+<ul>
+<li><strong>EM 操作现场硬红线（SYS-29）</strong>：①声明字段逐项读值终检，矛盾组合停下请主任，不带病提交；②提交即锁定（无 edit_ms 只读，改动走编辑部）；③动手前双台账互证（<code>00_brain\投稿授权台账.md</code>＋TRAE <code>00_System\log\changes_for_razer.log</code>，较新为准）；④收尾三件套（台账补行/log.py 落账/项目索引同步）齐才报完成。how-to（导航链/Cookie 横幅/脚本模式/ms_id_key）→ L2 卡 …a3f1b2c7.md（触发词：EM / Editorial Manager / 提交后复核）。</li>
+<li>意见接收：决策邮件原文存修回目录；台账/状态卡/索引当轮补行；deadline 紧即函编辑部延期（TB 实证 10-24→11-08）。</li>
+<li>逐点回复：意见矩阵（R#/意见/状态/依据）遗留清单全 ✅ 才准打包；回复信双语、补充声明独立文。</li>
+<li>返修重投：表重建先 QC；包带日期；修回提交＝投稿动作当轮补台账；重投后邮件＋系统双确认。</li>
+<li>接收后清点校对/版权；拒稿后改投入主任决策队列，禁自行改投。</li>
+<li>how-to（矩阵模板/重建留痕）→ L2 卡 …d7c3a9e5.md（触发词：修回/审稿意见/回复信/重投）；期刊偏好避坑→卡…b3a29871.md（触发词：选刊/偏好/拒稿）。</li>
+</ul>
+<h4>状态落账（硬，2026-10-25 提案 RP-01 落地）</h4>
+<ul>
+<li>任何投稿状态变化（Submitted/Under Review/Decision in Process/Revision/Action Required/Decline/Withdrawn/Accepted 等）→ <strong>先落账，再汇报；无落账＝未完成</strong>。</li>
+<li>命令：<code>python &quot;D:\1. Author information\jivonlab-site\log.py&quot; -p &quot;&lt;课题&gt;&quot; -j &quot;&lt;期刊&gt;&quot; -s &quot;&lt;状态&gt;&quot;</code>；三入口共用 <code>record()</code>（log.cmd 同参数）。</li>
+<li>唯一权威源 <code>D:\1. Author information\jivonlab-site\data.json</code>（面板 <code>/api/data</code> 轮询）；禁手改 HTML；落账后核对 data.json 计数变化，写状态卡进展流水。</li>
+<li>同步更新 <code>manuscript_index.md</code> 对应行（一稿一行：稿号｜课题｜期刊｜状态｜凭证）；落账硬约束细则下沉 <strong>8-域名与面板.md §2</strong>（SYS-16）。</li>
+</ul></div></article><article id="doc-7"><h2>4-经费与成本.md<small>L1 手册</small></h2><p class="am">E:\ai agent\00_System\rules\4-经费与成本.md · 1,063 字符 · 4F029C34376E769A · 预算 6,000（18%）</p><div class="md"><h3>4-经费与成本</h3>
+<blockquote>L1 手册，按需读取。来源：AGENTS.md（2026-10-25 拆分，全文见 _archive）。</blockquote>
+<h4>研究所经费管理（用户 = 主任，TRAE = 财务；2026-10-24 用户拍板，全对话生效）</h4>
+<ul>
+<li>角色：用户是<strong>科研研究所主任</strong>（唯一决策/拍板/立项/预算授权人）；TRAE 是该所<strong>财务</strong>（监测、核算、预警、报告、凭证保管、成本优化建议）。涉及额度、费用、订阅、token、账单、充值、key 切换，一律按此角色说话与办事。</li>
+<li>财务职责：① 定期看成本面板（<code>e:\ai agent\plan-monitor</code>，线上 https://jivonkiang.github.io/coding-plan-monitor/ ，本地 <code>http://127.0.0.1:8791</code>）与 <code>data.json</code>；② 额度将尽/采集失败/异常成本 → 主动预警并给方案；③ 按账号、按源核算（火山 1753/8942、DeepSeek、xf 中转、千帆、智谱）；④ 报账口径诚实，面板值≠账单，标注为估算；⑤ 凭证保管走 <code>credentials.md</code>（明文唯一源，可直接读取），不写进 <code>e:\ai agent</code>、不外发。</li>
+<li>权限边界：<strong>花钱类动作（订阅/充值/买套餐/提预算/新建付费服务）一律先报主任批准</strong>；采集、分析、修面板、写报告、切 key、改配置属财务日常，可自主执行。用户说「你是我的财务，先查经费面板」= 直接拉面板 + 检索知识库并给摘要与风险，不要反问。</li>
+<li><strong>投稿 APC / 版面费留痕（2026-10-27 主任批）</strong>：稿件接收后收到 APC/版面费/彩图费通知 → ① 通知邮件/账单落 <code>&lt;项目&gt;/receipts/YYYYMMDD-&lt;期刊全名&gt;-APC.eml|pdf|html</code>；② 付款属花钱类动作，<strong>先报主任批准再付</strong>；③ 付款凭证+发票落同一 receipts 目录；④ 台账 <code>-s Accepted</code> 后用 <code>-r</code> 追记 <code>APC: &lt;金额+币种&gt; &lt;付/未付&gt;</code>。口径沿用本节权限边界（主任批钱、财务执行与留凭证）。</li>
+<li>运维经验与口径见学习卡 <code>Learning Cards/经验-plan-monitor成本面板建设与运维-token额度经费监测-20261024.md</code>、<code>Learning Cards/约定-研究所经费管理主任与财务分工-20261024.md</code>，改面板前先 <code>kb.py search</code>。</li>
+</ul></div></article><article id="doc-8"><h2>5-浏览器与桌面自动化.md<small>L1 手册</small></h2><p class="am">E:\ai agent\00_System\rules\5-浏览器与桌面自动化.md · 1,425 字符 · 732C79372CDFAF28 · 预算 6,000（24%）</p><div class="md"><h3>5-浏览器与桌面自动化</h3>
+<blockquote>L1 手册，按需读取。来源：AGENTS.md（2026-10-25 拆分，全文见 _archive）。</blockquote>
+<h4>浏览器交互（手机端防卡死）</h4>
+<p>「移交用户操作浏览器」依赖桌面端浏览器面板，我在手机端无法交互，一旦移交就卡死。因此：</p>
+<ol>
+<li>任何需要我在浏览器里操作的场景（登录、验证码/扫码、点击、填表、确认弹窗），一律不调用浏览器控制权移交</li>
+<li>改用「截图 + 文字指令」闭环：截图发到对话 → 我用文字说明要点哪里/填什么 → 执行后再截图确认，循环推进</li>
+<li>登录类：优先在电脑端登录一次并保持会话/保存 cookie，之后任务直接复用；扫码/验证码类：截图给我 → 我在手机上完成 → 回复「已完成」→ 继续</li>
+<li>只有我明确说「我要自己接管浏览器」时才允许移交</li>
+<li><strong>任何端都禁止移交浏览器控制权/托管权（2026-10-26 主任令「不要把托管权给我；你先尝试弄，实在弄不了的，把链接发给我」）</strong>：执行层先自己尝试操作到底（导航/填表/点击/读码全包）；遇到执行层确实无法完成的环节（登录凭据、扫码、短信验证码等只有主任物理持有），<strong>把链接直接发给主任</strong>，由主任在自己设备（手机/电脑浏览器）打开完成该环节并把结果（授权码/「已完成」）回传，执行层接着收尾换 token/验证；禁止移交浏览器控制权，禁止挂起等主任接管页面（2026-10-26 火山 SSO 1753 续期时执行层犯过，登记）。</li>
+</ol>
+<h4>TRAE 客户端建档/发消息（2026-10-24 用户明令：走已验路径，不许再耗时摸索）</h4>
+<ul>
+<li>卡点：给课题目录建项目记忆，<strong>只开文件夹无效，必须在工作区里真发一条消息</strong>；客户端单实例、前台锁被组策略钉死（<code>SPI_GETFOREGROUNDLOCKTIMEOUT=2147483647</code>，<code>SetForegroundWindow</code> 必败）→ 唯一通道是<strong>后台 PostMessage</strong>。</li>
+<li>标准四步（单个目录 2–3 分钟，禁止一把梭）：① <code>&amp; &#x27;F:\Trae CN\Trae CN.exe&#x27; &#x27;&lt;路径&gt;&#x27;</code> <strong>单独一条命令</strong>开窗（后续输出会被 Electron 吞掉）；② 枚举可见顶层窗口、标题含文件夹名者取 hwnd；③ 点击(0x0200/201/202 打 <code>Chrome_RenderWidgetHostHWND</code>，坐标按 <code>宽/1280</code>、<code>高/757</code> 缩放，输入框参考点 1070,660) → 清空(80×VK_BACK) → 打字(<strong>只发 WM_CHAR</strong>，禁 KEYDOWN 双发) → 回车(VK_RETURN)；④ 等 15–45 秒查 <code>memory\projects\&lt;slug&gt;--p2-&lt;hex&gt;\&lt;yyyymmdd&gt;\session_memory_*.jsonl</code> 含该消息即成功。</li>
+<li>禁止再试：反推/伪造 hash（客户端加盐，已否证）、抢前台、用 <code>project_memory.md</code> 判成功（新目录只有 jsonl，md 是后续固化产物）、回车失效时重打文字（应单独补发 VK_RETURN）。</li>
+<li>细节与局限见学习卡 <code>方法-TRAE CN 课题目录建档定型-PostMessage后台点击打字回车-20261024-7f2c9a41.md</code>（kb 可检索）。旧 PowerShell 脚本已删，按本文重写，勿再找。</li>
+</ul></div></article><article id="doc-9"><h2>6-安全与凭据.md<small>L1 手册</small></h2><p class="am">E:\ai agent\00_System\rules\6-安全与凭据.md · 1,415 字符 · AC26B06E094080D8 · 预算 6,000（24%）</p><div class="md"><h3>6-安全与凭据</h3>
+<blockquote>L1 手册，按需读取。来源：AGENTS.md（2026-10-25 拆分，全文见 _archive）。</blockquote>
+<h4>凭据存放口径（2026-10-26 主任定）</h4>
+<p>本机只有主任本人使用 → <strong>不做受限凭据库</strong>（不要求 Windows 凭据管理器 / 加密库）。凭据以本机明文存放，<strong>任何执行层都可直接读取</strong>。</p>
+<p>唯一源：<code>C:\Users\admin\.trae-cn\memory\credentials.md</code>（按平台分节：账号 / 密码 / 验证日期 / 踩坑）。</p>
+<p>保留两条实质红线：</p>
+<ol>
+<li><strong>密码不得写进 <code>d:\1. Author information\jivonlab-site\journal_portals.json</code></strong>（该文件在站点目录内，会被服务端读取/备份）；该文件只写 <code>secret_ref</code> 指针，格式 <code>credentials.md#&lt;锚点&gt;</code> 或 <code>&lt;项目键&gt;.xlsx!journal!r&lt;行&gt;</code>。</li>
+<li><strong>不在对话与对外沟通中回显密码</strong>（只说「已按台账登录」）。</li>
+</ol>
+<p><code>secret.py</code> 仅作为少量 API token 的读取工具保留，替代路径：<code>E:\ai agent\00_System\bin\secret.py</code>。</p>
+<h4>查密码固定顺序（三处全无才重置，禁止再向主任索要）</h4>
+<ol>
+<li><code>C:\Users\admin\.trae-cn\memory\credentials.md</code></li>
+<li><code>d:\1. Author information\&lt;项目键&gt;.xlsx</code> 的 <code>journal</code> 页 —— <strong>只有 IF / 投稿系统 URL / 登录账号 / <code>mail</code>|<code>orcid</code> 标记，不含密码</strong>（2026-10-26 实测更正；旧版「账号列右侧即密码」的表述作废）</li>
+<li><code>E:\ai agent\00_System\bin\secret.py</code></li>
+</ol>
+<h4>凭据清单（credentials.md 可读）</h4>
+<ul>
+<li><code>tailscale_api_token</code>（Tailscale API，2027-01-21 到期，用途：ACL/设备管理，勿外发）</li>
+<li><code>volc_route_client_token</code>（volc-route 代理客户端令牌 <code>vr-c5EN...g7Kp</code>，用途：填入 TRAE 自定义模型的「API 密钥」，走公网 funnel 入口鉴权；长期有效，勿外发）</li>
+<li><code>em_ncs_password</code>（NCS Editorial Manager 登录密码，用户名 <code>fmmujf@163.com</code>，2026-10-24 注册 Smart Registration（复用 Communications Biology 既有账号验证），person ID 83225，名称 Fan Jiang；用途：NCS 投稿系统，勿外发）</li>
+<li><code>cloudflare_api_token</code>（Cloudflare API Token <code>cfut_pwpL...FSj4ad68d37</code>，2026-10-25 经 TRAE 内置浏览器免密码创建，Edit zone DNS 模板限 jivonlab.com，无过期；用途：jivonlab.com DNS 管理，勿外发；dashboard 登录密码明文本机不存在，靠内置浏览器登录态复用）</li>
+</ul></div></article><article id="doc-10"><h2>7-输出与工程约定.md<small>L1 手册</small></h2><p class="am">E:\ai agent\00_System\rules\7-输出与工程约定.md · 4,893 字符 · CDFCD4989B084612 · 预算 6,000（82%）</p><div class="md"><h3>7-输出与工程约定</h3>
+<blockquote>L1 手册，按需读取。来源：AGENTS.md（2026-10-25 拆分）；压缩前全文见 <code>_archive\7-输出与工程约定-full-20261026.md</code>（b=20261026 三次压缩前全文）。</blockquote>
+<h4>输出纪律（避免「输出过长」中断）</h4>
+<p>「输出过长，请输入继续」是 TRAE 客户端对单条回复的硬截断，只能靠控制回复长度根治。</p>
+<ul>
+<li>硬上限以用户级全局规则「输出节流」为准（单条正文中文 ≤600 字／英文 ≤400 词、≤2 段、单轮回读 ≤120 行）；本文件不另设口径；代码块、命令输出、表格一律不贴全文</li>
+<li>长任务<strong>连续执行</strong>：一口气做完所有步骤，不向用户要「继续」；只有需拍板/授权、花钱、不可逆、缺输入或凭据、需人工操作（登录/扫码/微信批准）才停</li>
+<li>长内容（报告/长代码/数据清单）直接写入文件，对话中只给摘要与文件链接；禁止一次性粘贴超长全文</li>
+<li>命令/工具输出只报关键结论（pass/fail、行号、数值），不转述原始输出</li>
+<li><strong>Write 大文件全量计入单轮输出量</strong>（2026-10-25 实证：并行写 2 个 160 行模块即触发硬截断）：&gt;150 行文件拆多次 Write，但同一任务必须连续做完，不得为「一步一停」停下等「继续」</li>
+<li><strong>长跑脚本 stdout 累积也触发硬截断</strong>（2026-10-26 实证：EndNote 批量导 RIS 连跑 7 分钟）：①预计 &gt;1 分钟的自动化脚本，逐步日志用 <code>Add-Content -Encoding UTF8</code> 落盘，stdout 只许 1 行结论（<code>OK/FAIL + 关键计数</code>）；②全量 UIA 树、诊断信息只进日志文件，需要时按需 Read；③批量推进用「单文件一命令、单行回显」，靠日志与计数核对进度</li>
+</ul>
+<h4>基本约定</h4>
+<ul>
+<li>交付迭代必须换新文件名（2026-10-25）：同名覆盖后手机端仍显示旧版（PC 端自检查不出来）；每次生成带版本号文件名，链接只指向版本号文件，规范名留作投稿打包。详见学习卡 <code>约定-交付图迭代必须换新文件名防端侧缓存-20261025.md</code></li>
+<li>全程中文交流；最终产出放 <code>e:\ai agent\outputs\</code></li>
+<li>GitHub 建仓一律选 A：用户手动建仓（github.com/new，public，不勾初始化文件），TRAE 用现有 token 走 API 推代码；不请求授权弹窗、不要 PAT（唯一例外：推送也 403）。详见学习卡 <code>约定-GitHub建仓一律用户手动我推代码-20261024.md</code></li>
+<li>凭据落盘（2026-10-26 更新）：长期凭据统一存 <code>C:\Users\admin\.trae-cn\memory\credentials.md</code>（明文唯一源，可直接读取；不进 git、不入知识库、不写进工作区）；少量 API token 读取可走 <code>secret.py</code>（<code>list</code>／<code>get NAME</code>），不手写路径</li>
+<li>Tailscale 控制面改动一律走 API（<code>https://api.tailscale.com/api/v2/tailnet/-/acl</code>，body 直接传策略 JSON 本体，勿包 <code>{&quot;acl&quot;:...}</code> 否则 400），改完跑 <code>tailscale netcheck</code> + <code>tailscale status --json</code> 复验 Health</li>
+<li>执行通道兜底（2026-10-23 实测）：<code>RunCommand</code> 报 <code>Toolhost terminal commands must be routed through the agent runtime</code>（连试 3 次均失败）→ <strong>立刻</strong>改走 <code>run_mcp(server_name=&quot;integrated_code_mode&quot;, tool_name=&quot;Exec&quot;)</code>，代码 <code>const r = await tools.Shell({command, cwd, timeout, description}); text(JSON.stringify(r))</code>（不调 <code>text()</code> 结果为空）；能用哪条走哪条，别耗轮次</li>
+<li><strong><code>.cmd/.bat</code> 硬约束（2026-10-25 实证门铃静默停摆）</strong>：必须 <strong>ASCII-only + CRLF</strong>、禁 BOM；被改成 LF 后 cmd.exe 整段解析失效，计划任务仍返回 <code>exit=0</code>、日志零写入。改完必查 <code>crlf&gt;0 且 lf_only=0 且 ascii_ok</code> 并实跑确认日志有新条目；中文说明写进 <code>.md</code></li>
+<li><strong>子代理/批量改前端交付前必须机器校验（2026-10-26 实证 board 整页空白）</strong>：curl 200 只证明文件能吐，不证明页面能跑。凡 HTML/CSS/JS 被子代理或批量编辑改动，交付前必跑 node <code>new Function</code> 语法校验（卡内含命令）＋浏览器或渲染验证；「HTTP 200 + 页面空」优先查 JS 语法错误，不信子代理自述完成。详见学习卡 <code>坑-子代理改前端改坏模板字符串-整页JS挂-20261026.md</code></li>
+<li><strong>公网规则页同步三步（SYS-15，2026-10-27 定）</strong>：当轮改动 <code>00_System\rules\*</code>、<code>user_rules.md</code> 或 <code>server.py</code> 规则渲染逻辑，收尾必做三步：①跑 <code>python &quot;D:\1. Author information\jivonlab-site\gen_site_rules.py&quot;</code> 重渲染 <code>rules.html</code>（stdout 须 <code>OK</code>）；②经 GitHub API（现有 token）把 <code>rules.html</code> 推到 <code>JivonKiang.github.io</code> 仓主分支（jivonlab.com 静态快照，更新需先 <code>get_file_contents</code> 取 blob SHA）；③重启 <code>run_site.py</code>。验收：<code>jivonlab.com/rules.html</code> 能搜到本次改动关键词（board.jivonlab.com/rules 动态实时，本三步只为主域快照保鲜）</li>
+</ul>
+<h4>Win32 UI 自动化（EndNote 等桌面程序，2026-10-26 定谳）</h4>
+<p>触发词：控制电脑 / EndNote / 另存为 / 对话框 / 点按钮。</p>
+<ul>
+<li><strong>判据</strong>：另存为框＝可见 #32770 含 Edit(id=1001)＋Button(id=1)；WM_GETTEXT 回读 wParam=512。匹配确认框<strong>必须加进程名/owner 校验</strong>，宽松过滤器会误点无关应用对话框（实证误点 [Codex] 框「重试」×2）。</li>
+<li><strong>WM_SETTEXT 改另存为 Edit 不可信</strong>：控件回读正常、点「是」后仍写旧路径（对话框内部路径缓冲不同步）→ <strong>保存后必须 Test-Path 验证实际输出文件</strong>，不信 GUI 表象；路径错就 Copy-Item 抢救成品。</li>
+<li><strong>替换确认框</strong>：保存必弹「确认另存为」，最左＝「是(&amp;Y)」；PostMessage BM_CLICK 对 DirectUI task-dialog 只关框不执行 → 必须<strong>真鼠标点击</strong>（SetProcessDPIAware＋SetCursorPos＋mouse_event 0x0002/0x0004，同进程坐标自洽，已实证成功）。</li>
+<li><strong>resume-safe</strong>：续跑前先枚举处理崩溃残留确认框，勿直接再点保存；只读取证用 dump2＋enum_win（EnumWindows＋进程名），先证后动、失败即停。</li>
+<li><strong>PS 5.1 陷阱</strong>：内联 <code>@(...)[0]</code> 成员枚举不解包→中间变量＋Count＋强制解包；<code>-Include</code> 需 <code>\*</code>。</li>
+<li><strong>RTF 验证</strong>：无真实换行，行首锚定正则失效；<code>\super</code> 计数减 2 处 stylesheet 定义才是真实引文数；书目用文末 dump 核验，勿信行号。</li>
+<li><strong>安全红线</strong>：EndNote 主库窗口 0x10B06 绝不动；WM_CLOSE 只发 #32770。</li>
+<li>承前：旧 fp 窗口过期先扫描关闭；输出命名 <code>-&lt;Style&gt;.rtf</code>；fp 控件 id 3294/3295/3296/1124/1100。取证脚本 <code>D:\20261022_VCell\submission\endnote\save_v3_final.ps1</code>/<code>probe_state.ps1</code>；how-to→L2 卡 <code>约定-参考文献PubMed-RIS与EndNote代插-NCS-20261026-b8d2e4f1.md</code>。</li>
+</ul>
+<h4>OpenClaw 微信秘书（Clawbot）运维（2026-10-25 定型）</h4>
+<p>触发词：微信 / Clawbot / 秘书 / gateway / ret=-2 / watchdog。细则已按分级递进下沉 L2 学习卡，本节只留铁律级硬规则（触发词：修回同类问题时先查卡再动手）。</p>
+<ul>
+<li><strong>故障主因顺序</strong>：主会话上下文溢出→<code>session_pending_inputs</code> interrupted→<code>session_nodes</code> 残留 <code>restartRecovery*</code>；修复顺序 compact→备份 sqlite→<code>stop --force</code>→删残留→<code>start</code>；主会话禁 delete/archive；<strong>禁在主任聊天时段重启</strong>（打断入站轮次）。</li>
+<li><strong>判活三查缺一不可</strong>：<code>gateway status</code> ok＋当日 <code>%TEMP%\openclaw\</code> 日志近 1 小时无 ret=-2＋<code>ref-messages.sqlite</code> mtime 推进；见 ret=-2 <strong>勿手工反复重启</strong>（热重启无效），交 watchdog 冷重启；日志真身在 <code>%TEMP%\openclaw\</code>。</li>
+<li><strong>通道验活唯一正解＝<code>message send</code> 直发</strong>（成功判据 <code>&quot;status&quot;:&quot;sent&quot;,&quot;resultCount&quot;:1</code>；<code>contextToken missing ... sending without context</code> 属良性，<code>ret=-2</code> 才真死；CLI <code>--deliver</code> 验活无效；参数 <code>-t</code> 非 <code>--to</code>）。</li>
+<li><strong>同一成果只发一次</strong>：发送成功立即记 Message ID；重试前回看已发出只补状态说明，禁重发文件（框架重试不去重）。</li>
+<li><strong>不执行 <code>openclaw update repair</code></strong>（deepseek 迁移已 completed，repair 只白重启）；五步全做仍 ret=-2 → 整机重启＝L0 红线需主任拍板。</li>
+<li><strong>日志时间口径</strong>：行首时间戳与行内 JSON <code>&quot;date&quot;</code> 均为 UTC（可差数十分钟），换算本地 UTC+8；搜「Sent via openclaw-weixin」取 <code>Message ID: ([\w:\.\-]+)</code>。</li>
+<li><strong>ret=-2 三层根因定谳＋watchdog v3 四层自愈＋加强冷重启五步＋断联分型（重启型/抖动型）</strong>：实证细节与命令全文下沉 L2——<code>坑-秘书僵尸gateway判活三查-端口监听不等于通道活-20261026-7c4e9a12.md</code>、<code>方法-OpenClaw秘书断链复发-上下文溢出与自重启-20261025.md</code>、<code>坑-OpenClaw秘书ret-2三层根因与watchdog-v3自愈-20261026-sys33.md</code>（三卡全链：根因→判活→自愈→冷重启五步→整机重启红线）。</li>
+</ul></div></article><article id="doc-11"><h2>8-域名与面板.md<small>L1 手册</small></h2><p class="am">E:\ai agent\00_System\rules\8-域名与面板.md · 5,527 字符 · F69D53D674703D63 · 预算 6,000（92%）</p><div class="md"><h3>8 · 域名与面板（jivonlab.com 运行手册）</h3>
+<p>触发词：jivonlab / 投稿面板 / board / monitor / 隧道 / cloudflared / TOTP / 打不开面板 / 域名</p>
+<h4>1. 入口总表（2026-10-25 实测）</h4>
+<div class='tw'><table><thead><tr><th>域名</th><th>承载内容</th><th>托管</th><th>访问控制</th></tr></thead><tbody><tr><td><code>jivonlab.com</code>（apex，含 www）</td><td>个人主页 Research Navigator + 一排面板小块</td><td>GitHub Pages <code>JivonKiang/JivonKiang.github.io</code></td><td>公开</td></tr><tr><td><code>monitor.jivonlab.com</code></td><td>Coding Plan 额度总览</td><td>GitHub Pages（独立仓库声明该自定义域）</td><td>公开</td></tr><tr><td><code>board.jivonlab.com</code></td><td>投稿进展看板；<code>/rules</code> = 实验室制度核对页</td><td><strong>Cloudflare Tunnel → 本机 127.0.0.1:8899</strong></td><td>TOTP 六位动态码</td></tr></tbody></table></div>
+<p>要点：apex/www/monitor 走 GitHub Pages（DNS 是 A/CNAME + 未开代理）；只有 board 走隧道、<code>proxied=true</code>。</p>
+<p>改域名归属前先看 DNS 的 proxied 状态，否则会误判&quot;隧道没生效&quot;。</p>
+<h4>2. 本机运行现场 <code>D:\1. Author information\jivonlab-site\</code></h4>
+<div class='tw'><table><thead><tr><th>文件</th><th>职责</th></tr></thead><tbody><tr><td><code>run_tunnel.py</code></td><td><strong>隧道守护器</strong>：拉起 cloudflared，异常退出 10 秒后自动重启（唯一正确启动方式）</td></tr><tr><td><code>cf-config.yml</code></td><td>隧道 ingress：<code>jivonlab.com</code> / <code>www.jivonlab.com</code> / <code>board.jivonlab.com</code> → <code>http://127.0.0.1:8899</code>，末尾 <code>http_status:404</code></td></tr><tr><td><code>bin\cloudflared.exe</code></td><td>隧道客户端</td></tr><tr><td><code>server.py</code></td><td>看板服务 + TOTP 登录（6 位码、设备记住、<code>/login</code> 页面）；<code>/rules</code> 渲染制度核对页</td></tr><tr><td><code>config.json</code></td><td><code>totp_secret</code>、issuer <code>jivonlab.com</code>、account <code>jivon</code>、<code>bind 127.0.0.1:8899</code>、<code>session_ttl 2592000</code>、<code>cookie_secure:true</code>、失败锁定 5 次/600 秒</td></tr><tr><td><code>index.html</code> / <code>data.json</code></td><td>面板壳与<strong>唯一权威源</strong>（data.json 只由 <code>log.py</code> 写，前端轮询 <code>/api/data</code>）</td></tr><tr><td><code>access.log</code> / <code>cf_tunnel.err</code></td><td>访问日志 / 隧道日志</td></tr></tbody></table></div>
+<p><strong>唯一权威源（硬，2026-10-25 提案 RP-03 落地）</strong>：投稿事实只认 <code>data.json</code>；写入口仅 <code>log.cmd</code> / <code>log.py</code>（CLI）、<code>POST /api/log</code>、<code>inbox\*.json</code>，三者共用 <code>record()</code>。<code>D:\1. Author information\投稿进展面板.html</code> 与 <code>D:\2. Article processing\投稿进度看板.html</code> 为历史归档，<strong>禁止手改、禁止当数据源</strong>。</p>
+<p><strong>落账硬约束（2026-10-26 主任定，自 3-投稿下沉，SYS-16）</strong>：①秘书（ClawBot/微信 OpenClaw）转达投稿事实必须同步落账，不得只发微信；免登录通道 <code>log.cmd -p &lt;项目&gt; -j &lt;期刊&gt; -s &lt;状态&gt; -r &quot;&lt;主任原话&gt;&quot;</code> 或写 <code>inbox\*.json</code>（10 秒自动消费），必带项目/期刊/状态，有稿件号必带——<strong>未落账＝事件不存在</strong>。②提交后不回写＝失败：提交/状态变化后无 <code>OK ... | &lt;日期&gt;</code> 输出且 <code>data.json</code> 的 <code>updated_at</code>/<code>feed</code> 未变＝该轮执行<strong>失败</strong>，当轮补写或落 inbox，不得留白、不得反推&quot;稿子没提交&quot;；主任已确认&quot;已提交&quot;的一律记 <code>Submitted</code> 不降级 <code>Draft</code>，凭证后补 <code>receipts\</code>。</p>
+<p><strong>log.py 实操三坑（2026-10-26 NCS 落账实测）</strong>：①面板项目键与课题名是两套命名，先 <code>log.py --list</code> 查，没有就 <code>-p &quot;&lt;键&gt;&quot; --new</code> 建；②<code>--new</code> 前必须在 <code>projects.json</code> 补「键→文件夹」映射（如 <code>&quot;LM Behavior&quot;: &quot;D:\\20261026 LM Behavior&quot;</code>），否则报「台账不可写」拒写；③receipts 凭证文件名必须含<strong>日期＋期刊名全称</strong>（稿件号不算），如 <code>20261026-Nature Computational Science-submission-confirmation.png</code>，同事件自动防重不重复追加。</p>
+<p><strong>凭证命名硬规则（2026-10-26 JoGH 撞车事故定，SYS-17）</strong>：receipt 文件名必须含完整期刊名全称（扁平化后），<code>log.py</code> 的 <code>receipt_for</code> 已改为<strong>完整扁平名优先匹配、8 字符前缀兜底</strong>（2026-10-26 修复）。执行层铁律：</p>
+<ol>
+<li>凭证文件名一律 <code>YYYYMMDD-&lt;期刊全称&gt;-&lt;说明&gt;.&lt;ext&gt;</code>（如 <code>20261026-Journal of Global Health.png</code>），<strong>禁止</strong>用缩写/稿号/泛化名（<code>JoGH</code>、<code>15649</code>、<code>confirmation.png</code> 都算不合格）；</li>
+<li>落账后必须核对回执第 4 行 <code>receipt:</code> 指向的文件确实属于本期刊本事件——<code>log.py</code> 按子串匹配选文件，同日期多期刊凭证时可能误选（实例：<code>International Journal of Cancer</code> 撞配 <code>Journal of Global Health</code> 的凭证、JNS 凭证被误配给 JSCVD 撤回与 JoGH 提交两行），发现指错立即①改名凭证为期刊全称、②就地勘误该行 <code>evidence</code> 字段（幂等键是 date+journal+status+raw，改 evidence 不触发防重）；</li>
+<li>勘误台账 = 只改 <code>evidence</code> 字段 + 追加说明进 raw，<strong>禁止</strong>删行重写（台账只追加原则不变，evidence 勘误属字段级纠错不属改历史）。</li>
+</ol>
+<p>隧道 ID <code>7bf93f5b-aaf6-41ea-83ba-535148f7e2fe</code>，凭据 <code>C:\Users\admin\.cloudflared\&lt;同 ID&gt;.json</code>。</p>
+<p>CF zone id <code>967a88772f420877d8bb3ceaa564537a</code>；API token 只从 <code>C:\Users\admin\.ai-agent-secrets\cloudflare_api_token.txt</code> 用正则 <code>(?im)^\s*Token:\s*(\S+)</code> 取，不打印。</p>
+<h4>3. 启动 / 重启（照抄）</h4>
+<pre><code>Start-Process -FilePath &#x27;C:\Users\admin\AppData\Local\Microsoft\WindowsApps\pythonw.exe&#x27; `
+  -ArgumentList &#x27;run_tunnel.py&#x27; `
+  -WorkingDirectory &#x27;D:\1. Author information\jivonlab-site&#x27; -WindowStyle Hidden</code></pre>
+<ul>
+<li>必须用 <code>-WorkingDirectory</code> + 只写相对文件名。路径含空格时 <code>-ArgumentList</code> 会被 PowerShell 5.1 二次拆分，报 <code>open D:\1.</code> 或 <code>filename syntax is incorrect</code>。</li>
+<li>不要直接 <code>Start-Process cloudflared</code>：绕开守护器后崩溃不会自动恢复。</li>
+<li>启动后看 <code>cf_watch.log</code> 出现 <code>cloudflared start</code>、<code>cf_tunnel.err</code> 出现 <code>Registered tunnel connection ... location=</code> 才算通。</li>
+</ul>
+<h4>4. 新增子域三步（缺一步就 404 / 502）</h4>
+<ol>
+<li>Cloudflare 建 CNAME：<code>POST /zones/&lt;zone&gt;/dns_records</code>，<code>{type:CNAME, name:&lt;子域&gt;, content:7bf93f5b-aaf6-41ea-83ba-535148f7e2fe.cfargotunnel.com, proxied:true, ttl:1}</code></li>
+<li><code>cf-config.yml</code> 的 <code>ingress:</code> 里加一条 <code>- hostname: &lt;子域&gt;</code> + <code>service: http://127.0.0.1:8899</code>（必须在最后的 404 兜底之前）</li>
+<li><strong>重启隧道</strong>（改 yml 不重启不生效）</li>
+</ol>
+<h4>5. TOTP 登录</h4>
+<ul>
+<li>首次扫码：<code>otpauth.png</code>（同一目录），或看 <code>config.json</code> 的 <code>totp_secret</code> 手动录入 Authenticator，条目名为 <code>jivonlab.com / jivon</code>。</li>
+<li><code>cookie_secure:true</code> → 必须走 HTTPS。用 <code>http://127.0.0.1:8899</code> 直接登录会拿不到 cookie，属正常现象，不是 bug。</li>
+<li>已登录设备记在 <code>devices.json</code>，有效期 <code>session_ttl</code>（30 天）；清空该文件 = 踢掉全部设备。</li>
+<li>连续失败 5 次锁 600 秒（按 IP）。</li>
+</ul>
+<h4>6. 验收与排错</h4>
+<pre><code>curl.exe -s -o NUL -w &quot;%{http_code} %{redirect_url}`n&quot; https://board.jivonlab.com/   # 期望 302 -&gt; /login</code></pre>
+<ul>
+<li>PowerShell 里 <code>curl</code> 是 <code>Invoke-WebRequest</code> 别名，必须写 <code>curl.exe</code>，否则参数报错。</li>
+<li>本机 DNS 缓存未刷新时报 <code>Could not resolve host</code>：先 <code>Resolve-DnsName &lt;域名&gt; -Server 1.1.1.1</code> 确认公网已解析，再用 <code>curl.exe --resolve &lt;域名&gt;:443:&lt;CF IP&gt;</code> 绕过本机验证；等路由器缓存过期自然恢复。</li>
+<li>GitHub Pages 改完常有 1~10 分钟构建延迟 + 600 秒 CDN 缓存：验收加 <code>?v=随机数</code> 破缓存。</li>
+</ul>
+<h4>7. 改动落点速查</h4>
+<ul>
+<li>想改&quot;主页那排小块&quot;（跳 board / monitor / 科研接单 / 实验室制度）→ 改仓库 <code>JivonKiang/JivonKiang.github.io</code> 的 <code>index.html</code> 里 <code>.tiles</code> 区块（工作台区），样式写在该文件内联 <code>&lt;style&gt;</code>；推 main 后加 <code>?v=随机数</code> 验收。</li>
+<li><strong>主页改版预览流程（2026-10-26 定型，主任认可）</strong>：新版先推仓库 <code>preview/index.html</code> 子路径（GitHub MCP <code>create_or_update_file</code>，更新已有文件需先 <code>get_file_contents</code> 拿 blob SHA），手机直接访问 <code>https://jivonlab.com/preview/?v=序号</code> 验收（预览页加 <code>noindex</code> meta；子路径下相对链接会指错，预览版一律用 <code>https://jivonlab.com/...</code> 绝对链接）；主任确认合格后再同方式覆盖 <code>index.html</code> 正式上线（内容改回相对链接）。不动主页就能让手机看新版，避免本机文件手机打不开的死路。</li>
+<li>想改制度核对页（<code>board.jivonlab.com/rules</code>）→ 改 <code>jivonlab-site\server.py</code> 的 <code>render_rules()</code>；<strong>只改规则文件内容无需动代码</strong>（页面每次请求实时读盘）。增删文件才要改 <code>RULES_FILES</code> 清单，改完重启 <code>run_site.py</code>。</li>
+<li>想改面板本身的样式/字段 → 改本机 <code>index.html</code> + <code>data.json</code>（走 8899，不经 GitHub）。</li>
+<li>想让隧道开机自启 → 启动项放 <code>pythonw.exe run_tunnel.py</code>（工作目录必须设成站点目录）。</li>
+</ul></div></article><article id="doc-12"><h2>9-绘图与图版.md<small>L1 手册（口径外）</small></h2><p class="am">E:\ai agent\00_System\rules\9-绘图与图版.md · 985 字符 · C1B85F39E25DE1D3 · 预算 6,000（16%）</p><div class="md"><h3>9-绘图与图版</h3>
+<blockquote>2026-10-25 自 user_rules §八下沉（原文见 _archive\user_rules-full-20261025-v2.md）。违反即返工。</blockquote>
+<h4>一、图版硬规则</h4>
+<p>触发词：绘图 / 主图 / 图版 / figure / 面板 / nature-figure</p>
+<ol>
+<li><strong>必经 nature-figure skill</strong>：<code>validate_figure.py &lt;源码.py&gt;</code>（静态预检，输入是绘图源码，喂 PDF/PNG 会报 decode 错）＋ <code>audit_pdf_text.py --min-pt 5</code> ＋ <code>audit_figure_collisions.py</code> ＋ <code>require_matplotlib_panel_alignment(strict=True)</code>；全绿后仍须目检 PNG。</li>
+<li><strong>范本＝Biomni BRCA 主图</strong>（主任点名满意）：编辑式非对称，每图 ≥1 个 hero 面板，禁 3×3 等分网格，主次靠 subgridspec / width_ratios / 跨行跨列表达。</li>
+<li><strong>整图与面板一律禁 title / subtitle（含副标题、面板内小标题、说明性副题）</strong>：整图不画 fig level 标题，各面板不画 ax title / subtitle；身份只靠单字母 a/b/c… ＋ 轴标签 ＋ 列头 ＋ 图例 ＋ 图注，结论与数字注记放轴内或图注。出图前逐图自查，见到标题即返工。</li>
+<li><strong>面板数量要多（每图 ≥6，主图 6–10）、可视化类型要丰富</strong>（一图至少 4 类：条形／散点／热图／哑铃／箱线／小提琴／密度／森林／火山／示意卡），禁整图只有一种柱状。</li>
+<li><strong>画布 183 mm 宽</strong>，SVG/PDF/PNG300/TIFF600 四格式齐出；xlim 收紧到数据范围，禁大块空白与单面板独占半页；关键结论用彩色强调层（Δ 标注、数据集色带、星号）。</li>
+<li>范式细节见学习卡：<code>BiomniBRCA主图风格范本-编辑式非对称-面板无标题</code>、<code>主图禁面板标题-逐行subgridspec非对称</code>、<code>P14-TabulaSapiens2/P17-CellWhisperer 图版画法</code>、<code>方法-matplotlib一页多面板排版QA定型</code>。</li>
+</ol></div></article><article id="audit"><h2>提案对照<small>声明 vs 实测</small></h2><p class="am">只读核对：解析提案箱 §三 与 VETO 区，按验收关键词回查目标手册当前内容</p><div class="md aud"><p>已落 <b>18</b> · 存疑 <b>2</b> · 不适用 <b>19</b> · 状态需收口 <b>3</b>（共 44 条）</p><div class="tw"><table><thead><tr><th>ID</th><th>层级 · 声明</th><th>目标文件</th><th>实测</th><th>行</th><th>判定依据</th><th>待办</th></tr></thead><tbody><tr><td>RP-20261025-BRCAJY-01</td><td>L0 → **改判 L1**<br><span class="am" style="border:0;padding:0;margin:0">patched</span></td><td>3-投稿与论文.md</td><td><span class="v todo">未核验</span></td><td>—</td><td>验收命令无可提取关键词，需人工查看</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261025-BRCAJY-02</td><td>L3 记忆（不属规则层）<br><span class="am" style="border:0;padding:0;margin:0">triaged</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261025-BRCAJY-03</td><td>L1<br><span class="am" style="border:0;padding:0;margin:0">patched</span></td><td>8-域名与面板.md</td><td><span class="v ok">已落</span></td><td>25</td><td>符合预期：唯一权威源</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261025-BRCAJY-04</td><td>L0 → **user_rules §三 + L1 §10**<br><span class="am" style="border:0;padding:0;margin:0">patched</span></td><td>user_rules.md、0-制度维护法.md</td><td><span class="v ok">已落</span></td><td>23</td><td>符合预期：提案箱／提案箱</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261025-SYS-05</td><td>L0 全局<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261025-SYS-06</td><td>L1 `7-输出`/门铃脚本<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>2-知识库与科研闭环.md、AGENTS.md、user_rules.md</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-CLAW-01</td><td>Clawbot workspace（C:\Users\admin\.openclaw\workspace\AGENTS.md，落点须主任批准）<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>AGENTS.md</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-07</td><td>L0 铁律 6 × 0-制度维护法 §10 口径冲突<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>user_rules.md</td><td><span class="v ok">已落</span></td><td>23</td><td>符合预期：对应手册／提案箱</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-08</td><td>L0 §三「改规则」触发词<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>user_rules.md</td><td><span class="v ok">已落</span></td><td>23</td><td>符合预期：建议／捕获／不该犯</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-09</td><td>L1 §16<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>user_rules.md、0-制度维护法.md</td><td><span class="v ok">已落</span></td><td>23</td><td>符合预期：知识树／热度／分层／知识树</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-10</td><td>L1 手册 2 + L0 铁律 6/检索表 + `00_brain`<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-11</td><td>L1 §3 预算表 + 公开页<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-BRCAJY-12</td><td>L1 `3-投稿与论文.md`<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>3-投稿与论文.md</td><td><span class="v ok">已落</span></td><td>29</td><td>符合预期：Author information</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-BLT-13</td><td>L1 `3-投稿与论文.md` §校对送审与批准后提交<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>3-投稿与论文.md</td><td><span class="v ok">已落</span></td><td>52</td><td>符合预期：不算重复劳动</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-14</td><td>L0 `AGENTS.md` §检索纪律 + §分级检索表<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>AGENTS.md</td><td><span class="v ok">已落</span></td><td>34</td><td>符合预期：风险触发／动作优先</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-15</td><td>L1<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>0-制度维护法.md</td><td><span class="v todo">未核验</span></td><td>—</td><td>验收命令无可提取关键词，需人工查看</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-16</td><td>L1 3-投稿与论文 → 8-域名与面板<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>8-域名与面板.md</td><td><span class="v ok">已落</span></td><td>30</td><td>符合预期：不回写</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-17</td><td>L0<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-18</td><td>L0<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-19</td><td>`jivonlab-site\server.py`（RULES_FILES / RULES_TOTAL_BUDGET）<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>9-绘图与图版.md</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-20</td><td>L1 `3-投稿与论文.md`（6,118/102%）、`7-输出与工程约定.md`（8,071/135%）<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-21</td><td>L1 3-投稿与论文.md §提交证据<br><span class="am" style="border:0;padding:0;margin:0">patched</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-22</td><td>L1 `3-投稿与论文.md` §校对送审与批准后提交 + L0 红线3④<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>3-投稿与论文.md、user_rules.md</td><td><span class="v ok">已落</span></td><td>58</td><td>符合预期：投后确认截图／第 9 条</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-23</td><td>L0 红线2+AGENTS 铁律3 /<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>user_rules.md、AGENTS.md</td><td><span class="v ok">已落</span></td><td>10</td><td>符合预期：ai-agent-secrets／credentials.md</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-24</td><td>L0<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>user_rules.md、AGENTS.md</td><td><span class="v ok">已落</span></td><td>—</td><td>符合预期：身份与绘图速查／坑区</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-25</td><td>L0 AGENTS + 索引生成器<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>AGENTS.md</td><td><span class="v ok">已落</span></td><td>29</td><td>符合预期：9-绘图</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-28</td><td>L1 `0-制度维护法.md` §15<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-29</td><td>L1 `3-投稿与论文.md` + `7-输出与工程约定.md`<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-30</td><td>L1 `0-制度维护法.md` §14<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-26</td><td>L1 3-投稿＋L2 卡<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-27</td><td>L0 AGENTS + L1 手册头部<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>AGENTS.md</td><td><span class="v ok">已落</span></td><td>23</td><td>符合预期：邮件／订阅／回滚</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-31</td><td>L1 `0-制度维护法.md` §14<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-32</td><td>L0 红线 4 白名单＋L1 `1-协作与两机.md` 常驻计划任务表＋工作区 AGENTS 检索表<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>user_rules.md</td><td><span class="v ok">已落</span></td><td>12</td><td>符合预期：秘书待办提醒</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-33</td><td>L1 7-输出与工程约定.md<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>非规则层（记忆/面板/文件），不在本页核对范围</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-34</td><td>L0 user_rules.md §七<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>7-输出与工程约定.md、3-投稿与论文.md、user_rules.md</td><td><span class="v todo">未核验</span></td><td>—</td><td>验收命令无可提取关键词，需人工查看</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-35</td><td>L0 工具 close_check.py<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>—</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-36</td><td>L0 工具 rule_auto.py<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>3-投稿与论文.md</td><td><span class="v na">不适用</span></td><td>—</td><td>运行态或人工验收，本页不核对</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261026-SYS-15</td><td>L1 `7-输出与工程约定.md` 收尾链<br><span class="am" style="border:0;padding:0;margin:0">open</span></td><td>7-输出与工程约定.md</td><td><span class="v ok">已落</span></td><td>23</td><td>符合预期：gen_site_rules</td><td><span class="v todo">可收口</span></td></tr><tr><td>RP-20261026-SYS-37</td><td>L0 `user_rules.md` ＋ L1 `3-投稿与论文.md` 双红灯<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>20261026-d2e7f4a9.md、37-20261026.md</td><td><span class="v miss">目标缺失</span></td><td>—</td><td>未在规则清单：20261026-d2e7f4a9.md、37-20261026.md</td><td><span class="v miss">证据缺失</span></td></tr><tr><td>RP-20261026-KB-01</td><td>Clawbot workspace `AGENTS.md` 铁律 3（禁改令，落点须主任批准）＋ `00_System\bin\inbox_check.py` ＋ L0 红线 4<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>user_rules.md</td><td><span class="v miss">未命中</span></td><td>—</td><td>验收关键词 1 个均未达预期</td><td><span class="v miss">证据缺失</span></td></tr><tr><td>RP-20261027-SYS-38</td><td>L1<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>0-制度维护法.md、AGENTS.md</td><td><span class="v ok">已落</span></td><td>172</td><td>符合预期：独立审计／模式建议</td><td><span class="v na">—</span></td></tr><tr><td>RP-20261027-SYS-39</td><td>L1<br><span class="am" style="border:0;padding:0;margin:0">open</span></td><td>4-经费与成本.md</td><td><span class="v todo">未核验</span></td><td>—</td><td>验收命令无可提取关键词，需人工查看</td><td><span class="v na">—</span></td></tr><tr><td>VETO-20261026-01</td><td>制度维护法缺&quot;主动捕获&quot;节：旧版只有主任明确说&quot;严令禁止&quot;才建档，主任说&quot;这里不行／应该更好&quot;时无人归纳，缺口由主任自己发现<br><span class="am" style="border:0;padding:0;margin:0">verified</span></td><td>0-制度维护法.md</td><td><span class="v todo">未核验</span></td><td>—</td><td>验收命令无可提取关键词，需人工查看</td><td><span class="v na">—</span></td></tr><tr><td>VETO-20261026-02</td><td>`3-投稿与论文.md:12`「系统上传/提交动作需用户在场或授权」、`:24`「不代点最终 Submit」同 L0 红线3 及主任指令冲突；且缺「系统内文件有新版必须替换」「每次重转校对必送秘书」条款 → Bulletin 四图旧版仍挂系统、代理误称&quot;须用户本人登录&quot;<br><span class="am" style="border:0;padding:0;margin:0">patched</span></td><td>3-投稿与论文.md</td><td><span class="v ok">已落</span></td><td>14</td><td>符合预期：全流程代办／新版必替换／批准后提交</td><td><span class="v na">—</span></td></tr></tbody></table></div></div></article><article id="proposal"><h2>制度提案箱<small>落地状态台账</small></h2><p class="am">E:\ai agent\00_brain\制度提案箱.md · 35,272 字符 · 不计入预算</p><div class="md"><hr>
+<p>title: 制度提案箱（Rule Proposal Box）</p>
+<p>tags: [中枢, 制度, 提案, 规则, RP, user_rules, AGENTS]</p>
+<p>date: 2026-10-25</p>
+<p>version: 1</p>
+<hr>
+<h3>制度提案箱</h3>
+<p><strong>用途</strong>：承接各课题、各对话发现的<strong>规则缺口 / 冲突 / 过期</strong>，把「改规则」从口头提醒变成可追踪的固定动作。</p>
+<p><strong>边界</strong>：本表只管规则修订；需主任拍板的事仍走 <code>主任决策队列.md</code>，不要混记。</p>
+<p><strong>已并入制度（2026-10-25，2026-10-26 落点整合）</strong>：本机制已写入 <code>00_System\rules\0-制度维护法.md</code> §10「提案箱」；L0 主落点为 <code>user_rules.md</code> §三（改规则触发词含 <code>提案 / 提案箱 / 建议 / 捕获 / 不该犯</code>）。<code>AGENTS.md</code> 同名行仅为副本，可随时删除。因此<strong>提案不再往 L0 塞</strong>：任何 RP 建议加 L0 时，先按 §4 归属判定，能进手册的改判到手册并写理由。</p>
+<p><strong>同日新增 VETO 通道（P0）</strong>：主任在项目现场说「严令禁止／这个错误不该犯」，第 1 次即在此建档、当轮必落 L1 并由秘书即报主任微信，细则见 <code>0-制度维护法.md</code> §11。</p>
+<h4>一、纪律（五条）</h4>
+<ol>
+<li><strong>唯一写者</strong>：L0 <code>C:\Users\admin\.trae-cn\rules\user_rules.md</code>、L1 <code>制度手册-原文-*.md</code>、各项目 <code>AGENTS.md</code>/工作区 <code>.trae\rules\*</code>，只有制度层对话可改。其余对话<strong>只读 + 在本表追加一行提案</strong>，禁止直接改条文。</li>
+<li><strong>一行一提案</strong>，禁止把多件事塞一行；补丁必须是可粘贴的最小片段。</li>
+<li><strong>并发保护</strong>：改前记目标文件 SHA256（见第五节基线），改后复核；不一致立即停止并在本行写 <code>冲突</code>，不得强行覆盖。</li>
+<li><strong><code>verified</code> 是闸门</strong>：未跑验收命令、未贴输出，不得置 verified，也不得置 closed。</li>
+<li><strong>自动触发</strong>：同类错误第 2 次出现 → 强制建档；<strong>主任禁令（VETO）第 1 次即建档</strong>（见 §三 附区）；项目状态卡收尾流水必写 <code>制度提案：RP-xxx｜无</code>。</li>
+</ol>
+<h4>二、状态机</h4>
+<pre><code>open → triaged(接受/合并/驳回) → patched(附 改后文件:行) → verified(附命令输出) → closed</code></pre>
+<p>每态必须写日期与处理人。驳回也要写理由，不得静默删除。</p>
+<h4>三、未结提案</h4>
+<div class='tw'><table><thead><tr><th>RP-ID</th><th>提出方</th><th>层级</th><th>缺口证据（文件:行）</th><th>最小补丁</th><th>状态</th><th>验收命令</th></tr></thead><tbody><tr><td>RP-20261025-BRCAJY-01</td><td>BRCA JY 执行层</td><td>L0 → <strong>改判 L1</strong></td><td><code>user_rules.md</code> 全文检索「落账 / log.cmd」0 命中；条款在 L1 手册却按需读，只看 L0 的对话读不到 → 2026-10-25 MolOnc 投稿后未落账</td><td><strong>已落地</strong> <code>00_System\rules\3-投稿与论文.md</code> §状态落账（硬）：状态变化→先 <code>log.py -p/-j/-s</code> 落账再汇报；data.json 唯一源、禁改 HTML</td><td><strong>patched</strong>（2026-10-25 制度层；user_rules 102% 红，无位）</td><td><code>Select-String 3-投稿与论文.md &quot;log\.py&quot;</code> 命中 1（§六）</td></tr><tr><td>RP-20261025-BRCAJY-02</td><td>BRCA JY 执行层</td><td>L3 记忆（不属规则层）</td><td><code>.workbuddy\memory\MEMORY.md</code> L38-47：仍写「三处面板逐字节相同 / 内联 SEED / 点恢复原始数据」；实测 <code>投稿进展面板.html</code> 123005B vs <code>jivonlab-site\index.html</code> 41490B，架构已改为 <code>data.json</code> 单源 + <code>log.py</code> + <code>/api/data</code></td><td>原补丁保留：整段改写为 <code>唯一数据源 = jivonlab-site\data.json；写入口 = log.py record() / log.cmd / inbox\*.json；前端只是壳，轮询 /api/data；P1/P2 不再作数据源</code></td><td><strong>triaged</strong>（2026-10-25 制度层：移交 BRCA JY 项目对话自改，制度层不碰项目记忆）</td><td><code>Select-String MEMORY.md &quot;逐字节相同&quot;</code> 0 命中</td></tr><tr><td>RP-20261025-BRCAJY-03</td><td>BRCA JY 执行层</td><td>L1</td><td>旧面板 <code>d:\1. Author information\投稿进展面板.html</code>（10-23，13 项目，BRCA JY 仅 PLOS、无 MolOnc）与 <code>d:\2. Article processing\投稿进度看板.html</code>（公开 SEED 版）是否仍维护，制度无明文 → 同一事实存在两套互斥数据</td><td><strong>已落地</strong> <code>00_System\rules\8-域名与面板.md</code> 面板表下「唯一权威源（硬）」：data.json 唯一源；写入口 log.cmd/log.py、POST /api/log、inbox\*.json；P1/P2 仅归档禁改禁作数据源</td><td><strong>patched</strong>（2026-10-25 制度层）</td><td><code>Select-String 8-域名与面板.md &quot;唯一权威源&quot;</code> 命中 2（§六）</td></tr><tr><td>RP-20261025-BRCAJY-04</td><td>BRCA JY 执行层</td><td>L0 → <strong>user_rules §三 + L1 §10</strong></td><td>L0 第三节分级中枢只列 L0-L3 与工具，无「发现规则问题→提案→修订」入口；导致执行层意见只能留在对话里（对话结束即消失）</td><td><strong>已落地</strong>：① <code>user_rules.md</code> §三「改规则」触发词含 <code>提案 / 提案箱 / RP</code>（AGENTS 为副本，可删）；② <code>0-制度维护法.md</code> §10 提案箱全文（唯一写者/状态机/归属先行/verified 闸门/并发/扫 open）；③ 附录 A 第 2 行<strong>不采纳</strong>（user_rules 102% 红）</td><td><strong>patched</strong>（2026-10-25 制度层；落点已整合至 L0 全局）</td><td><code>Select-String user_rules.md &quot;提案箱&quot;</code> 命中≥1；<code>0-制度维护法.md &quot;提案箱&quot;</code> 命中 3（§六）</td></tr><tr><td>RP-20261025-SYS-05</td><td>制度层自查</td><td>L0 全局</td><td><code>rule_budget.ps1</code> 实测 <code>user_rules.md</code> 3,573/3,500 = 102.1% <strong>红灯</strong>（§3 旧记录误写 4,048）；红线下不得新增任何 L0 条款</td><td>压缩约 80 字符：删/合并与工作区手册重复的口径句（建议先动 §三 工具表说明），不动铁律 6 条</td><td><strong>verified</strong>（2026-10-25 制度层）：3,573→<strong>3,352</strong>（95.8%，黄灯未破线）；下沉「查密码顺序」→<code>6-安全与凭据.md</code>、「常驻计划任务」→<code>1-协作与两机.md</code>；修 §三 过期 L1 指针；原文存档 <code>_archive\user_rules-full-20261025.md</code></td><td><code>python -c</code> 计字符 → <code>USER 3352 3B1BA82C1522EE8D</code>（§六）</td></tr><tr><td>RP-20261025-SYS-06</td><td>制度层自查</td><td>L1 <code>7-输出</code>/门铃脚本</td><td><code>inbox_check.py</code> 的 <code>push_rules()</code> 只镜像 <code>AGENTS.md</code>、<code>rules/</code>、<code>user_rules.md</code>；<code>00_brain\制度提案箱.md</code> <strong>不在镜像内</strong> → 雷神无备份，单机损毁即失台账</td><td>在 <code>push_rules()</code> 增一项：scp <code>00_brain\制度提案箱.md</code> 到雷神 <code>00_brain\</code>；或在 <code>2-知识库与科研闭环.md</code> 记明&quot;提案箱不镜像&quot;的裁定</td><td><strong>verified</strong>（2026-10-25 制度层）：<code>push_rules()</code> 增 <code>LOCAL_PROPOSALS/RAZER_PROPOSALS</code> + 建 <code>E:\ai agent\00_brain</code> + 推送提案箱；<code>1-协作与两机.md</code> 通道五同步补口径。首次推因远端 <code>00_brain</code> 未建而失败，建目录后二次运行 4 项全通</td><td><code>push_rules()</code> → <code>已镜像 4 项（AGENTS.md、rules/、user_rules.md、提案箱）</code>；雷神 <code>dir /b &quot;E:\ai agent\00_brain&quot;</code> → <code>制度提案箱.md</code>（§六）</td></tr><tr><td>RP-20261026-CLAW-01</td><td>Clawbot 运维执行层</td><td>Clawbot workspace（C:\Users\admin\.openclaw\workspace\AGENTS.md，落点须主任批准）</td><td>openclaw-2026-10-25.log 三条 Sent via 行（Message ID 1792871282861 / 1792873592823 / 1792873643366，UTC 10-24 19:48:11 / 20:27:20 / 20:28:00）：同一 IJC 校对 PDF（942KB）三连发、文字措辞各异；首条 date=19:48:11 的行紧贴 20:27:19 error 行落盘 → 发送成功后出错重试，模型重新生成整条回复再次执行 send；框架层重试不去重，Clawbot 制度无防重条款</td><td>Clawbot AGENTS.md 增铁律：「同一成果只发一次：send 成功立即记 Message ID；重试或继续前必先回看聊天确认已发出，已发出只补一句状态说明，禁重发文件」（禁改令不变，待主任发话）</td><td><strong>verified</strong>（2026-10-26 执行层，主任发话批准；补丁落 workspace\AGENTS.md L267，改后 SHA FA2F046122D5DE59）</td><td>验收输出见 §六（&quot;只发一次&quot; 命中 1）</td></tr><tr><td>RP-20261026-SYS-07</td><td>Clawbot 运维执行层（违规自查）</td><td>L0 铁律 6 × 0-制度维护法 §10 口径冲突</td><td>铁律 6「留知识当轮落盘（学习卡或对应手册）」与 §10「执行层禁直改手册、只能在本表追加 RP」打架：2026-10-26 执行层按铁律 6 越权直写 7-输出与工程约定.md，事后才发现应走提案箱——两规冲突致执行层无所适从</td><td>铁律 6 落盘去向改「（学习卡或提案箱 RP）」并补半句「手册只走 RP」；字符净减约 3（L0 黄灯 90.3% 不破线）；具体措辞由制度层裁量</td><td><strong>verified</strong>（2026-10-26 制度层：落点整合至 L0 §三「落盘去向」）</td><td><code>Select-String user_rules.md &quot;对应手册&quot; 0 命中 且 &quot;提案箱&quot; 命中≥1</code></td></tr><tr><td>RP-20261026-SYS-08</td><td>主任反馈 + 执行层</td><td>L0 §三「改规则」触发词</td><td>主任口称「政策建议箱」（2026-10-26），L0 检索表手册 0 行触发词（改规则/制度/压缩/AGENTS 维护/预算/提案/RP/禁令/VETO）无「建议箱」，执行层未检索到 §10，先越权改手册后才发现提案箱</td><td>「改规则」行加触发词「建议 / 捕获 / 不该犯」（覆盖&quot;建议箱&quot;口称与执行/管理两层纠错语）；与既有「提案」合并，L0 控制在 89.8%</td><td><strong>verified</strong>（2026-10-26 制度层：三词已入 L0 §三）</td><td><code>Select-String user_rules.md &quot;建议&quot; &quot;捕获&quot; &quot;不该犯&quot;</code> 各命中≥1</td></tr><tr><td>RP-20261026-SYS-09</td><td>执行层（自动捕获）</td><td>L1 §16</td><td>黄灯只能删重复行，删不动就只报主任；规则无热度分层，无法判断哪节是主干、哪节可下沉</td><td>新增 §16 知识树与热度（热度=2×CHANGELOG+触发词命中；前15%主干/中段枝/其余叶；主干保通畅、叶只下沉不删）+ rule_auto 等价改写与 diff</td><td><strong>verified</strong>（2026-10-26 制度层：§16 已落、L0 §三加触发词、索引重建）</td><td><code>Select-String user_rules.md &quot;知识树&quot; &quot;热度&quot; &quot;分层&quot;</code> 各命中≥1；<code>0-制度维护法.md &quot;知识树&quot;</code> 命中≥1；<code>rules_index.py --check</code> 索引一致</td></tr><tr><td>RP-20261026-SYS-10</td><td>主任反馈 + 执行层</td><td>L1 手册 2 + L0 铁律 6/检索表 + <code>00_brain</code></td><td>各执行层（投稿/画图/手稿/数据）同类操作各自摸索不留痕：正向套路（投稿 SOP、主图标准、手稿写法）无落点载体、无写入触发，跨对话不复用</td><td>①新建 <code>00_brain\执行经验库.md</code>（五域分节，一行一条 EP：触发场景｜固化做法｜坑｜来源与日期；画图域收编规则案例库主图标准指针 EP-FIG001）；②手册 2 加「执行经验库」节：开工前查对应域命中即照做、做法过时当场改；完成可复用动作（投稿提交/校对、主图定稿、手稿段定稿、管线跑通）收尾前提炼 1 条，状态卡流水写「经验沉淀：EP-xxx｜无」；③L0 铁律 6 落盘去向加「执行经验库」、检索表加「经验/复用」触发词；④四分流：文献→学习卡、错误→规则案例库、缺口→RP、套路→经验库</td><td><strong>verified</strong>（2026-10-26 执行层代行制度层，主任直接指派）</td><td>验收输出见 §六</td></tr><tr><td>RP-20261026-SYS-11</td><td>主任反馈（第 1 条补充）</td><td>L1 §3 预算表 + 公开页</td><td>§3 预算表 AGENTS 1,783（89%）、手册合计 30,000 / 28,599（95%）均为旧口径，与实测（1,763 / 29,757）不符；jivonlab 公开页只有提案对照，无变更时间线，主任看不到制度演化</td><td>①§3 表回填实测：AGENTS 1,763（88%，绿灯）、手册合计口径 30,000→54,000、实测 29,757（55%）；②<code>gen_site_rules.py</code> 增 <code>load_changelog(limit=12)</code> 与 <code>#timeline</code> 区块；③台账表头同步 54,000 口径</td><td><strong>verified</strong>（2026-10-26 制度层）</td><td><code>rule_auto.py --dry</code> → <code>AGENTS 1763/2000（88%）</code>；<code>gen_site_rules.py</code> → <code>files=11 total=32139/59500 (54.0%) audit={&#x27;ok&#x27;: 7,&#x27;miss&#x27;: 0,&#x27;gap&#x27;: 0}</code>；公网 <code>rules.html</code> → <code>bytes=28418 变更时间线=3</code></td></tr><tr><td>RP-20261026-BRCAJY-12</td><td>BRCA JY 执行层（主任反馈）</td><td>L1 <code>3-投稿与论文.md</code></td><td>2026-10-26 本对话投稿执行至 Submit 被拦才发现 7 位作者邮箱缺失；权威输入源 <code>d:\1. Author information\BRCA JY.xlsx</code>（Sheet1 姓名/单位/角色/邮箱、Sheet2 投稿台账）全程未读取——制度无「投稿任务开工必读课题 Excel」条款，执行层只凭对话上下文拼作者信息，缺了无从发现</td><td><strong>已落地</strong> <code>3-投稿与论文.md</code> 新增「投稿开工」节：任何投稿执行任务开工第一步先 Glob <code>d:\1. Author information\*.xlsx</code> 定位课题同名 xlsx 并读取（作者信息＋投稿台账 sheet）；作者邮箱/单位/署名角色以该 Excel 为<strong>唯一权威源</strong>，Excel 与系统内不一致时报主任裁定，<strong>禁止编造</strong>；同轮 SYS-16 下沉腾容 5,998→<strong>5,800</strong></td><td><strong>verified</strong>（2026-10-26 制度层）</td><td><code>Select-String 3-投稿与论文.md &quot;Author information&quot;</code> 命中 3（L28/L56/L57，≥1 达标）且字符数 5,800 ≤6,000</td></tr><tr><td>RP-20261026-BLT-13</td><td>主任反馈（主任令，原话逐字）</td><td>L1 <code>3-投稿与论文.md</code> §校对送审与批准后提交</td><td>主任原话「如果我反馈有问题，你后面仍然需要把这个校对的 PDF 发到我的微信上让我审核……这不算重复，这个你应该在规则里面写清楚，再完善一下」（2026-10-26）；原第 3 条触发范围只有「首次与每次替换后」，<strong>未覆盖主任反馈修改后的再送审轮</strong>，存在「刚发过就跳过」漏洞</td><td>第 3 条改写为「每次重转必送审，多轮循环（2026-10-26 主任令补充）」：触发范围扩为「首次、每次替换后、每次按主任反馈修改后均算」；新增「<strong>主任反馈→修改→重新生成的校对 PDF 必须再次微信送审</strong>；每轮再送审为强制动作，<strong>不算重复劳动</strong>，不得以「刚发过」跳过，循环至主任原话级批准（第 4 条）为止」。同轮等量压缩五处（L12 代办句去重、L28 信号句、成果交付块、第 1/2 条），6,135→<strong>5,998</strong> 红灯解除</td><td><strong>verified</strong>（2026-10-26 制度层）</td><td><code>Select-String 3-投稿与论文.md &quot;不算重复劳动&quot;</code> 命中≥1 且字符数 ≤6,000</td></tr><tr><td>RP-20261026-SYS-14</td><td>主任反馈（方案批准）+ 制度层诊断</td><td>L0 <code>AGENTS.md</code> §检索纪律 + §分级检索表</td><td>三类检索失效：①<strong>词汇不匹配</strong>（SYS-08「政策建议箱」、VETO-01「补货」）——触发词是开放集合，永远补不全；②<strong>未知未知</strong>（gateway 重启、绘图端侧缓存）——执行层以为不用查就不查；③<strong>路由单点</strong>（AGENTS 检索表是唯一入口，长对话压缩即丢）。根因：按主题词触发，未覆盖「动作类风险」</td><td>修法 A+B（全文 <code>outputs\检索失效根因与修法-20261026.md</code>）：A 风险触发条——凡不可逆／有副作用／跨系统／对外／涉凭据的动作，动手前强制查 <code>7-输出与工程约定</code> 坑区＋主题手册，拿不准一律算有风险；B 动作路由行——删除/覆盖/重命名/发送/提交/重启/发布/上线/改配置 → <code>7</code>，动作优先于主题。等价改写保 ≤2,000：手册路径省略 <code>00_System\rules\</code> 前缀、检索纪律压行；顺手对齐 SYS-10 接线（铁律 6 加执行经验库、表加 经验/EP）</td><td><strong>verified</strong>（2026-10-26 制度层，主任批准方案）</td><td><code>AGENTS.md</code> 实测 1,798/2,000（89.9% 绿）；<code>Select-String AGENTS.md &quot;风险触发&quot; &quot;动作优先&quot;</code> 各命中 1；<code>rules_index.py --check</code> 索引一致；公网 <code>rules.html</code> bytes=35476、<code>风险触发</code>/<code>动作优先</code>/<code>SYS-14</code> 各 1</td></tr><tr><td>RP-20261026-SYS-15</td><td>执行层（自动捕获）</td><td>L1</td><td>触发词失效修法C+E：踩坑后主任口语词未同轮进触发词；L0 防膨胀缺认知定位（检索是概率系统）</td><td><strong>已落地</strong> <code>0-制度维护法.md</code>：§1 加第4条（检索是概率系统，不为零踩坑撑爆 L0，缩短「踩坑→当轮落规则」回路）；§9 补「内容与触发词同轮落」；§12 补「口语/转写词同轮进触发词与检索表」；黄灯进一出一：5,730→<strong>5,719</strong>（净 -11），原文存档 <code>_archive\0-制度维护法-preSYS15-20261026.md</code></td><td><strong>verified</strong>（2026-10-26 制度层）</td><td>`Select-String -Pattern &quot;概率系统\</td><td>同轮落\</td><td>口语&quot;` 命中 3（L12/L103/L139，≥2 达标）；字符数 5,719 ≤ 基线 5,730</td></tr><tr><td>RP-20261026-SYS-16</td><td>执行层（自动捕获）</td><td>L1 3-投稿与论文 → 8-域名与面板</td><td>3-投稿与论文 6,000 红灯：L55-56 落账机制细化（秘书转达受落账约束/提交后不回写=失败）与面板运维强相关却堆在投稿手册，挤占投稿域容量</td><td><strong>已落地</strong>：L55-56 下沉到 <code>8-域名与面板.md</code> §2「唯一权威源」块后（内容全保留，改写压缩 ~570→~370 字符）；3-投稿「状态落账」节留一行指针；改前全量存档 <code>_archive\3-投稿与论文-preSYS16-20261026.md</code>、<code>_archive\8-域名与面板-preSYS16-20261026.md</code>；同轮 BRCAJY-12 加回投稿开工节，3-投稿 5,998→<strong>5,800</strong></td><td><strong>verified</strong>（2026-10-26 制度层）</td><td><code>Select-String 8-域名与面板.md &quot;不回写&quot;</code> 命中 1（L30）；3-投稿 5,800 ≤6,000</td></tr><tr><td>RP-20261026-SYS-17</td><td>执行层（自动捕获）</td><td>L0</td><td>_INDEX 4,927 超目标 3,500：每节带主题描述+层+热度三列冗余，跨手册检索成本高；另 _book_triggers 匹配 00_System 前缀，已因 AGENTS 检索表路径缩写格式失效，手册节触发词回填全空</td><td>rules_index.py 生成逻辑改三要素（文件/节行/触发词），删主题与层/热度展示列（排序仍按热度）；_book_triggers 改匹配缩写格式并补 .md 双键；重建 _INDEX ≤3,500</td><td><strong>verified</strong>（2026-10-26 改前备份 rules_index-preSYS17-20261026.py）</td><td><code>python rules_index.py</code> 重建 → 实测 _INDEX 3,353 字符/80 行 ≤ 3,500；12 文件/73 节；手册节触发词回填生效（1/2/4/5/7/8 号手册全部非空）</td></tr><tr><td>RP-20261026-SYS-18</td><td>执行层（自动捕获）</td><td>L0</td><td>AGENTS 1,798/2,000 89.9% 近黄灯贴顶：检索表 10 行平均 9-15 个触发词冗余，检索纪律 2 条可并 1</td><td>检索表每行去重留 3-5 个高区分度词；检索纪律 2 压 1（保留索引用法+风险触发）；铁律 6 条与动作路由行不动</td><td><strong>verified</strong>（2026-10-26 改前备份 AGENTS-preSYS18-20261026.md）</td><td>实测 AGENTS 1,364 ≤ 1,600；<code>动作优先</code>×1、<code>Fan Jiang, MBBS</code>×1（铁律 6 条与动作路由行原样）</td></tr><tr><td>RP-20261026-SYS-19</td><td>执行层（自动捕获）</td><td><code>jivonlab-site\server.py</code>（RULES_FILES / RULES_TOTAL_BUDGET）</td><td>预算口径滞后：RULES_FILES 11 项缺 <code>9-绘图与图版.md</code>；RULES_TOTAL_BUDGET=30,000 为旧值（现行 L0+0-8 口径 59,500），<code>/rules</code> 动态视图与 gen_site_rules.py 口径不一致</td><td>RULES_FILES 补 9-绘图与图版.md、TOTAL 改 59,500；不动运行中服务，下次触碰 server.py 时同步</td><td><strong>verified</strong>（2026-10-26 制度层，主任批准「三项遗留请修好」）</td><td><code>import server</code> 实测：<code>files= 12 / budget= 59500 / last= 9-绘图与图版.md</code>（退出码 0）；运行中面板未重启，下次触碰生效</td></tr><tr><td>RP-20261026-SYS-20</td><td>执行层（自动捕获）</td><td>L1 <code>3-投稿与论文.md</code>（6,118/102%）、<code>7-输出与工程约定.md</code>（8,071/135%）</td><td>权威重测双红灯；rule_auto --dry 只列 L0+黄灯文件，红灯不在自动处置范围；内容多为主任令原文（VETO-02/BLT-13/工程约定），自动压缩易丢硬条款</td><td>按候补方案落地（主任 2026-10-26 拍板「压缩双红灯」）：3-投稿句级精简至 <strong>5,945</strong>（99.1%），硬条款逐条保留；7-输出把 TRAE/ToDesk 取证迁存档、正文留规则＋指针，压至 <strong>4,826</strong>（80.4%）；改前全量存档 <code>_archive\3-投稿与论文-full-20261026.md</code>、<code>_archive\7-输出与工程约定-full-20261026.md</code>；节结构与标题未动；期间发现 3-投稿盘上被回退为缺 2026-10-26 硬条款的旧版，已用存档还原后再压</td><td><strong>verified</strong>（2026-10-26 制度层，主任拍板）</td><td>文本模式实测 3-投稿 5,945（SHA16 3DCB6C0502060613）/ 7-输出 4,826（D42EE8B5A623FCD7），均 ≤6,000；<code>rules_index.py --check</code> 索引一致；0-制度 §3 已回填「无红灯」、手册合计 31,076</td></tr><tr><td>RP-20261026-SYS-21</td><td>执行层（自动捕获）</td><td>L1 3-投稿与论文.md §提交证据</td><td>投稿成功判据存在单点漏洞：确认页/截图及本地落账可完成，但未强制回到作者区队列与稿件详情复核持久状态，容易让用户看到不同队列时误判无记录，也无法识别提交事务未持久化。</td><td>将提交完成闸门升级为四证闭环：确认页/确认信存档；作者区正确队列回查；稿件详情核对ID、完整标题、状态、Received时间；隔时二次回查或服务端邮件。未完成回查只能标记Submitted-pending-verification，不得报成功。</td><td><strong>patched</strong>（2026-10-26 制度层，条款落 3-投稿 §8 四证闭环；运行态验收挂下次投稿）</td><td>浏览器登录作者区，队列计数与稿件详情同时命中稿号、完整标题、非Draft状态；隔时复核仍存在</td></tr><tr><td>RP-20261026-SYS-22</td><td>主任令（ICH 投稿对话，原话逐字）</td><td>L1 <code>3-投稿与论文.md</code> §校对送审与批准后提交 + L0 红线3④</td><td>主任原话「请在制度里面写清楚，每次投稿完成之后必须要发截图，以便让我确认。因为有时候邮件我不一定能收得到。」（2026-10-26）；原第 8 条止于三件套存档与文字回报，无「截图经微信发主任」强制；L0 红线3④ 先行落位但引用悬空（原指「第 5 条」，手册无此条）</td><td>第 8 条末句改指第 9 条＋新增第 9 条「<strong>投后确认截图，无截图＝没投完</strong>」：Submit 成功当场抓确认页截图经微信发主任，附期刊名＋状态＋提交时间；送达判据=网关日志 <code>sendFileMessageWeixin: success</code>，网关停摆禁静默、明告并约补发；截图存 <code>投稿包\Receipts\</code>；L0 ④ 引用改指手册第 9 条；同轮七处等价压缩 6,122→<strong>5,952</strong> 红灯解除</td><td><strong>verified</strong>（2026-10-26 制度层，主任直接下令当轮落 L1）</td><td><code>Select-String 3-投稿与论文.md &quot;投后确认截图&quot; &quot;第 9 条&quot;</code> → hit L56/L55 且 chars=5,952 ≤6,000（sha A962AA52378DE806）；<code>user_rules.md</code> chars=2,210（sha A177B4BF3D447021）hit L11（§六）</td></tr><tr><td>RP-20261026-SYS-23</td><td>执行层（自动捕获）</td><td>L0 红线2+AGENTS 铁律3 /</td><td>凭据口径三方打架：6-安全 L5-16 定 credentials.md 明文唯一源（secret.py 仅留 API token 读取），user_rules 红线2/AGENTS 铁律3/2:L28/4:L7⑤ 仍写 secret.py+.ai-agent-secrets 旧口径</td><td>统一 credentials.md 唯一源口径：改 user_rules 红线2、AGENTS 铁律3、2:L28、4:L7⑤、6:L24 清单标题；另 7-输出 L18 旧口径同轮统一（同意图延伸）</td><td><strong>verified</strong>（2026-10-26 制度层，主任回「准」批准当轮落改）</td><td>Select-String user_rules.md,AGENTS.md &#x27;ai-agent-secrets&#x27; 0 命中 且 &#x27;credentials.md&#x27; 各≥1；实测 ALL PASS（§六）</td></tr><tr><td>RP-20261026-SYS-24</td><td>执行层（自动捕获）</td><td>L0</td><td>L0→L1 引用断链：user_rules L19 引『7-输出④』（该手册仅§1-3）、L6 引『3-投稿 §身份与绘图速查』（无此节）、L13 一稿多头引『§3』（实为§5）；AGENTS 风险触发引『7-输出坑区』（无坑区节）</td><td>四处指针改指实存节：L19→7-输出§3、L6→3-投稿§4+§八、L13→3-投稿§5、AGENTS 检索纪律去「坑区」改指手册；另 user_rules 版本行标 2026-10-26 修订版</td><td><strong>verified</strong>（2026-10-26 制度层，主任回「准」批准当轮落改）</td><td>Select-String user_rules.md &#x27;身份与绘图速查&#x27; 0 命中；Select-String AGENTS.md &#x27;坑区&#x27; 0 命中；实测 ALL PASS（§六）</td></tr><tr><td>RP-20261026-SYS-25</td><td>执行层（自动捕获）</td><td>L0 AGENTS + 索引生成器</td><td>绘图域 AGENTS 层无入口：分级检索表 0-8 号行齐全独缺 9-绘图行（user_rules §八直指 9 号但 AGENTS 路由断）；_INDEX L81 9-绘图章行触发词空白（§1 行有词，单节手册章行回填缺词）</td><td>AGENTS 表补行『绘图/图版/主图/配色/figure→9-绘图与图版』；rules_index.py L89 章行回填改 _short_trig(book_trig)（读码证实 _INDEX 节行触发词自动继承 AGENTS 表，覆盖面大于原案）；_INDEX 重建 3,179 字符/81 行</td><td><strong>verified</strong>（2026-10-26 制度层，主任回「准」批准当轮落改）</td><td>Select-String AGENTS.md &#x27;9-绘图&#x27; 命中1；python rules_index.py --check 索引一致；实测 ALL PASS（§六）</td></tr><tr><td>RP-20261026-SYS-28</td><td>主任令（BRCA JY 投稿对话，原话逐字）</td><td>L1 <code>0-制度维护法.md</code> §15</td><td>状态卡制度悬空：4 本手册 6 处引用「状态卡/进展流水/收尾三字段」零定义（0-制度维护法收尾钩子、2-知识库 EP 字段、7-输出、3-投稿），落点/节结构/§八格式无权威条款</td><td>主任原话「落点没有的话，你完善一下相关的制度」→ §15 整节重写「收尾钩子与状态卡」：唯一落点 <code>00_brain\课题状态卡\&lt;课题名&gt;.md</code>（与 close_check.py CARDS 同源）、节固定一~八（§八=进展流水，每工作单元一行 <code>YYYY-MM-DD HH:mm 一句话进展</code>）、收尾三字段 经验沉淀/命中 EP/制度提案；同轮 7 处等价压缩＋§3 预算表回填实测数；改前存档 <code>_archive\0-制度维护法-preSYS23-20261026.md</code>（存档名沿用起草时编号，提案实为 SYS-28）</td><td><strong>verified</strong>（2026-10-26 制度层，主任当轮下令）</td><td>python len 实测 0-制度维护法 5,562 ≤6,000；<code>rules_index.py</code> 重建 _INDEX 3,120 字符且 --check 索引一致；BRCA-Jun Yi.md §八已按新格式补两行</td></tr><tr><td>RP-20261026-SYS-29</td><td>执行层（自动捕获）</td><td>L1 <code>3-投稿与论文.md</code> + <code>7-输出与工程约定.md</code></td><td>双手册盘上持续漂移：3-投稿 7,443→7,644（124%，红灯；SYS-22 verified 时记 5,952、SYS-20 压至 5,945）；7-输出 4,826→5,751（SYS-20 verified 基线 4,826）；同日两次实测均净增，疑并行会话改动未走「进一出不许净增」纪律</td><td>先 <code>diff _archive\3-投稿与论文-full-20261026.md</code> 定位漂移源＝NCS-4501 并行会话新增 EM 节等；EM 操作现场 7 条下沉 L2 卡 <code>坑-EM操作现场与提交后复核-NCS4501-20261026-a3f1b2c7.md</code>，原位留硬红线（声明终检/提交即锁定/双台账互证/收尾三件套）＋指针＋触发词；参考文献条、校对 PDF 获取信号同步下沉两卡（b8d2e4f1/c5e9a1d3）留硬定义；余量散点等价压缩；7-输出 5,751&lt;6,000 未动</td><td><strong>verified</strong>（2026-10-26 制度层，按 SYS-31 分级派发纪律执行）</td><td>python len 实测 3-投稿 5,998 ≤6,000；<code>kb.py index --cards</code> 555 docs 含 3 张新卡</td></tr><tr><td>RP-20261026-SYS-30</td><td>主任令（BRCA JY 投稿对话，原话逐字）</td><td>L1 <code>0-制度维护法.md</code> §14</td><td>红灯回压无硬条款：压缩依赖当值/他席对话提醒，跨对话互相等，写入者不自闭环</td><td>§14 落红灯回压硬条款「写入致手册破 6,000 的，当轮等价压缩回 ≤6,000 才算完；存档后当场压，禁移交他席」＋触发词加「回压」；§14 自身等价压缩找补保黄灯不净增</td><td><strong>verified</strong></td><td>python len 实测 0-制度维护法 5,548 ≤ 改前 5,562 且 <code>rules_index.py --check</code> 索引一致</td></tr><tr><td>RP-20261026-SYS-26</td><td>执行层（自动捕获）＋主任令（TB enhance 修回素材）</td><td>L1 3-投稿＋L2 卡</td><td>3-投稿触发词含『审稿意见』但内容止于投稿提交：投后半程（意见接收/逐点回复/返修重投/接收后/拒稿后）无规则可查</td><td>落『投后半程』节（意见接收→逐点回复→返修重投→接收后/拒稿后，TB-NHANES 实证）；细则下沉 L2 卡 <code>…d7c3a9e5.md</code>（触发词：修回/审稿意见/回复信/重投）；插节净增由批 1-3 共 14 处等价压缩找平</td><td><strong>verified</strong>（2026-10-26 制度层，主任令 TB-NHANES（iScience ISCIENCE-D-26-09306）修回素材当轮落）</td><td>python len 实测 5,990 ≤6,000；Select-String &#x27;投后半程&#x27; 命中≥1；<code>rules_index.py --check</code> 索引一致；kb.py index 557 docs 含新卡</td></tr><tr><td>RP-20261026-SYS-27</td><td>执行层（自动捕获）</td><td>L0 AGENTS + L1 手册头部</td><td>检索触发词盲区六类：发邮件、买服务/订阅、长任务/定时后台、微信/秘书、实验/数据、回滚——AGENTS 检索表与 _INDEX 均无路由，同类动作踩坑时检索不到对应手册</td><td>按归属补词：邮件→3-投稿或新增，订阅/额度→4-经费，定时/后台→1-协作，微信/秘书→7-输出§3，实验/数据→2-知识库，回滚→0-制度§9；实落 AGENTS 六行（1+定时任务、2+实验/数据、3+邮件、4+订阅、7+微信、0+回滚），_INDEX 节行触发词自动继承，手册头部无需动</td><td><strong>verified</strong>（2026-10-26 制度层，主任回「准」批准当轮落改）</td><td>Select-String AGENTS.md &#x27;邮件&#x27;,&#x27;订阅&#x27;,&#x27;回滚&#x27; 各命中≥1；实测 ALL PASS（§六）</td></tr><tr><td>RP-20261026-SYS-31</td><td>主任令（BRCA JY 对话，原话逐字）</td><td>L1 <code>0-制度维护法.md</code> §14</td><td>压缩纪律原只讲「压回线内」，易被执行成无脑精简丢记忆；缺「分级派发/分级递进」制度，压与记的矛盾无解</td><td>主任原话「可以把一些制度往下派发，把这个等级立起来……分级递进，兼顾检索速率和记忆深度」→ §14 红灯回压 bullet 扩写「压≠删记忆：细则下沉 L2 留一行指针＋触发词（同 §16 降层），硬条款不动；分级递进 L0→L1→L2」，触发词加「分级/下沉/递进」，与 §16 知识树分层打通不新开节；主编辑净增 62 由 13 处等价压缩找平</td><td><strong>verified</strong>（2026-10-26 制度层，主任当轮下令）</td><td>python len 实测 5,548 与改前持平（净 0）；<code>rules_index.py --check</code> 索引一致；首个实战＝SYS-29 EM 节下沉</td></tr><tr><td>RP-20261026-SYS-32</td><td>主任指令（原话「近期待办的提醒，应该是交给秘书来提醒我。能把这个制度和这个 rules 设计好吗」）</td><td>L0 红线 4 白名单＋L1 <code>1-协作与两机.md</code> 常驻计划任务表＋工作区 AGENTS 检索表</td><td>截止类待办（ICH 10-28 技检、TB Omics 11-08 修回）只活在会话记忆里，会话关闭即失忆无兜底；秘书微信推送白名单（L0 红线 4）未含待办提醒，脚本直发即越权</td><td><strong>引擎已落地</strong>：<code>00_System\bin\todo_alert.py</code>＋<code>run_todo_alert.cmd</code>＋计划任务 <code>XiAn-TodoAlert</code> 每日 08:10（纯脚本零 token，合门铃纪律）：解析 <code>manuscript_index.md</code> §四带截止日条目，D-2/D-1/D-0 各推一次/天、逾期每日催，state 防重，openclaw 直发败落 outbox 兜底；AGENTS 检索表「1-协作与两机」行已补触发词「待办提醒/秘书推送」。<strong>待批两处</strong>：①L1 计划任务表补 <code>XiAn-TodoAlert</code>；②L0 红线 4 白名单增补「秘书待办提醒（仅 D-2 内/逾期才推）」</td><td><strong>verified</strong>（2026-10-26 主任回「批」当轮落：L0 红线 4 白名单已增补「秘书待办提醒（todo_alert.py＋XiAn-TodoAlert，仅 D-2 内/逾期才推、每日至多一次）」；L1 1-协作计划任务表已登记 XiAn-TodoAlert 08:10；试跑 sent ICH D+2）</td><td><code>python &quot;e:\ai agent\00_System\bin\todo_alert.py&quot;</code> → pushed≥1 微信收到提醒；<code>schtasks /query /tn XiAn-TodoAlert</code> → 存在；Select-String user_rules.md &#x27;秘书待办提醒&#x27; 命中1</td></tr><tr><td>RP-20261026-SYS-33</td><td>执行层（自动捕获）</td><td>L1 7-输出与工程约定.md</td><td>7-输出与工程约定.md 第三次破线：4,826（SYS-20 基线）→5,751（SYS-29）→6,597 实测；膨胀主源=OpenClaw 运维节 4,664 字符，堆 10-26 诊断长文（watchdog v3 四层/ret=-2 三层定谳/冷重启五步/ToDesk 重启分型/TRAE 崩溃处置），均实证细节</td><td>按 SYS-31 分级递进：诊断长文下沉 L2 学习卡（复用既有 2 张坑卡+新建 1 张 watchdog v3 卡），手册原位只留铁律级硬规则一行+指针，压回 ≤6,000</td><td><strong>verified</strong>（2026-10-26 制度层，主任回准）：全文重写 4,230/6,000（71%），SHA <code>7DE163C04BF8F5C2</code>；OpenClaw 节压至 7 硬规则+1 指针，诊断长文下沉 3 张 L2 卡（新建 <code>坑-OpenClaw秘书ret-2三层根因与watchdog-v3自愈-20261026-sys33.md</code>）；原文存档 <code>_archive\7-输出与工程约定-preSYS33-20261026.md</code>（改前 SHA <code>C676D5B326377A35</code>）</td><td>python len 实测 → 4,230 ≤6,000（§六）</td></tr><tr><td>RP-20261026-SYS-34</td><td>执行层（自动捕获）</td><td>L0 user_rules.md §七</td><td>user_rules L43（§七 秘书）引『发消息与落账命令见 3-投稿与论文.md §2/§5』断链：3-投稿已无 openclaw 发消息命令（实测 0 命中，SYS-20 压缩时移除），发消息命令现居 7-输出与工程约定.md §3 通道验活条；L43 系首轮报告遗留待核项，本轮证实过期</td><td>L43 指针改『发消息命令见 7-输出与工程约定.md §3，落账见 3-投稿与论文.md §状态落账』</td><td><strong>verified</strong>（2026-10-26 制度层，主任回准）：L43 已改『发消息命令见 7-输出与工程约定.md §3，落账见 3-投稿与论文.md §状态落账』；user_rules 2,516/3,500（71%），SHA <code>66D2B5BD70CEC210</code>；存档 <code>_archive\user_rules-preSYS34-20261026.md</code>（改前 SHA <code>814630035F6F0E33</code>）</td><td>Select-String user_rules.md &#x27;§2/§5&#x27; → 0 命中；sys33 指针命中 1（§六）</td></tr><tr><td>RP-20261026-SYS-35</td><td>执行层（自动捕获）</td><td>L0 工具 close_check.py</td><td>0-制度维护法 §15（SYS-28）定义状态卡收尾三字段（经验沉淀/命中 EP/制度提案），但 close_check.py 收尾钩子只自动补写『制度提案：』一字段（L25 MARK），前两字段无写入钩子，SYS-28 制度与工具未接线——全 19 张状态卡流水均缺前两字段</td><td>close_check.py 补写逻辑扩为三字段：今日流水无『经验沉淀：』行则自动补『经验沉淀： 无』，无『命中 EP』行则补『命中 EP： 无』，保持幂等不重复</td><td><strong>verified</strong>（2026-10-26 制度层，主任回准）：close_check.py 补写逻辑扩三字段（MARK/FIELD_EP/FIELD_EXP 三判定＋幂等补「无」），SHA <code>A12C0378A0213BC0</code>；存档 <code>_archive\close_check-preSYS35-20261026.py</code>（改前 SHA <code>5533A7368FDF6B29</code>）</td><td>实测 ICH 投稿线.md → <code>已自动补写三字段 1 份：ICH 投稿线.md</code>（§六）</td></tr><tr><td>RP-20261026-SYS-36</td><td>执行层（自动捕获）</td><td>L0 工具 rule_auto.py</td><td>rule_auto.py 预算巡检盲区：--dry 只列 L0+黄灯文件，L1 红灯（&gt;6,000）不报告——本轮 7-输出 6,597 红灯实测未入 dry 输出，SYS-20 已注明『红灯不在自动处置范围』；并行会话破线两度（SYS-29/33）均靠盘点人工发现，巡检工具恰好对最需告警的状态失明</td><td>rule_auto.py 巡检范围扩至全部 L1 手册：红灯文件在 --dry 输出单列『红灯』段（只报告不自动压，遵循 SYS-31 压缩归写入者）；可选挂门铃每日一查</td><td><strong>verified</strong>（2026-10-26 制度层，主任回准）：rule_auto.py 新增 <code>_l1_targets()</code>＋main 尾部 L1 红灯报告段（只报不压、微信每日一次去重），SHA <code>21C34DDA5AFD1644</code>；存档 <code>_archive\rule_auto-preSYS36-20261026.py</code>（改前 SHA <code>BBE26CBD445E6D6D</code>）</td><td>mock 实测：置 3-投稿=6200 后 dry 输出含 <code>【L1 红灯】3-投稿与论文.md 6200/6000（103%）</code>＋回压提示行（§六）；常规 dry 无红灯段（7-输出已回线内，正确）</td></tr><tr><td>RP-20261026-SYS-15</td><td>制度层（公开页两问自查）</td><td>L1 <code>7-输出与工程约定.md</code> 收尾链</td><td><code>jivonlab.com/rules.html</code> 为静态快照，规则变更后无自动 gen+推送环节，公网滞后于实盘（本轮两问即因此：改了分级公网仍旧）；且 run_site/server.py 改动需手动重启才对 board <code>/rules</code> 生效，均无制度条文</td><td>在 <code>7-输出与工程约定.md</code> 收尾链增一行：改动 <code>00_System\rules\*</code> 或 <code>server.py</code> 当轮 → 跑 <code>gen_site_rules.py</code>＋推送 GitHub Pages＋重启 run_site.py（三步清单）</td><td><strong>open</strong>（2026-10-26 制度层）</td><td><code>Select-String 7-输出与工程约定.md &quot;gen_site_rules&quot;</code> 命中≥1</td></tr><tr><td>RP-20261026-SYS-37</td><td>主任两问后授权回压（分级递进）</td><td>L0 <code>user_rules.md</code> ＋ L1 <code>3-投稿与论文.md</code> 双红灯</td><td>并行会话写入致 user_rules 3,790/3,500（108%）、3-投稿 6,405 实测/6,000（107%）；主任定调「分级管理、逐层向下压，提高检索效率与记忆深度」，授权当轮回压</td><td>①3-投稿：成果交付发送命令全参数下沉 L2 新卡 <code>约定-成果交付秘书微信发送参数与通道验活-20261026-d2e7f4a9.md</code>，正文留一行指针；声明口径/三投/佐证/状态落账去解释留硬规则；EM 节标题并入投后半程；②user_rules：红线4 白名单五类收干条＋触发条件/频率指针去手册；红线7/口头令落账制去解释性文字；红线3 压缩；③存档 _archive\*-preSYS37-20261026.md×4</td><td><strong>verified</strong>（2026-10-26 制度层，主任发话「都应该分级，逐层向下压」）：user_rules 3,480/3,500（99.4% 黄）、3-投稿 5,988/6,000（99.8% 黄）</td><td><code>python D:\tmp\sys37_verify.py</code> → <code>USER 3480</code>＋<code>3TG 5988</code>＋L2 卡存在 True（§六）</td></tr><tr><td>RP-20261026-KB-01</td><td>执行层（知识沉淀链路核查）</td><td>Clawbot workspace <code>AGENTS.md</code> 铁律 3（禁改令，落点须主任批准）＋ <code>00_System\bin\inbox_check.py</code> ＋ L0 红线 4</td><td>10-24/10-25 秘书 capture 13 件滞留 Inbox pending 未转正（四步链卡在第②③步，capture 有钩子、转正无提醒），主任问「链接是不是白解析了」实证缺口：滞留件 kb 检索不到＝失忆；已当轮补救 9 件转正、2 废件清理</td><td>①Clawbot 铁律 3 补「capture 当轮即转正；无要点可提炼的废件当场清理留痕」；②inbox_check.py 增 pending 超期（&gt;24h）微信告警（每日至多一次去重，失败落 openclaw outbox 兜底）；③L0 红线 4 白名单增补「知识库 pending 滞留告警」（循 SYS-32 先例）</td><td><strong>verified</strong>（2026-10-26 主任回「批准」当轮落三处：Clawbot AGENTS.md L187 当轮闭环条款（改后 SHA <code>439AF5C40E60C440</code>）、inbox_check.py 增 <code>scan_kb_pending()</code>/<code>kb_pending_alert()</code> 接线 main（<code>KB pending 无超期件</code> 真跑通过）、user_rules 红线 4 白名单增补）</td><td>mock 验证：临时超期件 scan→1 件命中；send 失败路径正确落 outbox <code>1793026784-kb.json</code> 且不写 state；真跑门铃输出 <code>KB pending 无超期件</code>；<code>Select-String user_rules.md &quot;知识库 pending 滞留告警&quot;</code> 命中 1（§六）</td></tr><tr><td>RP-20261027-SYS-38</td><td>执行层（自动捕获）</td><td>L1</td><td>制度无独立审计与决策参谋层：CBM越权案+SYS-20/29/33手册漂移实证自查失灵，主任会犯迷糊无开工校验。2026-10-27主任批准纪委v3方案（审计+效率+参谋三合一，心跳/日/周/月四频，F1-F6参谋线）</td><td>audit_daily.py(A1-A5+C1-C3)挂门铃心跳+audit_baseline.json；0-制度维护法新增§17独立审计与参谋；1-协作常驻任务表登记；AGENTS增F1/F2开工校验环；周审Schedule周日20:30+月报每月1日；附件outputs/纪委角色设计草案-20261027-v3.m</td><td><strong>verified</strong>（2026-10-27 主任批准三项默认通过，执行层建骨架、主 Agent 补缺）：§17 已落、常驻任务表已登记；audit_baseline.json 已建且 audit_daily.py 真跑通过（2 项非一级发现：A2 待 note_to_razer 自愈＋C2 BMC Neurology 截止预警）；<code>XiAn-AuditDaily</code> 计划任务已建（每日 08:05，下次 10-27）；周审 Schedule <code>cf0e22e9</code>（周日 20:30）＋月报 <code>649851d7</code>（每月 1 日）均 Active，首跑 2026-11-01 20:30；AGENTS.md L16 已含「报模式建议卡」</td><td>python audit_daily.py 首跑建基线; Select-String 0-制度维护法.md &#x27;独立审计&#x27; 命中&gt;=1; Select-String AGENTS.md &#x27;模式建议&#x27; 命中&gt;=1</td></tr><tr><td>RP-20261027-SYS-39</td><td>执行层（自动捕获）→2026-10-27 主任指示细化</td><td>L1</td><td>4-经费与成本.md:7-8 财务职责只有内部记账，且成本结构未分层：①订阅固定层（火山 coding/agent 套餐、千帆、智谱包月）无用满率考核，8942 五小时窗口打满即整段溢出；②API 按量层（XF/DeepSeek）无「应急兜底」制度定位，XF 单日烧 650 美元无闸门、余额 310 美元撑 0.8 天、同池模型价差 2.3 倍（3.91 vs 1.71 美元/M）；③无储备线；④逐笔核账能力未固化</td><td>职责补六条：⑥成本分层核算——订阅固定层记月固定成本+用满率（窗口打满率/额度利用率），按量层记实付+占比；⑦按量通道定位＝订阅撞限应急兜底，非日常主力；⑧按量层设日/周预算上限，超线自动降级（低价模型/延迟任务）；⑨默认低价通道，贵模型须写明理由；⑩按量余额&lt;7 天用量即报批充值；⑪每周抽验 /api/v1/usage 逐笔核账（actual=total×倍率、分项加总、IP/UA 盗用检测）</td><td><strong>open</strong>（2026-10-27 主任要求细化，已扩为六条）</td><td>Select-String -Path &#x27;e:\ai agent\00_System\rules\4-经费与成本.md&#x27; -Pattern &#x27;成本分层</td><td>应急兜底</td><td>预算上限</td><td>低价通道</td><td>7 天用量</td><td>逐笔核账&#x27; 命中&gt;=6</td></tr></tbody></table></div>
+<h5>附：VETO 区（P0 一级禁令，当轮必落 L1，秘书即报）</h5>
+<p>触发：主任在<strong>项目对话现场</strong>说「严令禁止／这个错误不该犯／下次不准／这是红线」。执行层<strong>不等第二次</strong>，当场追加一行，禁直改 L0/L1（细则见 <code>0-制度维护法.md</code> §11）。</p>
+<div class='tw'><table><thead><tr><th>VETO-ID</th><th>原话（逐字）</th><th>触发场景（文件:行／操作）</th><th>正确做法</th><th>出处（对话/日期）</th><th>状态</th><th>验收命令</th></tr></thead><tbody><tr><td>VETO-20261026-01</td><td>&quot;补货应该智能一点，不要总靠我来发现这个缺点，来归纳&quot;（&quot;补货&quot;＝捕获，语音转写）</td><td>制度维护法缺&quot;主动捕获&quot;节：旧版只有主任明确说&quot;严令禁止&quot;才建档，主任说&quot;这里不行／应该更好&quot;时无人归纳，缺口由主任自己发现</td><td>命中否定/纠错语即建档并当轮落 L1（§12），不要求主任归纳成条款</td><td>主任本轮对话 2026-10-26</td><td><strong>verified</strong>（2026-10-26 制度层：§12 已落、索引重建）</td><td>见下行</td></tr><tr><td>└ 实测样本（链路演练：建档→落 L1→微信→验收）</td><td></td><td></td><td></td><td></td><td></td><td><code>Select-String -Path 0-制度维护法.md -Pattern &#x27;^## 12\.&#x27;</code> → 命中 L137；<code>python rules_index.py --check</code> → <code>索引一致</code>；秘书微信 <code>openclaw message send</code> → exit 0（无 stdout）</td></tr><tr><td>VETO-20261026-02</td><td>&quot;就是投稿过程中你都帮我弄……现在这个图啊什么的，有新的你也都给它替换掉。然后校对的 PDF 是必须要报到秘书那里，然后我会在秘书那里说……我审核过了，同意投稿。然后才能投稿。……你没读取到，那就说明现在规章制度还有漏洞，你应该把这个完善一下&quot;</td><td><code>3-投稿与论文.md:12</code>「系统上传/提交动作需用户在场或授权」、<code>:24</code>「不代点最终 Submit」同 L0 红线3 及主任指令冲突；且缺「系统内文件有新版必须替换」「每次重转校对必送秘书」条款 → Bulletin 四图旧版仍挂系统、代理误称&quot;须用户本人登录&quot;</td><td>投稿系统全流程（登录/上传/替换/下载校对/批准校样/Submit）由代理代办；系统内文件有本地新版必先替换并重转；每次重转校对 PDF 必送秘书微信（期刊名＋标题＋系统名）；主任微信批准后代理才 Submit</td><td>biomni 肿瘤流行病学 项目对话 2026-10-26</td><td>patched→verified（2026-10-26 执行层当轮落 L1）</td><td><code>Select-String 3-投稿与论文.md &quot;全流程代办&quot; &quot;新版必替换&quot; &quot;批准后提交&quot;</code> 各命中≥1</td></tr><tr><td>└ VETO-02 验收输出</td><td></td><td></td><td>2026-10-26 执行层实测：<code>3-投稿与论文.md</code> 三处命中（新条「校对送审与批准后提交」4 款 + 两处旧句改写）；<code>rules_index.py</code> 已重跑</td><td></td><td></td><td></td></tr></tbody></table></div>
+<p>处置：制度层每轮先扫本区 → 当轮落 L1 并贴真实输出（跨对话收到的须在下一轮开工前落）；建档当轮由秘书微信向主任汇报原话要点/场景/拟落节/生效时间；逾期写 <code>主任决策队列.md</code>；涉 <code>user_rules.md</code> §二 红线的补丁，须主任明确发话才生效。</p>
+<h4>四、已结</h4>
+<div class='tw'><table><thead><tr><th>RP-ID</th><th>决定日</th><th>结果（接受/合并/驳回 + 理由）</th><th>处理人</th></tr></thead><tbody><tr><td>VETO-20261026-01</td><td>2026-10-26</td><td>接受：落 <code>0-制度维护法.md</code> §12 智能捕获（两处同入口 + 三点自检 + 主动归纳）</td><td>制度层</td></tr><tr><td>RP-20261026-SYS-07</td><td>2026-10-26</td><td>接受：铁律 6 落盘口径改为「学习卡或提案箱 RP」</td><td>制度层</td></tr><tr><td>RP-20261026-SYS-08</td><td>2026-10-26</td><td>接受：触发词扩容「建议 / 捕获 / 不该犯」</td><td>制度层</td></tr><tr><td>RP-20261026-SYS-10</td><td>2026-10-26</td><td>接受：新建执行经验库 + 手册 2 §执行经验库 + L0 两处接线（四分流不混）</td><td>制度层（执行层代行）</td></tr><tr><td>RP-20261026-SYS-09</td><td>2026-10-26</td><td>接受：落 §16 知识树与热度（主干前15%保通畅、叶只下沉不删、热度自动判层）</td><td>制度层</td></tr><tr><td>RP-20261026-SYS-14</td><td>2026-10-26</td><td>接受：L0 检索改<strong>风险触发</strong>（A 纪律 + B 动作路由行；AGENTS 1,798/2,000 绿）</td><td>制度层</td></tr></tbody></table></div>
+<h4>五、基线哈希（制度层改前核对，改后更新）</h4>
+<div class='tw'><table><thead><tr><th>文件</th><th>SHA256 前 16 位</th><th>记录时间</th></tr></thead><tbody><tr><td><code>C:\Users\admin\.trae-cn\rules\user_rules.md</code>（改后，1,758 字符 / 50%，§三 集成 4 条 verified 落点）</td><td><code>44C6267C08128077</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\AGENTS.md</code>（改后，1,798 字符 / 89.9%，SYS-14 风险触发 + 动作路由行）</td><td><code>B2B1A6769C0E74BC</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\0-制度维护法.md</code>（改后，含 §11 VETO + §12–16 知识树）</td><td><code>7AAFD3DC282CA86A</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\1-协作与两机.md</code>（改后）</td><td><code>EEB98F3DFA38DA1D</code></td><td>2026-10-25</td></tr><tr><td><code>e:\ai agent\00_System\rules\6-安全与凭据.md</code>（改后）</td><td><code>7707924C8D93A43F</code></td><td>2026-10-25</td></tr><tr><td><code>e:\ai agent\00_System\rules\3-投稿与论文.md</code>（改后）</td><td><code>DF6E8F5D36E1258F</code></td><td>2026-10-25</td></tr><tr><td><code>e:\ai agent\00_System\rules\8-域名与面板.md</code>（改后，含 <code>/rules</code> 入口）</td><td><code>C1F2A2F69F5CCD5C</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\AGENTS.md</code>（改后，1,763 字符 / 88%，含索引指针 + 知识树触发词 + 铁律 6 经验库）</td><td><code>F70F38A08E41417E</code></td><td>2026-10-26</td></tr><tr><td><code>C:\Users\admin\.trae-cn\rules\user_rules.md</code>（现状复核，1,616 字符）</td><td><code>9787E04F45B29449</code></td><td>2026-10-26</td></tr><tr><td><code>d:\20260906 BRCA Jun Yi\.workbuddy\memory\MEMORY.md</code></td><td><code>019EA12C5568F045</code></td><td>2026-10-25</td></tr><tr><td><code>C:\Users\admin\.openclaw\workspace\AGENTS.md</code>（改后，含「成果只发一次」条款）</td><td><code>FA2F046122D5DE59</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\2-知识库与科研闭环.md</code>（改后，含 §执行经验库）</td><td><code>78248C03C3B1AFB7</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_brain\执行经验库.md</code>（新建）</td><td><code>447D5CF80991E816</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\0-制度维护法.md</code>（改后，黄灯等价改写压缩 §9–16，5,730 字符 / 95.5%）</td><td><code>702152D9EB96ACBD</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\3-投稿与论文.md</code>（改后，RP-BLT-13 多轮循环条款 + 等量压缩，5,998 字符 / 99.9%）</td><td><code>123937334F4F8BE4</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\AGENTS.md</code>（改后，1,491 字符 / 75%，主任 12:57 落盘后）</td><td><code>051654CEBF8AE1C1</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\0-制度维护法.md</code>（改后，5,740 字符，§3 预算表回填实测，口径更正后）</td><td><code>A3B95B0250072A72</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\3-投稿与论文.md</code>（改后，5,952 字符 / 99.2%，SYS-22 第 9 条投后确认截图＋七处等价压缩）</td><td><code>A962AA52378DE806</code></td><td>2026-10-26</td></tr><tr><td><code>C:\Users\admin\.trae-cn\rules\user_rules.md</code>（改后，2,210 字符 / 63%，红线3④ 引用改指手册第 9 条）</td><td><code>A177B4BF3D447021</code></td><td>2026-10-26</td></tr><tr><td><code>C:\Users\admin\.trae-cn\rules\user_rules.md</code>（改后，2,401 字符 / 69%，SYS-23 凭据口径 + SYS-24 断链四处 + 修订版标注）</td><td><code>DD1C842BE616EDB1</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\AGENTS.md</code>（改后，1,564 字符 / 78%，SYS-23 铁律3 + SYS-24 坑区 + SYS-25 9-绘图行 + SYS-27 六行补词）</td><td><code>016539D0E0215E08</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\2-知识库与科研闭环.md</code>（改后，L28 credentials.md 明文唯一源口径）</td><td><code>ADF48EEB07C02DC4</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\4-经费与成本.md</code>（改后，L7⑤ credentials.md 口径）</td><td><code>D615B71ADAFD2D3B</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\6-安全与凭据.md</code>（改后，L24 清单标题改 credentials.md 可读）</td><td><code>AC26B06E094080D8</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\7-输出与工程约定.md</code>（改后，L18 凭据落盘 credentials.md 唯一源 + secret.py 仅 token）</td><td><code>C93CFEAA9A3ECC87</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\bin\rules_index.py</code>（改后，L89 章行回填 _short_trig(book_trig)）</td><td><code>A1812A4E1982CA4F</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\_INDEX.md</code>（重建，3,179 字符 / 81 行，--check 索引一致）</td><td><code>B3804E4304A47EF5</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\7-输出与工程约定.md</code>（改后，SYS-33 全文重写 4,230 字符 / 71%）</td><td><code>7DE163C04BF8F5C2</code></td><td>2026-10-26</td></tr><tr><td><code>C:\Users\admin\.trae-cn\rules\user_rules.md</code>（改后，SYS-34 L43 指针修复，2,516 字符 / 71%）</td><td><code>66D2B5BD70CEC210</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\bin\close_check.py</code>（改后，SYS-35 收尾三字段接线）</td><td><code>A12C0378A0213BC0</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\bin\rule_auto.py</code>（改后，SYS-36 L1 红灯报告段）</td><td><code>21C34DDA5AFD1644</code></td><td>2026-10-26</td></tr><tr><td><code>e:\ai agent\00_System\rules\_INDEX.md</code>（重建，SYS-33/34 后索引一致；note_to_razer 复核重建后终值）</td><td><code>6ED418BA0EAAA53A</code></td><td>2026-10-26</td></tr></tbody></table></div>
+<h4>六、验收记录（verified 凭据，禁手写结论）</h4>
+<div class='tw'><table><thead><tr><th>RP-ID</th><th>命令</th><th>实测输出</th><th>判定</th></tr></thead><tbody><tr><td>RP-01</td><td><code>Get-Content -Raw 3-投稿与论文.md</code> + 正则 <code>log\.py</code></td><td>命中 <strong>1</strong>（§状态落账 命令段）</td><td>pass → verified</td></tr><tr><td>RP-03</td><td>同上，<code>8-域名与面板.md</code> 正则 <code>唯一权威源</code></td><td>命中 <strong>2</strong>（面板表行 + 硬条款行）</td><td>pass → verified</td></tr><tr><td>RP-04</td><td><code>AGENTS.md</code> 正则 <code>提案</code> / <code>0-制度维护法.md</code> 正则 <code>提案箱</code></td><td><strong>2 / 3</strong></td><td>pass → verified</td></tr><tr><td>RP-05</td><td><code>python -c</code> 逐文件计字符 + SHA256 前 16 位</td><td><code>USER 3341 46823C129D376249</code>；<code>AGENTS 1806 CFEDA2F8E9254083</code></td><td>pass → verified（95.5% 黄灯）</td></tr><tr><td>RP-06</td><td><code>inbox_check.push_rules()</code> + 雷神 <code>dir /b &quot;E:\ai agent\00_brain&quot;</code></td><td><code>已镜像 4 项（AGENTS.md、rules/、user_rules.md、提案箱）</code>；远端 <code>00_brain</code> → <code>制度提案箱.md</code></td><td>pass → verified</td></tr><tr><td>VETO 通道</td><td>四处关键词计数（<code>python -c</code> 正则）</td><td><code>user_rules</code> VETO×3；<code>AGENTS.md</code> VETO×1/禁令×1；<code>0-制度维护法.md</code> §11×1、VETO×11；提案箱 VETO×5</td><td>pass（链路已通）</td></tr><tr><td>预算</td><td><code>python -c</code> len() 实测（2026-10-25 VETO 改后）</td><td>user_rules 3,341（95.5%）黄；AGENTS 1,806（90.3%）黄；最大手册 0-制度维护法 4,754；手册合计 23,931</td><td>全项未破线</td></tr><tr><td>哈希</td><td>同 RP-05 命令</td><td>见 §五（7 行，2026-10-25 值）</td><td>pass</td></tr><tr><td>VETO 当轮生效</td><td><code>0-制度维护法.md</code> 正则 `48h</td><td>当轮即落<code>；</code>user_rules.md` 同</td><td>§11 已无 48h，改「当轮即落 L1」；L0 行改「当轮落 L1」</td><td>pass → verified</td></tr><tr><td>秘书即报</td><td><code>openclaw message send --channel openclaw-weixin</code></td><td><code>Message ID: openclaw-weixin:1792942858354-cbe4de4d</code>（rc=0）</td><td>pass，通道实测可用</td></tr><tr><td>镜像复推</td><td>2026-10-25 23:41 复检</td><td>雷神 Tailscale 仍 <code>offline</code>（last seen 21m），未重试；<code>push_rules()</code> 待门铃触发</td><td>pending，在线后自动补推（含本轮 VETO 改动）</td></tr><tr><td>制度核对页（渲染）</td><td><code>import server; server.render_rules()</code> + 临时 8898 端口注入 sid 后 <code>urllib</code> 取页</td><td><code>len 61738</code>；<code>缺失 0</code>；合计 <code>29,078 / 30,000（96.9%）</code>；11 份文件全部读到</td><td>pass → verified</td></tr><tr><td>制度核对页（公网闸门）</td><td><code>curl.exe -s -o NUL -w &quot;%{http_code} %{redirect_url}&quot; https://board.jivonlab.com/rules</code></td><td><code>302 → https://board.jivonlab.com/login</code></td><td>pass：制度全文不公开，TOTP 后可见</td></tr><tr><td>首页「实验室制度」入口</td><td><code>curl.exe -s &quot;https://jivonlab.com/?v=rules7&quot;</code> + 关键词计数</td><td>19,445 字节；<code>实验室制度</code>×1、<code>board.jivonlab.com/rules</code>×1（仓库提交 <code>1afe560</code>）</td><td>pass → verified</td></tr><tr><td>VETO-20261026-01 实测</td><td><code>Select-String -Path 0-制度维护法.md -Pattern &#x27;^## 12\.&#x27;</code>；<code>rules_index.py --check</code>；<code>openclaw message send</code></td><td>命中 <strong>L137</strong>；<code>索引一致</code>（4,201 字符 / 72 行）；微信 <code>EXIT=0</code>（无 stdout）</td><td>pass → verified（链路：建档→落 L1→微信→验收）</td></tr><tr><td>RP-SYS-07</td><td><code>Select-String AGENTS.md &quot;对应手册&quot;</code> / <code>&quot;提案箱&quot;</code></td><td><strong>0 / 1</strong></td><td>pass → verified</td></tr><tr><td>RP-SYS-08</td><td>同上 <code>&quot;建议&quot; &quot;捕获&quot; &quot;不该犯&quot;</code></td><td><strong>1 / 1 / 1</strong></td><td>pass → verified</td></tr><tr><td>预算（2026-10-26 收口后）</td><td><code>python -c len()</code> 逐文件</td><td>AGENTS <strong>1,797（89.8%）</strong>；user_rules 3,471（99.2%）；0-制度维护法 5,918（98.6%）；手册合计 32,411 / 59,500（54.5%）</td><td>全项未破线</td></tr><tr><td>提案对照视图</td><td><code>_proposal_audit()</code> + <code>render_rules()</code> 离线渲染</td><td>11 条：已落 <strong>7</strong> / 存疑 <strong>0</strong> / 不适用 <strong>4</strong> / 状态需收口 <strong>0</strong>；<code>id=&quot;audit&quot;</code> true；页面 74,232 字节</td><td>pass → verified</td></tr><tr><td>哈希（10-26）</td><td><code>hashlib.sha256</code> 前 16 位</td><td><code>AGENTS 03C0DBFDB28C8380</code>；<code>0-制度维护法 37F485473109BABE</code></td><td>pass（§五已更新）</td></tr><tr><td>黄灯自动处置</td><td><code>python rule_auto.py --dry</code></td><td>user_rules <strong>3,471（99%）</strong>：无安全下沉项，最长 3 行需人工判断，不自动删；AGENTS 1,797（89%）不触发</td><td>pass：有安全项才动，无则只上报</td></tr><tr><td>预算复算（10-26）</td><td>同 <code>len()</code> 口径逐文件相加</td><td>合计 <strong>32,343 / 59,500（54.4%）</strong>；上一行 32,411 系笔误，以本行为准</td><td>pass</td></tr><tr><td>制度公开视图</td><td><code>python gen_site_rules.py</code>；泄漏检查正则</td><td>页面 27,902 字节；11 文件 / 32,343 字符 / 54.4%；对照 7/0/4/0；盘符路径·微信 openid·<code>.openclaw</code> 均 0 命中</td><td>已推送 <code>eed0f11</code>（Pages 生效后复核 200）</td></tr><tr><td>RP-CLAW-01</td><td><code>python</code> count 等价于 <code>Select-String C:\Users\admin\.openclaw\workspace\AGENTS.md &quot;只发一次&quot;</code></td><td>命中 <strong>1</strong>（L267 成果只发一次条款）；改后 SHA256 <code>FA2F046122D5DE59</code>（改前 EB815A4E4D31B6CE）</td><td>pass → verified</td></tr><tr><td>RP-SYS-10</td><td><code>python</code> 计数：手册 2「执行经验库」/ L0「执行经验库」/ L0 len / L0「经验/复用」/ 经验库「EP-」</td><td><strong>2 / 1 / 1793 OK / 1 / 3</strong>；改后 SHA：L0 <code>134E7A9131E1286B</code>、手册 2 <code>78248C03C3B1AFB7</code>、经验库 <code>447D5CF80991E816</code>（新建，改前 ABSENT）；L0 1,797→1,793 净 -4</td><td>pass → verified</td></tr><tr><td>RP-SYS-09</td><td><code>python rules_index.py</code> + <code>--check</code>；<code>rule_auto.py --dry</code>；<code>len()</code>/<code>count(&#x27;知识树&#x27;)</code>；层计</td><td><code>已生成 _INDEX.md（5350 字符 / 79 行）</code>；<code>索引一致</code>；<code>0-制度维护法 5998/6000（99%）</code> 黄灯无安全项；<code>KNOWTREE 2</code>；层分布 主干 8 / 枝 23 / 叶 25；AGENTS <strong>1,724（86%）</strong></td><td>pass → verified</td></tr><tr><td>RP-BLT-13</td><td><code>Get-Content -Raw -Encoding UTF8</code> 计字符 + <code>Get-FileHash</code> SHA256 前 16 位 + <code>Select-String 3-投稿与论文.md &quot;不算重复劳动&quot;</code></td><td><code>chars=5998</code>（红灯解除）；<code>sha=123937334F4F8BE4</code>；<code>hits=1</code> <code>atline=46</code></td><td>pass → verified</td></tr><tr><td>SYS-17</td><td><code>python rules_index.py</code> 重建；读 _INDEX.md 统计</td><td><code>已生成 _INDEX.md（3273 字符 / 80 行）</code>；实测 3,353 ≤ 3,500；12 文件/73 节；手册节触发词回填生效（1/2/4/5/7/8 号手册非空）</td><td>pass → verified</td></tr><tr><td>SYS-18</td><td><code>Get-Content -Raw AGENTS.md</code> 计字符 + Select-String 关键行</td><td><code>AGENTS chars: 1364</code> ≤ 1,600；<code>动作优先</code>×1；<code>Fan Jiang, MBBS</code>×1</td><td>pass → verified</td></tr><tr><td>0-制度 §16 管道</td><td><code>Get-Content -Raw 0-制度维护法.md</code> 计字符 + Select-String</td><td>5,719→5,706（净 -13，进一出一）；<code>季度降层</code>×1</td><td>pass → verified</td></tr><tr><td>RP-SYS-22</td><td>计字符 + <code>Get-FileHash</code> 前 16 位 + <code>Select-String 3-投稿与论文.md &quot;投后确认截图&quot;,&quot;第 9 条&quot;</code>；同法 user_rules.md</td><td><code>3-投稿 chars=5952 sha=A962AA52378DE806</code>（≤6,000 红灯解除）；<code>hit L55; hit L56</code>；<code>user_rules chars=2210 sha=A177B4BF3D447021</code>；<code>确认页截图</code>/<code>第 9 条</code> 命中 L11</td><td>pass → verified</td></tr><tr><td>RP-SYS-23/24/25/27</td><td><code>python D:\tmp\verify_sys23_27.py</code>（UTF-8 断言脚本 13 项）＋ <code>python rules_index.py</code> 重建＋<code>--check</code>＋ <code>python rule_auto.py --dry</code></td><td>13 行 <code>PASS …</code>＋<code>RESULT: ALL PASS</code>：user_rules+AGENTS <code>ai-agent-secrets</code>=0、两文件 <code>credentials.md</code>≥1、user_rules <code>身份与绘图速查</code>=0、AGENTS <code>坑区</code>=0、AGENTS <code>9-绘图</code>≥1、邮件/订阅/回滚/定时任务/实验/微信各≥1、rules 目录旧路径残留仅 8-域名（有意保留，secret.py 留 token 读取）、credentials.md 存在；<code>已生成 _INDEX.md（3179 字符 / 81 行）</code>＋<code>索引一致</code>；预算 user_rules 2401/3500（68%）、AGENTS 1564/2000（78%），L0 增量 +47/+73 均 ≤160</td><td>pass → verified</td></tr><tr><td>RP-SYS-33</td><td><code>python -c len(open(p,encoding=&#x27;utf-8&#x27;).read())</code></td><td>7-输出与工程约定.md <strong>4,230</strong> / 6,000（71%），红灯解除；改后 SHA <code>7DE163C04BF8F5C2</code></td><td>pass → verified</td></tr><tr><td>RP-SYS-34</td><td><code>Select-String user_rules.md &#x27;§2/§5&#x27;</code>；同法计数 &#x27;7-输出与工程约定&#x27;</td><td><strong>0 命中</strong>（断链根除）；新指针命中（sys33 卡路径×1）</td><td>pass → verified</td></tr><tr><td>RP-SYS-35</td><td><code>python close_check.py</code>（今日改动状态卡）</td><td><code>已自动补写三字段 1 份：ICH 投稿线.md</code>（经验沉淀：／命中 EP：／制度提案： 齐全）；改后 SHA <code>A12C0378A0213BC0</code></td><td>pass → verified</td></tr><tr><td>RP-SYS-36</td><td>mock 验证：<code>ra._measure = lambda p: 6200 if &#x27;3-投稿&#x27; in str(p) else orig(p)</code> + <code>--dry</code>；常规 <code>--dry</code> 复跑</td><td>置 3-投稿=6200 后输出含 <code>【L1 红灯】3-投稿与论文.md 6200/6000（103%）</code>＋回压提示行；常规 dry 无红灯段（7-输出 4,230 已回线内，正确）；改后 SHA <code>21C34DDA5AFD1644</code></td><td>pass → verified</td></tr><tr><td>索引复核（SYS-33/34 后）</td><td><code>python rules_index.py</code> ＋ <code>--check</code></td><td><code>已生成 _INDEX.md（3,327 字符 / 83 行）</code>；<code>索引一致</code>；_INDEX SHA <code>9C9E2B390E616C74</code>；kb.py index → 560 docs（含 sys33 新卡）</td><td>pass → verified</td></tr><tr><td>RP-KB-01</td><td>①mock：<code>ic.VAULT_INBOX=tmp</code> 置 30h 前 pending 件跑 <code>scan_kb_pending()</code>；<code>ic.OPENCLAW_CMD</code> 置不存在路径跑 <code>kb_pending_alert()</code> ②真跑 <code>python inbox_check.py</code> ③<code>Select-String user_rules.md &#x27;知识库 pending 滞留告警&#x27;</code>、Clawbot AGENTS <code>&#x27;当轮即转正&#x27;</code> ④SHA</td><td>①scan→1 件命中；send 失败正确落 outbox <code>1793026784-kb.json</code>（to 正确）且不写 state；②真跑输出 <code>KB pending 无超期件</code>（当前无滞留，判断正确）；③两处各命中 <strong>1</strong>；④Clawbot AGENTS <code>439AF5C40E60C440</code>（改前 AC77744981F4E2A2）、user_rules <code>94FEC93E9902E087</code>（2,595 chars）、inbox_check.py <code>FFBCC16ED9E7AD80</code></td><td>pass → verified</td></tr></tbody></table></div>
+<hr>
+<h4>附录 A：原始 L0 补丁草案（<strong>已被制度层改判，仅存档</strong>）</h4>
+<blockquote>2026-10-25 裁定：第 1 行 → 改判 L1，已落 <code>3-投稿与论文.md</code> §状态落账；第 2 行 → 不采纳，改由 AGENTS 触发词 + <code>0-制度维护法.md</code> §10 承载（user_rules 102% 红，无位可加）。</blockquote>
+<pre><code>- 投稿 / 期刊状态变化（Submitted / Under Review / Revision / Decline / Accepted 等）→ 先 `D:\1. Author information\jivonlab-site\log.cmd` 落账，再汇报；无落账＝未完成。
+- 改规则：发现规则缺口/冲突/过期，当场在 `e:\ai agent\00_brain\制度提案箱.md` 追加一行 RP；L0/L1 与工作区 rules 仅制度层对话可写，其余对话只读+提案，禁止直接改条文。</code></pre>
+<h4>附录 B：L1 提案规程草案（<strong>已并入 <code>0-制度维护法.md</code> §10，仅存档</strong>）</h4>
+<pre><code>## 提案与修订规程（2026-10-25）
+1. 载体：00_brain\制度提案箱.md，一行一提案，字段固定 7 列。
+2. 唯一写者：L0/L1/AGENTS/工作区 rules 只有制度层可写；执行层只提案。
+3. 状态机：open → triaged → patched → verified → closed，每态写日期与人。
+4. 改前核对 SHA256，改后复核；不一致即停并报冲突。
+5. verified 必须附验收命令真实输出；无输出不得结案。
+6. 一次只改一处补丁；改完立即记账（问题与决策台账 + 本表），不攒批。
+7. 同类错误第 2 次 → 强制建档（L0 第四节既有条款的执行落点）。
+8. 制度层每轮开工先扫 status=open 的提案，先于其他工作。</code></pre>
+<h4>附录 C：执行层的提交流程（三步，30 秒）</h4>
+<ol>
+<li>判断层级：影响所有对话 → L0；影响方法论 → L1；只影响本项目 → 项目 <code>AGENTS.md</code> / <code>MEMORY.md</code>（第三章 L3，可由本项目对话自改）。</li>
+<li>在第三节追加一行，必填：缺口证据（文件:行）、最小补丁、验收命令。</li>
+<li>在项目状态卡「进展流水」写 <code>制度提案：RP-xxx</code>（无提案写 <code>无</code>），便于审计。</li>
+</ol></div></article></div></div></main><script>
+const q=document.getElementById('q');
+q&&q.addEventListener('input',()=>{
+  const v=q.value.trim().toLowerCase();
+  document.querySelectorAll('.md > *').forEach(el=>{
+    el.style.display=(!v||el.textContent.toLowerCase().includes(v))?'':'none';
   });
-  var bar=document.getElementById('bar');
-  var on=function(){bar.classList.toggle('in',window.scrollY>8)};
-  window.addEventListener('scroll',on,{passive:true}); on();
-})();
-</script>
-</body>
-</html>
+});
+</script></body></html>
