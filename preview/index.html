@@ -5,98 +5,100 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fan Jiang · Research Navigator</title>
 <meta name="description" content="Fan Jiang 的科研导航页：投稿面板、经费面板、科研接单，以及论文、研究热点、工具箱与数据源。">
-<meta name="theme-color" content="#FAFAF7">
+<meta name="theme-color" content="#F7F5EF">
 <meta name="robots" content="noindex">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2315171A'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='25' fill='%23FAFAF7' text-anchor='middle'%3EFJ%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23191611'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='25' fill='%23F7F5EF' text-anchor='middle'%3EFJ%3C/text%3E%3C/svg%3E">
 <style>
 :root{
-  --paper:#FAFAF7; --surface:#FFFFFF; --surface-2:#F4F3EE;
-  --ink:#15171A; --ink-2:#41464D; --muted:#7A808A;
-  --line:#E8E6E0; --line-2:#D6D3CA;
-  --accent:#0F5B52; --accent-bg:#ECF4F2;
+  --paper:#F7F5EF; --ink:#191B1E; --ink-2:#454A51; --muted:#84898F;
+  --line:#E4DFD3; --line-2:#CCC6B8;
+  --accent:#0E5A50; --accent-soft:#0E5A50;
   --serif:"Iowan Old Style","Palatino Linotype","Songti SC","Noto Serif SC",Georgia,"Times New Roman",serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
 }
 html[data-theme="dark"]{
-  --paper:#0D0F11; --surface:#15181B; --surface-2:#1B1F23;
-  --ink:#E9EAEB; --ink-2:#B7BCC2; --muted:#878D95;
-  --line:#25292D; --line-2:#33383D;
-  --accent:#68C3B5; --accent-bg:rgba(104,195,181,.10);
+  --paper:#0B0D0E; --ink:#EAEAE6; --ink-2:#B4B8BC; --muted:#7E848B;
+  --line:#22272B; --line-2:#383E44;
+  --accent:#6FC7B9;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-svg{display:block;flex:none}
-.shell{max-width:1120px;margin:0 auto;padding-left:20px;padding-right:20px}
+.shell{max-width:760px;margin:0 auto;padding:0 22px}
 
 /* ---------- top bar ---------- */
-.bar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 84%,transparent);
-  backdrop-filter:saturate(150%) blur(12px);-webkit-backdrop-filter:saturate(150%) blur(12px)}
-.bar-in{display:flex;align-items:center;height:52px;gap:10px}
-.glyph{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;
-  background:var(--ink);color:var(--paper);font-family:var(--serif);font-size:11.5px}
-.bar-id{font-size:13.5px;font-weight:600}
+.bar{border-bottom:1px solid var(--line)}
+.bar-in{display:flex;align-items:center;height:46px;gap:9px}
+.glyph{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  background:var(--ink);color:var(--paper);font-family:var(--serif);font-size:10px}
+.bar-id{font-size:12.5px;font-weight:600;letter-spacing:.01em}
 .bar-nav{display:flex;align-items:center;gap:14px;margin-left:auto}
-.bar-nav a{font-size:13px;color:var(--ink-2)}
+.bar-nav a{font-size:12px;color:var(--muted)}
 .bar-nav a:hover{color:var(--ink)}
-.icon-btn{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:transparent;
-  color:var(--ink-2);display:grid;place-items:center;cursor:pointer}
-.icon-btn:hover{border-color:var(--line-2);color:var(--ink)}
+.icon-btn{width:28px;height:28px;border-radius:8px;border:none;background:transparent;
+  color:var(--muted);display:grid;place-items:center;cursor:pointer}
+.icon-btn:hover{color:var(--ink)}
 
-/* ---------- head row ---------- */
-.head{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;padding-top:20px}
-.head h1{font-family:var(--serif);font-weight:400;font-size:1.5rem;letter-spacing:-.01em;line-height:1.15}
-.head p{font-size:12.5px;color:var(--muted)}
+/* ---------- hero ---------- */
+.hero{padding:30px 0 26px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.5rem,11vw,4rem);
+  letter-spacing:-.015em;line-height:1.08;margin-top:8px}
+.hero h1 .dot{color:var(--accent)}
+.hero p{margin-top:10px;font-size:13px;color:var(--ink-2);max-width:34em}
 
-/* ---------- groups & tiles ---------- */
-.group{margin-top:16px}
-.group-label{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.group-label::after{content:"";flex:1;height:1px;background:var(--line)}
-.grid{display:grid;gap:8px}
-.ws{grid-template-columns:1fr}
-.ac{grid-template-columns:1fr 1fr}
-.tile{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);
-  border-radius:12px;padding:10px 12px;min-width:0;
-  transition:border-color .18s ease,transform .18s ease,box-shadow .2s ease}
-.tile:hover{border-color:var(--line-2);transform:translateY(-1px);box-shadow:0 10px 20px -16px rgba(21,23,26,.5)}
-.ic{width:32px;height:32px;border-radius:9px;display:grid;place-items:center}
-.ic svg{width:16px;height:16px}
-.ws .ic{background:var(--accent-bg);color:var(--accent)}
-.ac .ic{background:var(--surface-2);color:var(--ink-2)}
-.tile-body{display:flex;flex-direction:column;gap:1px;min-width:0}
-.tile-t{font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap}
-.tile-d{display:none;font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pill{font-size:9.5px;font-weight:500;color:var(--accent);background:var(--accent-bg);
-  border-radius:999px;padding:1.5px 6px;flex:none}
-.arw{margin-left:auto;color:var(--line-2);display:none}
-.tile:hover .arw{color:var(--accent)}
-.arw svg{width:13px;height:13px}
+/* ---------- groups ---------- */
+.group{padding:18px 0 4px}
+.group-label{font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);display:flex;align-items:baseline;gap:10px}
+.group-label::after{content:"";flex:1;height:1px;background:var(--line);align-self:center}
+
+/* work rows */
+.rows{display:grid;grid-template-columns:1fr;column-gap:36px}
+.row{display:flex;align-items:center;gap:12px;padding:11px 2px;border-bottom:1px solid var(--line)}
+.num{font-family:var(--serif);font-size:11.5px;color:var(--muted);width:20px;flex:none;font-style:italic}
+.row-t{font-size:14.5px;font-weight:550;white-space:nowrap}
+.row:hover .row-t{color:var(--accent)}
+.row-d{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:none}
+.pill{font-size:9px;font-weight:500;color:var(--accent);border:1px solid var(--line-2);
+  border-radius:999px;padding:1px 7px;flex:none;letter-spacing:.02em}
+.arw{margin-left:auto;color:var(--muted);flex:none}
+.row:hover .arw{color:var(--accent)}
+.arw svg{width:13px;height:13px;display:block}
+
+/* academic grid */
+.ac{display:grid;grid-template-columns:repeat(3,1fr);column-gap:22px}
+.ac a{display:flex;align-items:center;gap:7px;padding:10px 2px;border-bottom:1px solid var(--line);
+  font-size:13px;font-weight:550;color:var(--ink-2)}
+.ac a:hover{color:var(--accent)}
+.ac a::before{content:"·";color:var(--accent);font-weight:700}
+.ac-t{white-space:nowrap}
 
 /* ---------- footer ---------- */
-footer{margin-top:24px;border-top:1px solid var(--line)}
-.foot{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;padding:14px 0 22px;font-size:11.5px;color:var(--muted)}
-.foot a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;padding:16px 0 26px;
+  font-size:11px;color:var(--muted)}
+.foot a{border-bottom:1px solid var(--line-2)}
+.foot a:hover{color:var(--ink);border-color:var(--ink)}
 .foot .sep{opacity:.5}
 
 /* ---------- motion ---------- */
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+a,.row-t{transition:color .15s ease}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 
 /* ---------- responsive ---------- */
 @media (min-width:640px){
-  .shell{padding-left:28px;padding-right:28px}
-  .head{padding-top:30px}
-  .ws{grid-template-columns:1fr 1fr}
-  .ac{grid-template-columns:1fr 1fr 1fr}
-  .tile-d{display:block}
-  .arw{display:block}
+  .shell{padding:0 28px}
+  .hero{padding:44px 0 36px}
+  .hero p{font-size:13.5px}
+  .rows{grid-template-columns:1fr 1fr}
+  .row-d{display:block}
+  .ac{grid-template-columns:repeat(3,1fr)}
 }
-@media (min-width:900px){
-  .ws{grid-template-columns:repeat(4,1fr)}
+@media (min-width:920px){
+  .hero h1{font-size:4.2rem}
   .ac{grid-template-columns:repeat(6,1fr)}
-  .ac .tile{flex-direction:column;align-items:flex-start;gap:8px;padding:12px}
 }
 </style>
 </head>
@@ -117,32 +119,39 @@ footer{margin-top:24px;border-top:1px solid var(--line)}
 
 <main class="shell">
 
-  <section class="head">
-    <h1>Research Navigator</h1>
+  <section class="hero">
+    <div class="eyebrow">Research Navigator</div>
+    <h1>Fan Jiang<span class="dot">.</span></h1>
     <p>投稿、经费、接单与论文、热点、工具箱，收在一处，一页直达。</p>
   </section>
 
   <nav class="group" aria-label="工作台">
     <div class="group-label">工作台</div>
-    <div class="grid ws">
-      <a class="tile" href="https://board.jivonlab.com/" target="_blank" rel="noopener">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
-        <span class="tile-body"><span class="tile-t">投稿面板 <span class="pill">需验证码</span></span><span class="tile-d">15 个项目实时状态与时间线</span></span>
+    <div class="rows">
+      <a class="row" href="https://board.jivonlab.com/" target="_blank" rel="noopener">
+        <span class="num">01</span>
+        <span class="row-t">投稿面板</span>
+        <span class="pill">需验证码</span>
+        <span class="row-d">15 个项目实时状态与时间线</span>
         <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
-      <a class="tile" href="https://monitor.jivonlab.com" target="_blank" rel="noopener">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-5 3 3 5-7"/></svg></span>
-        <span class="tile-body"><span class="tile-t">经费面板</span><span class="tile-d">Token 与额度消耗统计</span></span>
+      <a class="row" href="https://monitor.jivonlab.com" target="_blank" rel="noopener">
+        <span class="num">02</span>
+        <span class="row-t">经费面板</span>
+        <span class="row-d">Token 与额度消耗统计</span>
         <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
-      <a class="tile" href="https://jivonlab.com/keyan/">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.2L5.6 18a2 2 0 0 0 1.7 3h9.4a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M7.6 15h8.8"/></svg></span>
-        <span class="tile-body"><span class="tile-t">科研接单</span><span class="tile-d">项目清单与交付进度</span></span>
+      <a class="row" href="https://jivonlab.com/keyan/">
+        <span class="num">03</span>
+        <span class="row-t">科研接单</span>
+        <span class="row-d">项目清单与交付进度</span>
         <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
-      <a class="tile" href="https://jivonlab.com/rules.html">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h7"/></svg></span>
-        <span class="tile-body"><span class="tile-t">实验室制度 <span class="pill">公开视图</span></span><span class="tile-d">规则全文在核对台（需验证码）</span></span>
+      <a class="row" href="https://jivonlab.com/rules.html">
+        <span class="num">04</span>
+        <span class="row-t">实验室制度</span>
+        <span class="pill">公开视图</span>
+        <span class="row-d">规则全文在核对台（需验证码）</span>
         <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
     </div>
@@ -150,44 +159,20 @@ footer{margin-top:24px;border-top:1px solid var(--line)}
 
   <nav class="group" aria-label="学术资料">
     <div class="group-label">学术资料</div>
-    <div class="grid ac">
-      <a class="tile" href="https://jivonlab.com/dashboard.html#/publications">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5v15"/></svg></span>
-        <span class="tile-body"><span class="tile-t">成果</span><span class="tile-d">22 篇论文</span></span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </a>
-      <a class="tile" href="https://jivonlab.com/dashboard.html#/hotspot">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span>
-        <span class="tile-body"><span class="tile-t">研究热点</span><span class="tile-d">高热主题与投稿风向</span></span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </a>
-      <a class="tile" href="https://jivonlab.com/dashboard.html#/ideas">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/></svg></span>
-        <span class="tile-body"><span class="tile-t">交叉分析</span><span class="tile-d">选题组合与切入点</span></span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </a>
-      <a class="tile" href="https://jivonlab.com/dashboard.html#/toolkit">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1 5.1 5.1L9.4 21.8 2.2 21.8l0-7.2z"/><path d="M13 8l3 3"/></svg></span>
-        <span class="tile-body"><span class="tile-t">工具箱</span><span class="tile-d">分析与绘图工具集</span></span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </a>
-      <a class="tile" href="https://jivonlab.com/dashboard.html#/databases">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v13c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-13"/><path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></svg></span>
-        <span class="tile-body"><span class="tile-t">数据库</span><span class="tile-d">GBD、NHANES、GEO</span></span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </a>
-      <a class="tile" href="https://jivonlab.com/dashboard.html#/dashboard">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-        <span class="tile-body"><span class="tile-t">总览</span><span class="tile-d">学术画像与指标汇总</span></span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
-      </a>
+    <div class="ac">
+      <a href="https://jivonlab.com/dashboard.html#/publications"><span class="ac-t">成果</span></a>
+      <a href="https://jivonlab.com/dashboard.html#/hotspot"><span class="ac-t">研究热点</span></a>
+      <a href="https://jivonlab.com/dashboard.html#/ideas"><span class="ac-t">交叉分析</span></a>
+      <a href="https://jivonlab.com/dashboard.html#/toolkit"><span class="ac-t">工具箱</span></a>
+      <a href="https://jivonlab.com/dashboard.html#/databases"><span class="ac-t">数据库</span></a>
+      <a href="https://jivonlab.com/dashboard.html#/dashboard"><span class="ac-t">总览</span></a>
     </div>
   </nav>
 
 </main>
 
-<footer>
-  <div class="shell foot">
+<footer class="shell">
+  <div class="foot">
     <span>© 2026 Fan Jiang</span><span class="sep">·</span>
     <span>22 篇论文 · 8 个研究方向 · 15 个在研项目</span><span class="sep">·</span>
     <a href="https://github.com/JivonKiang" target="_blank" rel="noopener">GitHub @JivonKiang</a>
