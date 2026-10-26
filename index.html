@@ -184,7 +184,7 @@ svg{display:block;flex:none}
       <a href="https://www.webofscience.com/wos/author/record/HZM-5278-2023" target="_blank" rel="noopener">WoS HZM-5278-2023</a>
     </div>
     <div class="chips">
-      <span class="chip"><b>22</b> 论文</span>
+      <span class="chip"><b id="stat-papers">24</b> 论文</span>
       <span class="chip"><b>8</b> 研究方向</span>
       <span class="chip"><b>15</b> 在研项目</span>
     </div>
@@ -252,7 +252,7 @@ svg{display:block;flex:none}
 <footer class="shell">
   <div class="foot">
     <span>© 2026 Fan Jiang</span><span class="sep">·</span>
-    <span>22 篇论文 · 8 个研究方向 · 15 个在研项目</span><span class="sep">·</span>
+    <span><span id="foot-papers">24</span> 篇论文 · 8 个研究方向 · 15 个在研项目</span><span class="sep">·</span>
     <a href="https://github.com/JivonKiang" target="_blank" rel="noopener">GitHub @JivonKiang</a>
   </div>
 </footer>
@@ -268,6 +268,28 @@ svg{display:block;flex:none}
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
     try{ localStorage.setItem('theme', dark ? 'dark' : 'light'); }catch(e){}
   });
+})();
+(function(){
+  /* 论文数自动更新：实时拉取 ORCID works（group 数），localStorage 缓存，失败保留 fallback */
+  var ORCID = '0000-0002-9257-206X';
+  function setPapers(n){
+    var a = document.getElementById('stat-papers');
+    var b = document.getElementById('foot-papers');
+    if(a) a.textContent = n;
+    if(b) b.textContent = n;
+  }
+  try{
+    var cached = localStorage.getItem('orcid-papers');
+    if(cached) setPapers(cached);
+  }catch(e){}
+  fetch('https://pub.orcid.org/v3.0/' + ORCID + '/works', {headers:{Accept:'application/json'}})
+    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(d){
+      var n = d.group.length;
+      setPapers(n);
+      try{ localStorage.setItem('orcid-papers', String(n)); }catch(e){}
+    })
+    .catch(function(){});
 })();
 </script>
 </body>
