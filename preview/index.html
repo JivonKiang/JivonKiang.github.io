@@ -15,6 +15,7 @@
   --accent:#0E5A50; --accent-bg:#E4EEEA;
   --serif:"Iowan Old Style","Palatino Linotype","Songti SC","Noto Serif SC",Georgia,"Times New Roman",serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Code",Consolas,"JetBrains Mono",Menlo,monospace;
 }
 html[data-theme="dark"]{
   --paper:#0B0D0E; --ink:#EAEAE6; --ink-2:#B4B8BC; --muted:#7E848B;
@@ -42,24 +43,41 @@ svg{display:block;flex:none}
 .icon-btn:hover{color:var(--ink)}
 
 /* ---------- hero ---------- */
-.hero{padding:30px 0 26px;border-bottom:1px solid var(--line)}
+.hero{position:relative;overflow:hidden;padding:26px 0 22px;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:44px 44px;opacity:.30;
+  -webkit-mask-image:radial-gradient(ellipse 90% 130% at 82% 0%,#000 0%,transparent 62%);
+  mask-image:radial-gradient(ellipse 90% 130% at 82% 0%,#000 0%,transparent 62%)}
+.hero>*{position:relative;z-index:1}
 .eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
   display:flex;align-items:center;gap:9px}
 .eyebrow::before{content:"";width:7px;height:7px;background:var(--accent);transform:rotate(45deg);flex:none}
 .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.5rem,11vw,4rem);
-  letter-spacing:-.015em;line-height:1.08;margin-top:8px}
+  letter-spacing:-.015em;line-height:1.08;margin-top:7px}
 .hero h1 .dot{color:var(--accent)}
-.hero p{margin-top:10px;font-size:13px;color:var(--ink-2);max-width:34em}
+.bio{margin-top:9px;font-size:13px;color:var(--ink-2);max-width:36em}
+.bio i{font-family:var(--serif)}
+.bio b{color:var(--ink);font-weight:600}
+.ids{margin-top:10px;display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--mono);
+  font-size:10px;color:var(--muted);letter-spacing:.02em}
+.ids a{border-bottom:1px dashed var(--line-2);padding-bottom:1px}
+.ids a:hover{color:var(--accent);border-color:var(--accent)}
+.chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:baseline;gap:5px;border:1px solid var(--line-2);border-radius:8px;
+  padding:3px 9px;font-size:10.5px;color:var(--muted);background:color-mix(in srgb,var(--paper) 60%,transparent)}
+.chip b{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--accent)}
 
 /* ---------- groups ---------- */
-.group{padding:18px 0 4px}
-.group-label{font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+.group{padding:16px 0 4px}
+.group-label{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
   color:var(--muted);display:flex;align-items:baseline;gap:10px}
+.group-label::before{content:"//";color:var(--accent);font-weight:600}
 .group-label::after{content:"";flex:1;height:1px;background:var(--line);align-self:center}
 
 /* work rows */
 .rows{display:grid;grid-template-columns:1fr;column-gap:36px}
-.row{display:flex;align-items:center;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line)}
+.row{display:flex;align-items:center;gap:12px;padding:9px 2px;border-bottom:1px solid var(--line)}
 .ric{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
   background:var(--accent-bg);color:var(--accent);flex:none;transition:transform .18s ease}
 .ric svg{width:16px;height:16px}
@@ -75,7 +93,7 @@ svg{display:block;flex:none}
 
 /* academic grid */
 .ac{display:grid;grid-template-columns:repeat(3,1fr);column-gap:20px}
-.ac a{display:flex;align-items:center;gap:8px;padding:10px 2px;border-bottom:1px solid var(--line);
+.ac a{display:flex;align-items:center;gap:8px;padding:9px 2px;border-bottom:1px solid var(--line);
   font-size:13px;font-weight:550;color:var(--ink-2)}
 .ac a .aic{color:var(--muted);transition:color .15s ease}
 .ac a .aic svg{width:15px;height:15px}
@@ -84,7 +102,7 @@ svg{display:block;flex:none}
 .ac-t{white-space:nowrap}
 
 /* ---------- footer ---------- */
-.foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;padding:16px 0 26px;
+.foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;padding:14px 0 22px;
   font-size:11px;color:var(--muted)}
 .foot a{border-bottom:1px solid var(--line-2)}
 .foot a:hover{color:var(--ink);border-color:var(--ink)}
@@ -97,8 +115,8 @@ svg{display:block;flex:none}
 /* ---------- responsive ---------- */
 @media (min-width:640px){
   .shell{padding:0 28px}
-  .hero{padding:44px 0 36px}
-  .hero p{font-size:13.5px}
+  .hero{padding:40px 0 34px}
+  .bio{font-size:13.5px}
   .rows{grid-template-columns:1fr 1fr}
   .row-d{display:block}
 }
@@ -128,7 +146,17 @@ svg{display:block;flex:none}
   <section class="hero">
     <div class="eyebrow">Research Navigator</div>
     <h1>Fan Jiang<span class="dot">.</span></h1>
-    <p>投稿、经费、接单与论文、热点、工具箱，收在一处，一页直达。</p>
+    <p class="bio"><b>MBBS</b> · 流行病学与数据科学。围绕 <b>GBD 疾病负担建模</b>、结核感染诊断与疫苗设计、文献计量分析开展研究，成果见 <i>Lancet Oncology</i>、<i>Int J Surg</i> 等期刊。</p>
+    <div class="ids">
+      <a href="https://orcid.org/0000-0002-9257-206X" target="_blank" rel="noopener">ORCID 0000-0002-9257-206X</a>
+      <a href="https://www.scopus.com/inward/authorDetails.url?authorID=58070239100&amp;partnerID=MN8TOARS" target="_blank" rel="noopener">Scopus 58070239100</a>
+      <a href="https://www.webofscience.com/wos/author/record/HZM-5278-2023" target="_blank" rel="noopener">WoS HZM-5278-2023</a>
+    </div>
+    <div class="chips">
+      <span class="chip"><b>22</b> 论文</span>
+      <span class="chip"><b>8</b> 研究方向</span>
+      <span class="chip"><b>15</b> 在研项目</span>
+    </div>
   </section>
 
   <nav class="group" aria-label="工作台">
