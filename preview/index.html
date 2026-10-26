@@ -49,24 +49,44 @@ svg{display:block;flex:none}
   -webkit-mask-image:radial-gradient(ellipse 90% 130% at 82% 0%,#000 0%,transparent 62%);
   mask-image:radial-gradient(ellipse 90% 130% at 82% 0%,#000 0%,transparent 62%)}
 .hero>*{position:relative;z-index:1}
-.avatar{display:block;width:54px;height:54px;border-radius:16px;border:1px solid var(--line-2);
-  box-shadow:0 8px 22px rgba(25,27,30,.10);margin-bottom:14px}
+.hero-top{display:flex;align-items:center;gap:18px}
+.ava-wrap{position:relative;flex:none;width:84px;height:84px}
+.avatar{display:block;width:100%;height:100%;border-radius:20px;border:1px solid var(--line-2);
+  box-shadow:0 10px 26px rgba(25,27,30,.12)}
+.ava-wrap::before{content:"";position:absolute;left:9%;right:9%;top:9%;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--accent) 55%,transparent);opacity:.6;
+  animation:scan 3.4s ease-in-out infinite;z-index:2;pointer-events:none}
+@keyframes scan{0%,100%{top:9%}50%{top:87%}}
+.ck{position:absolute;width:13px;height:13px;border:2px solid var(--accent);z-index:2;
+  animation:ckblink 3.4s ease-in-out infinite}
+.ck.tl{top:-5px;left:-5px;border-right:0;border-bottom:0;border-top-left-radius:6px}
+.ck.tr{top:-5px;right:-5px;border-left:0;border-bottom:0;border-top-right-radius:6px}
+.ck.bl{bottom:-5px;left:-5px;border-right:0;border-top:0;border-bottom-left-radius:6px}
+.ck.br{bottom:-5px;right:-5px;border-left:0;border-top:0;border-bottom-right-radius:6px}
+@keyframes ckblink{0%,100%{opacity:1}50%{opacity:.45}}
+.hero-id{flex:1;min-width:0}
 .eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
   display:flex;align-items:center;gap:9px}
 .eyebrow::before{content:"";width:7px;height:7px;background:var(--accent);transform:rotate(45deg);flex:none}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.5rem,11vw,4rem);
-  letter-spacing:-.015em;line-height:1.08;margin-top:7px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,8.5vw,3.1rem);
+  letter-spacing:-.015em;line-height:1.08;margin-top:6px}
 .hero h1 .dot{color:var(--accent)}
-.bio{margin-top:9px;font-size:13px;color:var(--ink-2);max-width:36em}
+.stat{margin-top:8px;display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9px;
+  letter-spacing:.16em;color:var(--muted);text-transform:uppercase;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.live{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none;animation:blink 2.2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.bio{margin-top:10px;font-size:13px;color:var(--ink-2)}
 .bio i{font-family:var(--serif)}
 .bio b{color:var(--ink);font-weight:600}
-.ids{margin-top:10px;display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--mono);
+.ids{margin-top:14px;display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--mono);
   font-size:10px;color:var(--muted);letter-spacing:.02em}
 .ids a{border-bottom:1px dashed var(--line-2);padding-bottom:1px}
 .ids a:hover{color:var(--accent);border-color:var(--accent)}
-.chips{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+.chips{margin-top:11px;display:flex;flex-wrap:wrap;gap:6px}
 .chip{display:inline-flex;align-items:baseline;gap:5px;border:1px solid var(--line-2);border-radius:8px;
   padding:3px 9px;font-size:10.5px;color:var(--muted);background:color-mix(in srgb,var(--paper) 60%,transparent)}
+.chip::before{content:">";font-family:var(--mono);font-weight:600;font-size:10px;color:var(--accent)}
 .chip b{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--accent)}
 
 /* ---------- groups ---------- */
@@ -117,13 +137,14 @@ svg{display:block;flex:none}
 @media (min-width:640px){
   .shell{padding:0 28px}
   .hero{padding:40px 0 34px}
-  .avatar{width:64px;height:64px;border-radius:18px}
+  .hero-top{gap:22px}
+  .ava-wrap{width:104px;height:104px}
   .bio{font-size:13.5px}
   .rows{grid-template-columns:1fr 1fr}
   .row-d{display:block}
 }
 @media (min-width:920px){
-  .hero h1{font-size:4.2rem}
+  .hero h1{font-size:3.4rem}
   .ac{grid-template-columns:repeat(6,1fr)}
 }
 </style>
@@ -212,10 +233,18 @@ svg{display:block;flex:none}
 <main class="shell">
 
   <section class="hero">
-    <svg class="avatar" viewBox="0 0 200 200" role="img" aria-label="黑猫学者头像"><use href="#ava"/></svg>
-    <div class="eyebrow">Research Navigator</div>
-    <h1>Fan Jiang<span class="dot">.</span></h1>
-    <p class="bio"><b>MBBS</b> · 流行病学与数据科学。围绕 <b>GBD 疾病负担建模</b>、结核感染诊断与疫苗设计、文献计量分析开展研究，成果见 <i>Lancet Oncology</i>、<i>Int J Surg</i> 等期刊。</p>
+    <div class="hero-top">
+      <div class="ava-wrap">
+        <svg class="avatar" viewBox="0 0 200 200" role="img" aria-label="黑猫学者头像"><use href="#ava"/></svg>
+        <i class="ck tl"></i><i class="ck tr"></i><i class="ck bl"></i><i class="ck br"></i>
+      </div>
+      <div class="hero-id">
+        <div class="eyebrow">Research Navigator</div>
+        <h1>Fan Jiang<span class="dot">.</span></h1>
+        <div class="stat"><span class="live"></span>SYSTEM ONLINE · GBD × TB × BIBLIOMETRICS</div>
+        <p class="bio"><b>MBBS</b> · 流行病学与数据科学。围绕 <b>GBD 疾病负担建模</b>、结核感染诊断与疫苗设计、文献计量分析开展研究，成果见 <i>Lancet Oncology</i>、<i>Int J Surg</i> 等期刊。</p>
+      </div>
+    </div>
     <div class="ids">
       <a href="https://orcid.org/0000-0002-9257-206X" target="_blank" rel="noopener">ORCID 0000-0002-9257-206X</a>
       <a href="https://www.scopus.com/inward/authorDetails.url?authorID=58070239100&amp;partnerID=MN8TOARS" target="_blank" rel="noopener">Scopus 58070239100</a>
