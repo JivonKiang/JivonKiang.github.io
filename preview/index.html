@@ -101,9 +101,9 @@ svg{display:block;flex:none}
 .group-label::after{content:"";flex:1;height:1px;background:var(--line);align-self:center}
 
 /* work tiles */
-.rows{display:grid;grid-template-columns:1fr;gap:10px}
-.row{display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;
-  column-gap:9px;row-gap:5px;align-items:center;padding:11px 13px;
+.rows{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.row{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;
+  column-gap:8px;row-gap:4px;align-items:center;padding:10px 11px;
   border:1px solid var(--line);border-radius:12px;
   transition:border-color .16s ease,background .16s ease}
 .row:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent-bg) 45%,transparent)}
@@ -111,11 +111,11 @@ svg{display:block;flex:none}
   background:var(--accent-bg);color:var(--accent);flex:none;transition:transform .18s ease}
 .ric svg{width:15px;height:15px}
 .row:hover .ric{transform:scale(1.06)}
-.row-t{grid-column:2;grid-row:1;min-width:0;font-size:14px;font-weight:550;
+.row-t{grid-column:2;grid-row:1;min-width:0;font-size:13px;font-weight:550;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row:hover .row-t{color:var(--accent)}
 .row-d{grid-column:1/-1;grid-row:2;font-size:11px;color:var(--muted);line-height:1.4;display:none}
-.pill{grid-column:3;grid-row:1;justify-self:end;font-size:9px;font-weight:500;color:var(--accent);
+.pill{grid-column:1/-1;grid-row:2;justify-self:start;margin-top:1px;font-size:9px;font-weight:500;color:var(--accent);
   border:1px solid var(--line-2);border-radius:999px;padding:1px 7px;flex:none;letter-spacing:.02em}
 
 /* ---------- footer ---------- */
@@ -136,8 +136,10 @@ svg{display:block;flex:none}
   .hero-top{gap:22px}
   .ava-wrap{width:104px;height:104px}
   .bio{font-size:13.5px}
-  .rows{grid-template-columns:1fr 1fr}
-  .row{padding:12px 14px}
+  .rows{grid-template-columns:1fr 1fr;gap:10px}
+  .row{grid-template-columns:auto 1fr auto;column-gap:9px;row-gap:5px;padding:12px 14px}
+  .row-t{font-size:14px}
+  .pill{grid-column:3;grid-row:1;justify-self:end;margin-top:0}
   .row-d{display:block}
 }
 @media (min-width:760px){
