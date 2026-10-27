@@ -24,7 +24,7 @@ function renderDbSection(title, dbs, color) {
   return `
     <div class="card" style="margin-bottom:20px;">
       <h3 style="font-size:1.1rem;margin-bottom:16px;color:${color};">${title}</h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">
+      <div class="card-flow" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">
         ${dbs.map(d => `
           <div style="padding:16px;background:var(--bg-tertiary);border-radius:8px;border-left:4px solid ${color};">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">

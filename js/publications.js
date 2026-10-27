@@ -25,14 +25,14 @@ window.renderPublications = function(container, data) {
       </div>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+    <div class="chart-duo">
       <div class="card">
         <div class="card-title">研究领域分布</div>
-        <canvas id="pub-chart-cat"></canvas>
+        <div class="chart-box"><canvas id="pub-chart-cat"></canvas></div>
       </div>
       <div class="card">
         <div class="card-title">发表趋势</div>
-        <canvas id="pub-chart-year"></canvas>
+        <div class="chart-box"><canvas id="pub-chart-year"></canvas></div>
       </div>
     </div>
 
@@ -55,6 +55,7 @@ window.renderPublications = function(container, data) {
 function renderPubCharts(catCounts, yearCounts) {
   const catCtx = document.getElementById('pub-chart-cat');
   if (catCtx) {
+    Chart.getChart(catCtx)?.destroy();   // hash 路由重进时先销毁旧实例，避免 Canvas 复用报错
     new Chart(catCtx, {
       type: 'doughnut',
       data: {
@@ -64,12 +65,13 @@ function renderPubCharts(catCounts, yearCounts) {
           backgroundColor: ['#2563eb', '#7c3aed', '#059669', '#d97706', '#dc2626', '#0891b2', '#be185d', '#4f46e5']
         }]
       },
-      options: { responsive: true, plugins: { legend: { position: 'right', labels: { color: '#191B1E' } } } }
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#191B1E', boxWidth: 12 } } } }
     });
   }
 
   const yearCtx = document.getElementById('pub-chart-year');
   if (yearCtx) {
+    Chart.getChart(yearCtx)?.destroy();
     new Chart(yearCtx, {
       type: 'bar',
       data: {
@@ -80,7 +82,7 @@ function renderPubCharts(catCounts, yearCounts) {
           backgroundColor: '#2563eb'
         }]
       },
-      options: { responsive: true, scales: { y: { beginAtZero: true, ticks: { stepSize: 1, color: '#454A51' }, grid: { color: 'rgba(128,128,128,0.15)' } }, x: { ticks: { color: '#454A51' }, grid: { color: 'rgba(128,128,128,0.15)' } } }, plugins: { legend: { labels: { color: '#191B1E' } } } }
+      options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { stepSize: 1, color: '#454A51' }, grid: { color: 'rgba(128,128,128,0.15)' } }, x: { ticks: { color: '#454A51' }, grid: { color: 'rgba(128,128,128,0.15)' } } }, plugins: { legend: { labels: { color: '#191B1E' } } } }
     });
   }
 }

@@ -130,7 +130,7 @@ window.renderIdeas = function(container, data) {
       </div>
     </div>
 
-    <div id="ideas-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:16px;"></div>
+    <div id="ideas-list" class="card-flow" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:16px;"></div>
   `;
 
   renderIdeasList(matches, routines);
@@ -190,7 +190,7 @@ function renderIdeasList(matches, routines) {
           <span class="badge badge-gray">${routine ? routine.name : m.routine}</span>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;font-size:0.85rem;">
+        <div class="idea-meta-duo" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;font-size:0.85rem;">
           <div>
             <strong style="color:var(--text-muted);">推荐方法:</strong>
             <div style="margin-top:4px;">

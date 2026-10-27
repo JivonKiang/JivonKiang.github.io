@@ -28,7 +28,7 @@ window.renderHotspot = function(container, data) {
       </div>
     </div>
 
-    <div id="routine-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:16px;"></div>
+    <div id="routine-grid" class="card-flow" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:16px;"></div>
   `;
 
   window._routines = routines;

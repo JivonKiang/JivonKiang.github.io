@@ -108,10 +108,20 @@ function initRouter() {
       document.querySelectorAll('.nav-item[data-page]').forEach(n => n.classList.remove('active'));
       item.classList.add('active');
       document.getElementById('sidebar').classList.remove('open');
+      const bd = document.getElementById('sidebar-backdrop');
+      if (bd) bd.classList.remove('show');
     });
   });
   document.getElementById('menu-toggle').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('open');
+    const sidebar = document.getElementById('sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    const opened = sidebar.classList.toggle('open');
+    if (backdrop) backdrop.classList.toggle('show', opened);
+  });
+  const backdrop = document.getElementById('sidebar-backdrop');
+  if (backdrop) backdrop.addEventListener('click', () => {
+    backdrop.classList.remove('show');
+    document.getElementById('sidebar').classList.remove('open');
   });
   route();
 }

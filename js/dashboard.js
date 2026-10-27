@@ -68,7 +68,7 @@ window.renderDashboard = function(container, data) {
     <div class="dashboard-grid" style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-bottom:24px;">
       <div class="card">
         <div class="card-title"><i class="fas fa-project-diagram"></i> 领域 × 热点交叉网络</div>
-        <div id="cross-network" style="height:400px;"></div>
+        <div id="cross-network" class="net-box"></div>
         <p style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;">
           节点大小 = 领域影响力 | 边粗细 = 匹配强度 | 边颜色 = 发表潜力
         </p>
@@ -100,7 +100,7 @@ function renderCrossNetwork(matches, routines, categories) {
   // 数据未就绪时(route() 在 loadData 前先行渲染)直接退出,等 fetchAllData 完成后重渲染
   if (!routines.length || !matches.length) return;
   const width = container.clientWidth;
-  const height = 400;
+  const height = container.clientHeight || 300;
   if (!width) return;
 
   const catColors = {};

@@ -51,7 +51,7 @@ window.renderToolkit = function(container, data) {
     ${Object.entries(METHOD_GROUPS).map(([group, methods]) => `
       <div class="card" style="margin-bottom:20px;">
         <h3 style="font-size:1.1rem;margin-bottom:16px;color:var(--accent);">${group}</h3>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;">
+        <div class="card-flow" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;">
           ${methods.map(m => `
             <div style="padding:12px;background:var(--bg-tertiary);border-radius:8px;">
               <div style="font-weight:600;margin-bottom:4px;">${m.name}</div>

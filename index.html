@@ -112,7 +112,7 @@ svg{display:block;flex:none}
 
 /* work tiles */
 .rows{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.row{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;
+.row{display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;
   column-gap:8px;row-gap:10px;align-items:start;padding:13px 13px 14px;
   border:1px solid var(--line);border-radius:14px;
   background:color-mix(in srgb,var(--ink) 2.5%,transparent);
@@ -122,11 +122,11 @@ svg{display:block;flex:none}
   background:var(--accent-bg);color:var(--accent);flex:none;transition:transform .18s ease}
 .ric svg{width:16px;height:16px}
 .row:hover .ric{transform:scale(1.06)}
-.row-t{grid-column:1/-1;grid-row:2;min-width:0;font-size:13.5px;font-weight:550;letter-spacing:.01em;
+.row-t{grid-column:2;grid-row:1;min-width:0;font-size:13.5px;font-weight:550;letter-spacing:.01em;
   line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row:hover .row-t{color:var(--accent)}
 .row-d{grid-column:1/-1;grid-row:2;font-size:11px;color:var(--muted);line-height:1.4;display:none}
-.pill{grid-column:2;grid-row:1;justify-self:end;align-self:center;font-family:var(--mono);font-size:8.5px;
+.pill{grid-column:3;grid-row:1;justify-self:end;align-self:center;font-family:var(--mono);font-size:8.5px;
   font-weight:500;color:var(--accent);background:var(--accent-bg);border:0;border-radius:6px;
   padding:2px 6px;flex:none;letter-spacing:.02em;white-space:nowrap}
 .pill.pub{color:#3A7850;background:rgba(58,120,80,.10)}
@@ -158,6 +158,10 @@ html[data-theme="dark"] .pill.pub{color:#8FD9A8;background:rgba(143,217,168,.10)
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
 
 /* ---------- responsive ---------- */
+@media (max-width:420px){
+  .rows{grid-template-columns:1fr}
+  .pill{font-size:8px;padding:2px 5px}
+}
 @media (min-width:640px){
   .shell{padding:0 28px}
   .hero{padding:40px 0 34px}
