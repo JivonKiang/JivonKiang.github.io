@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fan Jiang · Research Navigator</title>
-<meta id="meta-desc" name="description" content="Fan Jiang 的科研导航页：投稿面板、经费面板、氪研看板，以及论文、研究热点、工具箱与数据源。">
+<meta id="meta-desc" name="description" content="Fan Jiang 的科研导航页：投稿面板、经费面板、氪研看板、知识库与学术面板（成果 / 热点 / 工具箱 / 数据源）。">
 <meta name="theme-color" content="#F7F5EF">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="/assets/avatar.jpg">
@@ -116,16 +116,6 @@ svg{display:block;flex:none}
 .row:hover .arw{color:var(--accent)}
 .arw svg{width:13px;height:13px}
 
-/* academic grid */
-.ac{display:grid;grid-template-columns:repeat(3,1fr);column-gap:20px}
-.ac a{display:flex;align-items:center;gap:8px;padding:9px 2px;border-bottom:1px solid var(--line);
-  font-size:13px;font-weight:550;color:var(--ink-2)}
-.ac a .aic{color:var(--muted);transition:color .15s ease}
-.ac a .aic svg{width:15px;height:15px}
-.ac a:hover{color:var(--accent)}
-.ac a:hover .aic{color:var(--accent)}
-.ac-t{white-space:nowrap}
-
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;padding:14px 0 22px;
   font-size:11px;color:var(--muted)}
@@ -149,7 +139,6 @@ svg{display:block;flex:none}
 }
 @media (min-width:920px){
   .hero h1{font-size:3.4rem}
-  .ac{grid-template-columns:repeat(6,1fr)}
 }
 </style>
 </head>
@@ -233,34 +222,17 @@ svg{display:block;flex:none}
         <span class="row-d" data-zh="8 学部 · 学习卡 / 文献 / 图版 / 分析 分级总览" data-en="8 divisions · cards, literature, figures, analysis">8 学部 · 学习卡 / 文献 / 图版 / 分析 分级总览</span>
         <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
+      <a class="row" href="https://jivonlab.com/dashboard.html#/dashboard">
+        <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+        <span class="row-t" data-zh="学术面板" data-en="Academic Panel">学术面板</span>
+        <span class="pill" data-zh="公开视图" data-en="Public view">公开视图</span>
+        <span class="row-d" data-zh="成果 · 热点 · 交叉分析 · 工具箱 · 数据库" data-en="Publications · hotspots · cross-analysis · toolkit · databases">成果 · 热点 · 交叉分析 · 工具箱 · 数据库</span>
+        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
+      </a>
     </div>
   </nav>
 
-  <nav class="group" data-aria-zh="学术资料" data-aria-en="Academic" aria-label="学术资料">
-    <div class="group-label" data-zh="学术资料" data-en="Academic">学术资料</div>
-    <div class="ac">
-      <a href="https://jivonlab.com/dashboard.html#/publications">
-        <span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 5.5v15"/></svg></span>
-        <span class="ac-t" data-zh="成果" data-en="Publications">成果</span></a>
-      <a href="https://jivonlab.com/dashboard.html#/hotspot">
-        <span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span>
-        <span class="ac-t" data-zh="研究热点" data-en="Hotspots">研究热点</span></a>
-      <a href="https://jivonlab.com/dashboard.html#/ideas">
-        <span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z"/><path d="M9 18h6M10 21h4"/></svg></span>
-        <span class="ac-t" data-zh="交叉分析" data-en="Cross Analysis">交叉分析</span></a>
-      <a href="https://jivonlab.com/dashboard.html#/toolkit">
-        <span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1 5.1 5.1L9.4 21.8 2.2 21.8l0-7.2z"/><path d="M13 8l3 3"/></svg></span>
-        <span class="ac-t" data-zh="工具箱" data-en="Toolkit">工具箱</span></a>
-      <a href="https://jivonlab.com/dashboard.html#/databases">
-        <span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v13c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-13"/><path d="M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3"/></svg></span>
-        <span class="ac-t" data-zh="数据库" data-en="Databases">数据库</span></a>
-      <a href="https://jivonlab.com/dashboard.html#/dashboard">
-        <span class="aic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-        <span class="ac-t" data-zh="总览" data-en="Overview">总览</span></a>
-    </div>
-  </nav>
-
-</main>
+  </main>
 
 <footer class="shell">
   <div class="foot">
@@ -310,8 +282,8 @@ svg{display:block;flex:none}
   if(!btn) return;
   var meta = document.getElementById('meta-desc');
   var DESC = {
-    zh: 'Fan Jiang 的科研导航页：投稿面板、经费面板、氪研看板，以及论文、研究热点、工具箱与数据源。',
-    en: "Fan Jiang's research navigator: submission panel, funding panel, Keyan board, plus publications, hotspots, toolkit and databases."
+    zh: 'Fan Jiang 的科研导航页：投稿面板、经费面板、氪研看板、知识库与学术面板（成果 / 热点 / 工具箱 / 数据源）。',
+    en: "Fan Jiang's research navigator: submission, funding and Keyan boards, plus the knowledge base and academic panel."
   };
   function apply(lang){
     document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh-CN');
