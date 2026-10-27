@@ -1,0 +1,121 @@
+[
+ {
+  "id": "causal",
+  "nm": "因果推断",
+  "cl": "#6b3fa0",
+  "ids": [
+   "\"mr\"",
+   "\"drug_target_mr\"",
+   "\"gut_microbiota_mr\"",
+   "\"pqtl_mr\"",
+   "\"metabolomics_mr\"",
+   "\"placebo_mr\""
+  ]
+ },
+ {
+  "id": "clinical-db",
+  "nm": "临床数据库",
+  "cl": "#2b6b9a",
+  "ids": [
+   "\"mimic\"",
+   "\"eicu\"",
+   "\"faers\""
+  ]
+ },
+ {
+  "id": "survey",
+  "nm": "流调数据库",
+  "cl": "#3a7850",
+  "ids": [
+   "\"nhanes\"",
+   "\"seer\"",
+   "\"gbd\"",
+   "\"aging_cohort\""
+  ]
+ },
+ {
+  "id": "cohort",
+  "nm": "大规模队列",
+  "cl": "#9a3b3b",
+  "ids": [
+   "\"ukb\""
+  ]
+ },
+ {
+  "id": "clinical",
+  "nm": "临床指标",
+  "cl": "#8a6a20",
+  "ids": [
+   "\"tyg\""
+  ]
+ },
+ {
+  "id": "stats",
+  "nm": "临床统计",
+  "cl": "#8b3a6a",
+  "ids": [
+   "\"nomogram\"",
+   "\"causal_inference\""
+  ]
+ },
+ {
+  "id": "bioinfo",
+  "nm": "生信挖掘",
+  "cl": "#2b6e8a",
+  "ids": [
+   "\"geo_tcga\"",
+   "\"cerna\"",
+   "\"immune_infiltration\"",
+   "\"methylation\"",
+   "\"gdsc_drug\"",
+   "\"ppi\"",
+   "\"immune_lncrna\"",
+   "\"target\""
+  ]
+ },
+ {
+  "id": "bioinfo-adv",
+  "nm": "生信前沿",
+  "cl": "#8a5520",
+  "ids": [
+   "\"virtual_ko\"",
+   "\"single_cell\"",
+   "\"cell_death\"",
+   "\"rna_modification\"",
+   "\"circadian\"",
+   "\"multi_omics\""
+  ]
+ },
+ {
+  "id": "imaging",
+  "nm": "图像分析",
+  "cl": "#6a3a8b",
+  "ids": [
+   "\"radiomics\""
+  ]
+ },
+ {
+  "id": "tcm",
+  "nm": "中药/药理",
+  "cl": "#3a7055",
+  "ids": [
+   "\"network_pharma\""
+  ]
+ },
+ {
+  "id": "ai",
+  "nm": "AI+医学",
+  "cl": "#8a3a7a",
+  "ids": [
+   "\"nlp_medical\""
+  ]
+ },
+ {
+  "id": "biblio",
+  "nm": "文献分析",
+  "cl": "#6a6a6a",
+  "ids": [
+   "\"bibliometrics\""
+  ]
+ }
+]

@@ -54,6 +54,18 @@ function setIdeaStatus(ideaId, status) {
   updateVerificationStats();
 }
 
+function updateVerificationStats() {
+  const state = getVerificationState();
+  const verified = Object.values(state).filter(v => v === 'verified').length;
+  const rejected = Object.values(state).filter(v => v === 'rejected').length;
+  const total = CROSS_MATCH_IDEAS.length;
+
+  const bar = document.getElementById('verify-bar');
+  const stats = document.getElementById('verify-stats');
+  if (bar) bar.style.width = `${(verified / total * 100)}%`;
+  if (stats) stats.textContent = `${verified}/${total} 已核查 · ${rejected} 已否决`;
+}
+
 function getFavorites() {
   try {
     const raw = localStorage.getItem(FAV_KEY);
@@ -150,7 +162,6 @@ function renderIdeasList(matches, routines) {
     const isFav = favs.includes(m.idea);
     const routine = m.routineObj;
     const topJournals = routine ? (routine.journals || []).slice(0, 2) : [];
-    const refs = routine ? (routine.journals || []).flatMap(j => j.articles || []).slice(0, 3) : [];
 
     return `
       <div class="card idea-card" data-idea="${m.idea}" style="position:relative;">
@@ -202,29 +213,6 @@ function renderIdeasList(matches, routines) {
             `).join('')}
           </div>
         ` : ''}
-
-        ${refs.length > 0 ? `
-          <div style="border-top:1px solid var(--border);padding-top:8px;">
-            <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;" onclick="toggleRefs('${m.idea}')">
-              <strong style="font-size:0.8rem;color:var(--text-muted);">参考文献 (${refs.length}篇)</strong>
-              <i class="fas fa-chevron-down" id="ref-icon-${m.idea}"></i>
-            </div>
-            <div id="refs-${m.idea}" style="display:none;margin-top:8px;">
-              ${refs.map(ref => `
-                <div style="padding:8px;background:var(--bg-tertiary);border-radius:6px;margin-bottom:6px;font-size:0.8rem;">
-                  <div style="font-weight:500;margin-bottom:4px;">${ref.title || 'N/A'}</div>
-                  <div style="color:var(--text-muted);">
-                    ${ref.authors || ''} ${ref.year ? '(' + ref.year + ')' : ''} ${ref.journal || ''}
-                  </div>
-                  <div style="margin-top:4px;display:flex;gap:8px;flex-wrap:wrap;">
-                    ${ref.doi ? `<a href="https://doi.org/${ref.doi}" target="_blank" style="font-size:0.75rem;">DOI: ${ref.doi}</a>` : ''}
-                    ${ref.pmid ? `<a href="https://pubmed.ncbi.nlm.nih.gov/${ref.pmid}/" target="_blank" style="font-size:0.75rem;">PMID: ${ref.pmid}</a>` : ''}
-                  </div>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-        ` : ''}
       </div>
     `;
   }).join('');
@@ -238,27 +226,5 @@ window.toggleIdeaStatus = function(ideaId) {
   const el = document.querySelector(`.verification-status[data-idea="${ideaId}"]`);
   if (el) {
     el.innerHTML = next === 'verified' ? '<span style="color:var(--green);">✓</span>' : next === 'rejected' ? '<span style="color:var(--red);">✗</span>' : '<span style="color:var(--orange);">❓</span>';
-  }
-};
-
-function updateVerificationStats() {
-  const state = getVerificationState();
-  const verified = Object.values(state).filter(v => v === 'verified').length;
-  const rejected = Object.values(state).filter(v => v === 'rejected').length;
-  const total = CROSS_MATCH_IDEAS.length;
-
-  const bar = document.getElementById('verify-bar');
-  const stats = document.getElementById('verify-stats');
-  if (bar) bar.style.width = `${(verified / total * 100)}%`;
-  if (stats) stats.textContent = `${verified}/${total} 已核查 · ${rejected} 已否决`;
-}
-
-window.toggleRefs = function(ideaId) {
-  const el = document.getElementById(`refs-${ideaId}`);
-  const icon = document.getElementById(`ref-icon-${ideaId}`);
-  if (el) {
-    const showing = el.style.display === 'block';
-    el.style.display = showing ? 'none' : 'block';
-    if (icon) icon.className = showing ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
   }
 };

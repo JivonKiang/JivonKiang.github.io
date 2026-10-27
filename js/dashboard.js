@@ -91,22 +91,20 @@ window.renderDashboard = function(container, data) {
     </div>
   `;
 
-  setTimeout(() => renderCrossNetwork(matches, routines, data.hotspot && data.hotspot.categories_js), 100);
+  setTimeout(() => renderCrossNetwork(matches, routines, data.categories || []), 100);
 };
 
-function renderCrossNetwork(matches, routines, categoriesJsStr) {
+function renderCrossNetwork(matches, routines, categories) {
   const container = document.getElementById('cross-network');
   if (!container) return;
+  // 数据未就绪时(route() 在 loadData 前先行渲染)直接退出,等 fetchAllData 完成后重渲染
+  if (!routines.length || !matches.length) return;
   const width = container.clientWidth;
   const height = 400;
-
-  let categories = [];
-  try {
-    categories = eval(categoriesJsStr || '[]');
-  } catch { categories = []; }
+  if (!width) return;
 
   const catColors = {};
-  categories.forEach(c => { catColors[c.id] = c.cl; });
+  categories.forEach(c => { catColors[c.nm] = c.cl; });
 
   const fieldNodes = [...new Set(matches.map(m => m.field))].map((f, i) => ({
     id: f, type: 'field', group: i, radius: 25
@@ -114,7 +112,7 @@ function renderCrossNetwork(matches, routines, categoriesJsStr) {
   const routineNodes = routines.map(r => ({
     id: r.id, name: r.name, type: 'routine',
     group: r.category, radius: 10,
-    color: catColors[categories.find(c => c.nm === r.category)?.id] || '#999'
+    color: catColors[r.category] || '#999'
   }));
   const nodes = [...fieldNodes, ...routineNodes];
 
@@ -150,7 +148,7 @@ function renderCrossNetwork(matches, routines, categoriesJsStr) {
   node.append('circle')
     .attr('r', d => d.radius)
     .attr('fill', d => d.type === 'field' ? '#2563eb' : (d.color || '#999'))
-    .attr('stroke', '#fff').attr('stroke-width', 2);
+    .attr('stroke', '#F7F5EF').attr('stroke-width', 2);
 
   node.append('text')
     .text(d => d.type === 'field' ? (d.id.length > 8 ? d.id.substring(0, 8) + '...' : d.id) : '')

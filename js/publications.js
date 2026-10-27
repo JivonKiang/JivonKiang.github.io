@@ -64,7 +64,7 @@ function renderPubCharts(catCounts, yearCounts) {
           backgroundColor: ['#2563eb', '#7c3aed', '#059669', '#d97706', '#dc2626', '#0891b2', '#be185d', '#4f46e5']
         }]
       },
-      options: { responsive: true, plugins: { legend: { position: 'right', labels: { color: 'var(--text-primary)' } } } }
+      options: { responsive: true, plugins: { legend: { position: 'right', labels: { color: '#191B1E' } } } }
     });
   }
 
@@ -80,7 +80,7 @@ function renderPubCharts(catCounts, yearCounts) {
           backgroundColor: '#2563eb'
         }]
       },
-      options: { responsive: true, scales: { y: { beginAtZero: true, ticks: { stepSize: 1, color: 'var(--text-secondary)' }, grid: { color: 'var(--border)' } }, x: { ticks: { color: 'var(--text-secondary)' }, grid: { color: 'var(--border)' } } }, plugins: { legend: { labels: { color: 'var(--text-primary)' } } } }
+      options: { responsive: true, scales: { y: { beginAtZero: true, ticks: { stepSize: 1, color: '#454A51' }, grid: { color: 'rgba(128,128,128,0.15)' } }, x: { ticks: { color: '#454A51' }, grid: { color: 'rgba(128,128,128,0.15)' } } }, plugins: { legend: { labels: { color: '#191B1E' } } } }
     });
   }
 }

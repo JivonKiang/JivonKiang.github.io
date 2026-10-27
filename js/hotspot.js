@@ -1,8 +1,7 @@
 window.renderHotspot = function(container, data) {
   const hotspot = data.hotspot || {};
   const routines = hotspot.routines || [];
-  let categories = [];
-  try { categories = eval(hotspot.categories_js || '[]'); } catch { categories = []; }
+  const categories = data.categories || [];
 
   container.innerHTML = `
     <div class="card" style="margin-bottom:20px;">

@@ -3,19 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fan Jiang · Research Navigator</title>
+  <title>Fan Jiang · Academic Panel</title>
+  <meta name="description" content="Fan Jiang 的学术面板：论文成果、热点方法、交叉选题、工具箱与公共数据库。">
+  <link rel="icon" href="/assets/avatar.jpg">
+  <link rel="canonical" href="https://jivonlab.com/dashboard.html">
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="vendor/font-awesome/all.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/vendor/d3.v7.min.js"></script>
+  <script src="js/vendor/chart.umd.min.js"></script>
   <style>
-    .panel-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 18px}
+    /* ===== 学术面板顶栏（与主页视觉语言统一）===== */
+    :root{
+      --serif:"Iowan Old Style","Palatino Linotype","Songti SC","Noto Serif SC",Georgia,serif;
+      --mono:ui-monospace,"SF Mono","Cascadia Code",Consolas,Menlo,monospace;
+    }
+    .ap-back{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--text-muted);
+      text-decoration:none;margin-right:14px;padding:4px 0}
+    .ap-back:hover{color:var(--accent)}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:1.05rem;font-family:var(--serif)}
+    .logo i{color:var(--accent)}
+
+    /* ===== 顶部快捷磁贴：精简为 2 个外部面板，内部导航靠侧栏 ===== */
+    .panel-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:0 0 18px}
     .panel-strip a{display:flex;flex-direction:column;gap:6px;padding:14px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);text-decoration:none;color:var(--text-primary);transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
     .panel-strip a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
     .panel-strip .ps-ico{font-size:18px;color:var(--accent)}
     .panel-strip .ps-t{font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
     .panel-strip .ps-d{font-size:12px;color:var(--text-muted);line-height:1.35}
     .panel-strip .ps-badge{font-size:10px;font-weight:600;color:var(--orange);border:1px solid var(--orange);border-radius:999px;padding:1px 6px;white-space:nowrap}
+
+    /* ===== 加载失败兜底 ===== */
+    .load-error{display:none;padding:28px;border:1px dashed var(--border);border-radius:var(--radius);
+      text-align:center;color:var(--text-secondary);font-size:.9rem;line-height:1.7}
+    .load-error b{color:var(--text-primary)}
+    .load-error button{margin-top:10px;padding:6px 18px;border:1px solid var(--accent);border-radius:8px;
+      background:transparent;color:var(--accent);cursor:pointer;font-size:.85rem}
+    .load-error button:hover{background:var(--bg-tertiary)}
   </style>
 </head>
 <body>
@@ -23,10 +47,12 @@
     <!-- Top Bar -->
     <header class="top-bar">
       <div class="logo">
+        <a class="ap-back" href="/"><i class="fas fa-arrow-left"></i><span>主页</span></a>
         <i class="fas fa-compass"></i>
-        <span>Fan Jiang · Research Navigator</span>
+        <span>Fan Jiang · Academic Panel</span>
       </div>
       <div class="top-actions">
+        <a href="https://github.com/JivonKiang" target="_blank" rel="noopener" style="margin-right:6px;color:var(--text-muted);font-size:1rem"><i class="fab fa-github"></i></a>
         <button id="theme-toggle" title="切换主题"><i class="fas fa-moon"></i></button>
       </div>
     </header>
@@ -59,49 +85,49 @@
       <div class="nav-divider"></div>
       <div class="nav-section data-sources">
         <div class="nav-label">数据源</div>
-        <div class="source-status" id="source-orcid"><i class="fas fa-circle-notch fa-spin"></i> ORCID</div>
+        <div class="source-status" id="source-orcid"><i class="fas fa-circle-notch fa-spin"></i> Papers</div>
         <div class="source-status" id="source-hotspot"><i class="fas fa-circle-notch fa-spin"></i> Hotspot</div>
-        <div class="source-status" id="source-tb"><i class="fas fa-circle-notch fa-spin"></i> TB-Causal</div>
+        <div class="source-status" id="source-tb"><i class="fas fa-circle-notch fa-spin"></i> Databases</div>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-section">
+        <div class="nav-label">外部面板</div>
+        <a href="https://board.jivonlab.com/" target="_blank" rel="noopener" class="nav-item">
+          <i class="fas fa-file-export"></i><span>投稿面板</span>
+        </a>
+        <a href="https://monitor.jivonlab.com" target="_blank" rel="noopener" class="nav-item">
+          <i class="fas fa-chart-line"></i><span>经费面板</span>
+        </a>
+        <a href="https://board.jivonlab.com/keyan" target="_blank" rel="noopener" class="nav-item">
+          <i class="fas fa-flask"></i><span>氪研看板</span>
+        </a>
       </div>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content" id="main-content">
+      <!-- 顶部只保留 2 个外部面板磁贴（内部 6 页靠侧栏，不再重复） -->
       <div class="panel-strip">
         <a href="https://board.jivonlab.com/" target="_blank" rel="noopener">
           <span class="ps-ico"><i class="fas fa-file-export"></i></span>
-          <span class="ps-t">投稿进展<span class="ps-badge">需验证码</span></span>
-          <span class="ps-d">各项目投稿期刊与状态</span>
+          <span class="ps-t">投稿面板<span class="ps-badge">需验证码</span></span>
+          <span class="ps-d">15 个项目投稿状态与时间线</span>
         </a>
         <a href="https://monitor.jivonlab.com" target="_blank" rel="noopener">
           <span class="ps-ico"><i class="fas fa-chart-line"></i></span>
-          <span class="ps-t">财务面板</span>
+          <span class="ps-t">经费面板</span>
           <span class="ps-d">Token 与额度消耗总览</span>
         </a>
-        <a href="keyan/">
-          <span class="ps-ico"><i class="fas fa-flask"></i></span>
-          <span class="ps-t">科研接单</span>
-          <span class="ps-d">项目清单与数据看板</span>
-        </a>
-        <a href="#/publications">
-          <span class="ps-ico"><i class="fas fa-file-alt"></i></span>
-          <span class="ps-t">成果</span>
-          <span class="ps-d">论文与学术产出</span>
-        </a>
-        <a href="#/toolkit">
-          <span class="ps-ico"><i class="fas fa-toolbox"></i></span>
-          <span class="ps-t">工具箱</span>
-          <span class="ps-d">分析与绘图工具集</span>
-        </a>
-        <a href="#/databases">
-          <span class="ps-ico"><i class="fas fa-database"></i></span>
-          <span class="ps-t">数据库</span>
-          <span class="ps-d">常用公开数据源</span>
-        </a>
       </div>
+
       <div class="loading-overlay" id="loading-overlay">
         <div class="spinner"></div>
         <p>正在加载科研数据...</p>
+      </div>
+      <div class="load-error" id="load-error">
+        <b>数据加载失败</b><br>
+        GitHub Pages 网络抖动或缓存过期，稍后重试即可。
+        <button onclick="location.reload()">重新加载</button>
       </div>
       <div class="page-content" id="page-content"></div>
     </main>
