@@ -102,16 +102,22 @@ function renderCrossNetwork(matches, routines, categories) {
   const width = container.clientWidth;
   const height = container.clientHeight || 300;
   if (!width) return;
+  // 窄屏（手机）下按容器宽度缩放力学参数，否则斥力把节点弹飞出可视区
+  const narrow = width < 480;
+  const fieldR = narrow ? 13 : 25;
+  const routineR = narrow ? 6 : 10;
+  const chargeStrength = narrow ? -60 : -250;
+  const linkDistance = narrow ? 42 : 80;
 
   const catColors = {};
   categories.forEach(c => { catColors[c.nm] = c.cl; });
 
   const fieldNodes = [...new Set(matches.map(m => m.field))].map((f, i) => ({
-    id: f, type: 'field', group: i, radius: 25
+    id: f, type: 'field', group: i, radius: fieldR
   }));
   const routineNodes = routines.map(r => ({
     id: r.id, name: r.name, type: 'routine',
-    group: r.category, radius: 10,
+    group: r.category, radius: routineR,
     color: catColors[r.category] || '#999'
   }));
   const nodes = [...fieldNodes, ...routineNodes];
@@ -129,11 +135,19 @@ function renderCrossNetwork(matches, routines, categories) {
     .attr('width', width).attr('height', height)
     .attr('viewBox', [0, 0, width, height]);
 
+  // 初始位置撒在容器内，避免随机初值把模拟推离中心
+  nodes.forEach(n => {
+    n.x = width / 2 + (Math.random() - 0.5) * width * 0.5;
+    n.y = height / 2 + (Math.random() - 0.5) * height * 0.5;
+  });
+
   const simulation = d3.forceSimulation(nodes)
-    .force('link', d3.forceLink(links).id(d => d.id).distance(80))
-    .force('charge', d3.forceManyBody().strength(-250))
+    .force('link', d3.forceLink(links).id(d => d.id).distance(linkDistance))
+    .force('charge', d3.forceManyBody().strength(chargeStrength))
     .force('center', d3.forceCenter(width / 2, height / 2))
-    .force('collision', d3.forceCollide().radius(d => d.radius + 5));
+    .force('x', d3.forceX(width / 2).strength(0.06))
+    .force('y', d3.forceY(height / 2).strength(0.06))
+    .force('collision', d3.forceCollide().radius(d => d.radius + 4));
 
   const link = svg.append('g').selectAll('line')
     .data(links).join('line')
@@ -171,6 +185,11 @@ function renderCrossNetwork(matches, routines, categories) {
   }).on('mouseout', () => tooltip.style('visibility', 'hidden'));
 
   simulation.on('tick', () => {
+    // 边界约束：节点（含半径）限制在 SVG 视口内，永不飞出
+    nodes.forEach(n => {
+      n.x = Math.max(n.radius, Math.min(width - n.radius, n.x));
+      n.y = Math.max(n.radius, Math.min(height - n.radius, n.y));
+    });
     link.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
         .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
     node.attr('transform', d => `translate(${d.x},${d.y})`);

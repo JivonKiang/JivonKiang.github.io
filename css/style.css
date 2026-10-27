@@ -201,15 +201,21 @@ a:hover { text-decoration: underline; }
 
 /* ===== Responsive ===== */
 @media (max-width: 1023px) {
-  .app { grid-template-columns: 0 1fr; }
+  .app { grid-template-columns: 0 1fr; min-width: 0; }
   .sidebar { position: fixed; left: calc(-1 * var(--sidebar-width)); transition: left 0.3s; z-index: 150; }
   .sidebar.open { left: 0; }
   .menu-toggle { display: block; }
   .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .main-content { min-width: 0; max-width: 100vw; overflow-x: hidden; }
 }
 @media (max-width: 767px) {
   .kpi-grid { grid-template-columns: 1fr; }
   .main-content { padding: 16px 14px; }
+
+  /* 手机上让整页自然滚动（grid 1fr 行 + 内部 overflow 在移动端双滚不顺） */
+  .app { grid-template-rows: var(--topbar-height) auto var(--footer-height); min-height: 100svh; }
+  .main-content { overflow-y: visible; }
+  .sidebar { height: 100dvh; top: 0; }
 
   /* ---- 顶栏：给汉堡按钮让位，标题缩短 ---- */
   .top-bar { padding: 0 52px 0 52px; }
