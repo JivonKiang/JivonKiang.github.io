@@ -100,21 +100,23 @@ svg{display:block;flex:none}
 .group-label::before{content:"//";color:var(--accent);font-weight:600}
 .group-label::after{content:"";flex:1;height:1px;background:var(--line);align-self:center}
 
-/* work rows */
-.rows{display:grid;grid-template-columns:1fr;column-gap:36px}
-.row{display:flex;align-items:center;gap:12px;padding:9px 2px;border-bottom:1px solid var(--line)}
-.ric{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+/* work tiles */
+.rows{display:grid;grid-template-columns:1fr;gap:10px}
+.row{display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;
+  column-gap:9px;row-gap:5px;align-items:center;padding:11px 13px;
+  border:1px solid var(--line);border-radius:12px;
+  transition:border-color .16s ease,background .16s ease}
+.row:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent-bg) 45%,transparent)}
+.ric{grid-column:1;grid-row:1;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;
   background:var(--accent-bg);color:var(--accent);flex:none;transition:transform .18s ease}
-.ric svg{width:16px;height:16px}
+.ric svg{width:15px;height:15px}
 .row:hover .ric{transform:scale(1.06)}
-.row-t{font-size:14.5px;font-weight:550;white-space:nowrap}
+.row-t{grid-column:2;grid-row:1;min-width:0;font-size:14px;font-weight:550;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .row:hover .row-t{color:var(--accent)}
-.row-d{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:none}
-.pill{font-size:9px;font-weight:500;color:var(--accent);border:1px solid var(--line-2);
-  border-radius:999px;padding:1px 7px;flex:none;letter-spacing:.02em}
-.arw{margin-left:auto;color:var(--muted);flex:none}
-.row:hover .arw{color:var(--accent)}
-.arw svg{width:13px;height:13px}
+.row-d{grid-column:1/-1;grid-row:2;font-size:11px;color:var(--muted);line-height:1.4;display:none}
+.pill{grid-column:3;grid-row:1;justify-self:end;font-size:9px;font-weight:500;color:var(--accent);
+  border:1px solid var(--line-2);border-radius:999px;padding:1px 7px;flex:none;letter-spacing:.02em}
 
 /* ---------- footer ---------- */
 .foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;padding:14px 0 22px;
@@ -135,7 +137,11 @@ svg{display:block;flex:none}
   .ava-wrap{width:104px;height:104px}
   .bio{font-size:13.5px}
   .rows{grid-template-columns:1fr 1fr}
+  .row{padding:12px 14px}
   .row-d{display:block}
+}
+@media (min-width:760px){
+  .rows{grid-template-columns:repeat(3,1fr)}
 }
 @media (min-width:920px){
   .hero h1{font-size:3.4rem}
@@ -193,41 +199,35 @@ svg{display:block;flex:none}
         <span class="row-t" data-zh="投稿面板" data-en="Submission Panel">投稿面板</span>
         <span class="pill" data-zh="需验证码" data-en="Login required">需验证码</span>
         <span class="row-d" data-zh="15 个项目实时状态与时间线" data-en="15 projects · live status &amp; timelines">15 个项目实时状态与时间线</span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
       <a class="row" href="https://monitor.jivonlab.com" target="_blank" rel="noopener">
         <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-5 3 3 5-7"/></svg></span>
         <span class="row-t" data-zh="经费面板" data-en="Funding Panel">经费面板</span>
         <span class="row-d" data-zh="Token 与额度消耗统计" data-en="Token &amp; quota usage stats">Token 与额度消耗统计</span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
       <a class="row" href="https://board.jivonlab.com/keyan" target="_blank" rel="noopener">
         <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.2L5.6 18a2 2 0 0 0 1.7 3h9.4a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M7.6 15h8.8"/></svg></span>
         <span class="row-t" data-zh="氪研看板" data-en="Keyan Board">氪研看板</span>
         <span class="pill" data-zh="需验证码" data-en="Login required">需验证码</span>
         <span class="row-d" data-zh="项目池与交付进度" data-en="Project pool &amp; delivery progress">项目池与交付进度</span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
       <a class="row" href="https://jivonlab.com/rules.html">
         <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h7"/></svg></span>
         <span class="row-t" data-zh="实验室制度" data-en="Lab Policies">实验室制度</span>
         <span class="pill" data-zh="公开视图" data-en="Public view">公开视图</span>
         <span class="row-d" data-zh="规则全文在核对台（需验证码）" data-en="Full rules live in the console (login required)">规则全文在核对台（需验证码）</span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
       <a class="row" href="https://board.jivonlab.com/kb" target="_blank" rel="noopener">
         <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8.5 4.8L12 11.6 3.5 6.8z"/><path d="m3.5 12 8.5 4.8 8.5-4.8"/><path d="m3.5 17.2 8.5 4.8 8.5-4.8"/></svg></span>
         <span class="row-t" data-zh="知识库" data-en="Knowledge Base">知识库</span>
         <span class="pill" data-zh="需验证码" data-en="Login required">需验证码</span>
         <span class="row-d" data-zh="8 学部 · 学习卡 / 文献 / 图版 / 分析 分级总览" data-en="8 divisions · cards, literature, figures, analysis">8 学部 · 学习卡 / 文献 / 图版 / 分析 分级总览</span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
       <a class="row" href="https://jivonlab.com/dashboard.html#/dashboard">
         <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
         <span class="row-t" data-zh="学术面板" data-en="Academic Panel">学术面板</span>
         <span class="pill" data-zh="公开视图" data-en="Public view">公开视图</span>
         <span class="row-d" data-zh="成果 · 热点 · 交叉分析 · 工具箱 · 数据库" data-en="Publications · hotspots · cross-analysis · toolkit · databases">成果 · 热点 · 交叉分析 · 工具箱 · 数据库</span>
-        <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg></span>
       </a>
     </div>
   </nav>
