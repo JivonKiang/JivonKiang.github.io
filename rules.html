@@ -3,34 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>JivonLab · Fan Jiang (MBBS)</title>
-<meta name="description" content="Personal research laboratory — cardiology & AI-assisted research workflow.">
+<title>JivonLab · 实验室制度（公开视图）</title>
+<meta name="description" content="五维制度健康雷达与预算总览 — 实验室治理公开聚合视图。">
 <style>
 :root{--ink:#15171A;--muted:#7A808A;--line:#E8E6E0;--accent:#0F5B52;
 --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif;
 --serif:"Iowan Old Style","Palatino Linotype","Songti SC",Georgia,serif}
 *{margin:0;box-sizing:border-box}
 body{font-family:var(--sans);color:var(--ink);background:#FAFAF7;
-min-height:100vh;display:grid;place-items:center;line-height:1.6}
-main{max-width:560px;padding:48px 28px;text-align:center}
-.k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
-h1{font-family:var(--serif);font-weight:400;font-size:2.6rem;letter-spacing:-.02em;margin-bottom:14px}
-p{color:var(--muted);font-size:.98rem}
+min-height:100vh;line-height:1.6}
+main{max-width:660px;margin:0 auto;padding:46px 20px 36px}
+.k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+margin-bottom:16px;text-align:center}
+h1{font-family:var(--serif);font-weight:400;font-size:2.5rem;letter-spacing:-.02em;
+margin-bottom:10px;text-align:center}
+.lede{color:var(--muted);font-size:.94rem;text-align:center;max-width:560px;margin:0 auto}
+/* ---------- radar (与核对台同源) ---------- */
+.radar-wrap{margin:24px 0 0;padding:18px 20px;background:#FFFFFF;
+border:1px solid var(--line);border-radius:16px;text-align:left}
+.radar-ti{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;flex-wrap:wrap}
+.radar-ti b{font-size:14px;color:var(--ink)}
+.lg{font-size:11px;padding:2px 9px;border-radius:20px;border:1px solid}
+.lg-cur{color:#0E5A50;background:#E4EEEA;border-color:#CDE0DB}
+.lg-base{color:#6B7280;background:#F3F4F6;border-color:#E1E3E8}
+.radar-flex{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.radar{width:340px;max-width:100%;height:auto;flex:none;margin:0 auto}
+.radar-notes{flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px}
+.rn{display:flex;align-items:baseline;gap:8px;font-size:12.5px;
+border-bottom:1px dashed #EDE9DE;padding-bottom:5px}
+.rn b{color:#15171A;font-weight:600;min-width:74px}
+.rn span{color:#0E5A50;font-weight:600;font-size:12px;min-width:44px}
+.rn em{color:#7A808A;font-style:normal;font-size:11.5px}
+/* ---------- stats & links ---------- */
+.stats{margin-top:20px;display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:baseline;gap:5px;border:1px solid var(--line);
+border-radius:999px;padding:5px 13px;font-size:.82rem;color:var(--muted);background:#FFF}
+.chip b{font-family:Georgia,serif;font-size:.95rem;color:var(--accent)}
 .links{margin-top:26px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-a{color:var(--accent);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:7px 18px;font-size:.9rem}
+a{color:var(--accent);text-decoration:none;border:1px solid var(--line);
+border-radius:999px;padding:7px 18px;font-size:.9rem}
 a:hover{background:#ECF4F2;border-color:var(--accent)}
-footer{margin-top:34px;font-size:12px;color:var(--muted)}
+footer{margin-top:32px;font-size:12px;color:var(--muted);text-align:center}
+@media (max-width:480px){
+h1{font-size:2rem}
+main{padding:38px 14px 30px}
+.radar-wrap{padding:14px 12px}
+}
 </style>
 </head>
 <body>
 <main>
-<p class="k">Laboratory</p>
+<p class="k">Laboratory Governance</p>
 <h1>JivonLab</h1>
-<p>Personal research laboratory of <b>Fan Jiang (MBBS)</b> — cardiology research and an AI-assisted, rules-driven manuscript workflow.</p>
+<p class="lede">实验室规章制度 · 公开聚合视图：五维健康雷达与预算总览。规则全文与逐条提案对照在核对台（需验证码），本页只展示聚合指标。</p>
+<div class="radar-wrap"><div class="radar-ti"><b>五维制度健康雷达</b><span class="lg lg-cur">当前（实时）</span><span class="lg lg-base">上次修订基线 10-28 00:16</span></div><div class="radar-flex"><svg viewBox="0 0 400 262" class="radar" role="img" aria-label="五维制度健康雷达图"><g><polygon points="200.0,101.0 225.7,119.7 215.9,149.8 184.1,149.8 174.3,119.7" fill="none" stroke="#E4DFD3" stroke-width="1"/><polygon points="200.0,74.0 251.4,111.3 231.7,171.7 168.3,171.7 148.6,111.3" fill="none" stroke="#E4DFD3" stroke-width="1"/><polygon points="200.0,47.0 277.0,103.0 247.6,193.5 152.4,193.5 123.0,103.0" fill="none" stroke="#E4DFD3" stroke-width="1"/><polygon points="200.0,20.0 302.7,94.6 263.5,215.4 136.5,215.4 97.3,94.6" fill="none" stroke="#E4DFD3" stroke-width="1"/><line x1="200" y1="128" x2="200.0" y2="20.0" stroke="#E4DFD3" stroke-width="1"/><line x1="200" y1="128" x2="302.7" y2="94.6" stroke="#E4DFD3" stroke-width="1"/><line x1="200" y1="128" x2="263.5" y2="215.4" stroke="#E4DFD3" stroke-width="1"/><line x1="200" y1="128" x2="136.5" y2="215.4" stroke="#E4DFD3" stroke-width="1"/><line x1="200" y1="128" x2="97.3" y2="94.6" stroke="#E4DFD3" stroke-width="1"/><polygon points="200.0,119.0 262.1,107.8 255.6,204.5 174.6,162.9 97.3,94.6" fill="rgba(132,137,143,.12)" stroke="#84898F" stroke-width="1.5" stroke-dasharray="5 3"/><polygon points="200.0,47.0 279.9,102.0 260.1,210.7 136.5,215.4 105.8,97.4" fill="rgba(14,90,80,.30)" stroke="#0E5A50" stroke-width="2"/><circle cx="200.0" cy="47.0" r="3" fill="#0E5A50"/><text x="200.0" y="31.9" font-size="10" fill="#0E5A50" text-anchor="middle">75</text><circle cx="279.9" cy="102.0" r="3" fill="#0E5A50"/><text x="294.3" y="97.4" font-size="10" fill="#0E5A50" text-anchor="middle">78</text><circle cx="260.1" cy="210.7" r="3" fill="#0E5A50"/><text x="269.0" y="222.9" font-size="10" fill="#0E5A50" text-anchor="middle">95</text><circle cx="136.5" cy="215.4" r="3" fill="#0E5A50"/><text x="127.6" y="227.6" font-size="10" fill="#0E5A50" text-anchor="middle">100</text><circle cx="105.8" cy="97.4" r="3" fill="#0E5A50"/><text x="91.5" y="92.7" font-size="10" fill="#0E5A50" text-anchor="middle">92</text><text x="200" y="4" font-size="12.5" font-weight="600" fill="#191B1E" text-anchor="middle">预算纪律 75</text><text x="200" y="18" font-size="10" fill="#84898F" text-anchor="middle">9/12 绿灯</text><text x="355" y="92" font-size="12.5" font-weight="600" fill="#191B1E" text-anchor="start">落地一致性 78</text><text x="355" y="106" font-size="10" fill="#84898F" text-anchor="start">已落 28 / 存疑 8</text><text x="298" y="236" font-size="12.5" font-weight="600" fill="#191B1E" text-anchor="start">收口进度 95</text><text x="298" y="250" font-size="10" fill="#84898F" text-anchor="start">待收口 5 / 93 条</text><text x="102" y="236" font-size="12.5" font-weight="600" fill="#191B1E" text-anchor="end">注入链健康 100</text><text x="102" y="250" font-size="10" fill="#84898F" text-anchor="end">五段 5/5 在位（user-MEM 3955/40</text><text x="45" y="92" font-size="12.5" font-weight="600" fill="#191B1E" text-anchor="end">审计活跃 92</text><text x="45" y="106" font-size="10" fill="#84898F" text-anchor="end">11/12 在役（Ready/Running；Dis</text></g></svg><div class="radar-notes"><div class="rn"><b>预算纪律</b><span>75 分</span><em>9/12 绿灯</em></div><div class="rn"><b>落地一致性</b><span>78 分</span><em>已落 28 / 存疑 8</em></div><div class="rn"><b>收口进度</b><span>95 分</span><em>待收口 5 / 93 条</em></div><div class="rn"><b>注入链健康</b><span>100 分</span><em>五段 5/5 在位（user-MEM 3955/4000、ws-MEM 2608/3000、AGENTS 1867/2000、identity 4/4）</em></div><div class="rn"><b>审计活跃</b><span>92 分</span><em>11/12 在役（Ready/Running；Disabled=有意停用合规）</em></div></div></div></div>
+<div class="stats">
+<span class="chip"><b>12</b> <span>规则文件</span></span>
+<span class="chip"><b>42,936</b> <span>/ 65,500 字符</span></span>
+<span class="chip"><b>65.6%</b> <span>预算占用</span></span>
+<span class="chip"><b>28/36</b> <span>提案已落</span></span>
+</div>
 <div class="links">
 <a href="https://github.com/jivonkiang">GitHub Profile</a>
+<a href="https://board.jivonlab.com/rules">核对台 · 全文对照（需验证码）</a>
 </div>
-<footer>Internal rules and tools are not published · 2026-10-27</footer>
+<footer>Internal rules and tools are not published · 2026-10-28</footer>
 </main>
 </body>
 </html>
