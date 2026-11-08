@@ -202,16 +202,18 @@ footer{
 /* 底部 thumb-zone dock（仅移动端显示） */
 .dock{display:none}
 
-/* 响应式 · 移动端专项（2026-11-08 WO-41：一页化——只留导航，详情去各模块） */
+/* 入口卡附注拆分（桌面端内联弱化） */
+.entry-list .chip .sub{color:var(--ink-faint);font-size:12px}
+.entry-list .chip .sub::before{content:" · "}
+
+/* 响应式 · 移动端专项（2026-11-08 WO-44：卡片化返工——标语去除，入口双列卡片网格） */
 @media (max-width:900px){
   body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
-  .wrap{padding:0 18px}
+  .wrap{padding:0 16px}
   .grid{gap:14px}
   .topbar{padding:16px 0}
-  .hero{padding:34px 0 26px}
-  .hero .kicker{margin-bottom:18px;letter-spacing:.24em}
-  .hero h1{font-size:clamp(30px,8vw,40px);line-height:1.35}
-  .hero .rule{margin-top:28px}
+  /* 标语区手机端整体隐藏 */
+  .hero{display:none}
 
   /* 一页化：详情卡隐藏（财务详情/学术线/科研闭环/知识库/两机/架构/自动化制度），导览只留入口列表+底部 dock */
   .detail{display:none}
@@ -235,17 +237,49 @@ footer{
   .arch-svg{display:none}
   .arch-svg + .layers{margin-top:18px}
 
-  /* tap 目标 ≥44px */
-  .chip,.sec-link{min-height:44px;display:inline-flex;align-items:center;padding:10px 16px;font-size:13px}
-
-  /* 入口全集：chips 挤团 → 全宽纵向列表（一页化后的核心导航面） */
-  .entry-list{flex-direction:column;gap:10px;margin-top:6px}
-  .entry-list .chip{
-    width:100%;justify-content:space-between;
-    font-size:14px;line-height:1.4;border-radius:10px;
-    text-decoration:none;
+  /* 入口卡片网格：双列卡片，图标+名称（2026-11-08 主任批卡片式） */
+  .entry-list{
+    display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    margin-top:4px;
   }
-  .entry-list .chip::after{content:"→";color:var(--accent);font-size:15px;font-family:Georgia,serif}
+  .entry-list .chip{
+    width:auto;min-height:96px;
+    display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;
+    padding:14px 14px 12px;
+    font-size:15px;line-height:1.35;letter-spacing:.02em;
+    border-radius:14px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    box-shadow:0 1px 3px rgba(20,24,28,.05);
+    text-decoration:none;color:var(--ink);
+    -webkit-tap-highlight-color:transparent;
+  }
+  .entry-list .chip::before{
+    content:attr(data-ico);
+    font-family:"Noto Serif SC",serif;font-size:20px;line-height:1;
+    color:var(--accent);
+    width:36px;height:36px;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--accent-line);border-radius:10px;
+    background:var(--accent-soft);
+  }
+  .entry-list .chip::after{display:none}
+  .entry-list .chip:active{
+    background:var(--accent-soft);
+    border-color:var(--accent-line);
+  }
+  .entry-list .chip .nm{display:block}
+  .entry-list .chip .sub{display:block;font-size:11.5px;letter-spacing:.03em}
+  .entry-list .chip .sub::before{content:""}
+  .entry-list .chip:last-child{grid-column:1/-1}
+  /* 入口卡外壳瘦身：手机端去掉卡头三层标签，只留节标题+网格 */
+  .entry-card{padding:18px 16px 16px}
+  .entry-card .tag,.entry-card .seal,.entry-card h3{display:none}
+  /* 入口卡网格上方小节标题 */
+  .entries-title{
+    font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;
+    color:var(--accent);letter-spacing:.2em;margin:0 0 12px;
+  }
 
   footer{flex-direction:column;gap:6px;text-align:center;padding:22px 0 26px}
 
@@ -364,18 +398,19 @@ footer{
     </div>
 
 
-    <div class="card span12 reveal d6">
+    <div class="card span12 entry-card reveal d6">
       <div class="seal">档</div>
       <div class="tag">Subpages · 站点入口全集</div>
       <h3>学者档案与各面板入口</h3>
+      <div class="entries-title">SITE MAP · 全部入口</div>
       <div class="chips entry-list" style="margin-top:14px">
-        <a class="chip" href="scholar.html" style="color:var(--accent)">Fan Jiang 学术档案（原首页 · ORCID/PubMed/Scopus/WOS）</a>
-        <a class="chip" href="dashboard.html#/dashboard" style="color:var(--accent)">学术面板 · 公开</a>
-        <a class="chip" href="rules.html" style="color:var(--accent)">实验室制度 · 公开</a>
-        <a class="chip" href="https://board.jivonlab.com/" style="color:var(--accent)">投稿面板 · 需验证码</a>
-        <a class="chip" href="https://monitor.jivonlab.com" style="color:var(--accent)">经费面板</a>
-        <a class="chip" href="https://board.jivonlab.com/keyan" style="color:var(--accent)">氪研看板 · 需验证码</a>
-        <a class="chip" href="https://board.jivonlab.com/kb" style="color:var(--accent)">知识库 · 需验证码</a>
+        <a class="chip" href="scholar.html" data-ico="档" style="color:var(--accent)"><span class="nm">Fan Jiang 学术档案</span><span class="sub">ORCID · PubMed · Scopus · WOS</span></a>
+        <a class="chip" href="dashboard.html#/dashboard" data-ico="学" style="color:var(--accent)"><span class="nm">学术面板</span><span class="sub">公开</span></a>
+        <a class="chip" href="rules.html" data-ico="规" style="color:var(--accent)"><span class="nm">实验室制度</span><span class="sub">公开</span></a>
+        <a class="chip" href="https://board.jivonlab.com/" data-ico="投" style="color:var(--accent)"><span class="nm">投稿面板</span><span class="sub">需验证码</span></a>
+        <a class="chip" href="https://monitor.jivonlab.com" data-ico="财" style="color:var(--accent)"><span class="nm">经费面板</span></a>
+        <a class="chip" href="https://board.jivonlab.com/keyan" data-ico="研" style="color:var(--accent)"><span class="nm">氪研看板</span><span class="sub">需验证码</span></a>
+        <a class="chip" href="https://board.jivonlab.com/kb" data-ico="识" style="color:var(--accent)"><span class="nm">知识库</span><span class="sub">需验证码</span></a>
       </div>
     </div>
 
