@@ -1,393 +1,431 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fan Jiang · Research Navigator</title>
-<meta name="description" content="Fan Jiang (MBBS) — epidemiology & data science. GBD disease-burden modeling, TB diagnostics & vaccine design, bibliometrics. 24 papers, ORCID 0000-0002-9257-206X.">
-<meta name="theme-color" content="#F7F5EF">
-<link rel="icon" href="/assets/avatar.jpg">
-
-<!-- Open Graph / 微信·Twitter 分享卡片 -->
-<meta property="og:type" content="profile">
-<meta property="og:title" content="Fan Jiang · Research Navigator">
-<meta property="og:description" content="MBBS · Epidemiology & Data Science. GBD burden modeling, TB diagnostics & vaccines, bibliometrics — 24 papers.">
-<meta property="og:url" content="https://jivonlab.com/">
-<meta property="og:image" content="https://jivonlab.com/assets/avatar.jpg">
-<meta property="og:site_name" content="JivonLab">
-<meta name="twitter:card" content="summary">
-<link rel="canonical" href="https://jivonlab.com/">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jivon Lab · 科研统一工作台</title>
+<meta name="description" content="Jivon Lab — 科研、财务、投稿、知识库与两机协作的统一工作台">
 <style>
 :root{
-  --paper:#F7F5EF; --ink:#191B1E; --ink-2:#454A51; --muted:#84898F;
-  --line:#E4DFD3; --line-2:#CCC6B8;
-  --accent:#0E5A50; --accent-bg:#E4EEEA;
-  --serif:"Iowan Old Style","Palatino Linotype","Songti SC","Noto Serif SC",Georgia,"Times New Roman",serif;
-  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-  --mono:ui-monospace,"SF Mono","Cascadia Code",Consolas,"JetBrains Mono",Menlo,monospace;
-}
-html[data-theme="dark"]{
-  --paper:#0B0D0E; --ink:#EAEAE6; --ink-2:#B4B8BC; --muted:#7E848B;
-  --line:#22272B; --line-2:#383E44;
-  --accent:#6FC7B9; --accent-bg:rgba(111,199,185,.12);
+  --bg:#141210;
+  --panel:#1b1815;
+  --panel-2:#201c18;
+  --line:rgba(236,231,221,.09);
+  --ink:#ece7dd;
+  --ink-dim:#a89f90;
+  --ink-faint:#6f685c;
+  --accent:#d4552f;
+  --accent-soft:rgba(212,85,47,.14);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-svg{display:block;flex:none}
-.shell{max-width:760px;margin:0 auto;padding:0 22px}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:Georgia,"Noto Serif SC","Songti SC",serif;
+  line-height:1.6;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+}
+/* grain 纹理 + 顶部光晕 */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+body::after{
+  content:"";position:absolute;top:-180px;left:50%;transform:translateX(-50%);
+  width:900px;height:420px;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at center,rgba(212,85,47,.16),transparent 65%);
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
+.mono{font-family:"JetBrains Mono","SF Mono",Consolas,monospace}
 
-/* ---------- top bar ---------- */
-.bar{border-bottom:1px solid var(--line)}
-.bar-in{display:flex;align-items:center;height:46px;gap:9px}
-.glyph{width:26px;height:26px;flex:none;border-radius:8px;object-fit:cover;border:1px solid var(--line-2)}
-.bar-id{font-size:12.5px;font-weight:600;letter-spacing:.01em}
-.bar-nav{display:flex;align-items:center;gap:14px;margin-left:auto}
-.bar-nav a{font-size:12px;color:var(--muted)}
-.bar-nav a:hover{color:var(--ink)}
-.icon-btn{width:28px;height:28px;border-radius:8px;border:none;background:transparent;
-  color:var(--muted);display:grid;place-items:center;cursor:pointer}
-.icon-btn:hover{color:var(--ink)}
-.lang-btn{min-width:28px;height:28px;border-radius:8px;padding:0 7px;border:1px solid var(--line-2);
-  background:transparent;color:var(--muted);display:grid;place-items:center;
-  font-size:11px;font-weight:600;letter-spacing:.05em;cursor:pointer}
-.lang-btn:hover{color:var(--ink)}
+/* topbar */
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:22px 0;border-bottom:1px solid var(--line);
+}
+.topbar .brand{font-size:14px;letter-spacing:.12em;color:var(--ink-dim)}
+.topbar .brand b{color:var(--ink);font-weight:400}
+.topbar .clock{font-size:12px;color:var(--ink-faint);letter-spacing:.08em}
 
-/* ---------- hero ---------- */
-.hero{position:relative;overflow:hidden;padding:26px 0 22px;border-bottom:1px solid var(--line)}
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:44px 44px;opacity:.30;
-  -webkit-mask-image:radial-gradient(ellipse 90% 130% at 82% 0%,#000 0%,transparent 62%);
-  mask-image:radial-gradient(ellipse 90% 130% at 82% 0%,#000 0%,transparent 62%)}
-.hero>*{position:relative;z-index:1}
-.hero-top{display:flex;align-items:center;gap:18px}
-.ava-wrap{position:relative;flex:none;width:84px;height:84px}
-.avatar{display:block;width:100%;height:100%;border-radius:20px;border:1px solid var(--line-2);
-  box-shadow:0 10px 26px rgba(25,27,30,.12)}
-.ava-wrap::before{content:"";position:absolute;left:9%;right:9%;top:9%;height:2px;border-radius:2px;
-  background:linear-gradient(90deg,transparent,var(--accent) 55%,transparent);opacity:.6;
-  animation:scan 3.4s ease-in-out infinite;z-index:2;pointer-events:none}
-@keyframes scan{0%,100%{top:9%}50%{top:87%}}
-.ck{position:absolute;width:13px;height:13px;border:2px solid var(--accent);z-index:2;
-  animation:ckblink 3.4s ease-in-out infinite}
-.ck.tl{top:-5px;left:-5px;border-right:0;border-bottom:0;border-top-left-radius:6px}
-.ck.tr{top:-5px;right:-5px;border-left:0;border-bottom:0;border-top-right-radius:6px}
-.ck.bl{bottom:-5px;left:-5px;border-right:0;border-top:0;border-bottom-left-radius:6px}
-.ck.br{bottom:-5px;right:-5px;border-left:0;border-top:0;border-bottom-right-radius:6px}
-@keyframes ckblink{0%,100%{opacity:1}50%{opacity:.45}}
-.hero-id{flex:1;min-width:0}
-.eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);
-  display:flex;align-items:center;gap:9px}
-.eyebrow::before{content:"";width:7px;height:7px;background:var(--accent);transform:rotate(45deg);flex:none}
-.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,8.5vw,3.1rem);
-  letter-spacing:-.015em;line-height:1.08;margin-top:6px}
-.hero h1 .dot{color:var(--accent)}
-.stat{margin-top:8px;display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9px;
-  letter-spacing:.16em;color:var(--muted);text-transform:uppercase;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.live{width:6px;height:6px;border-radius:50%;background:var(--accent);flex:none;animation:blink 2.2s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
-.bio{margin-top:10px;font-size:13px;color:var(--ink-2)}
-.bio i{font-family:var(--serif)}
-.bio b{color:var(--ink);font-weight:600}
-.ids{margin-top:14px;display:flex;flex-wrap:wrap;gap:4px 14px;font-family:var(--mono);
-  font-size:10px;color:var(--muted);letter-spacing:.02em}
-.ids a{border-bottom:1px dashed var(--line-2);padding-bottom:1px}
-.ids a:hover{color:var(--accent);border-color:var(--accent)}
-.chips{margin-top:11px;display:flex;flex-wrap:wrap;gap:6px}
-.chip{display:inline-flex;align-items:baseline;gap:5px;border:1px solid var(--line-2);border-radius:8px;
-  padding:3px 9px;font-size:10.5px;color:var(--muted);background:color-mix(in srgb,var(--paper) 60%,transparent)}
-.chip::before{content:">";font-family:var(--mono);font-weight:600;font-size:10px;color:var(--accent)}
-.chip b{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--accent)}
+/* hero */
+.hero{padding:96px 0 72px}
+.hero .kicker{
+  font-size:12px;letter-spacing:.32em;color:var(--accent);
+  font-family:"JetBrains Mono",Consolas,monospace;
+  text-transform:uppercase;margin-bottom:26px;
+}
+.hero h1{
+  font-size:clamp(34px,5.4vw,58px);font-weight:400;line-height:1.28;
+  letter-spacing:.02em;max-width:760px;
+}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .rule{
+  margin-top:44px;height:1px;
+  background:linear-gradient(90deg,var(--accent),rgba(212,85,47,0));
+}
 
-/* ---------- groups ---------- */
-.group{padding:16px 0 4px}
-.group-label{font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--muted);display:flex;align-items:baseline;gap:10px}
-.group-label::before{content:"//";color:var(--accent);font-weight:600}
-.group-label::after{content:"";flex:1;height:1px;background:var(--line);align-self:center}
+/* 12 列网格 */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;padding:8px 0 88px}
+.span7{grid-column:span 7}.span5{grid-column:span 5}
+.span4{grid-column:span 4}.span8{grid-column:span 8}.span12{grid-column:span 12}
 
-/* work tiles */
-.rows{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.row{display:grid;grid-template-columns:auto 1fr auto;grid-template-rows:auto auto;
-  column-gap:8px;row-gap:10px;align-items:start;padding:13px 13px 14px;
+/* 卡片 */
+.card{
+  display:block;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,var(--panel),var(--panel-2));
   border:1px solid var(--line);border-radius:14px;
-  background:color-mix(in srgb,var(--ink) 2.5%,transparent);
-  transition:border-color .16s ease,background .16s ease,transform .16s ease}
-.row:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent-bg) 60%,transparent)}
-.ric{grid-column:1;grid-row:1;width:32px;height:32px;border-radius:10px;display:grid;place-items:center;
-  background:var(--accent-bg);color:var(--accent);flex:none;transition:transform .18s ease}
-.ric svg{width:16px;height:16px}
-.row:hover .ric{transform:scale(1.06)}
-.row-t{grid-column:2;grid-row:1;min-width:0;font-size:13.5px;font-weight:550;letter-spacing:.01em;
-  line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.row:hover .row-t{color:var(--accent)}
-.row-d{grid-column:1/-1;grid-row:2;font-size:11px;color:var(--muted);line-height:1.4;display:none}
-.pill{grid-column:3;grid-row:1;justify-self:end;align-self:center;font-family:var(--mono);font-size:8.5px;
-  font-weight:500;color:var(--accent);background:var(--accent-bg);border:0;border-radius:6px;
-  padding:2px 6px;flex:none;letter-spacing:.02em;white-space:nowrap}
-.pill.pub{color:#3A7850;background:rgba(58,120,80,.10)}
-html[data-theme="dark"] .pill.pub{color:#8FD9A8;background:rgba(143,217,168,.10)}
-
-/* research interests (Jon Barron style) */
-.pubs-list{display:flex;flex-direction:column}
-.pub-item{display:grid;grid-template-columns:auto 1fr;column-gap:12px;row-gap:2px;
-  padding:10px 2px;border-bottom:1px solid var(--line);align-items:baseline}
-.pub-item:last-child{border-bottom:0}
-.pub-yr{font-family:var(--mono);font-size:11px;color:var(--muted);grid-row:1/3;padding-top:1px}
-.pub-t{font-size:13px;font-weight:550;line-height:1.4;min-width:0}
-.pub-t:hover{color:var(--accent)}
-.pub-v{font-size:11.5px;color:var(--muted);font-style:italic}
-.pub-links{display:flex;gap:10px;margin-top:2px}
-.pub-links a{font-family:var(--mono);font-size:10px;color:var(--accent);border-bottom:1px dashed var(--line-2);padding-bottom:1px}
-.pub-links a:hover{border-color:var(--accent)}
-.more-link{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--accent)}
-
-/* ---------- footer ---------- */
-.foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;padding:14px 0 22px;
-  font-size:11px;color:var(--muted)}
-.foot a{border-bottom:1px solid var(--line-2)}
-.foot a:hover{color:var(--ink);border-color:var(--ink)}
-.foot .sep{opacity:.5}
-
-/* ---------- motion ---------- */
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
-
-/* ---------- responsive ---------- */
-@media (max-width:420px){
-  .rows{grid-template-columns:1fr}
-  .pill{font-size:8px;padding:2px 5px}
+  padding:30px 30px 26px;text-decoration:none;color:inherit;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s;
 }
-@media (min-width:640px){
-  .shell{padding:0 28px}
-  .hero{padding:40px 0 34px}
-  .hero-top{gap:22px}
-  .ava-wrap{width:104px;height:104px}
-  .bio{font-size:13.5px}
-  .rows{grid-template-columns:1fr 1fr;gap:12px}
-  .row{grid-template-columns:auto 1fr auto;column-gap:9px;row-gap:6px;align-items:center;padding:14px}
-  .row-t{grid-column:2;grid-row:1;font-size:14px}
-  .pill{grid-column:3;grid-row:1;justify-self:end;align-self:center}
-  .row-d{display:block}
+a.card:hover{transform:translateY(-4px);border-color:rgba(212,85,47,.45)}
+.seal{
+  position:absolute;top:24px;right:24px;width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(212,85,47,.5);border-radius:8px;
+  color:var(--accent);font-size:20px;
+  background:var(--accent-soft);
+  font-family:"Noto Serif SC",serif;
 }
-@media (min-width:760px){
-  .rows{grid-template-columns:repeat(3,1fr)}
+.card .tag{
+  font-family:"JetBrains Mono",Consolas,monospace;
+  font-size:11px;letter-spacing:.22em;color:var(--ink-faint);
+  text-transform:uppercase;margin-bottom:14px;
 }
-@media (min-width:920px){
-  .hero h1{font-size:3.4rem}
+.card h3{font-size:23px;font-weight:400;letter-spacing:.03em;margin-bottom:10px}
+.card p{font-size:14px;color:var(--ink-dim);max-width:34em}
+.stats{display:flex;gap:26px;margin-top:24px;flex-wrap:wrap}
+.stats .s{display:flex;flex-direction:column;gap:3px}
+.stats .v{font-family:"JetBrains Mono",Consolas,monospace;font-size:15px;color:var(--ink)}
+.stats .k{font-size:11px;color:var(--ink-faint);letter-spacing:.1em}
+.go{
+  display:inline-block;margin-top:22px;font-size:12px;color:var(--accent);
+  font-family:"JetBrains Mono",Consolas,monospace;letter-spacing:.1em;
+}
+a.card:hover .go::after{content:" →"}
+
+/* 科研闭环 pipeline */
+.pipe{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-top:26px}
+.step{border-top:1px solid var(--line);padding-top:12px}
+.step .n{font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;color:var(--accent);letter-spacing:.15em}
+.step .t{font-size:14px;margin-top:6px}
+.step .e{font-size:11px;color:var(--ink-faint);font-family:"JetBrains Mono",Consolas,monospace;margin-top:2px}
+
+/* 两机协作 arch */
+.arch{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.node{background:rgba(236,231,221,.03);border:1px solid var(--line);border-radius:10px;padding:18px}
+.node .role{font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;color:var(--accent);letter-spacing:.18em;margin-bottom:8px}
+.node .name{font-size:16px;margin-bottom:6px}
+.node .duty{font-size:12.5px;color:var(--ink-dim)}
+.sec-links{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+.sec-link{
+  font-family:"JetBrains Mono",Consolas,monospace;font-size:11.5px;
+  color:var(--ink-dim);border:1px solid var(--line);border-radius:99px;
+  padding:6px 14px;letter-spacing:.06em;
+}
+.sec-link.wechat{color:#7fae8f;border-color:rgba(127,174,143,.35)}
+
+/* 架构总览 */
+.layers{display:flex;flex-direction:column;gap:0;margin-top:26px}
+.layer{
+  background:rgba(236,231,221,.03);border:1px solid var(--line);border-radius:10px;
+  padding:16px 18px;position:relative;
+}
+.layer .role{
+  font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;
+  color:var(--accent);letter-spacing:.18em;margin-bottom:8px;
+}
+.layer .name{font-size:15px;margin-bottom:6px}
+.layer .duty{font-size:12.5px;color:var(--ink-dim)}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.chip{
+  font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;
+  color:var(--ink-dim);border:1px solid var(--line);border-radius:99px;
+  padding:4px 12px;letter-spacing:.05em;
+}
+.chip.risk{color:#e08a5e;border-color:rgba(224,138,94,.4)}
+.l-arrow{
+  text-align:center;color:var(--ink-faint);font-size:14px;line-height:1;
+  padding:6px 0;font-family:"JetBrains Mono",Consolas,monospace;
+}
+
+/* SVG 架构图嵌入 */
+.arch-svg{margin-top:26px;width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:10px;background:#faf8f4}
+
+/* 自动化与制度 */
+.auto-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.auto-col{background:rgba(236,231,221,.03);border:1px solid var(--line);border-radius:10px;padding:18px}
+.auto-col .role{font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;color:var(--accent);letter-spacing:.18em;margin-bottom:10px}
+.rule-list{list-style:none;font-size:12.5px;color:var(--ink-dim);display:flex;flex-direction:column;gap:8px}
+.rule-list li{padding-left:16px;position:relative;line-height:1.5}
+.rule-list li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.55}
+
+/* footer */
+footer{
+  border-top:1px solid var(--line);padding:26px 0 34px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;color:var(--ink-faint);letter-spacing:.08em;
+}
+
+/* staggered reveal */
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+.d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
+.d4{animation-delay:.35s}.d5{animation-delay:.45s}.d6{animation-delay:.55s}
+
+/* 响应式 */
+@media (max-width:900px){
+  .span7,.span5,.span8{grid-column:span 12}
+  .span4{grid-column:span 6}
+  .pipe{grid-template-columns:repeat(3,1fr)}
+  .hero{padding:68px 0 52px}
+}
+@media (max-width:560px){
+  .span4{grid-column:span 12}
+  .pipe{grid-template-columns:repeat(2,1fr)}
+  .arch{grid-template-columns:1fr}
+  .stats{gap:18px}
 }
 </style>
 </head>
 <body>
+<div class="wrap">
 
-<header class="bar">
-  <div class="shell bar-in">
-    <img class="glyph" src="/assets/avatar.jpg" alt="Fan Jiang 头像" data-alt-zh="Fan Jiang 头像" data-alt-en="Fan Jiang avatar" width="26" height="26">
-    <span class="bar-id">Fan Jiang</span>
-    <nav class="bar-nav">
-      <a href="https://github.com/JivonKiang" target="_blank" rel="noopener">GitHub</a>
-      <button class="icon-btn" id="theme-toggle" type="button" data-aria-zh="切换深浅色" data-aria-en="Toggle dark mode" aria-label="切换深浅色" title="切换深浅色">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
-      <button class="lang-btn" id="lang-toggle" type="button" aria-label="Switch to English" title="切换英文">EN</button>
-    </nav>
-  </div>
-</header>
+  <header class="topbar reveal d1">
+    <div class="brand mono"><b>jivonlab.com</b></div>
+    <div class="clock mono" id="clock">—</div>
+  </header>
 
-<main class="shell">
-
-  <section class="hero">
-    <div class="hero-top">
-      <div class="ava-wrap">
-        <img class="avatar" src="/assets/avatar.jpg" alt="黑猫学者头像" data-alt-zh="黑猫学者头像" data-alt-en="Fan Jiang avatar" width="84" height="84">
-        <i class="ck tl"></i><i class="ck tr"></i><i class="ck bl"></i><i class="ck br"></i>
-      </div>
-      <div class="hero-id">
-        <div class="eyebrow">Research Navigator</div>
-        <h1>Fan Jiang<span class="dot">.</span></h1>
-        <div class="stat"><span class="live"></span>SYSTEM ONLINE · GBD × TB × BIBLIOMETRICS</div>
-        <p class="bio" data-zh="<b>MBBS</b> · 流行病学与数据科学。围绕 <b>GBD 疾病负担建模</b>、结核感染诊断与疫苗设计、文献计量分析开展研究，成果见 <i>Lancet Oncology</i>、<i>Int J Surg</i> 等期刊。" data-en="<b>MBBS</b> · Epidemiology &amp; Data Science. Research on <b>GBD disease-burden modeling</b>, tuberculosis infection diagnostics &amp; vaccine design, and bibliometric analysis — published in <i>Lancet Oncology</i>, <i>Int J Surg</i>, and more."><b>MBBS</b> · 流行病学与数据科学。围绕 <b>GBD 疾病负担建模</b>、结核感染诊断与疫苗设计、文献计量分析开展研究，成果见 <i>Lancet Oncology</i>、<i>Int J Surg</i> 等期刊。</p>
-      </div>
-    </div>
-    <div class="ids">
-      <a href="https://orcid.org/0000-0002-9257-206X" target="_blank" rel="noopener">ORCID 0000-0002-9257-206X</a>
-      <a href="https://www.scopus.com/inward/authorDetails.url?authorID=58070239100&amp;partnerID=MN8TOARS" target="_blank" rel="noopener">Scopus 58070239100</a>
-      <a href="https://www.webofscience.com/wos/author/record/HZM-5278-2023" target="_blank" rel="noopener">WoS HZM-5278-2023</a>
-    </div>
-    <div class="chips">
-      <span class="chip"><b id="stat-papers">24</b> <span data-zh="论文" data-en="Papers">论文</span></span>
-      <span class="chip"><b>8</b> <span data-zh="研究方向" data-en="Research Areas">研究方向</span></span>
-      <span class="chip"><b>15</b> <span data-zh="在研项目" data-en="Active Projects">在研项目</span></span>
-    </div>
+  <section class="hero reveal d2">
+    <div class="kicker">Jivon Lab · Unified Workbench</div>
+    <h1>科研的每一段，都在这张桌子上<em>。</em></h1>
+    <div class="rule"></div>
   </section>
 
-  <nav class="group" data-aria-zh="工作台" data-aria-en="Workspace" aria-label="工作台">
-    <div class="group-label" data-zh="工作台" data-en="Workspace">工作台</div>
-    <div class="rows">
-      <a class="row" href="https://board.jivonlab.com/" target="_blank" rel="noopener">
-        <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
-        <span class="row-t" data-zh="投稿面板" data-en="Submission Panel">投稿面板</span>
-        <span class="pill" data-zh="需验证码" data-en="Login required">需验证码</span>
-        <span class="row-d" data-zh="15 个项目实时状态与时间线" data-en="15 projects · live status &amp; timelines">15 个项目实时状态与时间线</span>
-      </a>
-      <a class="row" href="https://monitor.jivonlab.com" target="_blank" rel="noopener">
-        <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-5 3 3 5-7"/></svg></span>
-        <span class="row-t" data-zh="经费面板" data-en="Funding Panel">经费面板</span>
-        <span class="pill" data-zh="公开视图" data-en="Public view">公开视图</span>
-        <span class="row-d" data-zh="Token 与额度消耗统计" data-en="Token &amp; quota usage stats">Token 与额度消耗统计</span>
-      </a>
-      <a class="row" href="https://board.jivonlab.com/keyan" target="_blank" rel="noopener">
-        <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6.2L5.6 18a2 2 0 0 0 1.7 3h9.4a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M7.6 15h8.8"/></svg></span>
-        <span class="row-t" data-zh="氪研看板" data-en="Keyan Board">氪研看板</span>
-        <span class="pill" data-zh="需验证码" data-en="Login required">需验证码</span>
-        <span class="row-d" data-zh="项目池与交付进度" data-en="Project pool &amp; delivery progress">项目池与交付进度</span>
-      </a>
-      <a class="row" href="https://jivonlab.com/rules.html">
-        <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M9 7h7M9 11h7"/></svg></span>
-        <span class="row-t" data-zh="实验室制度" data-en="Lab Policies">实验室制度</span>
-        <span class="pill pub" data-zh="公开视图" data-en="Public view">公开视图</span>
-        <span class="row-d" data-zh="规则全文在核对台（需验证码）" data-en="Full rules live in the console (login required)">规则全文在核对台（需验证码）</span>
-      </a>
-      <a class="row" href="https://board.jivonlab.com/kb" target="_blank" rel="noopener">
-        <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 8.5 4.8L12 11.6 3.5 6.8z"/><path d="m3.5 12 8.5 4.8 8.5-4.8"/><path d="m3.5 17.2 8.5 4.8 8.5-4.8"/></svg></span>
-        <span class="row-t" data-zh="知识库" data-en="Knowledge Base">知识库</span>
-        <span class="pill" data-zh="需验证码" data-en="Login required">需验证码</span>
-        <span class="row-d" data-zh="8 学部 · 学习卡 / 文献 / 图版 / 分析 分级总览" data-en="8 divisions · cards, literature, figures, analysis">8 学部 · 学习卡 / 文献 / 图版 / 分析 分级总览</span>
-      </a>
-      <a class="row" href="https://jivonlab.com/dashboard.html#/dashboard">
-        <span class="ric"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-        <span class="row-t" data-zh="学术面板" data-en="Academic Panel">学术面板</span>
-        <span class="pill pub" data-zh="公开视图" data-en="Public view">公开视图</span>
-        <span class="row-d" data-zh="成果 · 热点 · 交叉分析 · 工具箱 · 数据库" data-en="Publications · hotspots · cross-analysis · toolkit · databases">成果 · 热点 · 交叉分析 · 工具箱 · 数据库</span>
-      </a>
-    </div>
-  </nav>
+  <main class="grid">
 
-  <section class="group" data-aria-zh="精选成果" data-aria-en="Selected Publications" aria-label="精选成果">
-    <div class="group-label" data-zh="精选成果" data-en="Selected Publications">精选成果</div>
-    <div class="pubs-list" id="sel-pubs"></div>
-    <a class="more-link" href="https://jivonlab.com/dashboard.html#/publications" data-zh="→ 全部 24 篇论文与筛选器见学术面板" data-en="→ All 24 papers &amp; filters in the Academic Panel">→ 全部 24 篇论文与筛选器见学术面板</a>
-  </section>
+    <a class="card span7 reveal d3" href="https://monitor.jivonlab.com">
+      <div class="seal">财</div>
+      <div class="tag">Finance · Coding Plan Monitor</div>
+      <h3>财务面板</h3>
+      <p>各模型账号额度、成本与余额的集中监测，每半小时自动采集一次。</p>
+      <div class="stats">
+        <div class="s"><span class="v">5 源</span><span class="k">监测渠道</span></div>
+        <div class="s"><span class="v">30 min</span><span class="k">采集周期</span></div>
+        <div class="s"><span class="v mono">monitor.jivonlab.com</span><span class="k">面板地址</span></div>
+      </div>
+      <span class="go">打开面板</span>
+    </a>
+
+    <div class="card span5 reveal d4">
+      <div class="seal">投</div>
+      <div class="tag">Submission · 学术产出线</div>
+      <h3>学术线</h3>
+      <p>选刊→稿件→校对→投递→在审追踪一条龙；科研闭环是其上游，知识库是其弹药库——三者在此汇合，不再分设面板。</p>
+      <div class="stats">
+        <div class="s"><span class="v">闭环</span><span class="k">上游·实验到结果</span></div>
+        <div class="s"><span class="v">六步</span><span class="k">投递链路</span></div>
+      </div>
+      <span class="go">含投稿三闸与状态追踪</span>
+    </div>
+
+    <div class="card span12 reveal d5">
+      <div class="seal">环</div>
+      <div class="tag">Research Pipeline · 学术线的上游段</div>
+      <h3>科研闭环</h3>
+      <div class="pipe">
+        <div class="step"><div class="n">01</div><div class="t">实验</div><div class="e">Experiment</div></div>
+        <div class="step"><div class="n">02</div><div class="t">数据制图</div><div class="e">Figures</div></div>
+        <div class="step"><div class="n">03</div><div class="t">结果</div><div class="e">Results</div></div>
+        <div class="step"><div class="n">04</div><div class="t">稿件</div><div class="e">Manuscript</div></div>
+        <div class="step"><div class="n">05</div><div class="t">投稿</div><div class="e">EM · Submit</div></div>
+        <div class="step"><div class="n">06</div><div class="t">结项蒸馏</div><div class="e">Distill</div></div>
+      </div>
+    </div>
+
+    <div class="card span4 reveal d6">
+      <div class="seal">识</div>
+      <div class="tag">Knowledge · 学术线弹药库</div>
+      <h3>知识库</h3>
+      <p>学习卡与结论沉淀，本地检索优先；为学术线供方法与先例，不另设面板。</p>
+      <div class="stats">
+        <div class="s"><span class="v">Vault</span><span class="k">Obsidian</span></div>
+      </div>
+      <span class="go">本机资产 · 不对外</span>
+    </div>
+
+    <div class="card span8 reveal d6">
+      <div class="seal">协</div>
+      <div class="tag">Infrastructure · Two Machines</div>
+      <h3>两机协作</h3>
+      <div class="arch">
+        <div class="node">
+          <div class="role">HQ · 生产本部</div>
+          <div class="name">西安 · xian</div>
+          <div class="duty">数据 · 代码 · 算力 · 知识库 vault · 稿件唯一修订权</div>
+        </div>
+        <div class="node">
+          <div class="role">Terminal · 终验终端</div>
+          <div class="name">雷神 · razer</div>
+          <div class="duty">投稿材料校验 · 人工核对 · 投稿操作</div>
+        </div>
+      </div>
+      <div class="sec-links">
+        <span class="sec-link wechat">秘书 → 微信交付（仅此通道）</span>
+        <span class="sec-link">阿里云中继 · 远程桌面</span>
+        <span class="sec-link">Tailscale 组网</span>
+      </div>
+    </div>
+
+
+    <div class="card span12 reveal d6">
+      <div class="seal">档</div>
+      <div class="tag">Subpages · 站点入口全集</div>
+      <h3>学者档案与各面板入口</h3>
+      <div class="chips" style="margin-top:14px">
+        <a class="chip" href="scholar.html" style="color:var(--accent)">Fan Jiang 学术档案（原首页 · ORCID/PubMed/Scopus/WOS）</a>
+        <a class="chip" href="dashboard.html#/dashboard" style="color:var(--accent)">学术面板 · 公开</a>
+        <a class="chip" href="rules.html" style="color:var(--accent)">实验室制度 · 公开</a>
+        <a class="chip" href="https://board.jivonlab.com/" style="color:var(--accent)">投稿面板 · 需验证码</a>
+        <a class="chip" href="https://monitor.jivonlab.com" style="color:var(--accent)">经费面板</a>
+        <a class="chip" href="https://board.jivonlab.com/keyan" style="color:var(--accent)">氪研看板 · 需验证码</a>
+        <a class="chip" href="https://board.jivonlab.com/kb" style="color:var(--accent)">知识库 · 需验证码</a>
+      </div>
+    </div>
+
+    <div class="card span12 reveal d6">
+      <div class="seal">构</div>
+      <div class="tag">Architecture · 令行通道与记忆分层</div>
+      <h3>架构总览</h3>
+      <svg class="arch-svg" viewBox="0 0 680 560" role="img" xmlns="http://www.w3.org/2000/svg">
+        <title>实验室架构总览</title>
+        <defs>
+          <marker id="arrw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <g font-family="Georgia,'Noto Serif SC',serif">
+          <text x="40" y="34" font-size="14" fill="#444441">① 收令入口（多头）</text>
+          <g><rect x="40" y="48" width="130" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="105" y="70" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#0C447C">163 邮箱 [指令]</text></g>
+          <g><rect x="190" y="48" width="130" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="255" y="70" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#0C447C">对话直令</text></g>
+          <g><rect x="340" y="48" width="130" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="405" y="70" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#0C447C">企业微信转链</text></g>
+          <g><rect x="490" y="48" width="150" height="44" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/><text x="565" y="70" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#0C447C">晨间派单 07:00</text></g>
+          <path d="M105 92 L105 118 M255 92 L255 118 M405 92 L405 118 M565 92 L565 118" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrw)"/>
+          <text x="40" y="140" font-size="14" fill="#444441">② 中枢层（单口收令）</text>
+          <g><rect x="40" y="152" width="600" height="56" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/><text x="340" y="174" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#3C3489">hub_bus 中枢：intake → dispatch → claim → close（INT / WO 编号）</text><text x="340" y="194" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#534AB7">task_orders 台账 · 五路 G 旗巡查 · 会话注册表</text></g>
+          <path d="M340 208 L340 236" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrw)"/>
+          <text x="40" y="258" font-size="14" fill="#444441">③ 执行层（七部门）</text>
+          <g><rect x="40" y="270" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="110" y="292" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#085041">制度与审计部</text><text x="110" y="310" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">投稿·清污·闸门</text></g>
+          <g><rect x="200" y="270" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="270" y="292" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#085041">基础设施安全</text><text x="270" y="310" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">计划任务·两机</text></g>
+          <g><rect x="360" y="270" width="140" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="430" y="292" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#085041">科研执行部</text><text x="430" y="310" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">项目会话·绘图</text></g>
+          <g><rect x="520" y="270" width="120" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/><text x="580" y="292" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#085041">其余部门</text><text x="580" y="310" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#0F6E56">按 WO 派单</text></g>
+          <path d="M340 326 L340 354" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrw)"/>
+          <text x="40" y="376" font-size="14" fill="#444441">④ 记忆与产出层（写前三分流）</text>
+          <g><rect x="40" y="388" width="180" height="56" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/><text x="130" y="410" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#633806">项目正典 MEMORY</text><text x="130" y="428" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#BA7517">每会话注入</text></g>
+          <g><rect x="240" y="388" width="180" height="56" rx="8" fill="#EAF3DE" stroke="#3B6D11" stroke-width="0.5"/><text x="330" y="410" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#27500A">L2 通用方法卡池</text><text x="330" y="428" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#3B6D11">kb 检索 1 跳</text></g>
+          <g><rect x="440" y="388" width="200" height="56" rx="8" fill="#FAEEDA" stroke="#BA7517" stroke-width="0.5"/><text x="540" y="410" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#633806">outputs / 站点 / 面板</text><text x="540" y="428" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#BA7517">交付与可视</text></g>
+          <path d="M340 444 L340 472" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrw)"/>
+          <text x="40" y="494" font-size="14" fill="#444441">⑤ 通知出口（唯一）</text>
+          <g><rect x="40" y="504" width="285" height="40" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/><text x="182" y="524" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#444441">脚本告警 wb_notify 队列</text></g>
+          <g><rect x="345" y="504" width="295" height="40" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/><text x="492" y="524" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#444441">163 白名单：投稿三件套·日报·[拍板]</text></g>
+        </g>
+      </svg>
+      <div class="layers">
+        <div class="layer">
+          <div class="role">L1 · 收令入口</div>
+          <div class="name">主任 → 实验室</div>
+          <div class="chips">
+            <span class="chip">163 邮箱 [指令]</span>
+            <span class="chip">对话直令</span>
+            <span class="chip">企业微信转链</span>
+            <span class="chip">晨间派单 07:00</span>
+          </div>
+        </div>
+        <div class="l-arrow">↓ 单口收令</div>
+        <div class="layer">
+          <div class="role">L2 · 中枢层</div>
+          <div class="name">hub_bus：intake → dispatch → claim → close</div>
+          <div class="duty">INT / WO 编号 · task_orders 台账 · 五路 G 旗巡查 · 会话注册表</div>
+        </div>
+        <div class="l-arrow">↓ 持单开工</div>
+        <div class="layer">
+          <div class="role">L3 · 执行层（七部门）</div>
+          <div class="name">D1–D7 按 WO 派单施工</div>
+          <div class="chips">
+            <span class="chip">D1 制度与审计</span>
+            <span class="chip">D2 基础设施与安全</span>
+            <span class="chip">D3 科研执行</span>
+            <span class="chip">D4–D7 按需</span>
+          </div>
+        </div>
+        <div class="l-arrow">↓ 产出与沉淀</div>
+        <div class="layer">
+          <div class="role">L4 · 记忆与产出层</div>
+          <div class="name">三分类记忆闸（写前分流）</div>
+          <div class="chips">
+            <span class="chip">项目正典 → MEMORY.md</span>
+            <span class="chip">通用方法 → L2 卡池</span>
+            <span class="chip">一次性事件 → 当日日志</span>
+            <span class="chip risk">污染 → 事后清污工单</span>
+          </div>
+        </div>
+        <div class="l-arrow">↓ 告警与交付回流</div>
+        <div class="layer">
+          <div class="role">L5 · 通知出口（唯一）</div>
+          <div class="name">wb_notify 队列 + 163 邮箱白名单</div>
+          <div class="chips">
+            <span class="chip">脚本告警 wb_notify</span>
+            <span class="chip">投稿三件套 / 制度日报 / [拍板]请示 → 163</span>
+            <span class="chip risk">禁 lark · feishu · 微信输出</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card span12 reveal d6">
+      <div class="seal">规</div>
+      <div class="tag">Automation × Rules · 机器怎么跑，规矩怎么立</div>
+      <h3>自动化与规章制度</h3>
+      <div class="auto-grid">
+        <div class="auto-col">
+          <div class="role">自动巡防（每日常驻）</div>
+          <ul class="rule-list">
+            <li>07:00 晨间派单 → 07:30 邮箱晨报 → 08:15 巡查</li>
+            <li>04:00–04:52 凌晨跑批档：任务审计·分拣·转正·烧包</li>
+            <li>每 3 分钟 Magpie 供应哨兵；每小时卡池索引刷新</li>
+            <li>告警落 wb_notify 队列，播报三查清空</li>
+          </ul>
+        </div>
+        <div class="auto-col">
+          <div class="role">制度闸（机器强制）</div>
+          <ul class="rule-list">
+            <li>中枢单口收令：新任务先 intake 回 INT 即停</li>
+            <li>投稿强门槛：主任原话「同意投」才 Submit</li>
+            <li>记忆分类闸 SYS-172：正典/通用/流水写前分流</li>
+            <li>改规则只走提案箱 RP，禁直改条文</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
   </main>
 
-<footer class="shell">
-  <div class="foot">
-    <span>© 2026 Fan Jiang</span><span class="sep">·</span>
-    <span><span id="foot-papers">24</span> <span data-zh="篇论文" data-en="papers">篇论文</span> · 8 <span data-zh="个研究方向" data-en="research areas">个研究方向</span> · 15 <span data-zh="个在研项目" data-en="active projects">个在研项目</span></span><span class="sep">·</span>
-    <a href="https://github.com/JivonKiang" target="_blank" rel="noopener">GitHub @JivonKiang</a>
-  </div>
-</footer>
+  <footer class="reveal d6">
+    <span>jivonlab.com · Cloudflare + GitHub Pages</span>
+    <span>Est. 2026</span>
+  </footer>
 
+</div>
 <script>
-(function(){
-  var saved = null;
-  try{ saved = localStorage.getItem('theme'); }catch(e){}
-  var dark = saved ? saved === 'dark' : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if(dark) document.documentElement.setAttribute('data-theme','dark');
-  document.getElementById('theme-toggle').addEventListener('click', function(){
-    dark = !dark;
-    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-    try{ localStorage.setItem('theme', dark ? 'dark' : 'light'); }catch(e){}
-  });
-})();
-(function(){
-  /* 精选成果：静态兜底用真实 DOI,拿到 papers.json 后替换为真实数据 */
-  var SEL = [
-    {t:'Global, regional, and national burden of breast cancer among females, 1990\u20132021, with projections to 2050', v:'Lancet Oncology', doi:'10.1016/S1470-2045(25)00730-2'},
-    {t:'Global, regional, and national burden of tuberculosis, 1990\u20132050: a systematic analysis from the GBD study', v:'International Journal of Surgery', doi:'10.1097/js9.0000000000003412'}
-  ];
-  var box = document.getElementById('sel-pubs');
-  if(!box) return;
-  function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
-  function draw(list){
-    if(!list.length){ box.style.display='none'; return; }
-    box.innerHTML = list.map(function(p){
-      return '<div class="pub-item">' +
-        '<span class="pub-yr">' + (p.year || '') + '</span>' +
-        '<span class="pub-t">' + esc(p.title || '') + '</span>' +
-        '<span class="pub-v">' + esc(p.journal || '') + '</span>' +
-        '<span class="pub-links">' +
-          (p.doi ? '<a href="https://doi.org/' + p.doi + '" target="_blank" rel="noopener">DOI</a>' : '') +
-          (p.pmid ? '<a href="https://pubmed.ncbi.nlm.nih.gov/' + p.pmid + '/" target="_blank" rel="noopener">PubMed</a>' : '') +
-        '</span>' +
-      '</div>';
-    }).join('');
-  }
-  /* 静态兜底先渲染(无闪烁),拿到 papers.json 后优先替换为真实数据 */
-  draw(SEL.map(function(s){
-    var m = {title:s.t, journal:s.v, doi:s.doi, year:'2026'};
-    return m;
-  }));
-  fetch('data/papers.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(d){
-    var picks = d.filter(function(p){
-      return /Lancet Oncology|International journal of surgery/i.test(p.journal) && +p.year >= 2025;
-    }).slice(0, 4);
-    if(picks.length) draw(picks);
-  }).catch(function(){});
-})();
-(function(){
-  /* 论文数自动更新：实时拉取 ORCID works（group 数），localStorage 缓存，失败保留 fallback */
-  var ORCID = '0000-0002-9257-206X';
-  function setPapers(n){
-    var a = document.getElementById('stat-papers');
-    var b = document.getElementById('foot-papers');
-    if(a) a.textContent = n;
-    if(b) b.textContent = n;
-  }
-  try{
-    var cached = localStorage.getItem('orcid-papers');
-    if(cached) setPapers(cached);
-  }catch(e){}
-  fetch('https://pub.orcid.org/v3.0/' + ORCID + '/works', {headers:{Accept:'application/json'}})
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(d){
-      var n = d.group.length;
-      setPapers(n);
-      try{ localStorage.setItem('orcid-papers', String(n)); }catch(e){}
-    })
-    .catch(function(){});
-})();
-(function(){
-  /* 一键中英切换：data-zh/data-en 文案就地替换，localStorage 记忆，html lang 同步 */
-  var btn = document.getElementById('lang-toggle');
-  if(!btn) return;
-  var meta = document.getElementById('meta-desc');
-  var DESC = {
-    zh: 'Fan Jiang 的科研导航页：投稿面板、经费面板、氪研看板、知识库与学术面板（成果 / 热点 / 工具箱 / 数据源）。',
-    en: "Fan Jiang's research navigator: submission, funding and Keyan boards, plus the knowledge base and academic panel."
-  };
-  function apply(lang){
-    document.documentElement.setAttribute('lang', lang === 'en' ? 'en' : 'zh-CN');
-    document.querySelectorAll('[data-zh]').forEach(function(el){
-      var v = el.getAttribute(lang === 'en' ? 'data-en' : 'data-zh');
-      if(v !== null) el.innerHTML = v;
-    });
-    document.querySelectorAll('[data-aria-zh]').forEach(function(el){
-      var v = el.getAttribute(lang === 'en' ? 'data-aria-en' : 'data-aria-zh');
-      if(v !== null){ el.setAttribute('aria-label', v); el.setAttribute('title', v); }
-    });
-    document.querySelectorAll('[data-alt-zh]').forEach(function(el){
-      var v = el.getAttribute(lang === 'en' ? 'data-alt-en' : 'data-alt-zh');
-      if(v !== null) el.setAttribute('alt', v);
-    });
-    if(meta) meta.setAttribute('content', DESC[lang]);
-    btn.textContent = lang === 'en' ? '中文' : 'EN';
-    btn.setAttribute('aria-label', lang === 'en' ? '切换到中文' : 'Switch to English');
-    btn.setAttribute('title', lang === 'en' ? '切换到中文' : 'Switch to English');
-    try{ localStorage.setItem('lang', lang); }catch(e){}
-  }
-  var savedLang = null;
-  try{ savedLang = localStorage.getItem('lang'); }catch(e){}
-  apply(savedLang === 'en' ? 'en' : 'zh');
-  btn.addEventListener('click', function(){
-    apply(document.documentElement.getAttribute('lang') === 'en' ? 'zh' : 'en');
-  });
-})();
+function tick(){
+  var n=new Date();
+  var p=function(x){return (x<10?'0':'')+x};
+  document.getElementById('clock').textContent=
+    n.getFullYear()+'-'+p(n.getMonth()+1)+'-'+p(n.getDate())+' '+
+    p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds());
+}
+tick();setInterval(tick,1000);
 </script>
 </body>
 </html>
