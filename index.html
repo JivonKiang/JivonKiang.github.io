@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Jivon Lab · 科研统一工作台</title>
 <meta name="description" content="Jivon Lab — 科研、财务、投稿、知识库与两机协作的统一工作台">
 <style>
@@ -174,19 +174,76 @@ footer{
 .d1{animation-delay:.05s}.d2{animation-delay:.15s}.d3{animation-delay:.25s}
 .d4{animation-delay:.35s}.d5{animation-delay:.45s}.d6{animation-delay:.55s}
 
-/* 响应式 */
+/* 底部 thumb-zone dock（仅移动端显示） */
+.dock{display:none}
+
+/* 响应式 · 移动端专项（2026-11-08 WO-35：单列/44px tap/16px 正文/底部 dock） */
 @media (max-width:900px){
+  body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+  .wrap{padding:0 18px}
+  .grid{gap:14px}
+  .topbar{padding:16px 0}
+  .hero{padding:46px 0 34px}
+  .hero .kicker{margin-bottom:18px;letter-spacing:.24em}
+  .hero h1{font-size:clamp(30px,8vw,40px);line-height:1.35}
+  .hero .rule{margin-top:28px}
+
+  .card{padding:24px 20px 22px;border-radius:12px}
+  .card h3{font-size:20px}
+  .card p{font-size:15.5px;line-height:1.65}
+  .card .tag{font-size:10px;letter-spacing:.16em;margin-bottom:10px}
+  .seal{width:38px;height:38px;font-size:17px;top:16px;right:16px}
+  .go{margin-top:16px;font-size:13px}
+
+  .stats{gap:18px;margin-top:18px}
+  .stats .v{font-size:15px}
+  .stats .k{font-size:11px}
+
   .span7,.span5,.span8{grid-column:span 12}
-  .span4{grid-column:span 6}
-  .pipe{grid-template-columns:repeat(3,1fr)}
-  .hero{padding:68px 0 52px}
-}
-@media (max-width:560px){
   .span4{grid-column:span 12}
-  .pipe{grid-template-columns:repeat(2,1fr)}
+  .pipe{grid-template-columns:repeat(2,1fr);gap:12px}
   .arch{grid-template-columns:1fr}
-  .stats{gap:18px}
+  .auto-grid{grid-template-columns:1fr}
+  .arch-svg{display:none}
+  .arch-svg + .layers{margin-top:18px}
+
+  /* tap 目标 ≥44px */
+  .chip,.sec-link{min-height:44px;display:inline-flex;align-items:center;padding:10px 16px;font-size:13px}
+
+  /* 入口全集：chips 挤团 → 全宽纵向列表 */
+  .entry-list{flex-direction:column;gap:8px}
+  .entry-list .chip{
+    width:100%;justify-content:space-between;
+    font-size:14px;line-height:1.4;border-radius:10px;
+    text-decoration:none;
+  }
+  .entry-list .chip::after{content:"→";color:var(--accent);font-size:15px;font-family:Georgia,serif}
+
+  footer{flex-direction:column;gap:6px;text-align:center;padding:22px 0 26px}
+
+  /* 底部快捷 dock（thumb zone） */
+  .dock{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:rgba(20,18,16,.92);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+    border-top:1px solid var(--line);
+    padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+  }
+  .dock a{
+    flex:1;min-height:48px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    color:var(--ink-dim);text-decoration:none;
+    font-family:"JetBrains Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.03em;
+  }
+  .dock a .ico{
+    font-family:"Noto Serif SC",serif;font-size:17px;font-style:normal;color:var(--accent);
+    width:30px;height:30px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(212,85,47,.45);border-radius:8px;background:var(--accent-soft);
+  }
+  .dock a:active{color:var(--ink)}
 }
+/* 桌面端隐藏 dock，保持原版式不动 */
+@media (min-width:901px){.dock{display:none}}
 </style>
 </head>
 <body>
@@ -283,7 +340,7 @@ footer{
       <div class="seal">档</div>
       <div class="tag">Subpages · 站点入口全集</div>
       <h3>学者档案与各面板入口</h3>
-      <div class="chips" style="margin-top:14px">
+      <div class="chips entry-list" style="margin-top:14px">
         <a class="chip" href="scholar.html" style="color:var(--accent)">Fan Jiang 学术档案（原首页 · ORCID/PubMed/Scopus/WOS）</a>
         <a class="chip" href="dashboard.html#/dashboard" style="color:var(--accent)">学术面板 · 公开</a>
         <a class="chip" href="rules.html" style="color:var(--accent)">实验室制度 · 公开</a>
@@ -417,6 +474,14 @@ footer{
   </footer>
 
 </div>
+
+<nav class="dock" aria-label="快捷入口">
+  <a href="https://monitor.jivonlab.com"><i class="ico">财</i>财务</a>
+  <a href="https://board.jivonlab.com/"><i class="ico">投</i>投稿</a>
+  <a href="dashboard.html#/dashboard"><i class="ico">学</i>学术</a>
+  <a href="scholar.html"><i class="ico">档</i>档案</a>
+  <a href="rules.html"><i class="ico">规</i>制度</a>
+</nav>
 <script>
 function tick(){
   var n=new Date();
