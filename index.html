@@ -43,6 +43,11 @@
 }
 }
 *{margin:0;padding:0;box-sizing:border-box}
+/* 视口锁定（2026-11-08 WO-52：禁左右拖动与橡皮筋弹跳——iOS Safari 下 body 级 overflow-x:hidden 会失效，必须 html 级） */
+html{
+  overflow-x:hidden;
+  overscroll-behavior:none;
+}
 body{
   background:var(--bg);
   color:var(--ink);
@@ -208,12 +213,16 @@ footer{
 
 /* 响应式 · 移动端专项（2026-11-08 WO-44：卡片化返工——标语去除，入口双列卡片网格） */
 @media (max-width:900px){
+  /* 一屏锁定：手机端详情卡隐藏后无需大底部留白，压掉 88px 让整页收进视口（dock 净空由 body padding-bottom 负责） */
+  .grid{gap:14px;padding-bottom:8px}
   body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
   .wrap{padding:0 16px}
-  .grid{gap:14px}
+  .topbar{padding:16px 0}
   .topbar{padding:16px 0}
   /* 标语区手机端整体隐藏 */
   .hero{display:none}
+  /* 光晕为烘托标语而设：标语隐藏后一并去掉，消除 900px 溢出源头（scrollWidth 645→390） */
+  body::after{display:none}
 
   /* 一页化：详情卡隐藏（财务详情/学术线/科研闭环/知识库/两机/架构/自动化制度），导览只留入口列表+底部 dock */
   .detail{display:none}
