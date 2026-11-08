@@ -206,118 +206,104 @@ footer{
 
 /* 底部 thumb-zone dock（仅移动端显示） */
 .dock{display:none}
+/* 手机端专属 App 头部与内容容器（桌面隐藏） */
+.mhead,.mscroll{display:none}
 
 /* 入口卡附注拆分（桌面端内联弱化） */
 .entry-list .chip .sub{color:var(--ink-faint);font-size:12px}
 .entry-list .chip .sub::before{content:" · "}
 
-/* 响应式 · 移动端专项（2026-11-08 WO-44：卡片化返工——标语去除，入口双列卡片网格） */
+/* 响应式 · 移动端专项（2026-11-08 WO-55：App 化重做——外壳硬锁禁一切页面滚动，滚动只发生在内容区） */
 @media (max-width:900px){
-  /* 一屏锁定：手机端详情卡隐藏后无需大底部留白，压掉 88px 让整页收进视口（dock 净空由 body padding-bottom 负责） */
-  .grid{gap:14px;padding-bottom:8px}
-  body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
-  .wrap{padding:0 16px}
-  .topbar{padding:16px 0}
-  .topbar{padding:16px 0}
-  /* 标语区手机端整体隐藏 */
-  .hero{display:none}
-  /* 光晕为烘托标语而设：标语隐藏后一并去掉，消除 900px 溢出源头（scrollWidth 645→390） */
-  body::after{display:none}
-
-  /* 一页化：详情卡隐藏（财务详情/学术线/科研闭环/知识库/两机/架构/自动化制度），导览只留入口列表+底部 dock */
-  .detail{display:none}
-
-  .card{padding:24px 20px 22px;border-radius:12px}
-  .card h3{font-size:20px}
-  .card p{font-size:15.5px;line-height:1.65}
-  .card .tag{font-size:10px;letter-spacing:.16em;margin-bottom:10px}
-  .seal{width:38px;height:38px;font-size:17px;top:16px;right:16px}
-  .go{margin-top:16px;font-size:13px}
-
-  .stats{gap:18px;margin-top:18px}
-  .stats .v{font-size:15px}
-  .stats .k{font-size:11px}
-
-  .span7,.span5,.span8{grid-column:span 12}
-  .span4{grid-column:span 12}
-  .pipe{grid-template-columns:repeat(2,1fr);gap:12px}
-  .arch{grid-template-columns:1fr}
-  .auto-grid{grid-template-columns:1fr}
-  .arch-svg{display:none}
-  .arch-svg + .layers{margin-top:18px}
-
-  /* 入口卡片网格：双列卡片，图标+名称（2026-11-08 主任批卡片式） */
-  .entry-list{
-    display:grid;grid-template-columns:1fr 1fr;gap:10px;
-    margin-top:4px;
+  /* ── 外壳硬锁：页面本体不可滚、不可拖、不可弹（position:fixed 是 iOS/鸿蒙真机唯一可靠的禁滚法） ── */
+  html,body{
+    position:fixed;inset:0;
+    width:100%;height:100%;
+    overflow:hidden;
+    overscroll-behavior:none;
   }
-  .entry-list .chip{
-    width:auto;min-height:96px;
-    display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;
-    padding:14px 14px 12px;
-    font-size:15px;line-height:1.35;letter-spacing:.02em;
-    border-radius:14px;
+
+  /* 桌面版内容整体让位 */
+  .wrap,.dock,footer{display:none}
+
+  /* ── 手机端 App 布局：固定头 + 内部滚动区 ── */
+  body{
+    display:flex;flex-direction:column;
+    background:var(--bg);
+    font-family:Georgia,"Noto Serif SC","Songti SC",serif;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .mhead{
+    display:block;flex:none;
+    padding:calc(14px + env(safe-area-inset-top)) 20px 18px;
+    background:linear-gradient(170deg,var(--accent-soft),transparent 70%);
+    border-bottom:1px solid var(--line);
+  }
+  .mhead-top{display:flex;justify-content:space-between;align-items:baseline}
+  .mhead-brand{font-size:13px;letter-spacing:.18em;color:var(--accent);font-weight:600}
+  .mhead-date{font-size:11px;color:var(--ink-faint);letter-spacing:.05em}
+  .mhead-title{margin-top:10px;font-size:30px;font-weight:600;letter-spacing:.04em;line-height:1.2}
+  .mhead-sub{margin-top:6px;font-size:12.5px;color:var(--ink-dim);letter-spacing:.06em}
+
+  .mscroll{
+    display:block;flex:1 1 auto;
+    overflow-y:auto;overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-y:contain;
+    padding:16px 16px 20px;
+  }
+
+  .mnav{display:grid;grid-template-columns:1fr;gap:10px}
+  .mcard{
+    display:flex;align-items:center;gap:14px;
+    padding:15px 16px;min-height:64px;
     background:var(--panel);
-    border:1px solid var(--line);
+    border:1px solid var(--line);border-radius:16px;
     box-shadow:0 1px 3px rgba(20,24,28,.05);
     text-decoration:none;color:var(--ink);
     -webkit-tap-highlight-color:transparent;
   }
-  .entry-list .chip::before{
-    content:attr(data-ico);
-    font-family:"Noto Serif SC",serif;font-size:20px;line-height:1;
-    color:var(--accent);
-    width:36px;height:36px;
+  .mcard:active{background:var(--accent-soft);border-color:var(--accent-line)}
+  .mico{
+    flex:none;width:44px;height:44px;
     display:flex;align-items:center;justify-content:center;
-    border:1px solid var(--accent-line);border-radius:10px;
+    font-family:"Noto Serif SC",serif;font-size:20px;
+    color:var(--accent);
     background:var(--accent-soft);
+    border:1px solid var(--accent-line);border-radius:12px;
   }
-  .entry-list .chip::after{display:none}
-  .entry-list .chip:active{
-    background:var(--accent-soft);
-    border-color:var(--accent-line);
+  .mtx{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .mtx b{font-size:16px;font-weight:600;letter-spacing:.03em}
+  .mtx i{
+    font-style:normal;font-size:12px;color:var(--ink-faint);letter-spacing:.04em;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
   }
-  .entry-list .chip .nm{display:block}
-  .entry-list .chip .sub{display:block;font-size:11.5px;letter-spacing:.03em}
-  .entry-list .chip .sub::before{content:""}
-  .entry-list .chip:last-child{grid-column:1/-1}
-  /* 入口卡外壳瘦身：手机端去掉卡头三层标签，只留节标题+网格 */
-  .entry-card{padding:18px 16px 16px}
-  .entry-card .tag,.entry-card .seal,.entry-card h3{display:none}
-  /* 入口卡网格上方小节标题 */
-  .entries-title{
-    font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;
-    color:var(--accent);letter-spacing:.2em;margin:0 0 12px;
-  }
-
-  footer{flex-direction:column;gap:6px;text-align:center;padding:22px 0 26px}
-
-  /* 底部快捷 dock（thumb zone） */
-  .dock{
-    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;
-    background:var(--dock-bg);
-    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-    border-top:1px solid var(--line);
-    padding:6px 4px calc(6px + env(safe-area-inset-bottom));
-  }
-  .dock a{
-    flex:1;min-height:48px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
-    color:var(--ink-dim);text-decoration:none;
-    font-family:"JetBrains Mono",Consolas,monospace;font-size:10.5px;letter-spacing:.03em;
-  }
-  .dock a .ico{
-    font-family:"Noto Serif SC",serif;font-size:17px;font-style:normal;color:var(--accent);
-    width:30px;height:30px;display:flex;align-items:center;justify-content:center;
-    border:1px solid var(--accent-line);border-radius:8px;background:var(--accent-soft);
-  }
-  .dock a:active{color:var(--ink)}
 }
-/* 桌面端隐藏 dock，保持原版式不动 */
-@media (min-width:901px){.dock{display:none}}
+/* 桌面端隐藏手机组件，保持原版式不动 */
+@media (min-width:901px){.dock,.mhead,.mscroll{display:none}}
 </style>
 </head>
 <body>
+<header class="mhead">
+  <div class="mhead-top">
+    <span class="mhead-brand">Jivon Lab</span>
+    <span class="mhead-date mono" id="mdate">—</span>
+  </div>
+  <h1 class="mhead-title">科研工作台</h1>
+  <p class="mhead-sub">财务 · 投稿 · 学术 · 档案，一张桌子</p>
+</header>
+<main class="mscroll">
+  <nav class="mnav" aria-label="站点入口">
+    <a class="mcard" href="https://monitor.jivonlab.com"><span class="mico">财</span><span class="mtx"><b>经费面板</b><i>额度 · 成本 · 余额</i></span></a>
+    <a class="mcard" href="https://board.jivonlab.com/"><span class="mico">投</span><span class="mtx"><b>投稿面板</b><i>在审追踪 · 选刊</i></span></a>
+    <a class="mcard" href="dashboard.html#/dashboard"><span class="mico">学</span><span class="mtx"><b>学术面板</b><i>产出 · 数据总览</i></span></a>
+    <a class="mcard" href="scholar.html"><span class="mico">档</span><span class="mtx"><b>学者档案</b><i>ORCID · PubMed · Scopus</i></span></a>
+    <a class="mcard" href="rules.html"><span class="mico">规</span><span class="mtx"><b>实验室制度</b><i>手册 · 提案 · 红线</i></span></a>
+    <a class="mcard" href="https://board.jivonlab.com/keyan"><span class="mico">研</span><span class="mtx"><b>氪研看板</b><i>科研推进 · 看板</i></span></a>
+    <a class="mcard" href="https://board.jivonlab.com/kb"><span class="mico">识</span><span class="mtx"><b>知识库</b><i>学习卡 · 文献</i></span></a>
+  </nav>
+</main>
 <div class="wrap">
 
   <header class="topbar reveal d1">
@@ -563,6 +549,11 @@ function tick(){
     p(n.getHours())+':'+p(n.getMinutes())+':'+p(n.getSeconds());
 }
 tick();setInterval(tick,1000);
+(function(){
+  var d=document.getElementById('mdate');
+  if(d){var n=new Date();var p=function(x){return (x<10?'0':'')+x};
+  d.textContent=n.getFullYear()+'/'+p(n.getMonth()+1)+'/'+p(n.getDate());}
+})();
 </script>
 </body>
 </html>
