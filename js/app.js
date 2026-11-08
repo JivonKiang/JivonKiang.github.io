@@ -169,6 +169,8 @@ function initTheme() {
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     updateThemeIcon(next);
+    // 主题切换后重绘当前页，图表文字随新主题色重取 CSS 变量（2026-11-08）
+    renderPage(currentPage);
   });
 }
 

@@ -3,19 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#F7F5EF">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B0D0E">
 <title>Jivon Lab · 科研统一工作台</title>
 <meta name="description" content="Jivon Lab — 科研、财务、投稿、知识库与两机协作的统一工作台">
 <style>
 :root{
-  --bg:#141210;
-  --panel:#1b1815;
-  --panel-2:#201c18;
-  --line:rgba(236,231,221,.09);
-  --ink:#ece7dd;
-  --ink-dim:#a89f90;
-  --ink-faint:#6f685c;
-  --accent:#d4552f;
-  --accent-soft:rgba(212,85,47,.14);
+  --bg:#F7F5EF;
+  --panel:#FFFFFF;
+  --panel-2:#F1EFE8;
+  --line:rgba(25,27,30,.10);
+  --ink:#191B1E;
+  --ink-dim:#454A51;
+  --ink-faint:#84898F;
+  --accent:#0E5A50;
+  --accent-soft:rgba(14,90,80,.10);
+  --accent-line:rgba(14,90,80,.45);
+  --glow:rgba(14,90,80,.10);
+  --risk:#B45309;
+  --risk-line:rgba(180,83,9,.4);
+  --dock-bg:rgba(247,245,239,.92);
+}
+@media (prefers-color-scheme:dark){
+:root{
+  --bg:#0B0D0E;
+  --panel:#14171B;
+  --panel-2:#1B1F24;
+  --line:rgba(234,234,230,.09);
+  --ink:#EAEAE6;
+  --ink-dim:#B4B8BC;
+  --ink-faint:#7E848B;
+  --accent:#6FC7B9;
+  --accent-soft:rgba(111,199,185,.12);
+  --accent-line:rgba(111,199,185,.45);
+  --glow:rgba(111,199,185,.08);
+  --risk:#f2b544;
+  --risk-line:rgba(242,181,68,.4);
+  --dock-bg:rgba(11,13,14,.92);
+}
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{
@@ -35,7 +60,7 @@ body::before{
 body::after{
   content:"";position:absolute;top:-180px;left:50%;transform:translateX(-50%);
   width:900px;height:420px;pointer-events:none;z-index:0;
-  background:radial-gradient(ellipse at center,rgba(212,85,47,.16),transparent 65%);
+  background:radial-gradient(ellipse at center,var(--glow),transparent 65%);
 }
 .wrap{max-width:1120px;margin:0 auto;padding:0 28px;position:relative;z-index:2}
 .mono{font-family:"JetBrains Mono","SF Mono",Consolas,monospace}
@@ -63,7 +88,7 @@ body::after{
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero .rule{
   margin-top:44px;height:1px;
-  background:linear-gradient(90deg,var(--accent),rgba(212,85,47,0));
+  background:linear-gradient(90deg,var(--accent),transparent);
 }
 
 /* 12 列网格 */
@@ -79,11 +104,11 @@ body::after{
   padding:30px 30px 26px;text-decoration:none;color:inherit;
   transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s;
 }
-a.card:hover{transform:translateY(-4px);border-color:rgba(212,85,47,.45)}
+a.card:hover{transform:translateY(-4px);border-color:var(--accent-line)}
 .seal{
   position:absolute;top:24px;right:24px;width:44px;height:44px;
   display:flex;align-items:center;justify-content:center;
-  border:1px solid rgba(212,85,47,.5);border-radius:8px;
+  border:1px solid var(--accent-line);border-radius:8px;
   color:var(--accent);font-size:20px;
   background:var(--accent-soft);
   font-family:"Noto Serif SC",serif;
@@ -144,7 +169,7 @@ a.card:hover .go::after{content:" →"}
   color:var(--ink-dim);border:1px solid var(--line);border-radius:99px;
   padding:4px 12px;letter-spacing:.05em;
 }
-.chip.risk{color:#e08a5e;border-color:rgba(224,138,94,.4)}
+.chip.risk{color:var(--risk);border-color:var(--risk-line)}
 .l-arrow{
   text-align:center;color:var(--ink-faint);font-size:14px;line-height:1;
   padding:6px 0;font-family:"JetBrains Mono",Consolas,monospace;
@@ -224,7 +249,7 @@ footer{
   /* 底部快捷 dock（thumb zone） */
   .dock{
     display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;
-    background:rgba(20,18,16,.92);
+    background:var(--dock-bg);
     -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
     border-top:1px solid var(--line);
     padding:6px 4px calc(6px + env(safe-area-inset-bottom));
@@ -238,7 +263,7 @@ footer{
   .dock a .ico{
     font-family:"Noto Serif SC",serif;font-size:17px;font-style:normal;color:var(--accent);
     width:30px;height:30px;display:flex;align-items:center;justify-content:center;
-    border:1px solid rgba(212,85,47,.45);border-radius:8px;background:var(--accent-soft);
+    border:1px solid var(--accent-line);border-radius:8px;background:var(--accent-soft);
   }
   .dock a:active{color:var(--ink)}
 }

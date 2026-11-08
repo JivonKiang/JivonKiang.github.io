@@ -53,6 +53,9 @@ window.renderPublications = function(container, data) {
 };
 
 function renderPubCharts(catCounts, yearCounts) {
+  // 图表文字色随主题：从 CSS 变量取，暗色模式自动适配（2026-11-08 修复 legend 不可读）
+  const chartInk = getComputedStyle(document.documentElement).getPropertyValue('--text-primary').trim() || '#191B1E';
+  const chartDim = getComputedStyle(document.documentElement).getPropertyValue('--text-secondary').trim() || '#454A51';
   const catCtx = document.getElementById('pub-chart-cat');
   if (catCtx) {
     Chart.getChart(catCtx)?.destroy();   // hash 路由重进时先销毁旧实例，避免 Canvas 复用报错
@@ -65,7 +68,7 @@ function renderPubCharts(catCounts, yearCounts) {
           backgroundColor: ['#2563eb', '#7c3aed', '#059669', '#d97706', '#dc2626', '#0891b2', '#be185d', '#4f46e5']
         }]
       },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: '#191B1E', boxWidth: 12 } } } }
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: chartInk, boxWidth: 12 } } } }
     });
   }
 
@@ -82,7 +85,7 @@ function renderPubCharts(catCounts, yearCounts) {
           backgroundColor: '#2563eb'
         }]
       },
-      options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { stepSize: 1, color: '#454A51' }, grid: { color: 'rgba(128,128,128,0.15)' } }, x: { ticks: { color: '#454A51' }, grid: { color: 'rgba(128,128,128,0.15)' } } }, plugins: { legend: { labels: { color: '#191B1E' } } } }
+      options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { stepSize: 1, color: chartDim }, grid: { color: 'rgba(128,128,128,0.15)' } }, x: { ticks: { color: chartDim }, grid: { color: 'rgba(128,128,128,0.15)' } } }, plugins: { legend: { labels: { color: chartInk } } } }
     });
   }
 }

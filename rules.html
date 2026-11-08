@@ -42,6 +42,28 @@ a{color:var(--accent);text-decoration:none;border:1px solid var(--line);
 border-radius:999px;padding:7px 18px;font-size:.9rem}
 a:hover{background:#ECF4F2;border-color:var(--accent)}
 footer{margin-top:32px;font-size:12px;color:var(--muted);text-align:center}
+/* 暗色适配（与全站青绿暗色系统一 2026-11-08） */
+@media (prefers-color-scheme:dark){
+body{background:#0B0D0E;color:#EAEAE6}
+:root{--ink:#EAEAE6;--muted:#7E848B;--line:#22272B;--accent:#6FC7B9}
+.radar-wrap{background:#14171B;border-color:#22272B}
+.rn{border-bottom-color:#22272B}
+.rn b{color:#EAEAE6}
+.rn span{color:#6FC7B9}
+.rn em{color:#7E848B}
+.chip{background:#14171B;color:#B4B8BC}
+.chip b{color:#6FC7B9}
+a{color:#6FC7B9;border-color:#22272B}
+a:hover{background:rgba(111,199,185,.12);border-color:#6FC7B9}
+/* SVG 雷达图暗色翻转：网格线/轴文字/图例文字翻亮 */
+.radar polygon[stroke="#E4DFD3"]{stroke:#22272B}
+.radar line[stroke="#E4DFD3"]{stroke:#22272B}
+.radar text[fill="#191B1E"]{fill:#EAEAE6}
+.radar text[fill="#41464D"]{fill:#B4B8BC}
+.radar circle[fill="#0E5A50"]{fill:#6FC7B9;stroke:#0B0D0E}
+.radar polygon[stroke="#0E5A50"]{stroke:#6FC7B9}
+.radar line[stroke="#0E5A50"]{stroke:#6FC7B9}
+}
 @media (max-width:480px){
 h1{font-size:2rem}
 main{padding:38px 14px 30px}
