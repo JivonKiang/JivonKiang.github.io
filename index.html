@@ -254,7 +254,7 @@ footer{
     padding:12px 14px 16px;
   }
 
-  /* 两列四行网格（7 卡：6 张方卡+第 7 张通栏），MD3 动态色每卡独立主题 */
+  /* 两列四行网格（8 卡 2×4 方卡网格），MD3 动态色每卡独立主题 */
   .mnav{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .mcard{
     display:flex;flex-direction:column;justify-content:space-between;
@@ -285,20 +285,17 @@ footer{
     font-size:18px;line-height:1;color:var(--ink-faint);opacity:.5;
   }
   .mcard{position:relative}
-  .mcard:last-child{grid-column:1/-1;flex-direction:row;align-items:center;min-height:64px;gap:14px}
-  .mcard:last-child .mico{margin-bottom:0}
-  .mcard:last-child .mtx{flex:1}
   /* 每卡主题色（亮暗自动适配：dark 段的 --c 由下覆 media 给出） */
   .mcard.c1{--c:#0E7C6B}.mcard.c2{--c:#0E5A8A}
   .mcard.c3{--c:#7A4FBF}.mcard.c4{--c:#B45309}
   .mcard.c5{--c:#946B00}.mcard.c6{--c:#2E7D32}
-  .mcard.c7{--c:#0E5A50}
+  .mcard.c7{--c:#0E5A50}.mcard.c8{--c:#B4235E}
 }
 @media (prefers-color-scheme:dark){
   .mcard.c1{--c:#6FC7B9}.mcard.c2{--c:#7FB3E8}
   .mcard.c3{--c:#B79CF0}.mcard.c4{--c:#F2B544}
   .mcard.c5{--c:#E3C05C}.mcard.c6{--c:#8FD694}
-  .mcard.c7{--c:#6FC7B9}
+  .mcard.c7{--c:#6FC7B9}.mcard.c8{--c:#F472A0}
 }
 /* 桌面端隐藏手机组件，保持原版式不动 */
 @media (min-width:901px){.dock,.mhead,.mscroll{display:none}}
@@ -322,6 +319,7 @@ footer{
     <a class="mcard c5 arrow" href="rules.html"><span class="mico">规</span><span class="mtx"><b>实验室制度</b><i>手册 · 提案 · 红线</i></span></a>
     <a class="mcard c6 arrow" href="https://board.jivonlab.com/keyan"><span class="mico">研</span><span class="mtx"><b>氪研看板</b><i>科研推进 · 看板</i></span></a>
     <a class="mcard c7 arrow" href="https://board.jivonlab.com/kb"><span class="mico">识</span><span class="mtx"><b>知识库</b><i>学习卡 · 文献</i></span></a>
+    <a class="mcard c8 arrow" href="https://invest.jivonlab.com"><span class="mico">资</span><span class="mtx"><b>投资面板</b><i>持仓 · 信号 · 回测</i></span></a>
   </nav>
 </main>
 <div class="wrap">
@@ -348,6 +346,19 @@ footer{
         <div class="s"><span class="v">5 源</span><span class="k">监测渠道</span></div>
         <div class="s"><span class="v">30 min</span><span class="k">采集周期</span></div>
         <div class="s"><span class="v mono">monitor.jivonlab.com</span><span class="k">面板地址</span></div>
+      </div>
+      <span class="go">打开面板</span>
+    </a>
+
+    <a class="card span12 detail reveal d4" href="https://invest.jivonlab.com">
+      <div class="seal">资</div>
+      <div class="tag">Investment · Asset Panel</div>
+      <h3>投资面板</h3>
+      <p>七个投资项目归一：持仓追踪、纳指定投建议、ETF 量化信号与资产配置回测，一张面板看完。</p>
+      <div class="stats">
+        <div class="s"><span class="v">7→1</span><span class="k">项目归一</span></div>
+        <div class="s"><span class="v">每日</span><span class="k">信号更新</span></div>
+        <div class="s"><span class="v mono">invest.jivonlab.com</span><span class="k">面板地址</span></div>
       </div>
       <span class="go">打开面板</span>
     </a>
@@ -426,6 +437,7 @@ footer{
         <a class="chip" href="https://monitor.jivonlab.com" data-ico="财" style="color:var(--accent)"><span class="nm">经费面板</span></a>
         <a class="chip" href="https://board.jivonlab.com/keyan" data-ico="研" style="color:var(--accent)"><span class="nm">氪研看板</span><span class="sub">需验证码</span></a>
         <a class="chip" href="https://board.jivonlab.com/kb" data-ico="识" style="color:var(--accent)"><span class="nm">知识库</span><span class="sub">需验证码</span></a>
+        <a class="chip" href="https://invest.jivonlab.com" data-ico="资" style="color:var(--accent)"><span class="nm">投资面板</span><span class="sub">持仓 · 信号 · 回测</span></a>
       </div>
     </div>
 
@@ -557,6 +569,7 @@ footer{
   <a href="https://monitor.jivonlab.com"><i class="ico">财</i>财务</a>
   <a href="https://board.jivonlab.com/"><i class="ico">投</i>投稿</a>
   <a href="dashboard.html#/dashboard"><i class="ico">学</i>学术</a>
+  <a href="https://invest.jivonlab.com"><i class="ico">资</i>投资</a>
   <a href="scholar.html"><i class="ico">档</i>档案</a>
   <a href="rules.html"><i class="ico">规</i>制度</a>
 </nav>
