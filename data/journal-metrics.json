@@ -1,0 +1,162 @@
+{
+  "_meta": {
+    "date": "2026-11-09",
+    "source": "journal_lookup 三数库（JCR2026发布版/2025数据年 IF+JCR 分区+排名；新锐2026镜像分区）",
+    "policy": "SUB-146 镜像初筛口径：公开面板展示用；无 2026 IF 的刊（J Pers Med/Heliyon）为真实缺席（Clarivate 2026 版未给 IF/已除名），非数据缺失",
+    "script": "D:\\AI科研变现项目\\outputs\\xr_mirror\\sync_portal_metrics.py"
+  },
+  "journals": {
+    "ACS Applied Materials and Interfaces": {
+      "if": 7.8,
+      "jcr": "Q1",
+      "rank": "106/472",
+      "subject": "MATERIALS SCIENCE, MULTIDISCIPLINARY",
+      "xr": "材料科学 2 区·Top",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Annals of transplantation": {
+      "if": 1.3,
+      "jcr": "Q3",
+      "rank": "210/321",
+      "subject": "SURGERY",
+      "xr": "医学 4 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Canadian Respiratory Journal": {
+      "if": 2.1,
+      "jcr": "Q3",
+      "rank": "68/107",
+      "subject": "RESPIRATORY SYSTEM",
+      "xr": "医学 3 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Frontiers in Immunology": {
+      "if": 7.0,
+      "jcr": "Q1",
+      "rank": "29/183",
+      "subject": "IMMUNOLOGY",
+      "xr": "医学 2 区·Top",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Frontiers in Microbiology": {
+      "if": 5.8,
+      "jcr": "Q1",
+      "rank": "33/167",
+      "subject": "MICROBIOLOGY",
+      "xr": "生物学 2 区·Top",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Frontiers in immunology": {
+      "if": 7.0,
+      "jcr": "Q1",
+      "rank": "29/183",
+      "subject": "IMMUNOLOGY",
+      "xr": "医学 2 区·Top",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Heliyon": {
+      "if": null,
+      "jcr": null,
+      "rank": null,
+      "subject": null,
+      "xr": "综合性期刊 4 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Infectious Diseases & Immunity": {
+      "if": 3.7,
+      "jcr": "Q2",
+      "rank": "44/141",
+      "subject": "INFECTIOUS DISEASES",
+      "xr": "医学 4 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "International immunopharmacology": {
+      "if": 5.6,
+      "jcr": "Q1",
+      "rank": "42/183",
+      "subject": "IMMUNOLOGY",
+      "xr": "医学 2 区·Top",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "International journal of surgery (London, England)": {
+      "if": 9.0,
+      "jcr": "Q1",
+      "rank": "5/321",
+      "subject": "SURGERY",
+      "xr": "医学 2 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Journal of Orthopaedic Surgery and Research": {
+      "if": 3.8,
+      "jcr": "Q1",
+      "rank": "21/147",
+      "subject": "ORTHOPEDICS",
+      "xr": "医学 3 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Journal of Physiological Anthropology": {
+      "if": 4.0,
+      "jcr": "Q1",
+      "rank": "17/89",
+      "subject": "PHYSIOLOGY",
+      "xr": "医学 3 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Journal of personalized medicine": {
+      "if": null,
+      "jcr": null,
+      "rank": null,
+      "subject": null,
+      "xr": null,
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Lancet Oncology": {
+      "if": 33.7,
+      "jcr": "Q1",
+      "rank": "9/333",
+      "subject": "ONCOLOGY",
+      "xr": "医学 1 区·Top",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Medicine Advances": {
+      "if": 5.3,
+      "jcr": "Q1",
+      "rank": "38/336",
+      "subject": "MEDICINE, GENERAL & INTERNAL",
+      "xr": "医学 4 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Molecular Biomedicine": {
+      "if": 13.0,
+      "jcr": "Q1",
+      "rank": "22/328",
+      "subject": "BIOCHEMISTRY & MOLECULAR BIOLOGY",
+      "xr": "医学 2 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Respiratory Medicine": {
+      "if": 3.3,
+      "jcr": "Q2",
+      "rank": "81/237",
+      "subject": "CARDIAC & CARDIOVASCULAR SYSTEMS",
+      "xr": "医学 3 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "The FEBS Journal": {
+      "if": 4.2,
+      "jcr": "Q2",
+      "rank": "126/328",
+      "subject": "BIOCHEMISTRY & MOLECULAR BIOLOGY",
+      "xr": "生物学 3 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    },
+    "Vaccines": {
+      "if": 3.5,
+      "jcr": "Q2",
+      "rank": "89/183",
+      "subject": "IMMUNOLOGY",
+      "xr": "医学 3 区",
+      "ver": "JCR2026发布(2025数据年)+新锐2026镜像"
+    }
+  }
+}

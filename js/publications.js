@@ -1,5 +1,32 @@
+/* 期刊三数（2026-11-09）：data/journal-metrics.json 由 sync_portal_metrics.py 生成
+   （journal_lookup 三数库：JCR2026 发布版 IF+JCR 分区+排名 / 新锐 2026 镜像分区），
+   运行时 fetch 合并，SUB-146 镜像初筛口径；加载失败不渲染徽章（静默降级）。 */
+window._jmeta = null;
+function jnorm(s) { return (s || '').replace(/\(.*?\)/g, '').replace(/[^A-Za-z0-9]+/g, ' ').trim().toLowerCase(); }
+function jlookup(j) {
+  const M = window._jmeta;
+  if (!M) return null;
+  if (M[j]) return M[j];
+  const k = jnorm(j);
+  for (const name in M) { if (jnorm(name) === k) return M[name]; }
+  return null;
+}
+function jmBadge(p) {
+  const m = jlookup(p.journal);
+  if (!m) return '';
+  const tip = m.ver + '（SUB-146 镜像初筛）';
+  let s = '';
+  if (m.if) s += `<span class="jm-badge jm-if" title="${tip}">IF ${m.if}${m.jcr ? ' · ' + m.jcr : ''}</span>`;
+  if (m.xr) s += `<span class="jm-badge jm-xr" title="${tip}">新锐 ${m.xr}</span>`;
+  return s ? ' ' + s : '';
+}
+
 window.renderPublications = function(container, data) {
   const papers = data.papers || [];
+  /* 三数异步加载：先渲染列表（无徽章态），到位后重刷一次 */
+  fetch('data/journal-metrics.json').then(r => { if (!r.ok) throw 0; return r.json(); })
+    .then(j => { window._jmeta = j.journals || {}; if (document.getElementById('pub-list')) renderPubList(papers); })
+    .catch(() => { window._jmeta = {}; });
 
   const catCounts = {};
   papers.forEach(p => { catCounts[p.category] = (catCounts[p.category] || 0) + 1; });
@@ -108,7 +135,7 @@ function renderPubList(papers) {
           <div style="flex:1;">
             <div style="font-weight:500;margin-bottom:2px;">${p.title}</div>
             <div style="font-size:0.85rem;color:var(--text-secondary);">
-              <span style="font-style:italic;">${p.journal}</span>
+              <span style="font-style:italic;">${p.journal}</span>${jmBadge(p)}
               ${p.doi ? ` · <a href="https://doi.org/${p.doi}" target="_blank">DOI</a>` : ''}
               ${p.pmid ? ` · <a href="https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/" target="_blank">PubMed</a>` : ''}
             </div>

@@ -141,6 +141,11 @@ html[data-theme="dark"] .pill.pub{color:#8FD9A8;background:rgba(143,217,168,.10)
 .pub-t{font-size:13px;font-weight:550;line-height:1.4;min-width:0}
 .pub-t:hover{color:var(--accent)}
 .pub-v{font-size:11.5px;color:var(--muted);font-style:italic}
+/* 期刊三数徽章（2026-11-09）：IF+JCR / 新锐分区，SUB-146 镜像初筛口径 */
+.jm-badge{display:inline-block;padding:1px 7px;border-radius:10px;font-size:9.5px;
+  font-family:var(--mono);font-style:normal;margin-left:6px;vertical-align:1px;cursor:help;white-space:nowrap}
+.jm-if{background:rgba(37,99,235,.1);color:#2563eb}
+.jm-xr{background:rgba(5,150,105,.1);color:#059669}
 .pub-links{display:flex;gap:10px;margin-top:2px}
 .pub-links a{font-family:var(--mono);font-size:10px;color:var(--accent);border-bottom:1px dashed var(--line-2);padding-bottom:1px}
 .pub-links a:hover{border-color:var(--accent)}
@@ -305,13 +310,31 @@ html[data-theme="dark"] .pill.pub{color:#8FD9A8;background:rgba(143,217,168,.10)
   var box = document.getElementById('sel-pubs');
   if(!box) return;
   function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  /* 三数徽章（2026-11-09）：data/journal-metrics.json 运行时 fetch，失败静默降级 */
+  var JM = null;
+  function jnorm(s){ return (s||'').replace(/\(.*?\)/g,'').replace(/[^A-Za-z0-9]+/g,' ').trim().toLowerCase(); }
+  function jlookup(j){
+    if(!JM) return null;
+    if(JM[j]) return JM[j];
+    var k = jnorm(j);
+    for(var name in JM){ if(jnorm(name) === k) return JM[name]; }
+    return null;
+  }
+  function jmBadge(j){
+    var m = jlookup(j);
+    if(!m) return '';
+    var s = '';
+    if(m.if) s += '<span class="jm-badge jm-if" title="'+m.ver+'（SUB-146 镜像初筛）">IF '+m.if+(m.jcr?' · '+m.jcr:'')+'</span>';
+    if(m.xr) s += '<span class="jm-badge jm-xr" title="'+m.ver+'（SUB-146 镜像初筛）">新锐 '+m.xr+'</span>';
+    return s;
+  }
   function draw(list){
     if(!list.length){ box.style.display='none'; return; }
     box.innerHTML = list.map(function(p){
       return '<div class="pub-item">' +
         '<span class="pub-yr">' + (p.year || '') + '</span>' +
         '<span class="pub-t">' + esc(p.title || '') + '</span>' +
-        '<span class="pub-v">' + esc(p.journal || '') + '</span>' +
+        '<span class="pub-v">' + esc(p.journal || '') + jmBadge(p.journal || '') + '</span>' +
         '<span class="pub-links">' +
           (p.doi ? '<a href="https://doi.org/' + p.doi + '" target="_blank" rel="noopener">DOI</a>' : '') +
           (p.pmid ? '<a href="https://pubmed.ncbi.nlm.nih.gov/' + p.pmid + '/" target="_blank" rel="noopener">PubMed</a>' : '') +
@@ -328,7 +351,10 @@ html[data-theme="dark"] .pill.pub{color:#8FD9A8;background:rgba(143,217,168,.10)
     var picks = d.filter(function(p){
       return /Lancet Oncology|International journal of surgery/i.test(p.journal) && +p.year >= 2025;
     }).slice(0, 4);
-    if(picks.length) draw(picks);
+    /* 链式等待：JM fetch settle（成功或失败）后再绘制，保证徽章不缺位（失败静默降级） */
+    var jmReady = fetch('data/journal-metrics.json').then(function(r){ if(!r.ok) throw 0; return r.json(); })
+      .then(function(j){ JM = j.journals||{}; }).catch(function(){ JM = {}; });
+    if(picks.length) jmReady.then(function(){ draw(picks); });
   }).catch(function(){});
 })();
 (function(){

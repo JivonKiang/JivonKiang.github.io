@@ -199,6 +199,17 @@ a:hover { text-decoration: underline; }
 .badge-yellow { background: rgba(217,119,6,0.15); color: var(--orange); }
 .badge-gray { background: rgba(148,163,184,0.15); color: var(--text-muted); }
 
+/* ===== 期刊三数徽章（2026-11-09）：IF+JCR / 新锐分区，数据 data/journal-metrics.json ===== */
+.jm-badge {
+  display: inline-block; padding: 1px 8px; border-radius: 12px;
+  font-size: 0.72rem; font-weight: 500; line-height: 1.5;
+  vertical-align: 1px; cursor: help; white-space: nowrap;
+}
+.jm-if { background: rgba(37,99,235,0.12); color: #2563eb; }
+.jm-xr { background: rgba(5,150,105,0.12); color: #059669; }
+[data-theme="dark"] .jm-if { background: rgba(96,165,250,0.15); color: #60a5fa; }
+[data-theme="dark"] .jm-xr { background: rgba(52,211,153,0.15); color: #34d399; }
+
 /* ===== Responsive ===== */
 @media (max-width: 1023px) {
   .app { grid-template-columns: 0 1fr; min-width: 0; }
